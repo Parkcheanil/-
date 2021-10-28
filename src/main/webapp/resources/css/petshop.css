@@ -1,0 +1,808 @@
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12  {padding: 0;}
+h1, h2, h3, h4, h5, .navbar {margin: 0;}
+a:hover {text-decoration: none;}
+.maincon {width: 1903px;} 
+/* nav박스 */
+.nnd .cf .nnn>li>a {padding: 0 5px; font-size: 1.2rem;}
+.nnd .cf .nnn>li {margin-top: 6px;}
+.nnd {min-height: 35px; padding: 0 30px;}
+/* 마이프로필박스 */
+.cb1 {
+    width: 100%;
+    margin: 20px auto 0;
+    padding: 24px 70px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    float: left;
+}
+.cb2 {width: 420px;}
+.cb2 > a {width: 100%;}
+.cb3 {
+    width: 80px;
+    margin: 0 10px;
+    float: left;
+}
+/* 헤더 유저정보 */
+.myinfo {
+    width: 1280px;
+    padding: 0 30px;
+    display: block;
+    margin: 0 auto;
+    border-bottom: 0 none;
+}
+.myinfo-name {width: 300px; float: left;}
+.myinfo2 {float: left;}
+.myinfo3 {width: 80px; margin-top: 11px;}
+.myimg-box {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #cfcfd0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+    max-width: 100%;
+    margin: 0;
+}
+.myimp-sp {
+    left: 0;
+    color: #fff;
+    width: 100%;
+    height: 20px;
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(255, 66, 92, 1);
+}
+.cb3-1 {
+    width: 60%;
+    margin-top: 20px;
+    float: right;
+    margin-right: 60px;
+}
+.cb4 {
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 1);
+    padding-top: 9px;
+}
+.cb5, .cb6, .cb6-1 {float: left;}
+.naver {
+    width: 20px;
+    height: 19px;
+    border-radius: 50%;
+    padding: 2px;
+}
+/* 헤더 펫 프로필 */
+.cb2-1 {width: 61%; float: left;}
+.pet-list-grup, .cb3-3 {width: 100%; float: left;}
+.pet-addlist {
+    width: 207px;
+    height: 100px;
+    padding: 0 9px;
+    float: left;
+}
+.pet-addbtn {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background-color: rgba(244, 244, 245, 1);
+}
+.pet-addbtn>h4>span {
+    margin-left: 10px;
+    float: left;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    background-color: rgba(255, 66, 92, 1);
+    display: block;
+}
+.pet-addlist-in {
+    width: 207px;
+    height: 100px;
+    padding: 0 9px;
+    float: left;
+}
+.pet-addbtn-in {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background-color: #fff;
+    border: 1px solid rgba(255, 66, 92, 1);
+}
+.addIcon {
+    font-size: 2rem;
+    color: rgba(255, 66, 92, 1);
+    display: block;
+    margin-bottom: 5px;
+}
+.pet-addbtn>h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+    font-weight: 600;
+    display: inline-block;
+}
+.petname {
+    width: 70px;
+    margin-left: 5px;
+    margin-top: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+    overflow: hidden;
+}
+.petinfo {
+    width: 100%;
+    color: rgba(60, 60, 67, 0.6);
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+}
+.petbirth {
+    width: 80px;
+    position: relative;
+    align-items: center;
+    color: rgba(60, 60, 67, 0.6);
+    float: left;
+}
+.petweight1 {width: 50px;}
+.petweight {
+    width: 69px;
+    position: relative;
+    background: url('../img/barline_st1.png') no-repeat left 44%;
+    float: left;
+}
+.toppet {color: #fff;}
+
+/* 상세정보 사이드메뉴 펫 프로필*/
+.cb1-1 {
+    width: 182px;
+    clear: both;
+    float: left;
+}
+.cb2-2 {
+    width: 100%;
+    overflow: hidden;
+}
+.side {padding: 6px 0 0;}
+.side>h3 {
+    margin: 20px 0 10px;
+    padding: 14px 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #fff;
+    border-bottom: 1px solid #cfcfd0;
+}
+.side-1 {
+    width: 100%;
+    color: rgba(60, 60, 67, 0.6);
+    padding: 12px 0;
+    font-size: 1.6rem;
+    border-bottom: 0 none;
+    float: left;
+}
+.side-1 a {width: 100%; float: left;}
+.side-1 i {float: right; margin-top: 3px;}
+.side-1 a {color: rgba(60, 60, 67, 0.6);}
+.side-1 a:hover {color: rgba(255, 66, 92, 1);}
+/* 추천 상품 리스트 */
+.petcontent {
+    float: left;
+    width: 85%;
+}
+.listMain {
+    padding: 34px 0 0 50px;
+    position: relative;
+}
+.listMain h2 {
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+.content-ct {
+    width: 100%;
+}
+.ct-li {
+    position: relative;
+    width: auto;
+}
+.ct-li a {
+    font-weight: normal;
+    color: #777;
+    font-size: 13px;
+}
+.preLine {
+    border-right: 1px solid #eee;
+}
+.ct-li > ul > li > a.select span {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+.ct-grop {
+    float: left;
+}
+.ct-grop a:active {
+    font-weight: bold;
+}
+.ct-grop>li{
+    display: inline-block;
+    width: auto;
+    padding:5px 10px;
+    background:#fff;
+    text-align:center; 
+    position:relative;
+}
+.ct-grop>li .ct-grop-sub {
+    display:none; 
+    position:absolute; 
+    top:30px; 
+    left:0;
+}
+.ct-grop>li:hover .ct-grop-sub {
+    display:block;
+}
+.ct-grop>li .ct-grop-sub>li {
+    display:inline-block; 
+    width:80px; 
+    padding:5px 10px; 
+    background:#fff; 
+    text-align:center;
+}
+.ct-grop>li .ct-grop-sub>li:hover { 
+    background:#eee; 
+}
+.ct-grop-sub {
+    border: 1px solid #eaeaea;
+}
+/*왼쪽에서 오른쪽으로 이동하는 밑줄 에니메이션*/
+.underline{
+    position: relative;
+}
+.underline:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0px;
+    height: 2px;
+    margin: 5px 0 0;
+    transition: all 0.2s ease-in-out;
+    transition-duration: 0.3s;
+    opacity: 0;
+    background-color: black;
+}
+.underline:hover:after{
+    width: 100%;
+    opacity: 1;
+}
+.actUdLine:active::after {
+    background-color: black;
+    font-weight: bold;
+}
+/* 추천상품 슬라이드 */
+.recommendGrop {
+    width: 100%;
+    float: left;
+}
+.individually {
+    width: 18%;
+    float: left;
+    margin: 10px 6px;
+}
+.individually>a>picture>img {
+    border-radius: 20px;
+}
+.kidult {
+    margin: 10px 0 8px;
+    color: #00CE88;
+}
+.pdt-cont>h4 {
+    margin-bottom: 8px;
+    color: black;
+    font-style: normal;
+}
+.pdt-cont>span {
+    color: black;
+    font-weight: bolder;
+    font-size: 1.8rem;
+}
+/* 슬라이드버튼 */
+.nextSlide {
+    width: 980px;
+    margin-left: 34px;
+    position: absolute;
+}
+.nsbtn1 {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.29);
+}
+.nsbtn2 {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.29);
+}
+.nsbtn1:hover, .nsbtn2:hover {
+    background-color: rgba(255, 66, 92, 1);
+    transform: translateY(-5%);
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+/* 상품 정렬순 리스트 */
+.pdt-box {
+    clear: both;
+    height: 48px;
+    padding: 0 0 0 4px;
+    border-top: 1px solid rgba(235, 235, 235, 1);
+    border-bottom: 1px solid #cfcfd0;
+}
+.pdt-pdtlist>span {
+    color: rgba(60, 60, 67, 0.6);
+    float: left;
+}
+.pdt-pdtlist>span>strong {
+    color: rgba(0, 0, 0, 1);
+}
+.pdtlist-drop-icon {
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+.pdtlist-drop-list>h4 {
+    width: 100px;
+    float: right;
+}
+.pdtlist-drop-list {
+    position: relative;
+    overflow: hidden;
+}
+.pdtlist-drop-ul {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+.pdtlist-drop-ul>a {
+    display: block;
+}
+.pdtlist-drop:hover, .pdtlist-drop-list {
+    display: block;
+}
+.pdt-pdtlist>label {
+    float: right;
+}
+/* 펫 등록 */
+.main-name {
+    padding: 0 0 0 50px;
+    position: relative;
+    min-width: 0;
+    word-break: break-all;
+}
+.main-name>h2 {
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+}
+.pet-add {
+    box-sizing: border-box;
+    border: 1px solid rgba(207, 204, 204, 1);
+    overflow: hidden;
+    border-radius: 4px;
+    margin-top: 0;
+    padding: 40px 232px;
+}
+.pet-add-img img {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #cfcfd0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+    max-width: 100%;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+}
+/* 펫 등록하기 */
+.pet-add-img span {
+    right: 0;
+    width: 20px;
+    bottom: 0px;
+    height: 20px;
+    padding: 4px;
+    position: absolute;
+    background: rgba(153, 153, 153, 1);
+    border-radius: 50%;
+}
+.petimg-box {
+    text-align: center;
+    overflow: hidden;
+}
+.pet-add-box {
+    clear: both;
+    margin-bottom: 20px;
+}
+.pet-add-box div {
+    border: 1px solid rgba(196, 196, 198, 1);
+    padding: 0;
+    background: #fff;
+    border-radius: 4px;
+}
+#petname {
+    height: 52px;
+    padding: 17.5px 88px 17.5px 16px;
+    z-index: 10;
+    position: relative;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    display: block;
+    min-width: 0;
+    background: none;
+}
+input[type="text"]:focus {outline-color: rgba(255, 81, 82, 0.7);}
+.pet-label {
+    font-size: 1.6rem;
+    padding-bottom: 10px;
+    color: rgba(0, 0, 0, 1);
+    position: relative;
+}
+/* 체크박스 */
+input[type="checkbox"] {-webkit-appearance: checkbox;}
+/* 등록버튼 */
+.inbtn-area {padding-top: 20px;}
+.inbtn {
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 13px 16px;
+    font-size: 1.6rem;
+    box-shadow: none !important;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: rgba(255, 66, 92, 1);
+    min-width: 64px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+/* 펫 리스트 */
+
+/* 주문/배송 */
+.main-name {
+    padding: 0 0 0 50px;
+    position: relative;
+    min-width: 0;
+    word-break: break-all;
+}
+.main-name>h2 {
+    margin: 30px 0;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+/* 결제 폼 */
+.gr1 {padding: 20px 30px 20px;}
+.gr2 {
+    float: right;
+    text-align: right;
+}
+.gr3 {
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 4px;
+    padding: 30px 116px 50px;
+}
+.expr{
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.grbtn {
+    width: 100%;
+    height: 100%;
+}
+.grbtn1 {
+    height: 50px;
+    padding: 0 30px;
+    background-color: #fff;
+    border-top: 1px solid #99949454;
+    border-left: 1px solid #99949454;
+    border-right: 1px solid #99949454;
+    border-bottom: 1px solid #99949454;
+    border-radius: 0;
+    color: rgba(0, 0, 0, 1);
+}
+.grbtn2 {
+    background-color: #fff;
+    border-top: 1px solid #99949454;
+    border-left: 1px solid #99949454;
+    border-right: 1px solid #99949454;
+    border-bottom: 1px solid #99949454;
+    border-radius: 0;
+    color: rgba(0, 0, 0, 1);
+    padding: 0 20px;
+    height: 50px;
+}
+.grbtn1:hover, .grbtn2:hover {background-color: lightslategray;}
+.payform {border-bottom: 1px solid #99949454;}
+.payform1, .ddgropbox {
+    padding: 10px 0 0px;
+    max-width: 522px;
+    margin-top: 20px;
+}
+.formLabel, .formLabel1 {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+}
+.formLabel>label, .formLabel1>label {
+    width: 92px;
+    float: left;
+    margin-top: 18px;
+    font-size: 1.6rem;
+}
+.formInput>input, .ddgrop>button {
+    width: 70%;
+    float: right;
+    border: 1px solid #99949454;
+    height: 52px;
+    padding: 17.5px 44px 17.5px 16px;
+    z-index: 10;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+.formInput1>input, .formInput2>input, .formInput3>input{
+    width: 42%;
+    float: left;
+    margin-left: 64px;
+    border: 1px solid #99949454;
+    height: 52px;
+    padding: 17.5px 44px 17.5px 16px;
+    z-index: 10;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+.zipCode {
+    width: 25%;
+    height: 52px;
+    border: 1px solid #99949454;
+    margin-left: 16px;
+    padding: 17.5px 44px 17.5px 16px;
+    z-index: 10;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+.formInput1>input {margin-bottom: 5px;}
+.formInput2>input, .formInput3>input {
+    width: 70%;
+    float: right;
+    margin-bottom: 5px;
+}
+.ddgrop>button:hover {background-color: #fff;}
+/* 결제 폼 상품목록 */
+.gr4 {margin: 30px 0 0 0;}
+.odtitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.orderTitle {
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.gr5 {width: 100%;}
+.gr6 {
+    padding: 20px;
+    background-color: rgba(244, 244, 245, 1);
+}
+.gr7 {
+    color: rgba(255, 66, 92, 1);
+    margin-top: 3px;
+    font-weight: 500;
+}
+.orderTable {overflow: hidden;}
+.odt-li1 {
+    border-color: rgba(235, 235, 235, 1);
+    border-top: 1px solid #cfcfd0;
+    border-bottom: 1px solid #cfcfd0;
+    padding: 0 16px;
+    position: relative;
+    margin-top: -1px;
+}
+.orderListBox {
+    width: 100%;
+    padding: 14px 0;
+    overflow: hidden;
+}
+.orderBox {
+    width: 124px;
+    float: left;
+}
+.orderImgBox {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    margin-right: 14px;
+}
+.orderImgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+.ocb2 {
+    width: calc(100% - 180px);
+    min-width: 0;
+    align-items: stretch;
+    float: left;
+}
+.orderContentBox {width: 834px;}
+.ocb1 {width: 500px; float: left;}
+.ocb1>h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 4px;
+}
+.ocb1>div {
+    font-size: 1.4rem;
+    margin-top: 4px;
+    color: rgba(60, 60, 67, 0.6);
+}
+.orderDtPay {
+    width: 180px;
+    height: 110px;
+    border-left: 1px solid #cfcfd0;;
+    float: right;
+    text-align: center;
+    padding: 40px;
+}
+/* 결제 폼 최종 결제금액 */
+.payToTable {margin: 30px 0 0 0;}
+.pttitle1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.pttitle {
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.ptData1 {
+    border-bottom: 1px solid #cfcfd0;
+    margin: 0;
+}
+.ptData1>dt {
+    width: 214px;
+    padding: 14px 20px;
+    background-color: rgba(244, 244, 245, 1);
+    float: left;
+}
+.ptData1>dd {padding: 14px 20px;} 
+.ptData2 {border-bottom: 1px solid rgba(60, 60, 67, 0.6);}
+.ptData2>dt {
+    width: 214px;
+    padding: 14px 20px;
+    background-color: rgba(244, 244, 245, 1);
+    float: left;
+}
+.ptData2>dd {padding: 14px 20px;}
+/* 결제방법 */
+.htptitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.htpline {
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+/* 라디오버튼 */
+.radiogrop {
+    width: 1046px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(60, 60, 67, 0.6) ;
+}
+.radio input[type="radio"] {
+    margin-left: -12px;
+    margin-top: 6px;
+}
+.radio>label {
+    font-size: 1.8rem;
+    margin: 8px;
+}
+input[type="radio"] {
+    content: '';
+    position: absolute;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    border:2px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+    cursor: pointer;
+    margin-left: -10px;
+}
+/* 결제버튼 */
+.confirmBox p, .confirmBox {
+    padding: 10px 0 0;
+    text-align: center;
+}
+.confBtn {
+    width: 444px;
+    height: 53px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    box-shadow: none !important;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: rgba(255, 66, 92, 1);
+}
+
+/* .content {
+    color: rgba(60, 60, 67, 0.6);
+    padding: 50px 16px;
+    box-sizing: border-box;
+    background-color: rgba(244, 244, 245, 1);
+    text-align: center;
+}
+.content-icon i {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+} */
+
+.present-form{
+    float: left; 
+    padding-left: 30px;
+}
+
+.present-form > h2 {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-bottom-width: 1px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.present-box{
+    
+    float: left; 
+    width: 1005px;
+    height: 240px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+    text-align: center;
+    background-color: #EEEFF1;
+    display: flex;
+
+}
+
+.cart-icon{
+    padding-bottom: 15px;
+}
+
+.cart {
+    margin:auto;
+}

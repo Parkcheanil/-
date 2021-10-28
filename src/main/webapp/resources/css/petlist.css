@@ -1,0 +1,407 @@
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12  {padding: 0;}
+h1, h2, h3, h4, h5, .navbar {margin: 0;}
+a:hover {text-decoration: none;}
+
+.bodybox {
+    position: relative;
+}
+.maincon {
+    width: 1280px;
+    margin: 0 auto;
+    
+} 
+/* nav박스 */
+.nnd .cf .nnn>li>a {padding: 0 5px; font-size: 1.2rem;}
+.nnd .cf .nnn>li {margin-top: 6px;}
+.nnd {min-height: 35px; padding: 0 30px;}
+/* 마이프로필박스 */
+.cb1 {
+    width: 100%;
+    margin: 20px auto 0;
+    padding: 24px 70px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    float: left;
+}
+.cb2 {width: 420px;}
+.cb2 > a {width: 100%;}
+.cb3 {
+    width: 80px;
+    margin: 0 10px;
+    float: left;
+}
+/* 헤더 유저정보 */
+.myinfo {
+    width: 1280px;
+    padding: 0 30px;
+    display: block;
+    margin: 0 auto;
+    border-bottom: 0 none;
+}
+.myinfo-name {width: 300px; float: left;}
+.myinfo2 {float: left;}
+.myinfo3 {width: 80px; margin-top: 11px;}
+.myimg-box {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #cfcfd0;
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+    max-width: 100%;
+    margin: 0;
+}
+.myimp-sp {
+    left: 0;
+    color: #fff;
+    width: 100%;
+    height: 20px;
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(255, 66, 92, 1);
+}
+.cb3-1 {
+    width: 60%;
+    margin-top: 20px;
+    float: right;
+    margin-right: 60px;
+}
+.cb4 {
+    font-size: 1.8rem;
+    color: rgba(0, 0, 0, 1);
+    padding-top: 9px;
+}
+.cb5, .cb6, .cb6-1 {float: left;}
+.naver {
+    width: 22px;
+    height: 21px;
+    border-radius: 50%;
+}
+/* 헤더 펫 프로필 */
+.cb2-1 {width: 61%; float: left;}
+.pet-list-grup, .cb3-3 {width: 100%; float: left;}
+.pet-addlist {
+    width: 207px;
+    height: 100px;
+    padding: 0 9px;
+    float: left;
+}
+.pet-addbtn {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background-color: rgba(244, 244, 245, 1);
+}
+.pet-addbtn>h4>span {
+    margin-left: 10px;
+    float: left;
+    padding: 8px 15px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    background-color: rgba(255, 66, 92, 1);
+    display: block;
+}
+.pet-addlist-in {
+    width: 207px;
+    height: 100px;
+    padding: 0 9px;
+    float: left;
+}
+.pet-addbtn-in {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background-color: #fff;
+    border: 1px solid rgba(255, 66, 92, 1);
+}
+.addIcon {
+    font-size: 2rem;
+    color: rgba(255, 66, 92, 1);
+    display: block;
+    margin-bottom: 5px;
+}
+.pet-addbtn>h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+    font-weight: 600;
+    display: inline-block;
+}
+.petname {
+    width: 70px;
+    margin-left: 5px;
+    margin-top: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+    overflow: hidden;
+}
+.petinfo {
+    width: 100%;
+    color: rgba(60, 60, 67, 0.6);
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+}
+.petbirth {
+    width: 80px;
+    position: relative;
+    align-items: center;
+    color: rgba(60, 60, 67, 0.6);
+    float: left;
+}
+.petweight1 {width: 50px;}
+.petweight {
+    width: 69px;
+    position: relative;
+    background: url('../img/barline_st1.png') no-repeat left 44%;
+    float: left;
+}
+.toppet {color: #fff;}
+
+/* 상세정보 사이드메뉴 */
+.cb1-1 {
+    width: 182px;
+    clear: both;
+    float: left;
+}
+.cb2-2 {
+    width: 100%;
+    overflow: hidden;
+}
+.side {padding: 6px 0 0;}
+.side>h3 {
+    margin: 20px 0 10px;
+    padding: 14px 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #fff;
+    border-bottom: 1px solid #cfcfd0;
+}
+.side-1 {
+    width: 100%;
+    color: rgba(60, 60, 67, 0.6);
+    padding: 12px 0;
+    font-size: 1.6rem;
+    border-bottom: 0 none;
+    float: left;
+}
+.side-1 a {width: 100%; float: left;}
+.side-1 i {float: right; margin-top: 3px;}
+.side-1 a {color: rgba(60, 60, 67, 0.6);}
+.side-1 a:hover {color: rgba(255, 66, 92, 1);}
+/* 추천 상품 리스트 */
+.petcontent {
+    float: left;
+    width: 85%;
+}
+.listMain {
+    padding: 34px 0 0 50px;
+    position: relative;
+}
+.listMain h2 {
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+/* 추천 정렬 드롭 메뉴 */
+.dropdown {
+    float: left;
+}
+.catedrop {
+    border-radius: 0px;
+    background-color: #fff;
+    color: rgba(60, 60, 67, 0.6);
+    border: 0px;
+    border-left: 1px solid rgba(60, 60, 67, 0.6);
+}
+.content-ct {
+    width: 100%;
+    float: left;
+}
+.ct-li {
+    position: relative;
+    width: auto;
+}
+.ct-li a {
+    font-weight: normal;
+    color: #777;
+    font-size: 13px;
+}
+.preLine {
+    border-right: 1px solid #eee;
+}
+.ct-li > ul > li > a.select span {
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+.ct-grop {
+    float: left;
+}
+.ct-grop a:active {
+    font-weight: bold;
+}
+.ct-grop>li{
+    display: inline-block;
+    width: auto;
+    padding:5px 10px;
+    background:#fff;
+    text-align:center; 
+    position:relative;
+}
+.ct-grop>li .ct-grop-sub {
+    display:none; 
+    position:absolute; 
+    top:30px; 
+    left:0;
+}
+.ct-grop-sub a {
+    width: 100%;
+}
+.ct-grop>li:hover .ct-grop-sub {
+    display: inline-block;
+    position: relative;
+}
+.ct-grop>li .ct-grop-sub>li {
+    display:inline-block; 
+    width: 148px; 
+    padding:5px 10px; 
+    background:#fff; 
+    text-align:center;
+}
+.ct-grop>li .ct-grop-sub>li:hover { 
+    background:#eee; 
+}
+.ct-grop-sub {
+    border: 1px solid #eaeaea;
+}
+/* 추천상품 슬라이드 */
+.recommendGrop {
+    width: 100%;
+    float: left;
+}
+.carousel-inner {
+    margin: 20px 0;
+}
+.individually {
+    width: 18%;
+    float: left;
+    margin: 10px 6px;
+}
+.individually>a>picture>img {
+    border-radius: 20px;
+}
+.kidult {
+    margin: 10px 0 8px;
+    color: #00CE88;
+}
+.pdt-cont>h4 {
+    margin-bottom: 8px;
+    color: black;
+    font-style: normal;
+}
+.pdt-cont>span {
+    color: black;
+    font-weight: bolder;
+    font-size: 1.8rem;
+}
+/* 슬라이드버튼 */
+.nsbtn1 {
+    position: absolute;
+    left: -30px;
+    top: 123px;
+    display: block;          
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.29);
+}
+.nsbtn2 {
+    display: block;
+    position: absolute;
+    right: 13px;
+    top: 123px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.29);
+}
+.nsbtn1>i {
+    font-size: 2.8rem;
+    margin: 12px 0 0 12px;
+    color: black;
+}
+.nsbtn2>i {
+    font-size: 2.8rem;
+    margin: 12px 0 0 17px;
+    color: black;
+}
+.nsbtn1:hover, .nsbtn2:hover {
+    background-color: rgba(255, 66, 92, 1);
+    transform: translateY(-5%);
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+/* 상품리스트 추천순 정렬 */
+.pdt-box {
+    clear: both;
+    height: 48px;
+    padding: 0 0 0 4px;
+    border-top: 1px solid rgba(235, 235, 235, 1);
+    border-bottom: 1px solid #cfcfd0;
+    margin: 10px 0;
+}
+/* 상품정렬 드롭다운 버튼 */
+.pdtlist-drop {
+    position : relative;
+    width: 11%;
+    float: right;
+    text-align: center;
+}
+.pdt-pdtlist {
+    margin-top: 14px;
+}
+.pdt-pdtlist>label {
+    float: right;
+}
+.pdtlist-drop-list {
+    display : none;
+    position : absolute;
+    z-index : 1; /*다른 요소들보다 앞에 배치*/ 
+    border: 1px solid rgba(235, 235, 235, 1);
+    margin-left: 18px;
+    margin-top: 3px;
+}
+.pdtlist-drop-list a {
+    display : block;
+    float: left;
+    padding: 10px;
+    color: #777;
+}  
+.pdtlist-drop:hover .pdtlist-drop-list {
+    display: block;
+}
+.pdtlist-drop-icon {
+    display: block;
+    float: right;
+}
+/* 추천상품 리스트 */
+.recom-product {
+    width: 100%;
+    overflow: hidden;
+}
+.recomList>a>picture>img {
+    border-radius: 20px;
+}
+.recomList {
+    width: 33.333%;
+    float: left;
+    padding: 10px;
+}

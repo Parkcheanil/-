@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 핸들러 맵핑, 핸들러 어댑터, 어노테이션 사용할수 있도록하는 설정 -->
+	<annotation-driven />
+
+	<!-- 정적자원 맵핑 js, css파일은 컨트롤러를 타지 않고 실행 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	
+	<!-- 뷰리졸버 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 해당패키지를 읽어서 @Controller 빈으로 생성 -->
+	<context:component-scan base-package="com.petworld.*" />
+	
+	<!-- 파일업로드 -->
+	<!-- 반드시 꼭 백번 id를 multipartResolver선언 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<beans:property name="maxUploadSize" value="52428800" />
+		<!-- defaultEncoding -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+		
+	</beans:bean>
+	
+</beans:beans>

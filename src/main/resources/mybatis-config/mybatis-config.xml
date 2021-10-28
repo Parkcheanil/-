@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 마이바티스의 부가적인 외부설정 -->
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.petworld.command.PetVO" alias="PetVO"/>
+	</typeAliases>
+</configuration>

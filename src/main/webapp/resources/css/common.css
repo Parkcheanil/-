@@ -1,0 +1,33 @@
+        /*=========웹폰트 선언=========*/
+        @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+        /*===========================*/
+        
+        /*디자인 시작시 기본 선언*/
+        *{  /* 기본선언: 마딩, 패딩 0, 요소크기에 padding, border값을 포함 x*/
+            padding:0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        li {list-style:none;}
+        
+        a {
+            text-decoration: none;
+        }
+        body, html {
+            width: 100%;
+            min-width: 320px;
+            font-family:'Noto Sans KR', sans-serif; /*웹폰트 사용*/
+            line-height: 1.43;
+        }
+        
+        img {
+            max-width: 100%; /*사이즈가 변해도 넓이를 유지 */
+            height: auto; /*사이즈가 변해도 높이를 유지 */
+            /*vertical-align: top;*/
+        }
+        input, textarea, button, select { /*고유하게 적용되어있는 form관련 요소들을 제거해서 여러브라우저에서 동일한디자인을 얻게함*/
+            -webkit-appearance:none;
+            -moz-appearance:none;
+            appearance:none;
+            border:none;
+        }

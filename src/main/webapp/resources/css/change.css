@@ -1,0 +1,127 @@
+.total {
+     margin: 0 auto; 
+     overflow: hidden;
+}
+.container1026 {
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(235, 235, 235, 1);
+    background-color: rgba(244, 244, 245, 1);
+}
+.wrap {
+    width: 1280px;
+    height: 40px;
+    margin: 0 auto !important;
+    padding: 0 30px;
+    font-size: 13px;
+    max-width: 1432px;
+    line-height: 40px;
+}
+.container1026 .wrap .box p {
+    color: rgba(60, 60, 67, 0.6);
+}
+.container1026 .wrap .box p a {
+    color: rgba(60, 60, 67, 0.6);
+    text-decoration: none;
+}
+.cb1-1 {
+    position: relative !important;
+}
+.main_area {
+    width: 100%;
+    }
+
+.main_h2 {margin: 0 0 30px;
+            padding : 0 0 0 200px}
+
+.main_inner_none {text-align: center; height: 250px;}
+.main_area_none {background-color: rgba(244, 244, 245, 1); margin-left: 200px;}
+.inner_none {padding: 60px 0 0;}
+.none_alert {font-size: 12px; color: gray; padding: 10px 0;}
+.none_recommend {
+    width: 250px;
+    height: 50px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+    background-color: white;
+    border : 1px solid rgb(255, 44, 76)}
+.none_recommend span {
+    display: inline-block;
+    padding : 10px 0 0;
+    color: rgb(255, 44, 76);
+    font-weight: 600;}
+
+.inner_goods {width: 1000px;  text-align: center; padding: 60px 0 0  200px;}
+.inner_goods h2 {text-align: left;}
+.goods_div {overflow: hidden;}
+.goods_h2 {margin: 0 0 30px;}
+.goods_info {border-top: 2px solid gray;}
+.goods_info img, .info_count, .info_text, .info_pay, .info_etc{
+    float: left;
+    width: 29%;
+    height: 110px;
+    border: 1px solid rgb(233, 233, 233);}
+.info_text {text-align: left; padding: 5px 0 0 10px; width:306px;}
+.info_name {font-size: 15px; font-weight: 800;}
+.info_stock {font-size: 12px; color: green;}
+.info_count {padding: 35px 0 0 50px ; overflow: hidden;}
+.info_count .count_button {font-weight: 900; padding: 4px 0 0;}
+.info_count .count_button, .info_count .count_text{
+    text-align: center; float: left; width: 40px; height: 40px; font-size: 20px;}
+.info_pay {padding-top: 30px;}
+.pay_percent {font-size: 15px; font-weight: 400; color: gray;}
+.pay_pluspay {font-size: 19px; font-weight: 600;}
+.info_count input, .count_button {float:left; width: 30px; height: 30px; border: 1px solid gray;}
+.info_etc {width: 150px;}
+.info_etc button {display: block;}
+.goods_info img{width: 110px}
+
+.btn_order{
+    width: 110px;
+    height: 30px;
+    font-size: 13pt;
+    background-color:rgb(255, 198, 206);
+    color: rgb(255, 44, 76);
+    border-radius: 2px;
+    margin: 1px 40px 0 15px;
+}
+
+.btn{
+    width: 110px;
+    height: 30px;
+    font-size: 13pt;
+    background-color:rgb(255, 198, 206);
+    color: rgb(255, 44, 76);
+    border-radius: 2px;
+    margin: 20px auto;
+}
+.cb1-1 {
+    width: 182px;
+    clear: both;
+    float: left;    
+}
+.cb2-2 {
+    width: 100%;
+    overflow: hidden;
+}
+
+.side {padding: 6px 0 0;}
+.side>h3 {
+    margin: 20px 0 10px;
+    padding: 14px 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #fff;
+    border-bottom: 1px solid #cfcfd0;
+}
+.side-1 {
+    width: 100%;
+    color: rgba(60, 60, 67, 0.6);
+    padding: 12px 0;
+    font-size: 1.6rem;
+    border-bottom: 0 none;
+    float: left;
+}
+.side-1 a {width: 100%; float: left;}
+.side-1 i {float: right; margin-top: 3px;}
+.side-1 a {color: rgba(60, 60, 67, 0.6);}
+.side-1 a:hover {color: rgba(255, 66, 92, 1);}

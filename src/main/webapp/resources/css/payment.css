@@ -1,0 +1,412 @@
+a, a:hover, a:focus  {text-decoration: none;}
+a:focus {color: #fff;}
+
+.bodybox {
+    position: relative;
+
+}
+
+.maincon {
+    width: 1280px;
+    margin: 0 auto;
+} 
+/* 결제 폼 헤더 */
+.main-name {
+    padding: 0 0 0 50px;
+    position: relative;
+    min-width: 0;
+    word-break: break-all;
+}
+.main-name>h2 {
+    margin: 30px 0;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+.content {
+    color: rgba(60, 60, 67, 0.6);
+    padding: 50px 16px;
+    box-sizing: border-box;
+    background-color: rgba(244, 244, 245, 1);
+    text-align: center;
+}
+.content-icon i {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+}
+/* 배송정보 입력 폼 */
+.gr1 {padding: 20px 30px 20px;}
+.gr2 {
+    float: right;
+    text-align: right;
+}
+.gr3 {
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 4px;
+    padding: 30px 116px 50px;
+}
+.expr{
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.grbtn {
+    width: 100%;
+    height: 100%;
+}
+.grbtn1 {
+    height: 50px;
+    padding: 0 30px;
+    background-color: #fff;
+    border-top: 1px solid #99949454;
+    border-left: 1px solid #99949454;
+    border-right: 1px solid #99949454;
+    border-bottom: 1px solid #99949454;
+    border-radius: 0;
+    color: rgba(0, 0, 0, 1);
+}
+.grbtn2 {
+    background-color: #fff;
+    border-top: 1px solid #99949454;
+    border-left: 1px solid #99949454;
+    border-right: 1px solid #99949454;
+    border-bottom: 1px solid #99949454;
+    border-radius: 0;
+    color: rgba(0, 0, 0, 1);
+    padding: 0 20px;
+    height: 50px;
+}
+.grbtn1:hover, .grbtn2:hover {background-color: lightslategray;}
+.payform {border-bottom: 1px solid #99949454;}
+.payform1, .ddgropbox {
+    position: relative;
+    padding: 10px 0 0px;
+    max-width: 522px;
+    margin-top: 20px;
+}
+.formLabel, .formLabel1 {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+}
+.formLabel>label, .formLabel1>label {
+    width: 92px;
+    float: left;
+    margin-top: 1px;
+    font-size: 1.6rem;
+}
+.formInput>input{
+    width: 70%;
+    float: right;
+    border: 1px solid #99949454;
+    height: 52px;
+    padding: 17.5px 44px 17.5px 16px;
+    z-index: 10;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+.ddbtn {
+    width: 365.4px;
+    float: right;
+    height: 52px;
+    font-size: 1.6rem;
+    margin-left: 64px;
+}
+.formInput1>input, .formInput2>input, .formInput3>input{
+    width: 42%;
+    float: left;
+    margin-left: 64px;
+    border: 1px solid #99949454;
+    height: 52px;
+    padding: 17.5px 44px 17.5px 16px;
+    z-index: 10;
+    font-size: 1.6rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: transparent;
+    -webkit-appearance: none;
+}
+.zipCode {
+    width: 25%;
+    height: 52px;
+    border: 1px solid #99949454;
+    margin-left: 16px;
+    padding: 17.5px 44px 17.5px 16px;
+    font-size: 1.6rem;
+    border-radius: 4px;
+    background-color: transparent;
+}
+.zipCode>span {
+    position: absolute;
+    width: 130px;
+    height: 50px;
+    top: 168px;
+    left: 390px;
+}
+.formInput1>input {margin-bottom: 5px;}
+.formInput2>input, .formInput3>input {
+    width: 70%;
+    float: right;
+    margin-bottom: 5px;
+}
+.ddgrop {position: static;}
+.ddgrop>button:hover {background-color: #fff;}
+.ddmenu {
+    position: absolute;
+    top: 100%;
+    left: 156px;
+    z-index: 10;
+    width: 366px;
+}
+.container2 {
+    position: relative;
+}
+.setting_title {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.desc_delivery {
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.desc {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.green_bg {
+    display: inline-block;
+    width: 10%;
+    height: 40px;
+    font-size: 1.8rem;
+    background-color: rgba(255, 66, 92, 1);
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 7px;
+    margin-left: 391px;
+    color: #fff;
+    border-color: rgba(255, 66, 92, 1);
+}
+.btn-info:focus {
+    background-color: rgba(255, 66, 92, 1);
+    border-color: rgb(245, 22, 52);
+}
+.btn-lg {
+    padding: 8px 9px;
+}
+.green_bg:hover {
+    color: #fff;
+    background-color: rgb(245, 22, 52);
+}
+thead>tr th {
+    font-size: 1.6rem;
+    text-align: center;
+}
+.tbl_delivery_list {
+    margin: 20px;
+}
+.cell_delivery, .cell_tel {
+    width: 22%;
+    text-align: center;
+}
+.cell_edit {
+    width: 25%;
+    text-align: center;
+}
+.cell_delivery>strong, .cell_delivery>span {
+    display: block;
+    text-align: center;
+}
+.tbldeli_tr1 {
+    border-bottom: 1px solid rgba(60, 60, 67, 0.6);
+}
+.cell_delivery>strong {
+    margin: 5px 0;
+}
+.mark_default {
+    margin-left: 76px;
+    margin-top: 5px;
+    width: 70px;
+    border: 1px solid rgba(255, 66, 92, 1);
+    color: rgba(255, 66, 92, 1);
+}
+.zipcode2 {
+    display: block;
+    color: #adadad;
+}
+._modify, ._delete {
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: rgba(255, 66, 92, 1);
+    border-radius: 6px;
+    text-align: center;
+    color: #fff;
+}
+/* 주문상품 */
+.gr4 {margin: 30px 0 0 0;}
+.odtitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.orderTitle {
+    padding: 0 0 12px 0;
+   
+}
+.gr5 {width: 100%;}
+.gr6 {
+    padding: 20px;
+    background-color: rgba(244, 244, 245, 1);
+}
+.gr7 {
+    color: rgba(255, 66, 92, 1);
+    margin-top: 3px;
+    font-weight: 500;
+}
+.orderTable {overflow: hidden;}
+.odt-li1 {
+    border-color: rgba(235, 235, 235, 1);
+    border-top: 1px solid #cfcfd0;
+    border-bottom: 1px solid #cfcfd0;
+    padding: 0 16px;
+    position: relative;
+    margin-top: -1px;
+}
+.orderListBox {
+    width: 100%;
+    padding: 14px 0;
+    overflow: hidden;
+}
+.orderBox {
+    width: 124px;
+    float: left;
+}
+.orderImgBox {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    margin-right: 14px;
+}
+.orderImgBox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+.ocb2 {
+    width: calc(100% - 180px);
+    min-width: 0;
+    align-items: stretch;
+    float: left;
+}
+.orderContentBox {width: 834px;}
+.ocb1 {width: 500px; float: left;}
+.ocb1>h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 4px;
+}
+.ocb1>div {
+    font-size: 1.4rem;
+    margin-top: 4px;
+    color: rgba(60, 60, 67, 0.6);
+}
+.orderDtPay {
+    border-left: 1px solid #cfcfd0;;
+    float: right;
+    padding: 45px;
+    font-size: 1.8rem;
+}
+/* 최종 결제 금액 */
+.payToTable {margin: 30px 0 0 0;}
+.pttitle1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.pttitle {
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+.ptData1 {
+    border-bottom: 1px solid #cfcfd0;
+    margin: 0;
+}
+.ptData1>dt {
+    width: 214px;
+    padding: 14px 20px;
+    background-color: rgba(244, 244, 245, 1);
+    float: left;
+    
+}
+.ptData1>dd {padding: 14px 20px; margin-left: 205px;} 
+.ptData2 {border-bottom: 1px solid rgba(60, 60, 67, 0.6);}
+.ptData2>dt {
+    width: 214px;
+    padding: 14px 20px;
+    background-color: rgba(244, 244, 245, 1);
+    float: left;
+    font-size: 1.6rem;
+}
+.ptData2>dd {
+    padding: 14px 20px; margin-left: 205px; 
+    font-size: 1.6rem;
+}
+/* 결제방법 */
+.htptitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.htpline {
+    padding: 0 0 12px 0;
+    border-bottom: 2px solid rgba(60, 60, 67, 0.6);
+}
+/* 라디오버튼 */
+.radiogrop {
+    width: 1046px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(60, 60, 67, 0.6) ;
+}
+.radio input[type="radio"] {
+    margin-left: -12px;
+    margin-top: 6px;
+}
+.radio>label {
+    font-size: 1.8rem;
+    margin: 8px;
+}
+input[type="radio"] {
+    content: '';
+    position: absolute;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    border:2px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+    cursor: pointer;
+    margin-left: -10px;
+}
+/* 결제버튼 */
+.confirmBox p, .confirmBox {
+    padding: 10px 0 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.confBtn {
+    width: 444px;
+    height: 53px;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    box-shadow: none !important;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: rgba(255, 66, 92, 1);
+}
