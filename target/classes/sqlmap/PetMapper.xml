@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.petworld.mapper.PetMapper">
+
+	<insert id="petRegistForm">
+		insert into pet(pNum, pName, pPhoto, pYear, pMonth, pWeight, pFirst ) 
+		values(pet_seq.nextval, #{pName}, #{pPhoto}, #{pYear}, #{pMonth}, #{pWeight}, #{pFirst})
+	</insert>
+	
+	<select id="getList" resultType="PetVO">
+		select * from pet order by no desc
+	</select>
+
+</mapper>
