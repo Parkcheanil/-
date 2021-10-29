@@ -22,7 +22,8 @@ public class PetServiceImpl implements PetService{
 
 	@Override
 	public ArrayList<PetVO> getList() {
-		return null;
+		
+		return petmapper.getList();
 	}
 	
 }

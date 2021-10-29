@@ -6,12 +6,12 @@
 <mapper namespace="com.petworld.mapper.PetMapper">
 
 	<insert id="petRegistForm">
-		insert into pet(pNum, pName, pPhoto, pYear, pMonth, pWeight, pFirst ) 
-		values(pet_seq.nextval, #{pName}, #{pPhoto}, #{pYear}, #{pMonth}, #{pWeight}, #{pFirst})
+		insert into pet(pNum, pName, pYear, pMonth, pWeight) 
+		values(pet_seq.nextval, #{pname}, #{pyear}, #{pmonth}, #{pweight})
 	</insert>
 	
 	<select id="getList" resultType="PetVO">
-		select * from pet order by no desc
+		select * from pet
 	</select>
 
 </mapper>

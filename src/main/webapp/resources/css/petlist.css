@@ -149,7 +149,7 @@ a:hover {text-decoration: none;}
     text-align: center;
 }
 .petbirth {
-    width: 80px;
+    width: 47px;
     position: relative;
     align-items: center;
     color: rgba(60, 60, 67, 0.6);
@@ -157,7 +157,7 @@ a:hover {text-decoration: none;}
 }
 .petweight1 {width: 50px;}
 .petweight {
-    width: 69px;
+    width: 52px;
     position: relative;
     background: url('../img/barline_st1.png') no-repeat left 44%;
     float: left;

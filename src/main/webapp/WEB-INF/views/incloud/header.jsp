@@ -8,9 +8,11 @@
   
 <!-- 부트스트랩 사용 선언 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     
 <!-- 폰트어썸킷 -->
     <script src="https://kit.fontawesome.com/4dc30431c0.js" crossorigin="anonymous"></script>
@@ -21,7 +23,11 @@
 <!-- 헤더 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
 
-
+  <script>
+  $( function() {
+    $( "input" ).checkboxradio();
+  } );
+  </script>
 
 
 

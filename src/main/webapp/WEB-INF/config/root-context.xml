@@ -35,9 +35,8 @@
 		
 		<!-- 마이바티스 관련된 외부설정 -->
 		<property name="configLocation" value="classpath:/mybatis-config/mybatis-config.xml" />
-		
 	</bean>
-
+	
 
 	<!-- 마이바티스 스캔 - 해당 패키지를 읽어서 인터페이스에 들어갈 xml을 빈으로 생성 -->
 	<mybatis-spring:scan base-package="com.petworld.mapper"/>

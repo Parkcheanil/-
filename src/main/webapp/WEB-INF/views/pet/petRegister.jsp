@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../incloud/header.jsp" %>
 <!-- 펫 등록/수정 css -->
@@ -8,13 +9,15 @@
 <script type="text/javascript">
 //체크박스 
 	//value값 가져오기
-	$('input:checkbox[id="checkbox"]').val();
-	//체크 처리
-	$('input:checkbox[id="checkbox"]').attr("checked", true);
-	//체크 여부
-	$('input:checkbox[id="checkbox"]').is(":checked") == true
+// 	$('input:checkbox[id="checkbox"]').val();
+// 	//체크 처리
+// 	$('input:checkbox[id="checkbox"]').attr("checked", true);
+// 	//체크 여부
+// 	$('input:checkbox[id="checkbox"]').is(":checked") == true
 	
-
+//   $( function() {
+//     $( "input" ).checkboxradio();
+//   } );
 
 </script>
 	
@@ -65,36 +68,23 @@
                         <div class="cb2-1">
                             <div class="cb3-3">
                                 <ul class="pet-list-grup">
+                                 <c:forEach items="${list }" var="vo">
                                     <li class="pet-addlist">
-                                        <button class="pet-addbtn">
+                                        <div class="pet-addbtn">
                                             <h4>
-                                                <div class="petName">멍멍이asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</div>
+                                                <div class="petname">${vo.pname }</div>
                                                 <span class="toppetBox">
                                                     <span class="toppet">대표</span>
                                                 </span>
                                             </h4>
                                             <div class="petinfo">
-                                                <span class="petbirth">20.01.01</span>
-                                                <span class="petweight">11kg</span>
+                                                <span class="petbirth">${vo.pyear }년</span>
+                                                <span class="petbirth">${vo.pmonth }월</span>
+                                                <span class="petweight">${vo.pweight }kg</span>
                                             </div>
-                                        </button>
+                                        </div>
                                     </li>
-                                    <li class="pet-addlist">
-                                        <button class="pet-addbtn">
-                                            <h4>
-                                                <div class="petName">멍멍이asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</div>
-                                                <span>
-                                                    <span class="toppet">대표</span>
-                                                </span>
-                                            </h4>
-                                            <div class="petinfo">
-                                                <span class="petbirth">20.01.01</span>
-                                                <span class="petweight1">
-                                                    <span class="petweight">11kg</span>
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </li>
+                                </c:forEach>
                                     <li class="pet-addlist-in">
                                         <button class="pet-addbtn-in" onclick="location.href='petRegister'">
                                             <div>
@@ -156,7 +146,7 @@
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-	                                                	<input type="file" class="form-control" id="pPhoto" name="pPhoto">
+	                                                	<input type="file" class="form-control" id="pPhoto" name="pphoto">
 	                                                    <img class="petimg" />
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
@@ -168,30 +158,30 @@
 	                                    <div class="pet-add-box">
 	                                        <label for="pet-label">펫 이름</label>
 	                                        <div>
-	                                            <input type="text" name="pName" id="petName" placeholder="펫 이름을 입력하세요">
+	                                            <input type="text" name="pname" id="petName" placeholder="펫 이름을 입력하세요">
 	                                        </div>
 	                                    </div>
 	                                    <div class="pet-add-box">
 	                                        <label for="pet-label">태어난 년도</label>
 	                                        <div>
-	                                            <input type="text" name="pYear" id="petYear" placeholder="태어난 년도">
+	                                            <input type="text" name="pyear" id="petYear" placeholder="태어난 년도">
 	                                        </div>
 	                                    </div>
 	                                    <div class="pet-add-box">
 	                                        <label for="pet-label">태어난 월</label>
 	                                        <div>
-	                                            <input type="text" name="pMonth" id="petMonth" placeholder="태어난 월">
+	                                            <input type="text" name="pmonth" id="petMonth" placeholder="태어난 월">
 	                                        </div>
 	                                    </div>
 	                                    <div class="pet-add-box">
 	                                        <label for="pet-label">몸무게(kg)</label>
 	                                        <div>
-	                                            <input type="text" name="pWeight" id="petWeight" placeholder="펫 몸무게를 입력하세요.">
+	                                            <input type="text" name="pweight" id="petWeight" placeholder="펫 몸무게를 입력하세요.">
 	                                        </div>
 	                                    </div>
 	                                    <div>
                                             <div class="checkbox">
-                                            <label><input type="checkbox" id="checkbox" name="pFirst">이 아이로 활동하기</label>
+                                            <label><input type="checkbox" id="checkbox" name="pfirst">이 아이로 활동하기</label>
                                             </div>
 	                                    </div>
 	                                    <div class="inbtn-area">
@@ -208,7 +198,6 @@
                 </div>    
             </div>
         </div>
-    
 <script type="text/javascript">
 	
 	//프로필 사진입력 미리보기
@@ -227,7 +216,22 @@
 		reader.readAsDataURL(files);
 	}
 	
-	
+	//체크박스 상태 확인
+// 	 function checkbox_Check(){
+//         if ($("input:checkbox[name=pFirst]").prop(":checked") == true) {
+//                 //체크가 되어있을때.    
+//         } else {
+//                 //체크가 안되어있을때.
+//         }
+//     }
+
 </script>
+	
+	<!-- 펫 프로필 출력 갯수 제한 -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".pet-addlist:gt(1)").css({"display" : "none"});
+		});
+	</script>
     
 <%@ include file="../incloud/footer.jsp" %>	

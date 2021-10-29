@@ -51,36 +51,23 @@
                         <div class="cb2-1">
                             <div class="cb3-3">
                                 <ul class="pet-list-grup">
+                                 <c:forEach items="${list }" var="vo">
                                     <li class="pet-addlist">
-                                        <button class="pet-addbtn">
+                                        <div class="pet-addbtn">
                                             <h4>
-                                                <div class="petName">멍멍이asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</div>
+                                                <div class="petname">${vo.pname }</div>
                                                 <span class="toppetBox">
                                                     <span class="toppet">대표</span>
                                                 </span>
                                             </h4>
                                             <div class="petinfo">
-                                                <span class="petbirth">20.01.01</span>
-                                                <span class="petweight">11kg</span>
+                                                <span class="petbirth">${vo.pyear }년</span>
+                                                <span class="petbirth">${vo.pmonth }월</span>
+                                                <span class="petweight">${vo.pweight }kg</span>
                                             </div>
-                                        </button>
+                                        </div>
                                     </li>
-                                    <li class="pet-addlist">
-                                        <button class="pet-addbtn">
-                                            <h4>
-                                                <div class="petName">멍멍이asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf</div>
-                                                <span>
-                                                    <span class="toppet">대표</span>
-                                                </span>
-                                            </h4>
-                                            <div class="petinfo">
-                                                <span class="petbirth">20.01.01</span>
-                                                <span class="petweight1">
-                                                    <span class="petweight">11kg</span>
-                                                </span>
-                                            </div>
-                                        </button>
-                                    </li>
+                                </c:forEach>
                                     <li class="pet-addlist-in">
                                         <button class="pet-addbtn-in" onclick="location.href='petRegister'">
                                             <div>

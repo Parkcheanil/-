@@ -28,10 +28,13 @@ public class PetVO {
 //	);
 
 	
-	private int pNum;
-	private String pName, pPhoto;
-	private int pYear, pMonth;
-	private String pFirst;
-	private MultipartFile imageFile;
-	private String deleteFileName;
+	private int pnum;
+	private String pname; 
+//	private String pphoto;
+	private String pyear; 
+	private String pmonth;
+	private String pweight;
+//	private String pfirst;
+//	private MultipartFile imageFile;
+//	private String deleteFileName;
 }
