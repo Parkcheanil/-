@@ -25,5 +25,17 @@ public class PetServiceImpl implements PetService{
 		
 		return petmapper.getList();
 	}
+
+	@Override
+	public boolean petInfoUpdate(PetVO vo) {
+		
+		return petmapper.petInfoUpdate(vo);
+	}
+
+	@Override
+	public PetVO petInfo(int pnum) {
+		
+		return petmapper.petInfo(pnum);
+	}
 	
 }

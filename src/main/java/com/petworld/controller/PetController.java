@@ -32,30 +32,27 @@ public class PetController {
 	//펫 입력 폼 화면
 	@RequestMapping("/petRegister")
 	public void registerFrom(Model model) {
+		
 		ArrayList<PetVO> list = petService.getList();
 		model.addAttribute("list", list);
-	}
-	
-	//펫 정보수정 화면
-	@RequestMapping("/petUpdate")
-	public void petUpdate() {
-		
 	}
 	
 	//펫 정보입력 처리
 	@RequestMapping("/petRegistForm")
 	public String register(PetVO vo, RedirectAttributes RA) {
 		
-		boolean result = petService.petRegistForm(vo);
+		System.out.println("register().vo : " + vo);
 		
-		System.out.println("insert여부 : " + result);
-		
-		if(result) {
-			RA.addFlashAttribute("msg", "정상적으로 글 등록 되었습니다.");
-		} else {
-			RA.addFlashAttribute("msg", "글 등록이 실패하였습니다.");
-		}
-		
+//		boolean result = petService.petRegistForm(vo);
+//		
+//		System.out.println("insert여부 : " + result);
+//		
+//		if(result) {
+//			RA.addFlashAttribute("msg", "정상적으로 글 등록 되었습니다.");
+//		} else {
+//			RA.addFlashAttribute("msg", "글 등록이 실패하였습니다.");
+//		}
+//		
 		return "redirect:/pet/petList";
 	}
 	
@@ -69,8 +66,31 @@ public class PetController {
 		System.out.println(list);
 	}
 	
-
+	//펫 정보 수정 / 삭제 화면
+	@RequestMapping({"/petUpdate", "/petDelete"})
+	public void petInfo(@RequestParam("pnum") int pnum, Model model) {
+		
+		PetVO vo = petService.petInfo(pnum);
+		model.addAttribute("vo", vo);
+	}
 	
+	//펫 정보 수정기능
+	@RequestMapping("/petUpdateForm")
+	public String petInfoUpdate(PetVO vo, RedirectAttributes RA) {
+		
+		boolean result = petService.petInfoUpdate(vo);
+		
+		System.out.println("update여부 : " + result);
+		
+		if(result) {
+			RA.addFlashAttribute("msg", "정상적으로 글 등록 되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "글 등록이 실패하였습니다.");
+		}
+		
+		
+		return "redirect:/pet/petUpdate?pnum= " + vo.getPnum();
+	}
 	
 	
 }

@@ -23,11 +23,7 @@
 <!-- 헤더 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
 
-  <script>
-  $( function() {
-    $( "input" ).checkboxradio();
-  } );
-  </script>
+
 
 
 

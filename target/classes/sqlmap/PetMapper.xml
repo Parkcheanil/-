@@ -6,12 +6,22 @@
 <mapper namespace="com.petworld.mapper.PetMapper">
 
 	<insert id="petRegistForm">
-		insert into pet(pNum, pName, pYear, pMonth, pWeight) 
-		values(pet_seq.nextval, #{pname}, #{pyear}, #{pmonth}, #{pweight})
+		insert into pet(pNum, pPhoto, pName, pYear, pMonth, pWeight) 
+		values(pet_seq.nextval, #{pphoto}, #{pname}, #{pyear}, #{pmonth}, #{pweight})
 	</insert>
 	
 	<select id="getList" resultType="PetVO">
 		select * from pet
 	</select>
+	
+	<select id="petInfo" resultType="PetVO">
+		select * from pet where pNum = #{pnum}
+	</select>
+
+	<update id="petInfoUpdate">
+		update pet set pName = #{pname}, pYear = #{pyear}, 
+						pMonth = #{pmonth}, pWeight = #{pweight}
+		where pNum = #{pnum}
+	</update>
 
 </mapper>

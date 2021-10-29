@@ -116,7 +116,7 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate'">
+                                <a href="#" onclick="location.href='petUpdate?pnum=${pnum}'">
                                     <span>펫 수정하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
@@ -199,7 +199,14 @@
             </div>
         </div>
 <script type="text/javascript">
-	
+
+(function() {
+	var msg = "${msg}";
+	if(msg !== ""){
+		alert(msg);
+	}
+})();
+
 	//프로필 사진입력 미리보기
 	$(document).ready(function() {
 		$("#pPhoto").on("change", readURL);
@@ -232,6 +239,7 @@
 		$(document).ready(function() {
 			$(".pet-addlist:gt(1)").css({"display" : "none"});
 		});
+		
 	</script>
     
 <%@ include file="../incloud/footer.jsp" %>	

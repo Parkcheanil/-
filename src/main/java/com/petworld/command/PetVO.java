@@ -29,8 +29,8 @@ public class PetVO {
 
 	
 	private int pnum;
+	private String pphoto;
 	private String pname; 
-//	private String pphoto;
 	private String pyear; 
 	private String pmonth;
 	private String pweight;
