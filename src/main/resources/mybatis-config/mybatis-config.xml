@@ -7,5 +7,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.petworld.command.PetVO" alias="PetVO"/>
+		<typeAlias type="com.petworld.command.PayVO" alias="PayVO"/>
 	</typeAliases>
 </configuration>

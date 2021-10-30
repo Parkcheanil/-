@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-	$(function(){
-	    $('#deliveryInBtn').click(function(){
-	        // ("url","창이름","옵션")
-	        window.open("delivery", "배송지등록", "width=700, height=820, top=100, left=400");
-	    });
-	});
-</script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ include file="../incloud/header.jsp" %>
 <!-- 결제 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/payment.css">
@@ -55,9 +49,9 @@
                     <div class="btn-group grbtn">
                         <button type="button" class="btn btn-primary grbtn1">최근 배송지</button>
                         <button type="button" class="btn btn-primary grbtn2">신규 배송지</button>
-                        <button type="button" class="btn btn-primary grbtn1">배송지 선택</button>
+                        <button type="button" class="btn btn-primary grbtn1 descbtn" onclick="deliveryList">배송지 선택</button>
                     </div>
-                    <div class="payform" style="display: hiden">
+                    <div class="payform">
                         <div class="payform1">
                             <div  class="formLabel">
                                 <label for="">받는 사람</label>
@@ -92,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ddgropbox" >
+                        <div class="ddgropbox">
                             <div class="formLabel1">
                                 <label for="">배송 요청사항</label>
                                 <div class="dropdown ddgrop">
@@ -110,12 +104,13 @@
                             </div>
                         </div>
                         <!-- 배송지 선택 -->
-                        <div id="container2">
+                        <div id="container2" style="display:none;">
                             <h3 class="setting_title">배송지 목록</h3>
                             <div class="desc_delivery">
                                 <p class="desc">쇼핑에 사용하신 배송 지를 최대 15개까지 함께 관리 하실 수 있습니다.</p>
                                 <a href="#" class="green_bg" id="deliveryInBtn">배송지 등록</a>
                             </div>
+                            
                             <div class="delivery_list_area">
                                 <table class="tbl_delivery_list">
                                     <colgroup>
@@ -131,23 +126,25 @@
                                             <th scope="col" class="cell_tel">연락처</th>
                                             <th scope="col" class="cell_edit">수정/삭제</th>
                                         </tr>
-                                        <tr>
-                                            <td class="cell_delivery">
-                                                <strong class="nick">박천일</strong>
-                                                박천일
-                                                <span class="mark_default">기본배송지</span>
-                                            </td>
-                                            <td>
-                                                <span class="zipcode2">1234</span>
-                                                    인천시 부평구 ㅣ낭리만어림넝리ㅁ니아 ㄻ닝 리ㅏ 23093209 ㅁㄴ
-                                            </td>
-                                            <td class="cell_tel">123-1234-1234</td>
-                                            <td class="cell_edit">
-                                                <a href="" class="_modify">수정</a>
-                                                <a href="" class="_delete">삭제</a>
-                                                <input type="hidden" id="hash" value="2a22fb1852f60002f62751a9f853686fb1bfed89925cf5ecc2d306e4d128ccdf">
-                                            </td>
-                                        </tr>
+                                        <c:forEach items="${list }" var="list">
+	                                        <tr>
+	                                            <td class="cell_delivery">
+	                                                <strong class="nick">${list.oplace }</strong>
+	                                                ${list.oname }
+	                                                <span class="mark_default">기본배송지</span>
+	                                            </td>
+	                                            <td>
+	                                                <span class="zipcode2">${list.opost }</span>
+	                                                ${list.oaddress } ${list.oaddress1 }
+	                                            </td>
+	                                            <td class="cell_tel">${list.ophone }</td>
+	                                            <td class="cell_edit">
+	                                                <a href="delivery?oplace=${list.oplace }" class="_modify">수정</a>
+	                                                <a href="" class="_delete">삭제</a>
+	                                                <input type="hidden" id="hash" value="2a22fb1852f60002f62751a9f853686fb1bfed89925cf5ecc2d306e4d128ccdf">
+	                                            </td>
+	                                        </tr>
+                                        </c:forEach>
                                     </thead>
                                 </table>
                             </div>
@@ -284,7 +281,7 @@
                     <div>
                         <p>위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
                     </div>
-                    <button class="confBtn" onclick="location.href = '../cart/cart'">
+                    <button class="confBtn" onclick="location.href = '../product/order'">
                         <span class="confBtn1">결제하기</span>
                         <span class="confBtn2"></span>
                     </button>
@@ -292,5 +289,35 @@
             </div>
         </div>
     </div>
+    
+<script>
+// 배송지 입력창
+$(function(){
+    $('#deliveryInBtn').click(function(){
+        // ("url","창이름","옵션")
+        window.open("delivery", "배송지등록", "width=700, height=820, top=100, left=400");
+    });
+});
+
+// 배송지 선택 클릭시
+$(function() {
+	$(".descbtn").click(function() {
+		$("#container2").show();
+		$(".payform1").hide();
+		$(".ddgropbox").hide();
+	});
+});
+
+$(function() {
+	$(".grbtn2").click(function() {
+		$("#container2").hide();
+		$(".payform1").show();
+		$(".ddgropbox").show();
+	});
+});
+
+</script>
+    
+    
 <%@ include file="../incloud/footer.jsp" %>	
 

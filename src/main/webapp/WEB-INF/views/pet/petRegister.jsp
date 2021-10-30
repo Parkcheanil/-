@@ -177,6 +177,7 @@
                 </div>    
             </div>
         </div>
+<%@ include file="../incloud/footer.jsp" %>	
 <script type="text/javascript">
 	//확인용 메시지
 	(function() {
@@ -232,4 +233,3 @@
 //  	$('input:checkbox[id="checkbox"]').is(":checked") == true
 </script>
 	
-<%@ include file="../incloud/footer.jsp" %>	

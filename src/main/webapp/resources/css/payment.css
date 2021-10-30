@@ -3,9 +3,7 @@ a:focus {color: #fff;}
 
 .bodybox {
     position: relative;
-
 }
-
 .maincon {
     width: 1280px;
     margin: 0 auto;
@@ -93,7 +91,7 @@ a:focus {color: #fff;}
     overflow: hidden;
 }
 .formLabel>label, .formLabel1>label {
-    width: 92px;
+    width: 93px;
     float: left;
     margin-top: 1px;
     font-size: 1.6rem;
@@ -112,11 +110,10 @@ a:focus {color: #fff;}
     -webkit-appearance: none;
 }
 .ddbtn {
-    width: 365.4px;
+    width: 366.4px;
     float: right;
     height: 52px;
     font-size: 1.6rem;
-    margin-left: 64px;
 }
 .formInput1>input, .formInput2>input, .formInput3>input{
     width: 42%;
@@ -136,7 +133,7 @@ a:focus {color: #fff;}
     width: 25%;
     height: 52px;
     border: 1px solid #99949454;
-    margin-left: 16px;
+    margin-left: 15px;
     padding: 17.5px 44px 17.5px 16px;
     font-size: 1.6rem;
     border-radius: 4px;

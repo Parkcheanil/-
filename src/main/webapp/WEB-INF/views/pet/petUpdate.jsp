@@ -48,7 +48,7 @@
                                 </div>
                             </a>
                         </div>
-                        <!-- 헤더 펫 프로필 -->
+                        헤더 펫 프로필
                         <div class="cb2-1">
                             <div class="cb3-3">
                                 <ul class="pet-list-grup">
@@ -113,11 +113,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 펫등록 -->
+                    <!-- 펫수정 -->
                     <div class="col-lg-9 cb2-3">
                         <div class="contentbox">
                             <main class="main-name">
-                                <h2>펫 등록</h2>
+                                <h2>펫 정보 수정</h2>
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
                                 	<input type="hidden" name="deleteFileName" value="${vo.pphoto }">
 	                                <div class="pet-add">
@@ -183,6 +183,7 @@
                 </div>    
             </div>
         </div>
+<%@ include file="../incloud/footer.jsp" %>	
     
 <script type="text/javascript">
 	//확인용 메시지
@@ -243,5 +244,3 @@
 //  	//체크 여부
 //  	$('input:checkbox[id="checkbox"]').is(":checked") == true
 </script>
-
-<%@ include file="../incloud/footer.jsp" %>	

@@ -15,7 +15,6 @@
 }
 
 .pet-addlist:hover {
-	background: #eee;
 	cursor: pointer;
 }
 </style>
@@ -654,7 +653,7 @@
 		$(function() {
 			$(".pet-addlist").click(function() {
 				var pnum = $(this).find(".petname").text();
-				location = "petView?pname=" + pname;
+				location = "petUpdate?pname=${vo.pname}";
 			});
 			
 		});
