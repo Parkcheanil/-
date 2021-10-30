@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../incloud/header.jsp"%>
+<!-- 펫 상품 추천 css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/petlist.css">
 
 <!-- petList.jsp 슬라이드 그림자 효과 초기화 -->
 <style>
@@ -10,10 +13,13 @@
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0,
 		rgba(0, 0, 0, 0) 100%);
 }
+
+.pet-addlist:hover {
+	background: #eee;
+	cursor: pointer;
+}
 </style>
-<!-- 펫 상품 추천 css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/petlist.css">
+
 <body>
 	<!-- 헤더 네비게이션 -->
 	<div style="margin-top: 165px;">
@@ -96,28 +102,27 @@
 							<h3>나의 가족</h3>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petList'"> <span>상품추천</span>
-								<i class="fas fa-angle-right i1"></i>
+							<a href="#" onclick="location.href='../product/productTotal'"> 
+							<span>상품추천</span>
+							<i class="fas fa-angle-right i1"></i>
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petRegister'"> <span>펫
-									등록하기</span> <i class="fas fa-angle-right i2"></i>
+							<a href="#" onclick="location.href='petRegister'"> 
+							<span>펫	등록하기</span> 
+							<i class="fas fa-angle-right i2"></i>
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petUpdate?pnum=${pnum}'"> <span>펫
-									수정하기</span> <i class="fas fa-angle-right i2"></i>
+							<a href="#" onclick="location.href='petUpdate?pfirst=${vo.pfirst}'"> 
+							<span>펫 수정/삭제 하기</span> 
+							<i class="fas fa-angle-right i2"></i>
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petList'"> <span>펫
-									삭제하기</span> <i class="fas fa-angle-right i2"></i>
-							</a>
-						</div>
-						<div class="side-1">
-							<a href="#" onclick="location.href=''"> <span>고객센터</span> <i
-								class="fas fa-angle-right i1"></i>
+							<a href="#" onclick="location.href=''"> 
+							<span>고객센터</span> 
+							<i class="fas fa-angle-right i1"></i>
 							</a>
 						</div>
 					</div>
@@ -626,7 +631,19 @@
 
 	<!-- 펫 프로필 출력 갯수 제한 -->
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(function() {
 			$(".pet-addlist:gt(1)").css({"display" : "none"});
 		});
 	</script>
+	
+	<!-- 펫 프로필 상세보기 -->
+	<script type="text/javascript">
+		$(function() {
+			$(".pet-addlist").click(function() {
+				var pnum = $(this).find(".petname").text();
+				location = "petView?pname=" + pname;
+			});
+			
+		});
+	</script>
+	

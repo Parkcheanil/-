@@ -8,7 +8,7 @@ public interface PetService {
 
 	public boolean petRegistForm(PetVO vo);
 	public ArrayList<PetVO> getList();
-	public PetVO petInfo(int pnum);
+	public PetVO petInfo(String pfirst);
 	public boolean petInfoUpdate(PetVO vo);
 	
 }

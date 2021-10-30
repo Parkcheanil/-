@@ -88,7 +88,7 @@
                                 <h3>나의 가족</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petList'">
+                                <a href="#" onclick="location.href='../product/productTotal'">
                                     <span>상품추천</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
@@ -100,14 +100,8 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate?pnum=${vo.pnum}'">
-                                    <span>펫 수정하기</span>
-                                    <i class="fas fa-angle-right i2"></i>
-                                </a>
-                            </div>
-                            <div class="side-1">
-                                <a href="#" onclick="location.href='petList'">
-                                    <span>펫 삭제하기</span>
+                                <a href="#" onclick="location.href='petUpdate'">
+                                    <span>펫 수정/삭제 하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
@@ -131,7 +125,7 @@
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
                                                     	<input type="file" class="form-control" id="pPhoto" name="pphoto">
-	                                                    <img class="petimg" />
+	                                                    <img class="petimg" src="${vo.pphoto }"/>
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
 	                                                    </span>
@@ -169,11 +163,11 @@
 	                                    </div>
 	                                    <div>
                                             <div class="checkbox">
-                                            <label><input type="checkbox" id="checkbox" name="pfirst">이 아이로 활동하기</label>
+                                            <label><input type="checkbox" id="checkbox" name="pfirst" value="${vo.pfirst }">이 아이로 활동하기</label>
                                             </div>
 	                                    </div>
 	                                    <div class="inbtn-area">
-	                                        <button class="upbtn">
+	                                        <button class="upbtn" type="submit">
 	                                            <span class="inbtn-label">수정하기</span>
 	                                        </button>
 	                                        <button class="delbtn">
@@ -189,39 +183,64 @@
             </div>
         </div>
     
-<%@ include file="../incloud/footer.jsp" %>	
+<script type="text/javascript">
+	//확인용 메시지
+	(function() {
+		var msg = "${msg}";
+		if(msg !== ""){
+			alert(msg);
+		}
+	})();
 
-<script>
-
-(function() {
-	var msg = "${msg}";
-	if(msg !== ""){
-		alert(msg);
-	}
-})();
-
-
-//프로필 사진입력 미리보기
+	//프로필 사진입력 미리보기
 	$(document).ready(function() {
 		$("#pPhoto").on("change", readURL);
 	});
 	
 	function readURL(e) {
-		const files = e.target.files[0];
+		var files = e.target.files[0];
 		
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$(".petimg").attr("src", e.target.result);
-			$("#pPhoto").css({"display":"none"});
+			$("#pPhoto").css({"z-index":"-1"});
 		}
 		reader.readAsDataURL(files);
 	}
-
-</script>
-
-<!-- 펫 프로필 출력 갯수 제한 -->
-<script type="text/javascript">
+	
+	
+	//펫 프로필 출력 갯수 제한
 	$(document).ready(function() {
-		$(".pet-addlist:gt(1)").css({"display" : "none"});
+		$(".pet-addlist:gt(1)").css({
+			"display" : "none"
+		});
 	});
+	
+	//체크 박스 제어
+	
+	if($("#checkbox").val() == 1){
+		$('input:checkbox[id="checkbox"]').attr("checked", true);
+	}
+	
+	$("#checkbox").click(function() {
+		if($("#checkbox").is(":checked") == false){
+			$('input:checkbox[id="checkbox"]').attr("checked", true);
+			$("#checkbox").attr("value", "0");
+			console.log($("#checkbox").val());
+		} else {
+			$('input:checkbox[id="checkbox"]').attr("checked", false);
+			$("#checkbox").attr("value", "1");
+			console.log($("#checkbox").val());
+		}
+	});	
+	console.log($("#checkbox").val());
+	
+// 	//value값 가져오기
+//  	$('input:checkbox[id="checkbox"]').val();
+//  	//체크 처리
+//  	$('input:checkbox[id="checkbox"]').attr("checked", false);
+//  	//체크 여부
+//  	$('input:checkbox[id="checkbox"]').is(":checked") == true
 </script>
+
+<%@ include file="../incloud/footer.jsp" %>	

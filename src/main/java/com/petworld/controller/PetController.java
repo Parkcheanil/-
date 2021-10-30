@@ -1,9 +1,6 @@
 package com.petworld.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,6 @@ import com.petworld.command.PetVO;
 import com.petworld.service.PetService;
 import com.petworld.util.APP_CONSTANT;
 
-import lombok.extern.log4j.Log4j;
-
 @Controller
 @RequestMapping("/pet")
 public class PetController {
@@ -32,65 +27,120 @@ public class PetController {
 	//펫 입력 폼 화면
 	@RequestMapping("/petRegister")
 	public void registerFrom(Model model) {
-		
-		ArrayList<PetVO> list = petService.getList();
-		model.addAttribute("list", list);
+		model.addAttribute("list", petService.getList());
 	}
 	
-	//펫 정보입력 처리
+	//펫 정보 입력 처리
 	@RequestMapping("/petRegistForm")
-	public String register(PetVO vo, RedirectAttributes RA) {
+	public String register(@RequestParam("file") MultipartFile file, 
+							PetVO vo, RedirectAttributes RA) {
+		try {
+			System.out.println(file);
+			
+			String fileRealName = file.getOriginalFilename(); //파일명
+			Long size = file.getSize(); //파일크기 
+			
+			//확장자 명을 가져온다.
+			String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			
+			//랜덤16진수
+			UUID uuids= UUID.randomUUID();
+			String saveFileName = uuids.toString().replace("-", "") + extention; 
+			
+			System.out.println("파일실제이름 : " + fileRealName);
+			System.out.println("파일크기 : " + size);
+			System.out.println("파일확장자 : " + extention);
+			System.out.println("저장 파일명 : " + saveFileName);
+			
+			File dir = new File(APP_CONSTANT.uploadPath + saveFileName);
+			
+			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
+			
+			//파일 경로 vo.pphoto에 저장
+			String path = dir.getPath();
+			vo.setPphoto(path);
+			
+			boolean result = petService.petRegistForm(vo);
+			
+			System.out.println("register 여부 : " + result);
+			
+			if(result) {
+				RA.addFlashAttribute("msg", "정상적으로 펫이 등록 되었습니다.");
+			} else {
+				RA.addFlashAttribute("msg", "펫 등록이 실패하였습니다.");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("========파일업로드중 에러==========");
+			e.printStackTrace();
+		}
 		
-		System.out.println("register().vo : " + vo);
-		
-//		boolean result = petService.petRegistForm(vo);
-//		
-//		System.out.println("insert여부 : " + result);
-//		
-//		if(result) {
-//			RA.addFlashAttribute("msg", "정상적으로 글 등록 되었습니다.");
-//		} else {
-//			RA.addFlashAttribute("msg", "글 등록이 실패하였습니다.");
-//		}
-//		
 		return "redirect:/pet/petList";
 	}
 	
 	//펫 목록
 	@RequestMapping("petList")
-	public void petList(Model model) {
+	public String petList(Model model) {
 		
-		ArrayList<PetVO> list = petService.getList();
-		model.addAttribute("list", list);
+		model.addAttribute("list", petService.getList());
 		
-		System.out.println(list);
+		return "pet/petList";
 	}
 	
 	//펫 정보 수정 / 삭제 화면
 	@RequestMapping({"/petUpdate", "/petDelete"})
-	public void petInfo(@RequestParam("pnum") int pnum, Model model) {
+	public String petInfo(@RequestParam("pfirst") String pfirst, Model model) {
 		
-		PetVO vo = petService.petInfo(pnum);
-		model.addAttribute("vo", vo);
+		model.addAttribute("vo", petService.petInfo(pfirst));
+		
+		return "pet/petUpdate";
 	}
 	
-	//펫 정보 수정기능
+	//펫 정보 수정
 	@RequestMapping("/petUpdateForm")
-	public String petInfoUpdate(PetVO vo, RedirectAttributes RA) {
-		
-		boolean result = petService.petInfoUpdate(vo);
-		
-		System.out.println("update여부 : " + result);
-		
-		if(result) {
-			RA.addFlashAttribute("msg", "정상적으로 글 등록 되었습니다.");
-		} else {
-			RA.addFlashAttribute("msg", "글 등록이 실패하였습니다.");
+	public String petInfoUpdate(@RequestParam("file") MultipartFile file, 
+								PetVO vo, RedirectAttributes RA) {
+		try {
+			System.out.println(file);
+
+			String fileRealName = file.getOriginalFilename(); // 파일명
+			Long size = file.getSize(); // 파일크기
+
+			//확장자 명을 가져온다.
+			String extention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+
+			//랜덤16진수
+			UUID uuids = UUID.randomUUID();
+			String saveFileName = uuids.toString().replace("-", "") + extention;
+
+			System.out.println("파일실제이름 : " + fileRealName);
+			System.out.println("파일크기 : " + size);
+			System.out.println("파일확장자 : " + extention);
+			System.out.println("저장 파일명 : " + saveFileName);
+
+			File dir = new File(APP_CONSTANT.uploadPath + saveFileName);
+
+			file.transferTo(dir); // 파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
+
+			//파일 경로 vo.pphoto에 저장
+			String path = dir.getPath();
+			vo.setPphoto(path);
+
+			boolean result = petService.petRegistForm(vo);
+
+			System.out.println("register 여부 : " + result);
+
+			if (result) {
+				RA.addFlashAttribute("msg", "정상적으로 펫 정보가 수정 되었습니다.");
+			} else {
+				RA.addFlashAttribute("msg", "펫 정보 수정이 실패하였습니다.");
+			}
+
+		} catch (Exception e) {
+			System.out.println("========파일업로드중 에러==========");
+			e.printStackTrace();
 		}
-		
-		
-		return "redirect:/pet/petUpdate?pnum= " + vo.getPnum();
+
+		return "redirect:/pet/petList";
 	}
-	
-	
 }

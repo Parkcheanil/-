@@ -34,7 +34,5 @@ public class PetVO {
 	private String pyear; 
 	private String pmonth;
 	private String pweight;
-//	private String pfirst;
-//	private MultipartFile imageFile;
-//	private String deleteFileName;
+	private int pfirst;
 }

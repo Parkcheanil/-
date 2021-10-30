@@ -33,9 +33,9 @@ public class PetServiceImpl implements PetService{
 	}
 
 	@Override
-	public PetVO petInfo(int pnum) {
+	public PetVO petInfo(String pfirst) {
 		
-		return petmapper.petInfo(pnum);
+		return petmapper.petInfo(pfirst);
 	}
-	
+
 }

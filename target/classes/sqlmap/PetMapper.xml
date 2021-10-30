@@ -4,24 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.petworld.mapper.PetMapper">
-
+	
+	<!-- 펫 등록 -->
 	<insert id="petRegistForm">
-		insert into pet(pNum, pPhoto, pName, pYear, pMonth, pWeight) 
-		values(pet_seq.nextval, #{pphoto}, #{pname}, #{pyear}, #{pmonth}, #{pweight})
+		insert into pet(pNum, pPhoto, pName, pYear, pMonth, pWeight, pFirst)
+		values(pet_seq.nextval, #{pphoto}, #{pname}, #{pyear}, #{pmonth}, #{pweight}, #{pfirst})
 	</insert>
 	
+	<!-- 펫 목록 -->
 	<select id="getList" resultType="PetVO">
 		select * from pet
 	</select>
 	
+	<!-- 펫 수정 -->
 	<select id="petInfo" resultType="PetVO">
-		select * from pet where pNum = #{pnum}
+		select * from pet where pFirst = 1
 	</select>
 
-	<update id="petInfoUpdate">
-		update pet set pName = #{pname}, pYear = #{pyear}, 
-						pMonth = #{pmonth}, pWeight = #{pweight}
-		where pNum = #{pnum}
-	</update>
+<!-- 	<update id="petInfoUpdate"> -->
+<!-- 		update pet set pName = #{pname}, pYear = #{pyear},  -->
+<!-- 						pMonth = #{pmonth}, pWeight = #{pweight} -->
+<!-- 		where pNum = #{pnum} -->
+<!-- 	</update> -->
 
 </mapper>

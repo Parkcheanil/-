@@ -6,21 +6,6 @@
 <!-- 펫 등록/수정 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/petinup.css">
 	
-<script type="text/javascript">
-//체크박스 
-	//value값 가져오기
-// 	$('input:checkbox[id="checkbox"]').val();
-// 	//체크 처리
-// 	$('input:checkbox[id="checkbox"]').attr("checked", true);
-// 	//체크 여부
-// 	$('input:checkbox[id="checkbox"]').is(":checked") == true
-	
-//   $( function() {
-//     $( "input" ).checkboxradio();
-//   } );
-
-</script>
-	
        <!-- 헤더 네비게이션 -->
         <div style="margin-top: 165px;">
             <div class="container1026">
@@ -104,7 +89,7 @@
                                 <h3>나의 가족</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petList'">
+                                <a href="#" onclick="location.href='../product/productTotal'">
                                     <span>상품추천</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
@@ -116,14 +101,8 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate?pnum=${pnum}'">
-                                    <span>펫 수정하기</span>
-                                    <i class="fas fa-angle-right i2"></i>
-                                </a>
-                            </div>
-                            <div class="side-1">
-                                <a href="#" onclick="location.href='petList'">
-                                    <span>펫 삭제하기</span>
+                                <a href="#" onclick="location.href='petUpdate'">
+                                    <span>펫 수정/삭제 하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
@@ -146,7 +125,7 @@
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-	                                                	<input type="file" class="form-control" id="pPhoto" name="pphoto">
+	                                                	<input type="file" class="form-control" id=pPhoto name="file">
 	                                                    <img class="petimg" />
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
@@ -181,7 +160,7 @@
 	                                    </div>
 	                                    <div>
                                             <div class="checkbox">
-                                            <label><input type="checkbox" id="checkbox" name="pfirst">이 아이로 활동하기</label>
+                                            <label><input type="checkbox" id="checkbox" name="pfirst" value="0">이 아이로 활동하기</label>
                                             </div>
 	                                    </div>
 	                                    <div class="inbtn-area">
@@ -199,13 +178,13 @@
             </div>
         </div>
 <script type="text/javascript">
-
-(function() {
-	var msg = "${msg}";
-	if(msg !== ""){
-		alert(msg);
-	}
-})();
+	//확인용 메시지
+	(function() {
+		var msg = "${msg}";
+		if(msg !== ""){
+			alert(msg);
+		}
+	})();
 
 	//프로필 사진입력 미리보기
 	$(document).ready(function() {
@@ -213,33 +192,44 @@
 	});
 	
 	function readURL(e) {
-		const files = e.target.files[0];
+		var files = e.target.files[0];
 		
 		var reader = new FileReader();
 		reader.onload = function(e) {
 			$(".petimg").attr("src", e.target.result);
-			$("#pPhoto").css({"display":"none"});
+			$("#pPhoto").css({"z-index":"-1"});
 		}
 		reader.readAsDataURL(files);
 	}
 	
-	//체크박스 상태 확인
-// 	 function checkbox_Check(){
-//         if ($("input:checkbox[name=pFirst]").prop(":checked") == true) {
-//                 //체크가 되어있을때.    
-//         } else {
-//                 //체크가 안되어있을때.
-//         }
-//     }
-
+	
+	//펫 프로필 출력 갯수 제한
+	$(document).ready(function() {
+		$(".pet-addlist:gt(1)").css({
+			"display" : "none"
+		});
+	});
+	
+	//체크 박스 제어
+	$("#checkbox").click(function() {
+		if($("#checkbox").is(":checked") == false){
+			$('input:checkbox[id="checkbox"]').attr("checked", true);
+			$("#checkbox").attr("value", "0");
+			console.log($("#checkbox").val());
+		} else {
+			$('input:checkbox[id="checkbox"]').attr("checked", false);
+			$("#checkbox").attr("value", "1");
+			console.log($("#checkbox").val());
+		}
+	});	
+	console.log($("#checkbox").val());
+	
+// 	//value값 가져오기
+//  	$('input:checkbox[id="checkbox"]').val();
+//  	//체크 처리
+//  	$('input:checkbox[id="checkbox"]').attr("checked", false);
+//  	//체크 여부
+//  	$('input:checkbox[id="checkbox"]').is(":checked") == true
 </script>
 	
-	<!-- 펫 프로필 출력 갯수 제한 -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".pet-addlist:gt(1)").css({"display" : "none"});
-		});
-		
-	</script>
-    
 <%@ include file="../incloud/footer.jsp" %>	
