@@ -35,4 +35,6 @@ public class PetVO {
 	private String pmonth;
 	private String pweight;
 	private int pfirst;
+	private String deleteFileName;
+	
 }

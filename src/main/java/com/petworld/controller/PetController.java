@@ -1,6 +1,9 @@
 package com.petworld.controller;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,11 +90,27 @@ public class PetController {
 		return "pet/petList";
 	}
 	
+	//펫 사진 변경
+	@RequestMapping("changImage")
+	public String changeImage(PetVO vo, RedirectAttributes RA) {
+		System.out.println(vo);
+		
+		//새로운파일올리기
+		//db정보수정
+		//원래파일지우기
+		
+		return "redirect:pet/petList";
+	}
+	
+	
+	
 	//펫 정보 수정 / 삭제 화면
 	@RequestMapping({"/petUpdate", "/petDelete"})
-	public String petInfo(@RequestParam("pfirst") String pfirst, Model model) {
+	public String petInfo(@RequestParam("pfirst") String pfirst, Model model) throws InterruptedException {
 		
 		model.addAttribute("vo", petService.petInfo(pfirst));
+		
+		Thread.sleep(1000);
 		
 		return "pet/petUpdate";
 	}
@@ -128,7 +147,7 @@ public class PetController {
 
 			boolean result = petService.petRegistForm(vo);
 
-			System.out.println("register 여부 : " + result);
+			System.out.println("update 여부 : " + result);
 
 			if (result) {
 				RA.addFlashAttribute("msg", "정상적으로 펫 정보가 수정 되었습니다.");

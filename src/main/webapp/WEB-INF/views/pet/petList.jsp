@@ -622,6 +622,19 @@
 	</div>
 	<%@ include file="../incloud/footer.jsp"%>
 
+	<c:if test="${!empty msg }">
+		<script type="text/javascript">
+		$(function() {
+			var isMsg = true;
+			
+			if(isMsg) {
+				alert("${msg}")
+				isMsg = false;
+			}
+		});
+		</script>
+	</c:if>	
+
 	<!-- 인터크립터 속도 -->
 	<script>
 		$("#myCarousel").carousel({

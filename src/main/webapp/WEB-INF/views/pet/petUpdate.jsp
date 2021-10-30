@@ -100,7 +100,7 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate'">
+                                <a href="#" onclick="location.href='petUpdate?pfirst=${vo.pfirst}'">
                                     <span>펫 수정/삭제 하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
@@ -119,6 +119,7 @@
                             <main class="main-name">
                                 <h2>펫 등록</h2>
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
+                                	<input type="hidden" name="deleteFileName" value="${vo.pphoto }">
 	                                <div class="pet-add">
 	                                    <div class="content-icon">
 	                                        <div class="col-lg-4 petInPic">
