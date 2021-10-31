@@ -207,19 +207,20 @@ thead>tr th {
     text-align: center;
 }
 .tbl_delivery_list {
-    margin: 20px;
+    width: 100%;
 }
 .cell_delivery, .cell_tel {
-    width: 22%;
+    width: 225px;
     text-align: center;
 }
 .cell_edit {
-    width: 25%;
+    width: 250px;
     text-align: center;
 }
 .cell_delivery>strong, .cell_delivery>span {
     display: block;
     text-align: center;
+    margin-bottom: 5px;
 }
 .tbldeli_tr1 {
     border-bottom: 1px solid rgba(60, 60, 67, 0.6);

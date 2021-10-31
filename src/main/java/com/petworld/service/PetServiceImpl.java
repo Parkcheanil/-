@@ -26,11 +26,6 @@ public class PetServiceImpl implements PetService{
 		return petmapper.getList();
 	}
 
-	@Override
-	public boolean petInfoUpdate(PetVO vo) {
-		
-		return petmapper.petInfoUpdate(vo);
-	}
 
 	@Override
 	public PetVO petInfo(String pfirst) {
@@ -38,4 +33,14 @@ public class PetServiceImpl implements PetService{
 		return petmapper.petInfo(pfirst);
 	}
 
+	@Override
+	public boolean petInfoUpdate(PetVO vo) {
+		
+		return petmapper.petInfoUpdate(vo);
+	}
+
+	@Override
+	public String petDelete(int pnum) {
+		return petmapper.petDelete(pnum);
+	}
 }

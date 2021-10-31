@@ -113,7 +113,7 @@
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petUpdate?pfirst=${vo.pfirst}'"> 
+							<a href="#" onclick="location.href='petUpdate?pfirst=${vo.first}'">
 							<span>펫 수정/삭제 하기</span> 
 							<i class="fas fa-angle-right i2"></i>
 							</a>

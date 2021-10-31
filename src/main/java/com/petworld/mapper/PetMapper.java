@@ -11,4 +11,5 @@ public interface PetMapper {
 	public ArrayList<PetVO> getList();
 	public PetVO petInfo(String pfirst);
 	public boolean petInfoUpdate(PetVO vo);
+	public String petDelete(int pnum);
 }

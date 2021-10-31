@@ -48,7 +48,7 @@
                                 </div>
                             </a>
                         </div>
-                        헤더 펫 프로필
+						<!-- 헤더 펫 프로필 -->
                         <div class="cb2-1">
                             <div class="cb3-3">
                                 <ul class="pet-list-grup">
@@ -119,14 +119,28 @@
                             <main class="main-name">
                                 <h2>펫 정보 수정</h2>
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
-                                	<input type="hidden" name="deleteFileName" value="${vo.pphoto }">
+                                	<input type="hidden" name="petDelete" value="${vo.pnum }">
 	                                <div class="pet-add">
 	                                    <div class="content-icon">
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-                                                    	<input type="file" class="form-control" id="pPhoto" name="pphoto">
+                                                    	<input type="file" class="form-control" id="pPhoto" name="pphoto" value="${vo.pphoto }">
+	                                                    <input type="hidden" name="gbsImg" value="${vo.pphoto }">
 	                                                    <img class="petimg" src="${vo.pphoto }"/>
+	                                                    
+	                                                    <script>
+														  $("#pPhoto").change(function(){
+														   if(this.files && this.files[0]) {
+														    var reader = new FileReader;
+														    reader.onload = function(data) {
+														     $(".petimg").attr("src", data.target.result);        
+														    }
+														    reader.readAsDataURL(this.files[0]);
+														   }
+														  });
+														 </script>
+	                                                    
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
 	                                                    </span>
@@ -172,7 +186,7 @@
 	                                            <span class="inbtn-label">수정하기</span>
 	                                        </button>
 	                                        <button class="delbtn">
-	                                            <span class="inbtn-back">삭제하기</span>
+	                                            <span class="inbtn-back" onclick="location.href='petDelete?pnum=${vo.pnum}'">삭제하기</span>
 	                                        </button>
 	                                    </div>
 	                                </div>

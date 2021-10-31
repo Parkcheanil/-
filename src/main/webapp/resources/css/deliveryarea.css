@@ -132,6 +132,27 @@ a, a:hover, a:focus {text-decoration: none; color: #fff;}
     margin-left: 10px;
     float: left;
 }
+/* 드롭다운 */
+.btn {
+	color: #888;
+  	width:68px;
+    height: 40px;
+    line-height: 36px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    background-color: #fff;
+}
+.btn:hover, .btn:focus, .btn:active {
+	color: #888;
+	background-color: #fff;
+	border-color: #888;
+}
+.btn.focus {
+	color: #888;
+	background-color: #fff;
+	border-color: #888;
+}
+
 ._tel1box a {
     color: #888;
 }
@@ -180,7 +201,7 @@ a, a:hover, a:focus {text-decoration: none; color: #fff;}
     color: #222;
 }
 .basic_input {
-    width: 66px;
+    width: 180px;
 }
 /* 체크박스 */
 .default_delivery {
@@ -195,12 +216,6 @@ a, a:hover, a:focus {text-decoration: none; color: #fff;}
 input[type=checkbox] {
     margin: 10px;
     background-color: #888;
-}
-.fa-check {
-    position: absolute;
-    left: 112px;
-    bottom: 28px;
-    font-size: 1.8rem;
 }
 .checkbox {
     margin-right: 5px;

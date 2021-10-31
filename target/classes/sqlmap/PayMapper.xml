@@ -5,9 +5,23 @@
 
 <mapper namespace="com.petworld.mapper.PayMapper">
 
-	<select id="list" resultType="PayVO">
+	<select id="deliveryList" resultType="PayVO">
 		select * from Delivery_addr 	
 	</select>
+	
+	<insert id="regist">
+		insert into Delivery_addr(onum, oPLACE, oNAME, oPHONE, opost, oADDRESS, oADDRESS1, oDEFAULT)
+		values(Delivery_addr_seq.nextval, #{oplace}, #{oname}, #{ophone}, #{opost}, #{oaddress}, #{oaddress1}, #{odefault})
+	</insert>
 
+	<select id="paymentInfo" resultType="ProductVO">
+		select * from Product
+	</select>
+	
+	<update id="addrUpdate">
+		update Delivery_addr set oPLACE=#{oPLACE}, oNAME=#{oNAME}, oPHONE=#{ophone}, opost=#{opost}
+								, oADDRESS=#{oaddress}, oADDRESS1=#{oaddress1}, oDEFAULT=#{odefault}
+		where onum = #{onum}
+	</update>
 
 </mapper>

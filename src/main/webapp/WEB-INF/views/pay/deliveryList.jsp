@@ -52,7 +52,7 @@
                        	<button type="button" class="btn btn-primary grbtn1 descbtn">배송지 선택</button>
                     </div>
                     <div class="payform">
-                        <div class="payform1">
+                        <div class="payform1" style="display: none;">
                             <div  class="formLabel">
                                 <label for="">받는 사람</label>
                                 <div class="formInput">
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ddgropbox">
+                        <div class="ddgropbox" style="display: none;">
                             <div class="formLabel1">
                                 <label for="">배송 요청사항</label>
                                 <div class="dropdown ddgrop">
@@ -104,13 +104,13 @@
                             </div>
                         </div>
                         <!-- 배송지 선택 -->
-                        <div id="container2" style="display:none;">
+                        <div id="container2">
                             <h3 class="setting_title">배송지 목록</h3>
                             <div class="desc_delivery">
                                 <p class="desc">쇼핑에 사용하신 배송 지를 최대 15개까지 함께 관리 하실 수 있습니다.</p>
                                 <a href="#" class="green_bg" id="deliveryInBtn">배송지 등록</a>
                             </div>
-                            
+                            ${list }
                             <div class="delivery_list_area">
                                 <table class="tbl_delivery_list">
                                     <colgroup>
@@ -134,12 +134,12 @@
 	                                                <span class="mark_default">기본배송지</span>
 	                                            </td>
 	                                            <td>
-	                                                <span class="zipcode2">${list.opost }</span>
+	                                                <span class="zipcode2" name="opost">${list.opost }</span>
 	                                                ${list.oaddress } ${list.oaddress1 }
 	                                            </td>
 	                                            <td class="cell_tel">${list.ophone }</td>
 	                                            <td class="cell_edit">
-	                                                <a href="deliveryUpdate" class="_modify">수정</a>
+	                                                <a href="#" class="_modify">수정</a>
 	                                                <a href="" class="_delete">삭제</a>
 	                                                <input type="hidden" id="hash" value="2a22fb1852f60002f62751a9f853686fb1bfed89925cf5ecc2d306e4d128ccdf">
 	                                            </td>
@@ -191,7 +191,6 @@
 	                                            </div>
 	                                        </li>
                                         </c:forEach>
-                                       
                                     </ul>
                                 </div>
                             </div>
@@ -265,35 +264,41 @@
                 </div>
             </div>
         </div>
-    </div>
-    
 <script>
+// 배송지 입력창
+$(function(){
+    $('#deliveryInBtn').click(function(){
+        // ("url","창이름","옵션")
+        window.open("delivery", "배송지등록", "width=700, height=820, top=100, left=400");
+    });
+});
+//배송지 수정 창
+$(function(){
+    $('._modify').click(function(){
+        // ("url","창이름","옵션")
+        window.open("deliveryUpdate", "배송지등록", "width=700, height=820, top=100, left=400");
+    });
+});
 
 // 배송지 선택 클릭시
 $(function() {
-	$(".descbtn").click(function() {
-		location.href = "deliveryList";
+	$(".grbtn2").click(function() {
+		location.href = "payment";
 	});
 });
 
+	//주소정보의 연계데이터를 돌려받는 콜백함수
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 
-// $(function() {
-// 	$(".descbtn").click(function() {
-// 		$("#container2").show();
-// 		$(".payform1").hide();
-// 		$(".ddgropbox").hide();
-// 	});
-// });
+// 	console.log(roadAddrPart1, addrDetail, zipNo);
+	document.deliveryForm.opost.value = zipNo;
+	document.deliveryForm.oaddress.value = roadAddrPart1;
+	document.deliveryForm.oaddress1.value = addrDetail;
+}
 
-// $(function() {
-// 	$(".grbtn2").click(function() {
-// 		$("#container2").hide();
-// 		$(".payform1").show();
-// 		$(".ddgropbox").show();
-// 	});
-// });
-
+	
 </script>
+    
     
 <%@ include file="../incloud/footer.jsp" %>	
 

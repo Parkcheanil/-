@@ -8,5 +8,6 @@
 	<typeAliases>
 		<typeAlias type="com.petworld.command.PetVO" alias="PetVO"/>
 		<typeAlias type="com.petworld.command.PayVO" alias="PayVO"/>
+		<typeAlias type="com.petworld.command.ProductVO" alias="ProductVO"/>
 	</typeAliases>
 </configuration>

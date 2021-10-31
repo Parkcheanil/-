@@ -20,11 +20,17 @@
 	<select id="petInfo" resultType="PetVO">
 		select * from pet where pFirst = 1
 	</select>
+	
+	<!-- 펫 정보 수정 -->
+	<update id="petInfoUpdate">
+		update pet set pphoto = #{pphoto}, pName = #{pname}, pYear = #{pyear}, pMonth = #{pmonth}, 
+								pWeight = #{pweight}, pFirst = #{pfirst}
+		where pNum = #{pnum}
+	</update>
 
-<!-- 	<update id="petInfoUpdate"> -->
-<!-- 		update pet set pName = #{pname}, pYear = #{pyear},  -->
-<!-- 						pMonth = #{pmonth}, pWeight = #{pweight} -->
-<!-- 		where pNum = #{pnum} -->
-<!-- 	</update> -->
+	<!-- 펫 삭제 -->
+	<delete id="petDelete">
+		delete from pet where pnum = #{pnum}
+	</delete>
 
 </mapper>
