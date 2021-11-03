@@ -88,7 +88,7 @@
                                 <h3>나의 가족</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='../product/productTotal'">
+                                <a href="#" onclick="location.href='../pet/petList'">
                                     <span>상품추천</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
@@ -100,7 +100,7 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate?pfirst=${vo.pfirst}'">
+                                <a href="#" onclick="location.href='petInfo'">
                                     <span>펫 수정/삭제 하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
@@ -118,29 +118,17 @@
                         <div class="contentbox">
                             <main class="main-name">
                                 <h2>펫 정보 수정</h2>
+                                ${vo }
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
                                 	<input type="hidden" name="petDelete" value="${vo.pnum }">
+                                	<input type="hidden" name="petUpdate" value="${vo.pfirst }">
 	                                <div class="pet-add">
 	                                    <div class="content-icon">
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
                                                     	<input type="file" class="form-control" id="pPhoto" name="pphoto" value="${vo.pphoto }">
-	                                                    <input type="hidden" name="gbsImg" value="${vo.pphoto }">
-	                                                    <img class="petimg" src="${vo.pphoto }"/>
-	                                                    
-	                                                    <script>
-														  $("#pPhoto").change(function(){
-														   if(this.files && this.files[0]) {
-														    var reader = new FileReader;
-														    reader.onload = function(data) {
-														     $(".petimg").attr("src", data.target.result);        
-														    }
-														    reader.readAsDataURL(this.files[0]);
-														   }
-														  });
-														 </script>
-	                                                    
+                                                    	<input type="hidden" class="form-control" id="delete" name="deleteFileName" value="${vo.deleteFileName }">
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
 	                                                    </span>
@@ -198,6 +186,15 @@
             </div>
         </div>
 <%@ include file="../incloud/footer.jsp" %>	
+	
+<script type="text/javascript">
+	<!-- 펫 프로필 상세보기 이미지 출력 -->
+	var list = [];
+	list.push(${image.pphoto});
+	for (var index = 0; index<list.length; index++) {
+		console.log(list);
+	}
+</script>
     
 <script type="text/javascript">
 	//확인용 메시지
@@ -209,52 +206,53 @@
 	})();
 
 	//프로필 사진입력 미리보기
-	$(document).ready(function() {
-		$("#pPhoto").on("change", readURL);
-	});
-	
-	function readURL(e) {
-		var files = e.target.files[0];
-		
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$(".petimg").attr("src", e.target.result);
-			$("#pPhoto").css({"z-index":"-1"});
+	$("#pPhoto").change(function(){
+		if(this.files && this.files[0]) {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$("#pPhoto").css("background-image", "url("+data.target.result+")");
+			}
+			reader.readAsDataURL(this.files[0]);
 		}
-		reader.readAsDataURL(files);
-	}
-	
-	
+	});
+
 	//펫 프로필 출력 갯수 제한
 	$(document).ready(function() {
 		$(".pet-addlist:gt(1)").css({
 			"display" : "none"
 		});
 	});
-	
-	//체크 박스 제어
-	
-	if($("#checkbox").val() == 1){
-		$('input:checkbox[id="checkbox"]').attr("checked", true);
-	}
-	
-	$("#checkbox").click(function() {
-		if($("#checkbox").is(":checked") == false){
-			$('input:checkbox[id="checkbox"]').attr("checked", true);
-			$("#checkbox").attr("value", "0");
-			console.log($("#checkbox").val());
-		} else {
-			$('input:checkbox[id="checkbox"]').attr("checked", false);
-			$("#checkbox").attr("value", "1");
-			console.log($("#checkbox").val());
-		}
-	});	
-	console.log($("#checkbox").val());
-	
-// 	//value값 가져오기
-//  	$('input:checkbox[id="checkbox"]').val();
-//  	//체크 처리
-//  	$('input:checkbox[id="checkbox"]').attr("checked", false);
-//  	//체크 여부
-//  	$('input:checkbox[id="checkbox"]').is(":checked") == true
 </script>
+<script>
+	//체크 박스 제어
+	$(function() {
+		if($("#checkbox").val() == 1){
+			$('input:checkbox[id="checkbox"]').attr("checked", true);
+		}
+		
+		$("#checkbox").click(function() {
+			if($("#checkbox").is(":checked") == false){
+				$('input:checkbox[id="checkbox"]').attr("checked", true);
+				$("#checkbox").attr("value", "0");
+				console.log($("#checkbox").val());
+			} else {
+				$('input:checkbox[id="checkbox"]').attr("checked", false);
+				$("#checkbox").attr("value", "1");
+				console.log($("#checkbox").val());
+			}
+		});	
+		console.log($("#checkbox").val());
+	});
+</script>
+	
+<c:forEach items="${list}" var="image">
+<script type="text/javascript">
+	<!-- 펫 프로필 상세보기 이미지 출력 -->
+	var list = [];
+	list.push("${image.pphoto}");
+	for (var index = 0; index<list.length; index++) {
+		console.log(list);
+	}
+</script>
+</c:forEach>
+

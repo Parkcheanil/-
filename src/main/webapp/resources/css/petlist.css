@@ -195,6 +195,12 @@ a:hover {text-decoration: none;}
 .side-1 i {float: right; margin-top: 3px;}
 .side-1 a {color: rgba(60, 60, 67, 0.6);}
 .side-1 a:hover {color: rgba(255, 66, 92, 1);}
+
+/* 펫 리스트 */
+.petdetail {
+	float: left;
+}
+
 /* 추천 상품 리스트 */
 .petcontent {
     float: left;

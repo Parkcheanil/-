@@ -22,7 +22,7 @@
 <body>
     <div class="container">
         <!-- 팝업창 헤더 -->
-        <form action="deliveryForm" name="deliveryForm" method="post">
+        <form action="" id="form" name="deliveryForm" method="post">
 	        <div id="pop_header">
 	            <h1 class="h1">배송지 등록/수정</h1>
 	            <span class="logo_img">
@@ -71,12 +71,12 @@
 	                            </th>
 	                            <td>
 	                                <span class="basic_input">
-	                                    <input type="text" id="zipCode" name="opost" class="ip_text" >
+	                                    <input type="text" id="zipCode" name="opost" class="ip_text" disabled>
 	                                </span>
 	                                <a href="#" class="_search" onclick="goPopup()">주소검색</a>
 	                                <p class="address_detail">
 	                                    <span class="basic_input">
-	                                        <input type="text" id="baseaadress" name="oaddress" class="ip_text" >
+	                                        <input type="text" id="baseaadress" name="oaddress" class="ip_text" disabled>
 	                                        <input type="hidden" id="roadNameAddressYn">
 	                                    </span>
 	                                </p>
@@ -115,7 +115,7 @@
 	        </div>
 	        <div id="pop_footer">
 	            <button type="button" class="button" onclick="javascript:window.close();return false;">닫기</button>
-	            <button type="submit" class="_btn_save">저장</button>
+	            <button type="button" class="_btn_save" >저장</button>
 	        </div>
         </form>
     </div>
@@ -129,31 +129,45 @@
  	//주소정보의 연계데이터를 돌려받는 콜백함수
     function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     
-//     	console.log(roadAddrPart1, addrDetail, zipNo);
 		document.deliveryForm.opost.value = zipNo;
 		document.deliveryForm.oaddress.value = roadAddrPart1;
 		document.deliveryForm.oaddress1.value = addrDetail;
     }
-    
- 	
-//     $(document).ready(function(){
-//     	$("._btn_save").click(function() {
-// 	    	$.ajax({
-// 	    		type: 'post',//데이터 전송 타입,
-// 	    		url : 'deliveryList',//데이터를 주고받을 파일 주소 입력,
-// 		        processData: false, //변수=값 으로 자동형변환되는 것을 막음
-// 		        contentType: false, //기본형 폼데이터형식으로 선언됨
-// 	    		data: formData, //보내는 데이터,
-// 	    		dataType://문자형식으로 받기 , 
-// 	    		success: function(){
-// 	    			window.close(); //작업이 성공적으로 발생했을 경우
-// 	    		},
-// 	    		error:function(){  
-// 	    			console.log(error);  //에러가 났을 경우 실행시킬 코드
-// 	    		}
-// 	    	})
-// 		});
-//     });
+			
+ 	//팝업창 배송지 입력
+    $(document).ready(function(){
+    	$("._btn_save").click(function() {
+    		var oplace = $("#addressName").val();
+    		var oname = $("#receiver").val();
+    		var opost = $("#zipCode").val();
+    		var oaddress = $("#baseaadress").val();
+    		var oaddress1 = $("#detailAddress").val();
+    		var ophone = $("#telNo1Third").val();
+    		var odefault = $("#baseAddressYn").val();
+	    	$.ajax({
+	    		type: 'post',//데이터 전송 타입,
+	    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
+				contentType : 'application/json; charset=UTF-8',
+	    		data: JSON.stringify({
+	    			"oplace" : oplace,
+	    			"oname" : oname,
+	    			"opost" : opost,
+	    			"oaddress" : oaddress,
+	    			"oaddress1" : oaddress1,
+	    			"ophone" : ophone,
+	    			"odefault" : odefault
+	    		}), //보내는 데이터,
+	    		success: function(data){
+// 	    			window.opener(data);
+	    			window.opener.callbackFunc(data); //부모창의 함수호출 
+	    			window.close(); //작업이 성공적으로 발생했을 경우
+	    		},
+	    		error:function(error){  
+	    			console.log(error);  //에러가 났을 경우 실행시킬 코드
+	    		}
+	    	})
+		});
+    });
     
     </script>
     

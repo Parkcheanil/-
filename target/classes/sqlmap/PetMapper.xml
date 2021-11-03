@@ -16,14 +16,13 @@
 		select * from pet
 	</select>
 	
-	<!-- 펫 수정 -->
 	<select id="petInfo" resultType="PetVO">
-		select * from pet where pFirst = 1
+		select * from pet where pnum = #{pnum}
 	</select>
 	
 	<!-- 펫 정보 수정 -->
 	<update id="petInfoUpdate">
-		update pet set pphoto = #{pphoto}, pName = #{pname}, pYear = #{pyear}, pMonth = #{pmonth}, 
+		update pet set pPhoto = #{pphoto}, pName = #{pname}, pYear = #{pyear}, pMonth = #{pmonth}, 
 								pWeight = #{pweight}, pFirst = #{pfirst}
 		where pNum = #{pnum}
 	</update>

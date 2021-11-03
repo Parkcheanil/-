@@ -89,7 +89,7 @@
                                 <h3>나의 가족</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='../product/productTotal'">
+                                <a href="#" onclick="location.href='../pet/petList'">
                                     <span>상품추천</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
@@ -101,7 +101,7 @@
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#" onclick="location.href='petUpdate?pfirst=${vo.pfirst}'">
+                                <a href="#" onclick="location.href='petInfo'">
                                     <span>펫 수정/삭제 하기</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
@@ -126,7 +126,7 @@
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
 	                                                	<input type="file" class="form-control" id=pPhoto name="file">
-	                                                    <img class="petimg" />
+	                                                	<input type="hidden" class="form-control" id=pPhoto name="file">
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
 	                                                    </span>
@@ -188,21 +188,15 @@
 	})();
 
 	//프로필 사진입력 미리보기
-	$(document).ready(function() {
-		$("#pPhoto").on("change", readURL);
-	});
-	
-	function readURL(e) {
-		var files = e.target.files[0];
-		
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$(".petimg").attr("src", e.target.result);
-			$("#pPhoto").css({"z-index":"-1"});
+	$("#pPhoto").change(function(){
+		if(this.files && this.files[0]) {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$("#pPhoto").css("background-image", "url("+data.target.result+")");
+			}
+			reader.readAsDataURL(this.files[0]);
 		}
-		reader.readAsDataURL(files);
-	}
-	
+	});
 	
 	//펫 프로필 출력 갯수 제한
 	$(document).ready(function() {

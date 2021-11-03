@@ -224,7 +224,7 @@ a:hover {text-decoration: none;}
     margin-left: 139px;
 }
 input[type=file] {
-	position: absolute;
+	position: relative;
 	width: 120px;
 	height: 120px;
 	border-radius: 50%;
@@ -233,6 +233,7 @@ input[type=file] {
 	background-size: 109%;
 	cursor: pointer;
 	color: transparent;
+	margin-bottom: 50px;
 }
 input[type=file]::file-selector-button {
 	display: none;

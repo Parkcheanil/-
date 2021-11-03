@@ -26,11 +26,10 @@ public class PetServiceImpl implements PetService{
 		return petmapper.getList();
 	}
 
-
 	@Override
-	public PetVO petInfo(String pfirst) {
+	public PetVO petInfo(int pnum) {
 		
-		return petmapper.petInfo(pfirst);
+		return petmapper.petInfo(pnum);
 	}
 
 	@Override

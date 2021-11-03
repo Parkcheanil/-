@@ -101,7 +101,7 @@
 							<h3>나의 가족</h3>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='../product/productTotal'"> 
+							<a href="#" onclick="location.href='../pet/petList'"> 
 							<span>상품추천</span>
 							<i class="fas fa-angle-right i1"></i>
 							</a>
@@ -113,7 +113,7 @@
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href='petUpdate?pfirst=${vo.first}'">
+							<a href="#" onclick="location.href='petInfo'">
 							<span>펫 수정/삭제 하기</span> 
 							<i class="fas fa-angle-right i2"></i>
 							</a>
@@ -175,82 +175,7 @@
 													</div>
 												</a>
 											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
+											
 										</div>
 
 										<div class="item">
@@ -273,180 +198,7 @@
 													</div>
 												</a>
 											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-										</div>
-
-										<div class="item">
-											<div class="individually" id="slideFirst">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
-											<div class="individually">
-												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
-													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
-														</div>
-														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
-														</div>
-													</div>
-												</a>
-											</div>
+											
 										</div>
 									</div>
 									<div class="nextSlide">
@@ -480,120 +232,6 @@
 							</div>
 						</div>
 						<div class="recom-product">
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
-									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
-										</div>
-										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
-										</div>
-									</div>
-								</a>
-							</div>
 							<div class="recomList">
 								<a href="#"
 									onclick="location.href='../product/project_ProductDetail'">
@@ -653,7 +291,7 @@
 		$(function() {
 			$(".pet-addlist").click(function() {
 				var pnum = $(this).find(".petname").text();
-				location = "petUpdate?pname=${vo.pname}";
+				location = "petUpdate?pnam";
 			});
 			
 		});

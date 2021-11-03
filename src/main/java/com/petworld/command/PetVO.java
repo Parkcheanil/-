@@ -6,6 +6,8 @@
 
 package com.petworld.command;
 
+import org.springframework.http.ResponseEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,12 @@ public class PetVO {
 	private String pmonth;
 	private String pweight;
 	private int pfirst;
+	
+//	private String fileRealName;
+//	private String extention;
+//	
+	
+//	private String infoFileName;
 	private String deleteFileName;
 	
 }

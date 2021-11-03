@@ -33,7 +33,19 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public PayVO addrUpdate(int onum) {
-		return paymapper.addrUpdate(onum);
+	public boolean addrUpdate(PayVO vo) {
+		return paymapper.addrUpdate(vo);
+	}
+
+
+	@Override
+	public boolean addDelete(int onum) {
+		return paymapper.addDelete(onum);
+	}
+
+
+	@Override
+	public PayVO delidetail(int onum) {
+		return paymapper.delidetail(onum);
 	}
 }

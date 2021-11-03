@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.petworld.mapper.QuestionMapper">
+	<insert id="regist">
+		insert into QUESTIONBOARD(qno, qtitle, qwriter, qcontent)
+		values(QUESTIONBOARD_SEQ.NEXTVAL, #{qTitle}, #{qWriter}, #{qContent})
+	</insert>
+	
+	<select id="getList" resultType="QuestionVO">
+		select qno, qtitle, qregdate, qwriter, qcnt from QUESTIONBOARD
+	</select>
+	
+	<select id="getContent" resultType="QuestionVO">
+		select qno, qtitle, qwriter, qcontent from QUESTIONBOARD where qno = #{qno}
+	</select>
+</mapper>

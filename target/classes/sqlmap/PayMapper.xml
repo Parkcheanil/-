@@ -18,10 +18,17 @@
 		select * from Product
 	</select>
 	
+	<select id="delidetail" resultType="PayVO">
+		select * from Delivery_addr where onum = #{onum}	
+	</select>
+	
 	<update id="addrUpdate">
-		update Delivery_addr set oPLACE=#{oPLACE}, oNAME=#{oNAME}, oPHONE=#{ophone}, opost=#{opost}
+		update Delivery_addr set oPLACE=#{oplace}, oNAME=#{oname}, oPHONE=#{ophone}, opost=#{opost}
 								, oADDRESS=#{oaddress}, oADDRESS1=#{oaddress1}, oDEFAULT=#{odefault}
 		where onum = #{onum}
 	</update>
-
+	
+	<delete id="addDelete">
+		delete from Delivery_addr where onum = #{onum}
+	</delete>
 </mapper>

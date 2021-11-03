@@ -1,14 +1,21 @@
 package com.petworld.controller;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,8 +77,6 @@ public class PetController {
 				RA.addFlashAttribute("msg", "펫 등록이 실패하였습니다.");
 			}
 			
-			Thread.sleep(1000);
-			
 		} catch (Exception e) {
 			System.out.println("========파일업로드중 에러==========");
 			e.printStackTrace();
@@ -79,73 +84,51 @@ public class PetController {
 		
 		return "redirect:/pet/petList";
 	}
-	
-	//펫 목록
-	@RequestMapping("petList")
-	public String petList(Model model) {
+
+	//펫 상품 추천, 펫 정보
+	@RequestMapping({"/petList", "/petInfo"})
+	public void petList(Model model) {
 		
 		model.addAttribute("list", petService.getList());
-		
-		return "pet/petList";
 	}
 	
-	//펫 정보 수정 / 삭제 화면
-	@RequestMapping({"/petUpdate", "/petDelete"})
-	public String petInfo(@RequestParam("pfirst") String pfirst, Model model) throws InterruptedException {
+	//펫 목록 test
+	@ResponseBody
+	@RequestMapping("/imagePath")
+	public ResponseEntity<byte[]> display(@PathVariable("folder") String folder,
+						  @PathVariable("file") String file,
+						  @RequestParam("files") MultipartFile files,
+						  PetVO vo) {
 		
-		model.addAttribute("vo", petService.petInfo(pfirst));
+		System.out.println(folder);
+		System.out.println(file);
+		System.out.println(files);
+
+		ResponseEntity<byte[]> result = null;
 		
-		return "pet/petUpdate";
-	}
-	
-	//펫 정보 수정 
-	@RequestMapping("/petUpdateForm")
-	public String petInfoUpdate(@RequestParam("file") MultipartFile file, 
-								PetVO vo, RedirectAttributes RA) {
 		try {
-			System.out.println(file);
+			//파일의 마임타입(
+			File path = new File(APP_CONSTANT.uploadPath + "/" + file);
+			//Files.probeContentType(path.toPath()); //파일 마임타입(헤더에 저장)
+			//FileCopyUtils.copyToByteArray(path); //파일 데이터(응답바디에 저장)
 			
-			String fileRealName = file.getOriginalFilename(); //파일명
-			Long size = file.getSize(); //파일크기 
-			
-			//확장자 명을 가져온다.
-			String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-			
-			//랜덤16진수
-			UUID uuids= UUID.randomUUID();
-			String saveFileName = uuids.toString().replace("-", "") + extention; 
-			
-			System.out.println("파일실제이름 : " + fileRealName);
-			System.out.println("파일크기 : " + size);
-			System.out.println("파일확장자 : " + extention);
-			System.out.println("저장 파일명 : " + saveFileName);
-			
-			File dir = new File(APP_CONSTANT.uploadPath + saveFileName);
-			
-			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
-			
-			//파일 경로 vo.pphoto에 저장
-			String path = dir.getPath();
-			vo.setPphoto(path);
-			
-			boolean result = petService.petInfoUpdate(vo);
-			
-			System.out.println("register 여부 : " + result);
-			
-			if(result) {
-				RA.addFlashAttribute("msg", "정상적으로 펫이 등록 되었습니다.");
-			} else {
-				RA.addFlashAttribute("msg", "펫 등록이 실패하였습니다.");
-			}
-			
-			Thread.sleep(1000);
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(path.toPath()));
+			//(데이터,헤더,상태정보)
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(path),
+												header, HttpStatus.OK);
 			
 		} catch (Exception e) {
-			System.out.println("========파일업로드중 에러==========");
 			e.printStackTrace();
 		}
-
-		return "redirect:/pet/petList";
+		return result;
+	}
+	
+	//펫 정보 수정 화면
+	@RequestMapping("/petUpdate")
+	public void petInfo(@RequestParam("pnum") int pnum, Model model) throws Exception{
+	
+		model.addAttribute("vo", petService.petInfo(pnum));
 	}
 	
 	//펫 삭제

@@ -11,6 +11,7 @@ public interface PayService {
 	public ArrayList<ProductVO> paymentInfo();
 	public ArrayList<PayVO> deliveryList();
 	public boolean regist(PayVO vo);
-	public PayVO addrUpdate(int onum);
-	
+	public PayVO delidetail(int onum);
+	public boolean addrUpdate(PayVO vo);
+	public boolean addDelete(int onum);
 }

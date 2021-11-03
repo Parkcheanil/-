@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 1. 매퍼라는 선언 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 네임스페이스에 구현 인터페이스 경로+이름 -->
+<mapper namespace="com.petworld.mapper.UserMapper">
+
+	<select id="idCheck" resultType="UserVO">
+		select count(*) as total from MEMBER where userId = #{userId}
+	</select>
+
+
+	<insert id="signUp">
+		insert into Users(id, pw, name, nick, phone, addrZipnum, addrBasic, addrDetail, birth, regdate, com, grade) 
+		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{addrZipnum}, #{addrBasic}, #{addrDetail}, #{birth}, #{regdate}, #{com}, #{grade});
+	</insert>
+</mapper>

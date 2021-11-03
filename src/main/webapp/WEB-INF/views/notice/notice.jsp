@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../incloud/header.jsp" %>
 <!-- 공지사항 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/notice.css">
@@ -11,34 +13,26 @@
     </div>
     <div class="event_table">
       <table>
-        <tr>
-          <th class="th_bno">글번호</th>
-          <th class="th_title">제목</th>
-          <th class="th_date">작성일자</th>
-          <th class="th_writer">작성자</th>
-          <th class="th_views">조회수</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td class="td_title">ㅋㅋ</td>
-          <td>2021.10.22</td>
-          <td>지태훈</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td class="td_title">ㅋㅋ2</td>
-          <td>2021.10.22</td>
-          <td>지태훈2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td class="td_title">ㅋㅋ2</td>
-          <td>2021.10.22</td>
-          <td>지태훈2</td>
-          <td>2</td>
-        </tr>
+      	<thead>
+	        <tr>
+	          <th class="th_bno">글번호</th>
+	          <th class="th_title">제목</th>
+	          <th class="th_date">작성일자</th>
+	          <th class="th_writer">작성자</th>
+	          <th class="th_views">조회수</th>
+	        </tr>
+      	</thead>
+      	<tbody>
+	        <c:forEach var="vo" items="${list }" varStatus="i">
+		        <tr>
+		          <td>${vo.bno }</td>
+		          <td class="td_title"><a href="noticeDetail?bno=${vo.bno}">${vo.title }</a></td>
+		          <td><fmt:formatDate value="${vo.regdate }" pattern="yyyy년MM월dd일"/></td>
+		          <td>${vo.writer }</td>
+		          <td>${vo.cnt }</td>
+		        </tr>
+	        </c:forEach>
+      	</tbody>
 
       </table>
     </div>
@@ -47,7 +41,7 @@
         <div class="event_table_paging">
           <div class="button_area">
             <c:if test="${users != null }">
-              <button type="button" class="writer_button button" onclick="location.href='freeRegist'">글쓰기</button>
+              <button type="button" class="writer_button button" onclick="location.href='regist'">글쓰기</button>
             </c:if>
           </div>
           <!-- freeList에 전달될 값을 hidden으로 처리 -->

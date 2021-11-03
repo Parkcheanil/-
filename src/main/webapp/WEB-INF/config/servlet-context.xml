@@ -21,6 +21,12 @@
 	
 	<!-- 해당패키지를 읽어서 @Controller 빈으로 생성 -->
 	<context:component-scan base-package="com.petworld.*" />
+
+	<!-- 업로드 패스 설정 -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg
+			value="C:\\workspace\\ProjectPetWorld\\PetWorld\\petworld\\src\\main\\resources\\upload\\image" />
+	</beans:bean>
 	
 	<!-- 파일업로드 -->
 	<!-- 반드시 꼭 백번 id를 multipartResolver선언 -->
@@ -34,5 +40,5 @@
 		<beans:property name="maxUploadSizePerFile" value="104857560"/>
 		
 	</beans:bean>
-	
+
 </beans:beans>
