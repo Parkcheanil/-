@@ -118,7 +118,7 @@
                         <div class="contentbox">
                             <main class="main-name">
                                 <h2>펫 정보 수정</h2>
-                                ${vo }
+                                ${vo.pphoto }
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
                                 	<input type="hidden" name="petDelete" value="${vo.pnum }">
                                 	<input type="hidden" name="petUpdate" value="${vo.pfirst }">
@@ -127,8 +127,8 @@
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-                                                    	<input type="file" class="form-control" id="pPhoto" name="pphoto" value="${vo.pphoto }">
-                                                    	<input type="hidden" class="form-control" id="delete" name="deleteFileName" value="${vo.deleteFileName }">
+                                                    	<input type="file" class="form-control" id="pPhoto" name="pphoto">
+<%--                                                     	<input type="hidden" class="form-control" id="delete" name="deleteFileName" value="${vo.deleteFileName }"> --%>
 	                                                    <span>
 	                                                        <i class="fas fa-camera"></i>
 	                                                    </span>
@@ -188,12 +188,29 @@
 <%@ include file="../incloud/footer.jsp" %>	
 	
 <script type="text/javascript">
-	<!-- 펫 프로필 상세보기 이미지 출력 -->
-	var list = [];
-	list.push(${image.pphoto});
-	for (var index = 0; index<list.length; index++) {
-		console.log(list);
-	}
+var str="";
+$(document).ready(function(){
+	getList();
+});
+//데이터를 가져오는 함수
+function getList(resetYN){
+	$.ajax({
+		url:"petUpdate",
+		type:"get",
+		success:function(data){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$("#pPhoto").css("background-image", "url("+data.target.result+")");
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		},
+		error:function(error){
+			console.log(error);
+		}
+	})
+}
 </script>
     
 <script type="text/javascript">
@@ -241,18 +258,5 @@
 				console.log($("#checkbox").val());
 			}
 		});	
-		console.log($("#checkbox").val());
 	});
 </script>
-	
-<c:forEach items="${list}" var="image">
-<script type="text/javascript">
-	<!-- 펫 프로필 상세보기 이미지 출력 -->
-	var list = [];
-	list.push("${image.pphoto}");
-	for (var index = 0; index<list.length; index++) {
-		console.log(list);
-	}
-</script>
-</c:forEach>
-

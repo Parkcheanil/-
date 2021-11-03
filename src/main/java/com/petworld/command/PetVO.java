@@ -36,11 +36,8 @@ public class PetVO {
 	private String pweight;
 	private int pfirst;
 	
-//	private String fileRealName;
-//	private String extention;
-//	
+	private String filename;
 	
-//	private String infoFileName;
-	private String deleteFileName;
+//	private String deleteFileName;
 	
 }

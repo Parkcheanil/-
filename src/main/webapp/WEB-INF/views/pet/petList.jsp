@@ -286,14 +286,3 @@
 		});
 	</script>
 	
-	<!-- 펫 프로필 상세보기 -->
-	<script type="text/javascript">
-		$(function() {
-			$(".pet-addlist").click(function() {
-				var pnum = $(this).find(".petname").text();
-				location = "petUpdate?pnam";
-			});
-			
-		});
-	</script>
-	

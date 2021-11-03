@@ -169,15 +169,5 @@
 	});
 </script>
 
-<c:forEach items="${list}" var="image">
-<script type="text/javascript">
-	<!-- 펫 프로필 상세보기 이미지 출력 -->
-	var list = [];
-	list.push("${image.pphoto}");
-	for (var index = 0; index<list.length; index++) {
-		console.log(list);
-	}
-</script>
-</c:forEach>
 	
 	
