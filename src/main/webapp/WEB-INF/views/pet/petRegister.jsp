@@ -131,7 +131,6 @@
 														<div class="reply-content">
 															<div class="reply-group">
 																<div class="filebox pull-left">
-																	<label for="pPhoto">이미지업로드</label> 
 				                                                	<input type="file" class="form-control" id=pPhoto name="file">
 																</div>
 															</div>
