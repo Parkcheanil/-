@@ -5,23 +5,54 @@
   
 <mapper namespace="com.petworld.mapper.NoticeMapper">
 	<insert id="regist">
-		insert into BOARDEX(bno,title,writer,content) values(BOARDEX_SEQ.NEXTVAL,#{title},#{writer},#{content})     
+		insert into BOARDEX(bno,writer,title,content)
+		values(BOARDEX_SEQ.NEXTVAL,#{writer},#{title},#{content})     
 	</insert>	
 	
 	<select id="getList" resultType="NoticeVO">
-		select bno, title, regdate, writer, cnt from BOARDEX
-	</select>	
+		       <![CDATA[
+    	 select*from(
+		 select rownum as rn,
+			a.*
+			from
+			   (select *
+			   from BOARDEX where ]]>	
+			   
+			   <if test="nsearchType=='title'">title like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType=='writer'">writer like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType=='content'">content like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType== null or nsearchType ==''">1=1</if>
+	   
+			   	<![CDATA[			
+			order by bno desc)  a)
+			where rn > (#{npageNum}-1)*#{namount} and  rn <= #{npageNum}*#{namount}
+           ]]>
+	</select>
 	
 	<select id="getContent" resultType="NoticeVO">
-		select bno,title,writer,content from BOARDEX where bno = #{bno}
+		select * from BOARDEX where bno = #{bno}
 	</select>
 	
 	<update id="Update">
 		update BOARDEX set title=#{title}, content=#{content}, regdate=sysdate where bno=#{bno}
 	</update>
-	
+
+	<update id="cntUp" parameterType="int">
+		update BOARDEX set cnt = cnt + 1 where bno = #{bno}
+	</update>
+
 	<delete id="noticeDelete">
 		delete from BOARDEX where bno=#{bno}
 	</delete>
+	
+	<select id="getTotal" resultType="int">
+        select count(*) as total from BOARDEX
+        where <if test="nsearchType=='title'">title like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType=='writer'">writer like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType=='content'">content like '%'||#{nsearchName}||'%'</if>
+			   <if test="nsearchType == null or nsearchType==''">1=1</if>
+			   
+    </select>
+    
 
 </mapper>

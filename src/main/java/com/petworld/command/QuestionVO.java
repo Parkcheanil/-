@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionVO {
-	private int qNo;
-	private String qTitle;
-	private String qWriter;
-	private String qContent;
-	private Date qRegdate;
-	private int qCnt;
+	private int qno;
+	private String qtitle;
+	private String qwriter;
+	private String qcontent;
+	private Date qregdate;
+	private int qcnt;
 }

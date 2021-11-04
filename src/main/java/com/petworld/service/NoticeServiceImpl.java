@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.petworld.command.NoticeVO;
 import com.petworld.mapper.NoticeMapper;
+import com.petworld.util.NoticeCriteria;
 
 @Service("NoticeService")
 public class NoticeServiceImpl implements NoticeService{
@@ -21,12 +22,6 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public ArrayList<NoticeVO> getList() {
-		
-		return noticeMapper.getList();
-	}
-	
-	@Override
 	public NoticeVO getContent(int bno) {
 
 		return noticeMapper.getContent(bno);
@@ -38,11 +33,26 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeMapper.Update(vo);
 	}
 
+	@Override
+	public ArrayList<NoticeVO> getList(NoticeCriteria cri) {
+		
+		return noticeMapper.getList(cri);
+	}
 
 	@Override
 	public void noticeDelete(int bno) {
-		
 		noticeMapper.noticeDelete(bno);
+	}
+
+
+	@Override
+	public int getTotal(NoticeCriteria cri) {
+		return noticeMapper.getTotal(cri);
+	}
+
+	@Override
+	public boolean cntUp(int bno) {
+		return noticeMapper.cntUp(bno);
 	}
 
 }

@@ -114,6 +114,27 @@ select {
     height: 29px;
 }
 
+
+/*유효성 검사
+
+#msgId, #msgPw, #msgPwCk, #msgPw-re-1, #msgPw-re-2,
+#msgName, #msgNick, #msgPhone1, #msgPhone2, 
+#msgAddr, #msgBirth{
+	display: none;
+}
+
+
+#msgPw-re-1{
+	color:green;
+}
+
+#msgPw-re-2{
+	color:red;
+}
+
+*/
+
+
 /*
 
 input {

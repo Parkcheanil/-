@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-						<div class="payform2">
+						<div class="payform2" style="display: none;">
 							<div class="formLabel">
 								<label for="">받는 사람</label>
 								<div class="formInput">
@@ -137,7 +137,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="ddgropbox1">
+						<div class="ddgropbox1" style="display: none;">
 							<div class="formLabel1">
 								<label for="">배송 요청사항</label>
 								<div class="dropdown ddgrop">
@@ -345,6 +345,9 @@ $(function() {
 			$(".grbtn2").removeClass("active");
 			$(this).parent().addClass("active");
 		});
+		$(".payform2")
+		
+		$(".ddgropbox1")
 	});
 });
 $(function() {

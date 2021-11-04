@@ -8,9 +8,11 @@
 	<typeAliases>
 		<typeAlias type="com.petworld.command.PetVO" alias="PetVO"/>
 		<typeAlias type="com.petworld.command.PayVO" alias="PayVO"/>
-		<typeAlias type="com.petworld.command.ProductVO" alias="ProductVO"/>
-		<typeAlias type="com.petworld.command.NoticeVO" alias="NoticeVO"/>
-		<typeAlias type="com.petworld.command.QuestionVO" alias="QuestionVO"/>
+		<typeAlias alias="ProductVO" type="com.petworld.command.ProductVO"/>
+		<typeAlias alias="OrderVO" type="com.petworld.command.OrderVO"/>
+		<typeAlias alias="NoticeVO" type="com.petworld.command.NoticeVO"/>
+		<typeAlias alias="QuestionVO" type="com.petworld.command.QuestionVO"/>
+		<typeAlias alias="ProductVO" type="com.petworld.command.ProductVO"/>
 		<typeAlias type="com.petworld.command.UserVO" alias="UserVO"/>
 	</typeAliases>
 </configuration>

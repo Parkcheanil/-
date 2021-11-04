@@ -1,9 +1,11 @@
 package com.petworld.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -48,11 +50,6 @@ public class PetController {
 							PetVO vo, RedirectAttributes RA) {
 		try {
 			System.out.println(file);
-//			String name = vo.getPname();
-//			String year = vo.getPyear();
-//			String month = vo.getPmonth();
-//			String weight = vo.getPweight();
-//			int first = vo.getPfirst();
 			
 			String fileRealName = file.getOriginalFilename(); //파일명
 			Long size = file.getSize(); //파일크기 
@@ -86,10 +83,16 @@ public class PetController {
 			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
 			
 			//파일 경로 vo.pphoto에 저장
-			String path = dir.getPath();
-			vo.setPphoto(path);
+			vo.setPphoto(dir.getPath());
+			vo.setUploadpath(uploadpath);
+			vo.setFileloca(fileloca);
+			vo.setFilename(saveFileName);
+			
+			Path path = Paths.get(uploadpath);
+			System.out.println(path.toAbsolutePath());
 			
 			boolean result = petService.petRegistForm(vo);
+			
 			
 			System.out.println("register 여부 : " + result);
 			
@@ -116,26 +119,38 @@ public class PetController {
 	
 	//펫 목록 test
 //	@ResponseBody
-//	@RequestMapping("/resources/{folder}/{file:.+}")
+//	@RequestMapping("/display/{folder}/{file:.+}")
 //	public ResponseEntity<byte[]> display(@PathVariable("folder") String folder,
-//						  @PathVariable("file") String file) {		
+//						  @PathVariable("file") String file, PetVO vo) {		
 //		
 //		System.out.println(folder);
 //		System.out.println(file);
 //
+//		String imgPath = vo.getPphoto();
+//		//확장자 명을 가져온다.
+//		String fileName = imgPath.substring(imgPath.lastIndexOf("\\")+1, imgPath.length());
+//		//폴더경로
+//		String folderPath = imgPath.substring(14, 20);
+//		String filePath = imgPath.substring(0, 14);
+//		
+//		vo.setFilename(fileName);
+//		vo.setFileloca(folderPath);
+//		
+//		System.out.println("폴더1 :" + filePath);
+//		System.out.println("폴더2 :" + folderPath);
+//		System.out.println("파일명 :" + fileName);
+//		System.out.println("경로 : " + imgPath);
+//		
 //		ResponseEntity<byte[]> result = null;
 //		
 //		try {
-//			//파일의 마임타입(
-//			File path = new File(APP_CONSTANT.uploadPath + folder + "/" + file);
-//			//Files.probeContentType(path.toPath()); //파일 마임타입(헤더에 저장)
-//			//FileCopyUtils.copyToByteArray(path); //파일 데이터(응답바디에 저장)
+//			File path = new File(filePath + folderPath + "/" + fileName);
 //			
 //			HttpHeaders header = new HttpHeaders();
 //			header.add("Content-type", Files.probeContentType(path.toPath()));
-//			//(데이터,헤더,상태정보)
+//			
 //			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(path),
-//												header, HttpStatus.OK);
+//					header, HttpStatus.OK);
 //			
 //		} catch (Exception e) {
 //			e.printStackTrace();
@@ -143,65 +158,123 @@ public class PetController {
 //		return result;
 //	}
 	
+	//이미지 요청
+	@ResponseBody
+	@RequestMapping("/display/{folder}/{file:.+}")
+	public ResponseEntity<byte[]> display(@PathVariable("folder") String folder,
+						  @PathVariable("file") String file) {
+		
+		System.out.println(folder);
+		System.out.println(file);
+
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			//파일의 마임타입(
+			File path = new File(APP_CONSTANT.uploadPath + folder + "/" + file);
+			
+			//Files.probeContentType(path.toPath()); //파일 마임타입(헤더에 저장)
+			//FileCopyUtils.copyToByteArray(path); //파일 데이터(응답바디에 저장)
+			
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(path.toPath()));
+			//(데이터,헤더,상태정보)
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(path),
+												header, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//이미지 비동기 목록
+	@RequestMapping("/getList")
+	@ResponseBody
+	public ArrayList<PetVO> getList() {
+		
+		ArrayList<PetVO> list = petService.getList();
+		
+		return list;
+	}
+	
 	//펫 정보 수정 화면
 	@RequestMapping("/petUpdate")
 	public void petInfo(@RequestParam("pnum") int pnum, Model model) {
-	
-		model.addAttribute("vo", petService.petInfo(pnum));
+		
+		PetVO vo = petService.petInfo(pnum);
+		model.addAttribute("vo", vo);
 	}
 	
 	//펫 정보 수정 처리
 	@RequestMapping("/petUpdateForm")
-	public String petInfoUpdate(PetVO vo, RedirectAttributes RA, MultipartFile file, HttpServletRequest req) throws Exception {
-		
-		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			
-			new File(APP_CONSTANT.uploadPath + req.getParameter("pphoto")).delete();
-			
-			String fileRealName = file.getOriginalFilename(); 
-			//확장자 명을 가져온다.
-			String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-			
-			UUID uuids= UUID.randomUUID();
-			String saveFileName = uuids.toString().replace("-", "") + extention; 
-			//월별 폴더생성
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-			String fileloca = sdf.format(date);
-
-			String uploadpath = APP_CONSTANT.uploadPath + fileloca;
-			
-			File folder = new File(uploadpath);
-			if(!folder.exists()) {
-				folder.mkdir(); //자바에서 폴더 바로 생성하기
+	public String petUpdate(@RequestParam("file") MultipartFile file,
+							HttpServletRequest req, PetVO vo, RedirectAttributes RA) {
+		try {
+			//새로운 파일이 등록되었는지 확인
+			if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+				//기존 파일 삭제
+				new File(APP_CONSTANT.uploadPath + req.getParameter("pphoto")).delete();
+				
+				System.out.println("파일삭제 완료");
+				
+				String fileRealName = file.getOriginalFilename(); //파일명
+				Long size = file.getSize(); //파일크기 
+				
+				//확장자 명을 가져온다.
+				String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+				
+				//랜덤16진수
+				UUID uuids= UUID.randomUUID();
+				String saveFileName = uuids.toString().replace("-", "") + extention; 
+				
+				//월별 폴더생성
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+				String fileloca = sdf.format(date);
+				
+				String uploadpath = APP_CONSTANT.uploadPath + fileloca;
+				
+				File folder = new File(uploadpath);
+				if(!folder.exists()) {
+					folder.mkdir(); //자바에서 폴더 바로 생성하기
+				}
+				
+				System.out.println("파일실제이름 : " + fileRealName);
+				System.out.println("파일크기 : " + size);
+				System.out.println("파일확장자 : " + extention);
+				System.out.println("저장 파일명 : " + saveFileName);
+				
+				File dir = new File(uploadpath + "/" + saveFileName);
+				
+				file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
+				
+				vo.setPphoto(dir.getPath());
+				vo.setUploadpath(uploadpath);
+				vo.setFileloca(fileloca);
+				vo.setFilename(saveFileName);
+				
+				boolean result = petService.petInfoUpdate(vo);
+				
+				System.out.println("update여부 : " + result);
+				
+				if(result) {
+					RA.addFlashAttribute("msg", "정상적으로 글이 수정 되었습니다.");
+				} else {
+					RA.addFlashAttribute("msg", "글 수정이 실패하였습니다.");
+				}
+			} else {
+				//새로운 파일이 등록되지 않았다면
+				//기존 이미지 그대로 사용
+				vo.setPphoto(req.getParameter("pphoto"));
 			}
-			
-			System.out.println("파일실제이름 : " + fileRealName);
-			System.out.println("파일확장자 : " + extention);
-			System.out.println("저장 파일명 : " + saveFileName);
-			
-			File dir = new File(uploadpath + "/" + saveFileName);
-			
-			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
-			//파일 경로 vo.pphoto에 저장
-			String path = dir.getPath();
-			vo.setPphoto(path);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		boolean result = petService.petInfoUpdate(vo);
-		
-		System.out.println("update여부 : "+ result);
-		
-		if(result) {
-			RA.addFlashAttribute("msg", "정상적으로 글이 수정 되었습니다.");
-		} else {
-			RA.addFlashAttribute("msg", "글 수정이 실패하였습니다.");
-		}
-		
-		
-		return "redirect:/pet/petUpdate?pnum="+vo.getPnum();
+		return "redirect:/pet/petInfo";
 	}
 	
+
 	//펫 삭제
 	@RequestMapping("/petDelete")
 	public String petDelete(@RequestParam("pnum") int punm) {

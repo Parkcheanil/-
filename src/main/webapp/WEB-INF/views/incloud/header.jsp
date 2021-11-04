@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +10,9 @@
   
 <!-- 부트스트랩 사용 선언 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     
 <!-- 폰트어썸킷 -->
     <script src="https://kit.fontawesome.com/4dc30431c0.js" crossorigin="anonymous"></script>
@@ -24,6 +24,14 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
 
 
+
+
+
+
+
+
+
+
 	
 </head>
 
@@ -31,11 +39,12 @@
     <div class="total-wrap">
       <div class="header">
         <div class="img-header">
-          <img src="/resources/img/KakaoTalk_20211021_110824073.png">
+          <img src="${pageContext.request.contextPath }/resources/img/KakaoTalk_20211021_110824073.png"
+			   onclick="location.href='/controller/mainpage'">
         </div>
         <div class="content-wrap">
           <div class="header-menu">
-            <a href="">
+            <a href="#" onclick="location.href='/product/productTotal'">
               <span>강아지</span>
             </a>
             <a href="#" onclick="location.href='/product/productTotal'">
@@ -48,25 +57,31 @@
               <span>공지사항</span>
             </a>
           </div>
-          <div class="users-function">
-            <a href="#" onclick="location.href='/user/login'">
-              <span>Login</span>
-            </a>
-            <a href="#" onclick="location.href='/user/join'">
-              <span>Join</span>
-            </a>
-            <a href="#" onclick="location.href='/product/cart'">
-              <span>Cart</span>
-            </a>
-          </div>
-          <div class="users-function">
-            
-            <span>Mypage</span>
-            <a href="#" onclick="location.href='/product/order'">
-              <span>Cart</span>
-            </a href="#" onclick="location.href='/product/cart'">
-            <span>Logout</span>
-          </div>
+          <c:if test="${users == null }">
+	          <div class="users-function">
+	            <a href="#" onclick="location.href='/user/login'">
+	              <span>Login</span>
+	            </a>
+	            <a href="#" onclick="location.href='/user/join'">
+	              <span>Join</span>
+	            </a>
+	            <a href="#" onclick="location.href='/product/cart'">
+	              <span>Cart</span>
+	            </a>
+	          </div>
+          </c:if>
+          <c:if test="${users != null }">
+	          <div class="users-function">            
+	            <a href="#" onclick="location.href='/product/order'">
+		            <span>Mypage</span>
+	            </a>
+	            <a href="#" onclick="location.href='/product/cart'">
+	              <span>Cart</span>
+	            </a href="#" onclick="location.href='/product/cart'">
+	            <span>Logout</span>
+	          </div>
+          </c:if>
+          
         </div>
       </div>
     </div>

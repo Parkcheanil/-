@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.petworld.mapper.OrderMapper">
+  	<select id="orderList" resultType="OrderVO">
+  		select oID, mID, oRDATE, pIMAGE, pNAME, oAMOUNT, oProductNUM from USER_ORDER
+  	</select>
+  	<select id="searchList" resultType="OrderVO">
+  		SELECT * FROM USER_ORDER
+		<![CDATA[WHERE ORDATE >= TO_DATE(#{fromDate}, 'YYYY-MM-DD') AND
+           ORDATE <= TO_DATE(#{toDate}, 'YYYY-MM-DD')
+           ]]>
+           ORDER BY ORDATE DESC
+  	</select>
+  </mapper>

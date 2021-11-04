@@ -5,34 +5,7 @@
 <body>
   <div>
 
-    <header id="container">
-      <div class="total-wrap">
-        <div class="header">
-          <div class="img-header">
-            <img src="/resources/img/KakaoTalk_20211021_110824073.png">
-          </div>
-          <div class="content-wrap">
-            <div class="header-menu">
-              <span>강아지</span>
-              <span>고양이</span>
-              <span>설문</span>
-              <span>고객센터</span> 
-            </div>
-            <!-- <div class="users-function">
-              <span>Login</span>
-              <span>Join</span>
-              <span>Cart</span>
-            </div> -->
-            <div class="users-function">
-              <span>Mypage</span>
-              <span>Profile</span>
-              <span>Cart</span>
-            </div>
-          </div>  
-        </div>
-      </div>
-  </header>
-  <br><br><br>
+  <br><br><br><br><br><br><br><br><br>
   <section>
     <div class="container">
       <div class="row">
@@ -48,24 +21,24 @@
             </div>   
             <div class="form-group">
               <label>번호</label>
-              <input class="form-control" name='bno' value="${vo.qno }" readonly>
+              <input class="form-control" name='qno' value="${vo.qno }" readonly>
             </div>
             <div class="form-group">
               <label>작성자</label>
-              <input class="form-control" name='writer' value="${vo.qwriter }" readonly>
+              <input class="form-control" name='qwriter' value="${vo.qwriter }" readonly>
             </div>    
             <div class="form-group">
               <label>제목</label>
-              <input class="form-control" name='title' value="${vo.qtitle }" readonly>
+              <input class="form-control" name='qtitle' value="${vo.qtitle }" readonly>
             </div>
             
             <div class="form-group">
               <label>내용</label>
-              <textarea class="form-control" rows="10" name='content' 
+              <textarea class="form-control" rows="10" name='qcontent' 
               readonly>${vo.qcontent }</textarea>
             </div>
             
-            <button type="button" class="btn btn-primary" onclick="location.href='questionModify?qno=${vo.qno}&writer=${vo.qwriter }' ">변경</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='questionModify?qno=${vo.qno}&qwriter=${vo.qwriter }'">변경</button>
             <button type="button" class="btn btn-dark" onclick="location.href='question'">목록</button>
           </form>
         </div>

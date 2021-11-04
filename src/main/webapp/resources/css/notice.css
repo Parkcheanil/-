@@ -20,6 +20,7 @@ th, td {font-size: 12px; text-align: center; padding : 8px 0;}
 .button_area {margin: 20px 20px; float: right;}
 .event_pagenation {text-align: center; margin-top: 5px ;}
 .event_pagenation ul, .event_pagenation li {display: inline-block;}
+
 .event_pagenation li a {background-color: white;
   color: rgb(23, 20, 51);
   text-decoration: none;

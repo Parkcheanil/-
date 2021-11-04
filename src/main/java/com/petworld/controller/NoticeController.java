@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.NoticeVO;
 import com.petworld.service.NoticeService;
+import com.petworld.util.NoticeCriteria;
+import com.petworld.util.NoticePageVO;
 
 
 
@@ -23,19 +25,28 @@ public class NoticeController {
 	@Qualifier("NoticeService")
 	private NoticeService noticeService;
 	
-	@RequestMapping("/noticeRegist")
-	public void noticeRegist() {}
-	
-	@RequestMapping("/notice")
-	public void notice(Model mo) {
-		ArrayList<NoticeVO> list = noticeService.getList();
+	@RequestMapping("notice")
+	public void notice(Model mo, NoticeCriteria cri) {
+		ArrayList<NoticeVO> list = noticeService.getList(cri);
 		mo.addAttribute("list", list);
+		
+		int ntotal = noticeService.getTotal(cri);
+		NoticePageVO pageVO = new NoticePageVO(cri, ntotal);
+		mo.addAttribute("pageVO", pageVO);
+		
+		System.out.println(pageVO.toString());
+		
+	}
+	
+	@RequestMapping("/noticeRegist")
+	public void noticeRegist() {
+		
 	}
 	
 	@RequestMapping("noticeRegistForm")
-	public String noticeRegistForm(NoticeVO vo,RedirectAttributes RA) {
+	public String noticeRegist(NoticeVO vo,RedirectAttributes RA) {
 		System.out.println(vo.toString());
-		
+		 
 		boolean result = noticeService.regist(vo);
 		
 		System.out.println(result + "작성완료");
@@ -44,11 +55,19 @@ public class NoticeController {
 		return "redirect:/notice/notice";
 	}
 	
-	//내용화면, 상세보기(동일화면)
-	@RequestMapping({"noticeDetail", "noticeModify"})
+	
+	@RequestMapping("noticeModify")
+	public void noticeModify(@RequestParam("bno") int bno, Model model) {
+		NoticeVO vo = noticeService.getContent(bno);
+		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping("noticeDetail")
 	public void noticeDetail(@RequestParam("bno") int bno, Model model) {
 		NoticeVO vo = noticeService.getContent(bno);
 		model.addAttribute("vo", vo);
+		noticeService.cntUp(bno);
+		
 	}
 	
 	// 수정기능
@@ -67,7 +86,7 @@ public class NoticeController {
 		return "redirect:/notice/noticeDetail?bno=" + vo.getBno();
 	}
 	
-	@RequestMapping("noticeDelete")
+	@RequestMapping("delete")
 	public String noticeDelete(@RequestParam("bno") int bno){
 		noticeService.noticeDelete(bno);
 		

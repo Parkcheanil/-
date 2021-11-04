@@ -2,11 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	
-  <!-- 	
-  <  %@ include file='../include/header.jsp' %>
-  -->
-  
-  <!-- 임시로 넣어둠. 헤더푸터 css 해결하면 삭제할 부분. -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -20,56 +15,73 @@
   <div class="container">
     <div class="wrap">
       <div class="box">
-        <div class="welcome">
-          환영합니다
-        </div>
-
+      
+      	<!-- 이거 로그인으로 통해서 들어올 때랑 회원가입으로 통해서 들어올때 바뀌도록 제이쿼리 못하나 -->
+        <div class="welcome">환영합니다</div>
+		
+		<!-- !!!!!!!!!!!!!!!로그인 입력폼 시작!!!!!!!!!!!!!!! -->
         <div class="login-form">
-        
-          <form>
-            <input type="text" name="email" class="text-field" placeholder="아이디">
-            <input type="password" name="password" class="text-field" placeholder="비밀번호"></br>
-            <div class="auto_login">
-              <input type="checkbox" class="auto-login">자동로그인
+          <form action="login" name="login-form" method="post">
+            
+            <!-- 아이디 입력 부분 -->
+            <!-- msg css 미쳐돌아감;; 기능은 오케이 -->
+            <div>
+            	<input type="text" id="id" name="id" class="text-field" placeholder="아이디" required>
             </div>
-
-            <button type="button" class="submit-btn" onclick="location.href='../mainpage'">로그인</button>
-            <button type="button" class="submit-btn" onclick="location.href='join'">회원가입</button>
+            <span>${msg}</span>
+            
+            <!--  비번 입력 부분 -->
+            <div>
+            	<input type="password" id="pw" name="pw" class="text-field" placeholder="비밀번호" required>
+            </div>
+            
+            <!-- 자동 로그인 체크부분 -->
+            <div class="auto_login">
+              <input type="checkbox" id="" name="" class="auto-login">자동로그인 
+            </div>
+			
+			
+			<!-- 로그인 버튼 -->
+            <button type="submit" id="" name="" class="submit-btn" onclick="location.href='../mainpage'">로그인</button>
+            
+            <!-- 회원가입 버튼 -->
+            <button type="button" id="" name="" class="submit-btn" onclick="location.href='join'">회원가입</button>
           </form>
-
-          <div class="search-id">
+		  
+		  <!-- 아이디 분실 링크 -->
+          <div class="search-id" id="" name="">
             <a href="forget_ID">아이디를 잊어버리셨나요?</a>
           </div>
-
-          <div class="search-pw">
+          
+		  <!-- 비밀번호 분실 랑크 -->
+          <div class="search-pw" id="" name="">
             <a href="forget_PW">비밀번호를 잊어버리셨나요?</a>
           </div>
 
-
+		  <!-- 소셜로그인 버튼 -->
           <div class="sns-login">
-
             <div class="button-group">
+            
+              <!-- 카카오 간편 로그인 -->
               <div class="submit-btn-kko">
                 <button type="submit" class="kko-btn"><img src="${pageContext.request.contextPath }/resources/img/kakao_icon.jpg" width="50px" height="50px"></button>
               </div>
-
+              
+			  <!-- 구글 간편 로그인 -->              
               <div class="submit-btn-ggl">
                 <button type="submit" class="ggl-btn"><img src="${pageContext.request.contextPath }/resources/img/naver_icon.jpg" width="50px" height="50px"></button>
               </div>
-
-              <div class="submit-btn-fcb">
+			 
+			  <!-- 네이버 간편 로그인 -->
+              <div class="submit-btn-nv">
                 <button type="submit" class="naver-btn"><img src="${pageContext.request.contextPath }/resources/img/google_icon.png" width="50px" height="50px"></button>
               </div>  
-            </div>
-             <!-- 버튼 그룹 끝 -->
-          </div>   <!-- sns-login -->
+            </div> <!-- 버튼 그룹 끝 -->
+          </div>   <!-- 소셜 로그인 div 끝 -->
+        </div>	   <!-- 로그인 폼 div 끝 -->
         
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- 푸터 넣으니까 css 깨짐 
-  <  %@ include file='../include/footer.jsp' %>
-  -->
+      </div>	   <!-- 박스 div 끝 -->
+    </div>		   <!-- wrap div 끝 -->
+  </div>		   <!-- 컨테이너 div 끝 -->
 </body>
 </html>

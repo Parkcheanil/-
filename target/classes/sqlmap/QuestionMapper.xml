@@ -5,15 +5,52 @@
  
 <mapper namespace="com.petworld.mapper.QuestionMapper">
 	<insert id="regist">
-		insert into QUESTIONBOARD(qno, qtitle, qwriter, qcontent)
-		values(QUESTIONBOARD_SEQ.NEXTVAL, #{qTitle}, #{qWriter}, #{qContent})
+		insert into QUESTIONBOARD(qno, qwriter, qtitle, qcontent)
+		values(QUESTIONBOARD_SEQ.NEXTVAL, #{qwriter}, #{qtitle}, #{qcontent})
 	</insert>
 	
-	<select id="getList" resultType="QuestionVO">
-		select qno, qtitle, qregdate, qwriter, qcnt from QUESTIONBOARD
+	<select id="getList" resultType="QuestionVO" >
+		<![CDATA[
+		select * from(
+		select rownum as rn,
+			a.*
+			from
+				(select * from
+				 questionboard where]]>
+			 
+			 <if test="qsearchType == 'qtitle'">qtitle like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType == 'qcontent'">qcontent like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType == 'qwriter'">qwriter like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType == null or qsearchType == ''">1=1</if>
+			 
+			 <![CDATA[
+			 order by qno desc) a)
+			 where rn > (#{qpageNum}-1)*#{qamount} and rn <= #{qpageNum}*#{qamount}
+			 ]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) as total from questionboard
+		where <if test="qsearchType == 'qtitle'">qtitle like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType == 'qcontent'">qcontent like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType == 'qwriter'">qwriter like '%'||#{qsearchName}||'%'</if>
+			 <if test="qsearchType==null or qsearchType==''">1=1</if>
 	</select>
 	
 	<select id="getContent" resultType="QuestionVO">
-		select qno, qtitle, qwriter, qcontent from QUESTIONBOARD where qno = #{qno}
+		select * from QUESTIONBOARD where qno = #{qno}
 	</select>
+	
+	<update id="Update">
+		update questionboard set qtitle=#{qtitle}, qcontent=#{qcontent}, qregdate=sysdate where qno=#{qno}
+	</update>
+	
+	<update id="cntUp" parameterType="int">
+		update questionboard set qcnt = qcnt + 1 where qno = #{qno}
+	</update>
+	
+	<delete id="questionDelete">
+		delete from questionboard where qno=#{qno}
+	</delete>
+	
 </mapper>

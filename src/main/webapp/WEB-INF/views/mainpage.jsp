@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="incloud/header.jsp" %>
 
 <!-- 메인 css -->
@@ -41,7 +42,7 @@
       </div>
     </div>
 
-    <div class="store_box" onclick="location.href=''">
+    <div class="store_box" onclick="location.href='productDetail?pid=${vo.pID}'">
       <div class="store_img">
         <img src="/resources/img/dogEat04.jpg">
       </div>
@@ -135,16 +136,13 @@
         <div class="notice_area">
           <h3>공지사항</h3>
           <hr class="inner_hr">
-          <a href="/views/notice/notice.html">더보기</a>
+          <a href="/controller/notice/notice">더보기</a>
           <div class="notice_text">
-            <div class="notice_inner">css는 왜이렇게 생각할게 많은 것인가</div>
-            <div class="notice_inner">css도 막히는데 spring은 어떻게 할 것인가</div>
-            <div class="notice_inner">취업은 가능 할 것인가</div>
-            <div class="notice_inner">앞으로의 인생 계획은 어떻게 세워야 할 것인가</div>
-            <div class="notice_inner">나의 인생은 언제까지 지속 될 것인가</div>
-            <div class="notice_inner">공지사항입니다만 귀찮습니다</div>
-            <div class="notice_inner">공지사항입니다 내일 금요일은 쉬고 싶습니다</div>
-            <div class="notice_inner">공지사항입니다 이번 주말엔 아무생각도 하지않고 집에 있었으면 좋겠습니다</div>
+          	
+          	<c:forEach var="nvo" items="${nlist }">
+          		<div class="notice_inner" onclick="location.href='notice/noticeDetail?bno=${nvo.bno}'">${nvo.title }</div>
+          	</c:forEach>
+          	 
           </div>
         </div>
       </div>
@@ -155,16 +153,11 @@
         <div class="notice_area">
           <h3>문의사항</h3>
           <hr class="inner_hr">
-          <a href="/views/notice/question.html">더보기</a>
-          <div class="notice_text">
-            <div class="notice_inner">css는 왜이렇게 생각할게 많은 것인가</div>
-            <div class="notice_inner">css도 막히는데 spring은 어떻게 할 것인가</div>
-            <div class="notice_inner">취업은 가능 할 것인가</div>
-            <div class="notice_inner">앞으로의 인생 계획은 어떻게 세워야 할 것인가</div>
-            <div class="notice_inner">나의 인생은 언제까지 지속 될 것인가</div>
-            <div class="notice_inner">공지사항입니다만 귀찮습니다</div>
-            <div class="notice_inner">공지사항입니다 내일 금요일은 쉬고 싶습니다</div>
-            <div class="notice_inner">공지사항입니다 이번 주말엔 아무생각도 하지않고 집에 있었으면 좋겠습니다</div>
+          <a href="/controller/question/question">더보기</a>
+          <div class="notice_text">     
+          	<c:forEach var="qvo" items="${qlist }">
+          		<div class="notice_inner" onclick="location.href='question/questionDetail?qno=${qvo.qno}'">${qvo.qtitle }</div>
+          	</c:forEach> 
           </div>
         </div>
       </div>

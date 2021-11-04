@@ -6,5 +6,6 @@ public interface UserService {
 	// 추상메서드
 	public int idCheck(UserVO vo);
 	public boolean signUp(UserVO vo);
+	public UserVO login(UserVO vo);
 }
  

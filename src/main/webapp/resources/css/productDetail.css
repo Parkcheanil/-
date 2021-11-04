@@ -771,7 +771,6 @@
 .rating .rate_radio {
     position: relative;
     display: inline-block;
-    z-index: 20;
     opacity: 0.001;
     width: 60px;
     height: 60px;
@@ -784,7 +783,6 @@
     position: relative;
     display: inline-block;
     margin-left: -4px;
-    z-index: 10;
     width: 48px;
     height: 48px;
     background-image: url("/resources/img/starrate.png");
@@ -794,7 +792,7 @@
     background-color: #f0f0f0;
 }
 .rating .rate_radio:checked + label {
-    background-color: #ff8;
+    background-color: #ffd400;
 }
 .warning_msg {
     display: none;

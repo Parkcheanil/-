@@ -220,31 +220,32 @@ a:hover {text-decoration: none;}
     margin: 0 auto;
 }
 .petInPic {
-    width: 100%;
-    margin-left: 139px;
+    width: 50%;
+    margin-left: 106px;
+    text-align: center;
 }
-input[type=file] {
-	position: relative;
-	width: 120px;
-	height: 120px;
-	border-radius: 50%;
-	background-image: url('/resources/img/noimg.png');
-	background-position: center;
-	background-size: 109%;
+#pPhoto {
+	width: 124px;
+	margin: 10px 40px;
 	cursor: pointer;
-	color: transparent;
-	margin-bottom: 50px;
 }
+
 input[type=file]::file-selector-button {
 	display: none;
 }
-.petimg {
+.fileDiv {
     width: 120px;
     height: 120px;
     border: 1px solid #cfcfd0;
     border-radius: 50%;
-    background-color: #fff;
-    margin-bottom: 40px;
+    margin-left: 40px;
+    overflow: hidden;
+    position: relative;
+}
+.preview {
+	position: absolute;
+	right: 0px;
+	height: 120px;
 }
 .petimg-box>span {
     position: absolute;

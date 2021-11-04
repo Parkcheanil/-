@@ -8,7 +8,7 @@
 	
        <!-- 헤더 네비게이션 -->
         <div style="margin-top: 165px;">
-            <div class="container1026">
+           <!--  <div class="container1026">
                 <div class="wrap">
                     <div class="box">
                         <p>
@@ -16,11 +16,11 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- 헤더 프로필 -->
             <div class="maincon">
                 <div class="myinfo">
-                    <div class="cb1">
+                    <%-- <div class="cb1">
                         <!-- 헤더 마이페이지 -->
                         <div class="cb2">
                             <a href="#" class="myinfo2" onclick="location.href='petupdate'">
@@ -81,7 +81,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --%>
                     <!-- 상세정보 사이드메뉴 -->
                     <div class="cb1-1">
                         <div class="cb2-2">
@@ -125,11 +125,18 @@
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-	                                                	<input type="file" class="form-control" id=pPhoto name="file">
+                                               			<div class="fileDiv">
+															<img id="fileImg" class="preview" src="../resources/img/noimg.png">
+														</div>
+														<div class="reply-content">
+															<div class="reply-group">
+																<div class="filebox pull-left">
+																	<label for="pPhoto">이미지업로드</label> 
+				                                                	<input type="file" class="form-control" id=pPhoto name="file">
+																</div>
+															</div>
+														</div>
 	                                                	<input type="hidden" class="form-control" id=pPhoto name="file">
-	                                                    <span>
-	                                                        <i class="fas fa-camera"></i>
-	                                                    </span>
 	                                                </div>
 	                                            </div>
 	                                        </div>
@@ -190,9 +197,11 @@
 	//프로필 사진입력 미리보기
 	$("#pPhoto").change(function(){
 		if(this.files && this.files[0]) {
+			$(".fileDiv").css("display", "block");
 			var reader = new FileReader;
 			reader.onload = function(data) {
-				$("#pPhoto").css("background-image", "url("+data.target.result+")");
+				$('#fileImg').attr("src", event.target.result); 
+               	console.log(event.target)
 			}
 			reader.readAsDataURL(this.files[0]);
 		}
@@ -225,5 +234,56 @@
 //  	$('input:checkbox[id="checkbox"]').attr("checked", false);
 //  	//체크 여부
 //  	$('input:checkbox[id="checkbox"]').is(":checked") == true
+</script>
+
+<script>
+   $(".inbtn-label").click(function() {
+       var imgs = $("#pPhoto").val();
+       
+       //확장자체크
+       var first = imgs.lastIndexOf(".");
+       var last = imgs.length;
+       var file  = imgs.substring(first, last).toLowerCase();
+       //유효성 검증         
+       if(file != '.jpg' && file != '.png' && file != '.bmp') {
+          alert("jpg, png, bmp만 업로드가 가능합니다.");
+          return; //함수종료
+       } 
+       
+       //폼데이터를 생성해서 파일데이터를 저장.
+       //console.log( $("#file") );
+       //console.log( $("#file")[0] ); //태그
+       //console.log( $("#file")[0].files[0] ); //파일데이터에 대한 정보
+       
+       var formData = new FormData();
+       formData.append("file", $("#file")[0].files[0]); //파일데이터
+       
+       //폼데이터를 컨트롤러로 전송(비동기)
+       $.ajax({
+          url: "upload",
+          type: "post",
+          processData: false, //변수=값 으로 자동형변환되는 것을 막음
+          contentType: false, //기본형 폼데이터형식으로 선언됨
+          data: formData,
+          success : function(data) {
+             console.log(data);
+             //성공실패 여부에 따라 처리결정.
+             
+             if(data == "success") {
+           	  alert("정상 등록 되었습니다.");
+           	  $("#file").val("");
+           	  $(".fileDiv").css("display", "none");
+           	  getList(true);
+           	  
+             } else {
+           	  alert("서버상 문제가 발생했습니다. 다시 시도 하세요.");
+             }
+          },
+          error : function(error) {
+             console.log(error);
+          }
+       });         
+    });
+
 </script>
 	

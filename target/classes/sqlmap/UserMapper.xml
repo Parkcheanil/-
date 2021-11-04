@@ -8,13 +8,24 @@
 <!-- 네임스페이스에 구현 인터페이스 경로+이름 -->
 <mapper namespace="com.petworld.mapper.UserMapper">
 
-	<select id="idCheck" resultType="UserVO">
-		select count(*) as total from MEMBER where userId = #{userId}
+	<select id="idCheck" resultType="int">
+		select count(*) as total from MEMBER where id = #{id}
 	</select>
 
-
+	<!--
+	addrZipNum -> addZipNum로 바꿈
+	#{addZipNum, jdbcType=VARCHAR}, #{addrBasic, jdbcType=VARCHAR}, #{addrDetail, jdbcType=VARCHAR} 추가
+	regdate 삭제 , grade 삭제
+	#{regdate, jdbcType=VARCHAR} 삭제
+	 -->
 	<insert id="signUp">
-		insert into Users(id, pw, name, nick, phone, addrZipnum, addrBasic, addrDetail, birth, regdate, com, grade) 
-		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{addrZipnum}, #{addrBasic}, #{addrDetail}, #{birth}, #{regdate}, #{com}, #{grade});
+		insert into MEMBER(id, pw, name, nick, phone, com, addZipNum, addrBasic, addrDetail, yy, mm, dd) 
+		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{com}, #{addZipNum, jdbcType=VARCHAR}, #{addrBasic, jdbcType=VARCHAR}, #{addrDetail, jdbcType=VARCHAR}, #{yy}, #{mm}, #{dd})
 	</insert>
+	
+	<!-- UserVO 키워드에 전체경로를 다 포함하기 위해 마이바티스 xml에 알리어스 설정 꼭 들어가야함 -->
+	<select id="login" resultType="UserVO">
+		select * from MEMBER where id= #{id} and pw = #{pw}
+	</select>
+	
 </mapper>

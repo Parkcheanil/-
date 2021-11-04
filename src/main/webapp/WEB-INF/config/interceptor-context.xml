@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- web.xml에 설정파일로 추가했다면 태그추가 -->
+	<!-- mapping path : 들어오는 경로를 가로챌 path -->
+	<!-- beans 태그는 가로채서 실행시킬 클래스 -->
+	<!-- 네임스페이스에서 콘텍스트, mvc 체크 -> -->
+	
+	<bean id="userAuthHandler" class="com.petworld.util.interceptor.UserAuthHandler" />
+	<bean id="userLoginSuccessHandler" class="com.petworld.util.interceptor.UserLoginSuccessHandler" />
+	
+	
+	<mvc:interceptors>
+		<!-- 유저권한 인터셉터 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/order"/>
+			<ref bean="userAuthHandler" />
+		</mvc:interceptor>
+		
+		<!-- 로그인 성공 인터셉터 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/user/login"/>
+			<ref bean="userLoginSuccessHandler" />
+		</mvc:interceptor> 
+		
+	</mvc:interceptors>
+	
+
+</beans>

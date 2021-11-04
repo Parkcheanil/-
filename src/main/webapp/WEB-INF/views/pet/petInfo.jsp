@@ -10,7 +10,7 @@
 <body>
 	<!-- 헤더 네비게이션 -->
 	<div style="margin-top: 165px;">
-		<div class="container1026">
+		<!-- <div class="container1026">
 			<div class="wrap">
 				<div class="box">
 					<p>
@@ -18,11 +18,11 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- 헤더 프로필 -->
 		<div class="maincon">
 			<div class="myinfo">
-				<div class="cb1">
+			<%-- 	<div class="cb1">
 					<!-- 헤더 마이페이지 -->
 					<div class="cb2">
 						<a href="#" class="myinfo2" onclick="location.href='petUpdate'">
@@ -81,7 +81,7 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> --%>
 				<!-- 상세정보 사이드메뉴 -->
 				<div class="cb1-1">
 					<div class="cb2-2">
@@ -121,13 +121,13 @@
 							<div>
 								<h2>나의 가족</h2>
 							</div>
-							<c:forEach items="${list }" var="list">
-								<div class="recom-product">
-									<div class="recomList petdetail">
-										<a href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
+								<div class="family-list">
+							<%-- <c:forEach items="${list }" var="list">
+									<div class="familyBox">
+										<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
 											<div class="pet-addbtn">
 												<h4>
-													<div class="petname">${list.pname }</div>
+												<p class="petname">${list.pname }</p>
 													<span class="toppetBox"> <span class="toppet">대표</span>
 													</span>
 												</h4>
@@ -138,9 +138,9 @@
 												</div>
 											</div>
 										</a>
-									</div>
+									</div> 
+							</c:forEach> --%>
 								</div>
-							</c:forEach>
 						</div>
 					</main>
 				</div>
@@ -149,25 +149,45 @@
 	</div>
 	<%@ include file="../incloud/footer.jsp"%>
 
-<c:if test="${!empty msg }">
-	<script type="text/javascript">
-	$(function() {
-		var isMsg = true;
-		
-		if(isMsg) {
-			alert("${msg}")
-			isMsg = false;
+<script>
+var str="";
+$(document).ready(function(){
+	getList();
+});
+//데이터를 가져오는 함수
+function getList(resetYN){
+	$.ajax({
+		url:"getList",
+		type:"get",
+		success:function(data){
+			for(var i = 0; i<data.length; i++){
+				console.log(data[i].pnum);
+					str+='<div class="family-list">';
+					str+='<div class="familyBox">';
+					str+='<a class="familyInfo" href="#" onclick="location.href=\'petUpdate?pnum='+ data[i].pnum +'\'">';
+					str+='<img id="fileImg" class="preview" src="display/'+ data[i].fileloca+"/"+ data[i].filename +'">';
+					str+='<div class="pet-addbtn">';
+					str+='<h4>';
+					str+='<p class="petname">'+ data[i].pname +'</p>';
+					str+='<span class="toppetBox"> <span class="toppet">대표</span>';
+					str+='</span>';
+					str+='</h4>';
+					str+='<div class="petinfo">';
+					str+='<span class="petbirth">'+data[i].pyear+'년</span> ';
+					str+='<span class="petbirth">'+data[i].pmonth+'월</span> ';
+					str+='<span class="petweight">'+data[i].pweight+'kg</span>';
+					str+='</div>';
+					str+='</div>';
+					str+='</a>';
+					str+='</div> ';
+					str+='</div>';
+			}
+			$(".family-list").html(str);
+		},
+		error:function(error){
+			console.log(data);
 		}
-	});
-	</script>
-</c:if>	
-
-<script type="text/javascript">
-	<!-- 펫 프로필 출력 갯수 제한 -->
-	$(function() {
-		$(".pet-addlist:gt(1)").css({"display" : "none"});
-	});
+	})
+}
 </script>
-
-	
 	

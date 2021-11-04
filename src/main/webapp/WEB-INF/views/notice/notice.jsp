@@ -37,44 +37,63 @@
       </table>
     </div>
 
-    <form>
+    <form action="notice" name="pageForm">
         <div class="event_table_paging">
           <div class="button_area">
-            <c:if test="${users != null }">
-              <button type="button" class="writer_button button" onclick="location.href='regist'">글쓰기</button>
-            </c:if>
+            <!--<c:if test="${users != null }">
+            </c:if>-->
+              <button type="button" class="writer_button button" onclick="location.href='noticeRegist'">글쓰기</button>
           </div>
           <!-- freeList에 전달될 값을 hidden으로 처리 -->
-          <input type="hidden" name="pageNum" value="${pageVO.cri.pageNum }">
-          <input type="hidden" name="amount" value="${pageVO.cri.amount }">
-          <input type="hidden" name="searchType" value="${pageVO.cri.searchType }">
-          <input type="hidden" name="searchName" value="${pageVO.cri.searchName }"> 
+          <input type="hidden" name="npageNum" value="${pageVO.cri.npageNum }">
+          <input type="hidden" name="namount" value="${pageVO.cri.namount }">
+          <input type="hidden" name="nsearchType" value="${pageVO.cri.nsearchType }">
+          <input type="hidden" name="nsearchName" value="${pageVO.cri.nsearchName }"> 
         </div>
         <div class="event_pagenation">
-          <ul>  
-            <li><a href="#" data-pagenum="${pageVO.startPage-1 }">이전</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#" data-pagenum="${pageVO.endPage+1 }">다음</a></li>  
+          <ul>
+          	<c:if test="${pageVO.nprev }">
+            	<li><a href="#" data-pagenum="${pageVO.nstartPage-1 }">이전</a></li>
+          	</c:if>
+          	<c:forEach var="num" begin="${pageVO.nstartPage }" end="${pageVO.nendPage }">
+            	<li class="${num eq pageVO.npageNum ? 'active' : '' }">
+            		<a href="#" data-pagenum="${num }">${num }</a>
+            	</li>
+          	</c:forEach>
+          	<c:if test="${pageVO.nnext }">
+            	<li><a href="#" data-pagenum="${pageVO.nendPage+1 }">다음</a></li>  
+          	</c:if>
           </ul>
         </div>
         (페이징의 빨간 글씨는 선택된 페이지만, 디폴트는 검은색)
     </form>
     
-    <div class="search_area">
-      <div class="search_inner">
-        <select class="search_type">
-          <option value="title">제목</option>
-          <option value="content">내용</option>
-          <option value="writer">작성자</option>
-        </select>
-        <input type="text" class="search_text" value="" placeholder="검색입력"/>
-        <button type="submit" class="search_button button" value="">검색</button>
-      </div>
-    </div>
+    <form action="notice" method="get">
+	    <div class="search_area">
+	      <div class="search_inner">
+	        <select class="search_type" name="nsearchType">
+	          <option value="title" ${pageVO.cri.nsearchType eq 'title' ? 'selected' : ''}>제목</option>
+	          <option value="content" ${pageVO.cri.nsearchType eq 'content' ? 'selected' : '' }>내용</option>
+	          <option value="writer" ${pageVO.cri.nsearchType eq 'writer' ? 'selected' : '' }>작성자</option>
+	        </select>
+	        <input type="text" class="search_text" name="nsearchName" value="${pageVO.cri.nsearchName }" placeholder="검색입력"/>
+	        <button type="submit" class="search_button button">검색</button>
+	      </div>
+	    </div>
+    </form>
   </div>
+  <script>
+  
+  	var pagination = document.querySelector(".event_pagenation");
+  	
+  	pagination.onclick = function(){
+  		event.preventDefault();
+  		if(event.target.tagName!='A') return;
+  		
+  		var npageNum = event.target.dataset.pagenum;
+  		document.pageForm.npageNum.value=npageNum;
+  		document.pageForm.submit();
+  	}
+  </script>
 
 <%@ include file="../incloud/footer.jsp" %>

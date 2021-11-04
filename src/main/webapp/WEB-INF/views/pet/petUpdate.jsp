@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/petinup.css">
        <!-- 헤더 네비게이션 -->
         <div style="margin-top: 165px;">
-            <div class="container1026">
+          <!--   <div class="container1026">
                 <div class="wrap">
                     <div class="box">
                         <p>
@@ -15,11 +15,11 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- 헤더 프로필 -->
             <div class="maincon">
                 <div class="myinfo">
-                    <div class="cb1">
+                    <%-- <div class="cb1">
                         <!-- 헤더 마이페이지 -->
                         <div class="cb2">
                             <a href="#" class="myinfo2" onclick="location.href='petupdate'">
@@ -80,7 +80,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --%>
                     <!-- 상세정보 사이드메뉴 -->
                     <div class="cb1-1">
                         <div class="cb2-2">
@@ -118,20 +118,23 @@
                         <div class="contentbox">
                             <main class="main-name">
                                 <h2>펫 정보 수정</h2>
-                                ${vo.pphoto }
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
-                                	<input type="hidden" name="petDelete" value="${vo.pnum }">
+                                	<input type="hidden" name="petDelete" value="${vo.pnum }" style="background-image: url();">
                                 	<input type="hidden" name="petUpdate" value="${vo.pfirst }">
 	                                <div class="pet-add">
 	                                    <div class="content-icon">
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
-                                                    	<input type="file" class="form-control" id="pPhoto" name="pphoto">
-<%--                                                     	<input type="hidden" class="form-control" id="delete" name="deleteFileName" value="${vo.deleteFileName }"> --%>
-	                                                    <span>
-	                                                        <i class="fas fa-camera"></i>
-	                                                    </span>
+                                                    	<div class="fileDiv">
+														</div>
+														<div class="reply-content">
+															<div class="reply-group">
+																<div class="filebox pull-left">
+				                                                	<input type="file" class="form-control" id=pPhoto name="file">
+																</div>
+															</div>
+														</div>
 	                                                </div>
 	                                            </div>
 	                                        </div>
@@ -186,33 +189,33 @@
             </div>
         </div>
 <%@ include file="../incloud/footer.jsp" %>	
-	
-<script type="text/javascript">
-var str="";
-$(document).ready(function(){
-	getList();
-});
-//데이터를 가져오는 함수
-function getList(resetYN){
-	$.ajax({
-		url:"petUpdate",
-		type:"get",
-		success:function(data){
-			if(this.files && this.files[0]) {
-				var reader = new FileReader;
-				reader.onload = function(data) {
-					$("#pPhoto").css("background-image", "url("+data.target.result+")");
+
+<script>
+	var str="";
+	$(document).ready(function(){
+		getList();
+	});
+	//데이터를 가져오는 함수
+	function getList(resetYN){
+		$.ajax({
+			url:"getList",
+			type:"get",
+			success:function(data){
+				for(var i = 0; i<data.length; i++){
+					console.log(data[i].pnum);
+					if(data[i].pnum === ${vo.pnum} ){
+						str+='<img id="fileImg" class="preview" src="display/'+data[i].fileloca+"/"+data[i].filename +'">';
+					}
 				}
-				reader.readAsDataURL(this.files[0]);
+				$(".fileDiv").html(str);
+			},
+			error:function(error){
+				console.log(data);
 			}
-		},
-		error:function(error){
-			console.log(error);
-		}
-	})
-}
+		})
+	}
 </script>
-    
+
 <script type="text/javascript">
 	//확인용 메시지
 	(function() {
@@ -225,9 +228,11 @@ function getList(resetYN){
 	//프로필 사진입력 미리보기
 	$("#pPhoto").change(function(){
 		if(this.files && this.files[0]) {
+			$(".fileDiv").css("display", "block");
 			var reader = new FileReader;
 			reader.onload = function(data) {
-				$("#pPhoto").css("background-image", "url("+data.target.result+")");
+				$('#fileImg').attr("src", event.target.result); 
+               	console.log(event.target)
 			}
 			reader.readAsDataURL(this.files[0]);
 		}
@@ -259,4 +264,55 @@ function getList(resetYN){
 			}
 		});	
 	});
+</script>
+
+<script>
+   $(".inbtn-label").click(function() {
+       var imgs = $("#pPhoto").val();
+       
+       //확장자체크
+       var first = imgs.lastIndexOf(".");
+       var last = imgs.length;
+       var file  = imgs.substring(first, last).toLowerCase();
+       //유효성 검증         
+       if(file != '.jpg' && file != '.png' && file != '.bmp') {
+          alert("jpg, png, bmp만 업로드가 가능합니다.");
+          return; //함수종료
+       } 
+       
+       //폼데이터를 생성해서 파일데이터를 저장.
+       //console.log( $("#file") );
+       //console.log( $("#file")[0] ); //태그
+       //console.log( $("#file")[0].files[0] ); //파일데이터에 대한 정보
+       
+       var formData = new FormData();
+       formData.append("file", $("#file")[0].files[0]); //파일데이터
+       
+       //폼데이터를 컨트롤러로 전송(비동기)
+       $.ajax({
+          url: "upload",
+          type: "post",
+          processData: false, //변수=값 으로 자동형변환되는 것을 막음
+          contentType: false, //기본형 폼데이터형식으로 선언됨
+          data: formData,
+          success : function(data) {
+             console.log(data);
+             //성공실패 여부에 따라 처리결정.
+             
+             if(data == "success") {
+           	  alert("정상 등록 되었습니다.");
+           	  $("#file").val("");
+           	  $(".fileDiv").css("display", "none");
+           	  getList(true);
+           	  
+             } else {
+           	  alert("서버상 문제가 발생했습니다. 다시 시도 하세요.");
+             }
+          },
+          error : function(error) {
+             console.log(error);
+          }
+       });         
+    });
+
 </script>

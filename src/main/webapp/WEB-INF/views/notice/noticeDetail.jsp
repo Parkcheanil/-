@@ -4,35 +4,8 @@
 
 <body>
   <div>
-
-    <header id="container">
-      <div class="total-wrap">
-        <div class="header">
-          <div class="img-header">
-            <img src="/resources/img/KakaoTalk_20211021_110824073.png">
-          </div>
-          <div class="content-wrap">
-            <div class="header-menu">
-              <span>강아지</span>
-              <span>고양이</span>
-              <span>설문</span>
-              <span>고객센터</span> 
-            </div>
-            <!-- <div class="users-function">
-              <span>Login</span>
-              <span>Join</span>
-              <span>Cart</span>
-            </div> -->
-            <div class="users-function">
-              <span>Mypage</span>
-              <span>Profile</span>
-              <span>Cart</span>
-            </div>
-          </div>  
-        </div>
-      </div>
-  </header>
-  <br><br><br>
+    
+  <br><br><br><br><br><br><br><br><br><br><br><br>
   <section>
     <div class="container">
       <div class="row">

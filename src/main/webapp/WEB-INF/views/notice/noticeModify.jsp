@@ -30,7 +30,7 @@
       </div>
     </div>
   </header>
-  <br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
       <!--게시판-->
       <section>
         <div class="container">
@@ -65,9 +65,9 @@
                                 <textarea class="form-control" rows="10" name='content'>${vo.content }</textarea>
                             </div>
 
-                            <button type="button" class="btn btn-dark">목록</button>    
+                            <button type="button" class="btn btn-dark" onclick="location.href='notice'">목록</button>    
                             <button type="submit" class="btn btn-primary">변경</button>
-                            <button type="button" class="btn btn-info" onclick="location.href='noticeDelete?bno=${vo.bno}'">삭제</button>
+                            <button type="button" class="btn btn-info" onclick="location.href='delete?bno=${vo.bno}'">삭제</button>
                     </form>
                                     
                 </div>
