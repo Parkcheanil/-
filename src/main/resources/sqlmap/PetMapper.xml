@@ -7,8 +7,8 @@
 	
 	<!-- 펫 등록 -->
 	<insert id="petRegistForm">
-		insert into pet(pNum, pPhoto, pName, pYear, pMonth, pWeight, pFirst, uploadpath, fileloca, filename)
-		values(pet_seq.nextval, #{pphoto}, #{pname}, #{pyear}, #{pmonth}, #{pweight}, #{pfirst}, #{uploadpath}, #{fileloca}, #{filename})
+		insert into pet(pNum, pName, pPhoto, pYear, pMonth, pWeight, pFirst, uploadpath, fileloca, filename, pkind)
+		values(pet_seq.nextval, #{pname}, #{pphoto}, #{pyear}, #{pmonth}, #{pweight}, #{pfirst}, #{uploadpath}, #{fileloca}, #{filename}, #{pkind})
 	</insert>
 	
 	<!-- 펫 목록 -->
@@ -21,9 +21,11 @@
 	</select>
 	
 	<!-- 펫 정보 이미지 삭제 -->
-	<delete id="petInfoUpdate">
-		delete from pet where pNum = #{pnum}
-	</delete>
+	<update id="petInfoUpdate">
+		update pet set  pName = #{pname}, pPhoto = #{pphoto}, pYear = #{pyear}, pMonth = #{pmonth}, pWeight = #{pweight}, pFirst = #{pfirst}, 
+				uploadpath = #{uploadpath}, fileloca = #{fileloca}, filename = #{filename}, pkind = #{pkind}
+		where pnum = #{pnum}
+	</update>
 
 	<!-- 펫 삭제 -->
 	<delete id="petDelete">

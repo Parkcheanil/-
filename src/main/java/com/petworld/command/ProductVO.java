@@ -8,15 +8,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductVO {
+			
+	
+//			pID number(30) NOT NULL, /* 상품아이디 */
+//			pNAME VARCHAR2(100), /* 상품명 */
+//			pPRICE VARCHAR2(30), /* 가격 */
+//			pSTOCK NUMBER(20), /* 수량 */
+//			pIMAGE VARCHAR2(200), /* 대표이미지 */
+//			pRATE NUMBER(20), /* 판매량 */
+//			pdDETAIL VARCHAR2(3000) /* 상세정보 */
 	
 	private int pID;
-	private String pNAME;
-	private int pPRICE;
+	private String pname;
+	private String pprice;
 	private int pSTOCK;
 	private String pIMAGE;
 	private int pRATE;
-	private int pcNUM;
-	private String pCONT;
+	private String pdDETAIL;
 	
 	/*
 	 * lombok의 함정

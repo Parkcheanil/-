@@ -10,4 +10,32 @@
    	<select id="getContent" resultType="ProductVO">
    		select * from PRODUCT where pID = #{pID} 
    	</select>
+   	
+   	<select id="getListCri" resultType="ProductVO">
+  	  select * from PRODUCT
+   	</select>
+   	
+   	<!--  <update id="">
+   		insert into cart values(cart_seq.nextval, 'id_test', 1235, 1)
+   	</update> -->
+   	
+   	<select id="getCartList" resultType="map" >
+   		select * from cart c left outer join product p on c.pid = p.pid
+		where c.id = 'id_test'
+   	</select>
+   	
+   	<delete id="cartDelete">
+		delete from cart where cno = #{cno}
+	</delete>
+   	
+   	<update id="cartMinus" parameterType="int">
+   		update cart set cartNum = cartNum - 1 where cno = #{cno}
+   	</update>
+   	
+   	<update id="cartPlus" parameterType="int">
+   		update cart set cartNum = cartNum + 1 where cno = #{cno}
+   	</update>
+   	
+   	
+   	
   </mapper>

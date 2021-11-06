@@ -71,8 +71,10 @@
 										<div class="pet-addbtn">
 											<h4>
 												<div class="petname">${vo.pname }</div>
+												<c:if test="${vo.pfirst == 1 }" var="pfirst" scope="session">
 												<span class="toppetBox"> <span class="toppet">대표</span>
 												</span>
+												</c:if>
 											</h4>
 											<div class="petinfo">
 												<span class="petbirth">${vo.pyear }년</span> <span
@@ -119,7 +121,7 @@
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href=''"> 
+							<a href="#" onclick="location.href='../question/question'"> 
 							<span>고객센터</span> 
 							<i class="fas fa-angle-right i1"></i>
 							</a>
@@ -158,10 +160,8 @@
 										<div class="item active">
 											<div class="individually" id="slideFirst">
 												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
+													onclick="location.href='../product/productDetail'">
 													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
 													<img src="/resources/img/3510_originalView_01326139.jpg"
 														alt="" sizes="auto"> </picture>
 													<div>
@@ -181,10 +181,8 @@
 										<div class="item">
 											<div class="individually" id="slideFirst">
 												<a href="#"
-													onclick="location.href='../product/project_ProductDetail'">
+													onclick="location.href='../product/productDetail'">
 													<picture>
-													<source media="(max-width: 1199px)" srcset="">
-													<source media="(min-width: 1200px)" srcset="">
 													<img src="/resources/img/3510_originalView_01326139.jpg"
 														alt="" sizes="auto"> </picture>
 													<div>
@@ -232,12 +230,11 @@
 							</div>
 						</div>
 						<div class="recom-product">
+							<c:forEach items="${produtlist }" var="p">
 							<div class="recomList">
 								<a href="#"
-									onclick="location.href='../product/project_ProductDetail'">
+									onclick="location.href='../product/productDetail'">
 									<picture>
-									<source media="(max-width: 1199px)" srcset="">
-									<source media="(min-width: 1200px)" srcset="">
 									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
 										sizes="auto"> </picture>
 									<div>
@@ -245,12 +242,13 @@
 											<span>키덜트</span>
 										</div>
 										<div class="pdt-cont">
-											<h4>카리에스 덴탈껌 6개입</h4>
-											<span>1,600원</span>
+											<h4>${p.pname }</h4>
+											<span>${p.pprice }</span>
 										</div>
 									</div>
 								</a>
 							</div>
+							</c:forEach>
 						</div>
 					</main>
 				</div>

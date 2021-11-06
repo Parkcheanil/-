@@ -42,10 +42,11 @@
 			
 			
 			<!-- 로그인 버튼 -->
-            <button type="submit" id="" name="" class="submit-btn" onclick="location.href='../mainpage'">로그인</button>
+			<!-- 액션:login을 서브밋하면서, onclick="location.href='../mainpage'를 실행하는데 -->
+            <button type="submit" class="submit-btn">로그인</button>
             
             <!-- 회원가입 버튼 -->
-            <button type="button" id="" name="" class="submit-btn" onclick="location.href='join'">회원가입</button>
+            <button type="button" class="submit-btn" onclick="location.href='join'">회원가입</button>
           </form>
 		  
 		  <!-- 아이디 분실 링크 -->

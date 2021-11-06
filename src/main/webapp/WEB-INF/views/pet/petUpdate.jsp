@@ -119,19 +119,21 @@
                             <main class="main-name">
                                 <h2>펫 정보 수정</h2>
                                 <form action="petUpdateForm" method="post" enctype="multipart/form-data">
-                                	<input type="hidden" name="petDelete" value="${vo.pnum }" style="background-image: url();">
-                                	<input type="hidden" name="petUpdate" value="${vo.pfirst }">
+                                	<input type="hidden" id="fileloca" name="fileloca" value="${vo.fileloca }">
+                                	<input type="hidden" id="filename" name="filename" value="${vo.filename }">
 	                                <div class="pet-add">
 	                                    <div class="content-icon">
 	                                        <div class="col-lg-4 petInPic">
 	                                            <div class="pet-add-img">
 	                                                <div class="petimg-box">
                                                     	<div class="fileDiv">
+                                                    		<img id="fileImg" class="preview" src="display/${vo.fileloca }/${vo.filename}">
 														</div>
 														<div class="reply-content">
 															<div class="reply-group">
 																<div class="filebox pull-left">
 				                                                	<input type="file" class="form-control" id=pPhoto name="file">
+				                                                	<input type="hidden" id=pPhoto name="pPhoto" value="${vo.pphoto }">
 																</div>
 															</div>
 														</div>
@@ -170,8 +172,15 @@
 	                                    <div>
                                             <div class="checkbox">
                                             <label><input type="checkbox" id="checkbox" name="pfirst" value="${vo.pfirst }">이 아이로 활동하기</label>
+                                           	<label>
+											  <input type="checkbox" id="dogcheck" name="pkind" value="d" onclick="catdogcheck(this)">강아지
+											</label>
+											<label>
+											  <input type="checkbox" id="catcheck" name="pkind" value="c" onclick="catdogcheck(this)">고양이
+											</label>
                                             </div>
 	                                    </div>
+	                                    <input type="hidden" id="pkind" name="pkind" value="${vo.pkind }">
 	                                    <div class="inbtn-area">
 	                                        <button class="upbtn" type="submit">
 	                                            <span class="inbtn-label">수정하기</span>
@@ -189,32 +198,6 @@
             </div>
         </div>
 <%@ include file="../incloud/footer.jsp" %>	
-
-<script>
-	var str="";
-	$(document).ready(function(){
-		getList();
-	});
-	//데이터를 가져오는 함수
-	function getList(resetYN){
-		$.ajax({
-			url:"getList",
-			type:"get",
-			success:function(data){
-				for(var i = 0; i<data.length; i++){
-					console.log(data[i].pnum);
-					if(data[i].pnum === ${vo.pnum} ){
-						str+='<img id="fileImg" class="preview" src="display/'+data[i].fileloca+"/"+data[i].filename +'">';
-					}
-				}
-				$(".fileDiv").html(str);
-			},
-			error:function(error){
-				console.log(data);
-			}
-		})
-	}
-</script>
 
 <script type="text/javascript">
 	//확인용 메시지
@@ -264,55 +247,23 @@
 			}
 		});	
 	});
+	//강아지 고양이 선택 제어
+	function catdogcheck(element) {
+		const checkboxes 
+			= document.getElementsByName("pkind");
+		checkboxes.forEach((cb) => {
+			cb.checked = false;
+		})
+		element.checked = true;
+	}
+	//강아지 고양이 벨류값 구하기
+	$("#dogcheck").click(function() {
+		$(this).val();
+		console.log($(this).val());
+	});
+	$("#catcheck").click(function() {
+		$(this).val();
+		console.log($(this).val());
+	});
 </script>
 
-<script>
-   $(".inbtn-label").click(function() {
-       var imgs = $("#pPhoto").val();
-       
-       //확장자체크
-       var first = imgs.lastIndexOf(".");
-       var last = imgs.length;
-       var file  = imgs.substring(first, last).toLowerCase();
-       //유효성 검증         
-       if(file != '.jpg' && file != '.png' && file != '.bmp') {
-          alert("jpg, png, bmp만 업로드가 가능합니다.");
-          return; //함수종료
-       } 
-       
-       //폼데이터를 생성해서 파일데이터를 저장.
-       //console.log( $("#file") );
-       //console.log( $("#file")[0] ); //태그
-       //console.log( $("#file")[0].files[0] ); //파일데이터에 대한 정보
-       
-       var formData = new FormData();
-       formData.append("file", $("#file")[0].files[0]); //파일데이터
-       
-       //폼데이터를 컨트롤러로 전송(비동기)
-       $.ajax({
-          url: "upload",
-          type: "post",
-          processData: false, //변수=값 으로 자동형변환되는 것을 막음
-          contentType: false, //기본형 폼데이터형식으로 선언됨
-          data: formData,
-          success : function(data) {
-             console.log(data);
-             //성공실패 여부에 따라 처리결정.
-             
-             if(data == "success") {
-           	  alert("정상 등록 되었습니다.");
-           	  $("#file").val("");
-           	  $(".fileDiv").css("display", "none");
-           	  getList(true);
-           	  
-             } else {
-           	  alert("서버상 문제가 발생했습니다. 다시 시도 하세요.");
-             }
-          },
-          error : function(error) {
-             console.log(error);
-          }
-       });         
-    });
-
-</script>

@@ -8,7 +8,6 @@
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<script src="${pageContext.request.contextPath }/resources/js/jquery.js"></script>
-
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/join.css">
 </head>
@@ -38,13 +37,13 @@
                     <!-- ID -->
                         <label for="id">아이디 (이메일)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="id" id="id" placeholder="이메일 형식으로 입력하세요">
+                            <input type="text" class="form-control" name="id" id="id" placeholder="이메일 형식으로 입력하세요" onchange="verifyEmail()">
+                            <span id="emailCk_msg"></span>
                             
                             <div class="input-group-addon">
                                 <button type="button" class="btn btn-primary" id="userIDcheck">아이디 중복체크</button>
                             </div>
                         </div>
-                        <span id=msgId></span>
                     </div>
                     
                     <!-- 비밀번호 -->
@@ -127,9 +126,10 @@
                     <div class="form-group" id="birth" >
                         <label for="yy">생년월일</label>
                         <div id="input-group">
-                            <input type="number" class="form-control" id="yy" name="yy" placeholder="년(4자)" min="1921" max="2021" maxlength="4">
+                            <input type="number" class="form-control" id="yy" name="yy" 
+                            	   placeholder="년(4자)" min="1921" max="2021" oninput="handleOnInput(this,4)">
                             <span id="msgYY"></span>
-                            	
+                            
                             <select id="mm" name="mm" class="sel"> <!-- 이거 sel없애도 되는지 확인  -->
                                 <option>월</option>
                                 <option value="01">1</option>
@@ -148,7 +148,7 @@
                             <span id="msgMM"></span>
 
 							<!-- class=int 없앨 준비 -->
-                            <input type="text" id="dd" name="dd" class="int" maxlength="2" placeholder="일">
+                            <input type="number" id="dd" name="dd" class="int" placeholder="일" oninput="handleOnInput(this,2)">
                             <span id="msgDD"></span>			<!-- 생년월일을 입력해주세요 -->
                         </div>
                     </div>
@@ -201,17 +201,20 @@
 				// mID 그대로 두고, "mID": userId 하면 안들어감
 				// 잘 출력이랑 중복값 확인은 되는데... 이게 어떻게 되지 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 				
+				// 제이슨 형식은 {키, 값} 형태를 띈다. 
+				// 하지만 컴퓨터는 json 형태를 컴퓨터가 아는 문자열로 바꿔 보내야 한다
+				// => JSON.stringify라는 걸 사용한다 ({ "": })
+				
+				
 				data : JSON.stringify({"id": id}),		
 				success: function(data){
 					
 					if(data==0){
 						// 중복없음
 						$("#id").attr("readonly", true);
-						$("#msgId").html("사용가능한 아이디입니다");
-						// idckCheck = true;	
+						alert("사용 가능한 아이디입니다");
 					}else{
-						$("#msgId").html("중복된 아이디입니다");
-						// idckCheck = false;	
+						alert("중복된 아이디입니다");
 					} 
 				},  // success 종료
 					
@@ -220,6 +223,30 @@
 				}
 			}); 	// ajax 종료
 		  })		// function 종료
+    </script>
+    
+   	<script>
+	// 생년월일 글자수 제한
+	function handleOnInput(el, maxlength) {
+	  if(el.value.length > maxlength)  {
+	    el.value = el.value.substr(0, maxlength);
+	  }
+	};
+	
+	/*
+	// 이메일 정규식 검증 함수
+	function verifyEmail (){ 
+		// 이메일 검증 스크립트 작성
+		var emailVal = $("#id").val(); 
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
+		// 검증에 사용할 정규식 변수 regExp에 저장
+		if (emailVal.match(regExp) == null) { 
+			$("#emailCk_msg").html("잘못된 이메일 형식입니다");
+		}else{
+			$("#emailCk_msg").html("올바른 이메일 형식입니다");
+		}
+	};
+	*/
     </script>
     
     <script>
@@ -241,11 +268,7 @@
     		}else if($("#pw").val() != $("#pwCk").val()){
     			// 뭐냐 그... 값일치확인
     			$("#msgPwCk").html("비밀번호가 일치하지 않습니다")
-    			
-    		}else if($("#name").val().length < 2){
-    			alert("이름은 두 글자 이상입니다");
-    			return;
-    			
+    		
     		}else if($("#com").val()=="통신사"){
     			$("#msgPhone1").html("통신사 선택은 필수입니다");
     			return;
@@ -257,87 +280,17 @@
     		}else if($("#addZipNum").val().length==''){
     			$("#msgAddr").html("주소를 입력해주세요");
     			return;	 
-    			
-    		}else if(!(1921<=$("#yy").val() && $("#yy").val()<=2021)){
-    			$("#msgYY").html("정확한 년도를 입력해주세요");
-    			return;	 
-    		
-    		}else if(1921<=$("#mm").val() ==''){
-    			$("#msgMM").html("월을 선택해 주세요");
-    			return;
-    		
-    		}else if(!(1<=$("#dd").val() && $("#dd").val()<=31)){
-    			$("#msgDD").html("유효한 날짜를 선택해 주세요");
+
+    		}else if($("#name").val().length < 2){
+    			alert("이름은 두 글자 이상입니다");
     			return;
     			
     		}else{
+    			// 폼 네임 joinForm (form의 액션값은 signup)
     			document.joinForm.submit();
     		};    		
    		});
     </script>
 
-    <!-- 
-    <script>
-    		// 입력>>값<<을 변수에 저장
-    		/*
-    		var id = $('#id').val();					// id 입력란
-    		var pw = $('#pw').val();					// 비밀번호 입력란
-    		var pwCk = $('#pwCk').val();				// 비밀번호 확인 입력란
-    		var name = $('#name').val();				// 이름 입력란
-    		var nick = $('#nick').val();				// 닉네임 입력란
-    		var com = $('#com').val();					// 통신사 입력란
-    		var phone = $('#phone').val();				// 전화번호 입력란
-    		var addZipNum = $('#addZipNum').val();		// 우편번호 입력란
-    		var addrBasic = $('#addrBasic').val();		// 기본주소 입력란
-    		var addrDetail = $('#addrDetail').val();	// 상세주소 입력란
-    		var yy = $('#yy').val();					// 생년 입력란
-    		var mm = $('#mm').val();					// 월 입력란
-    		var dd = $('#dd').val();					// 일 입력란
-    		*/
-    		
-    		// 아이디 중복 유효성 검사
-        	// 아이디 중복 체크를 클릭했을 때 이벤트
-    </script>
-	
-    <script>
-            /* 비밀번호 유효성 검사
-	         $("#joinBtn").click(function() {
-	         	var pw = $('#pw').val();
-	            if(pw == ""){
-	                $("#msgPw").css('display','block');
-	                pwCheck = false;
-	            }else{
-	                $("#msgPw").css('display', 'none');
-	                pwCheck = true;
-	            }
-	         */
-
-            /* 비밀번호 확인값 유효성 검사
-            if(pwck == ""){
-                $("#msgPw").css('display','block');
-                pwckCheck = false;
-            }else{
-                $("#msgPw").css('display', 'none');
-                pwckCheck = true;
-            }
-            */
-    		
-            // 비밀번호 확인 일치검사 ==> 서버요청없이 자바스크립트로만 진행
-            /*
-            $("#pwCk").on("propertychange change keyup paste input", function(){
-            	$("#msgPw").css('display', 'none');
-            	if(pw == pwCk){
-            		$("#msgPw-re-1").css('display', 'block');
-            		$("#msgPw-re-2").css('display', 'none');
-            		pwckEqlCheck = true;
-            	}else{
-            		$("#msgPw-re-1").css('display', 'none');
-            		$("#msgPw-re-2").css('display', 'block');
-            		pwckEqlCheck = false;
-            	}
-            });
-            */
-   	</script>
-   	-->
 </body>
 </html>

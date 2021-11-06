@@ -37,6 +37,6 @@ public class PetVO {
 	private String uploadpath;
 	private String fileloca;
 	private String filename;
-	
+	private String pkind;
 	
 }

@@ -107,7 +107,7 @@
 							</a>
 						</div>
 						<div class="side-1">
-							<a href="#" onclick="location.href=''"> 
+							<a href="#" onclick="location.href='../question/question'"> 
 							<span>고객센터</span> 
 							<i class="fas fa-angle-right i1"></i>
 							</a>
@@ -122,72 +122,33 @@
 								<h2>나의 가족</h2>
 							</div>
 								<div class="family-list">
-							<%-- <c:forEach items="${list }" var="list">
-									<div class="familyBox">
-										<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
-											<div class="pet-addbtn">
-												<h4>
-												<p class="petname">${list.pname }</p>
-													<span class="toppetBox"> <span class="toppet">대표</span>
-													</span>
-												</h4>
-												<div class="petinfo">
-													<span class="petbirth">${list.pyear }년</span> 
-													<span class="petbirth">${list.pmonth }월</span> 
-													<span class="petweight">${list.pweight }kg</span>
+									<c:forEach items="${list }" var="list">
+										<div class="familyBox">
+											<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
+												<img id="fileImg" class="preview" src="display/${list.fileloca }/${list.filename}">
+												<div class="pet-addbtn">
+													<h4>
+													<p class="petname">${list.pname }</p>
+													<c:if test="${list.pfirst == 1 }" var="pfirst" scope="session">
+														<span class="toppetBox"> <span class="toppet">대표</span>
+													</c:if>
+														</span>
+													</h4>
+													<div class="petinfo">
+														<span class="petbirth">${list.pyear }년</span> 
+														<span class="petbirth">${list.pmonth }월</span> 
+														<span class="petweight">${list.pweight }kg</span>
+													</div>
+													<input type="hidden" id="pfirst" name="pfirst" value="${list.pfirst }">
 												</div>
-											</div>
-										</a>
-									</div> 
-							</c:forEach> --%>
+											</a>
+										</div> 
+									</c:forEach>
 								</div>
-						</div>
-					</main>
+							</div>
+						</main>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	<%@ include file="../incloud/footer.jsp"%>
-
-<script>
-var str="";
-$(document).ready(function(){
-	getList();
-});
-//데이터를 가져오는 함수
-function getList(resetYN){
-	$.ajax({
-		url:"getList",
-		type:"get",
-		success:function(data){
-			for(var i = 0; i<data.length; i++){
-				console.log(data[i].pnum);
-					str+='<div class="family-list">';
-					str+='<div class="familyBox">';
-					str+='<a class="familyInfo" href="#" onclick="location.href=\'petUpdate?pnum='+ data[i].pnum +'\'">';
-					str+='<img id="fileImg" class="preview" src="display/'+ data[i].fileloca+"/"+ data[i].filename +'">';
-					str+='<div class="pet-addbtn">';
-					str+='<h4>';
-					str+='<p class="petname">'+ data[i].pname +'</p>';
-					str+='<span class="toppetBox"> <span class="toppet">대표</span>';
-					str+='</span>';
-					str+='</h4>';
-					str+='<div class="petinfo">';
-					str+='<span class="petbirth">'+data[i].pyear+'년</span> ';
-					str+='<span class="petbirth">'+data[i].pmonth+'월</span> ';
-					str+='<span class="petweight">'+data[i].pweight+'kg</span>';
-					str+='</div>';
-					str+='</div>';
-					str+='</a>';
-					str+='</div> ';
-					str+='</div>';
-			}
-			$(".family-list").html(str);
-		},
-		error:function(error){
-			console.log(data);
-		}
-	})
-}
-</script>
-	

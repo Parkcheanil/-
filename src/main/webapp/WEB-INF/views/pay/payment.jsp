@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <%@ include file="../incloud/header.jsp" %>
 <!-- 결제 css -->
@@ -51,37 +52,38 @@
                         <button type="button" class="btn btn-primary grbtn2">신규 배송지</button>
                        	<button type="button" class="btn btn-primary descbtn">배송지 선택</button>
                     </div>
+                <form action="completion" method="post" name="complForm" id="complForm">
                     <div class="payform">
                         <div class="payform1">
                             <div  class="formLabel">
                                 <label for="">받는 사람</label>
                                 <div class="formInput">
-                                    <input type="text" name="" id="" placeholder="받으시는 분의 성함을 입력하세요.">
+                                    <input type="text" name="oname" id="receiver" placeholder="받으시는 분의 성함을 입력하세요.">
                                 </div>
                             </div>
                             <div  class="formLabel">
                                 <label for="">휴대전화</label>
                                 <div  class="formInput">
-                                    <input type="text" name="" id="" placeholder="휴대전화 번호를 입력하세요.">
+                                    <input type="text" name="ophone" id="telNo1Third" placeholder="휴대전화 번호를 입력하세요.">
                                 </div>
                             </div>
                             <div  class="formLabel">
                                 <label for="">배송지 주소</label>
                                 <div  class="formInput1">
-                                    <input type="text" name="" id="" placeholder="우편번호를 입력하세요.">
+                                    <input type="text" name="opost" id="zipCode" placeholder="우편번호를 입력하세요." disabled>
                                 </div>
-                                <button class="zipCode" type="button">
+                                <button class="zipCode" type="button" onclick="goPopup()">
                                     <span>우편번호</span>
                                     <span></span>
                                 </button>
                                 <div>
                                     <div class="formInput2">
-                                        <input type="text" name="" id="" placeholder="주소를 입력하세요."><br>
+                                        <input type="text" name="oaddress" id="baseaadress" disabled><br>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="formInput3">
-                                        <input type="text" name="" id="" placeholder="상세주소를 입력하세요."><br>
+                                        <input type="text" name="oaddress1" id="detailAddress" ><br>
                                     </div>
                                 </div>
                             </div>
@@ -103,59 +105,7 @@
                                 </div>
                             </div>
                         </div>
-						<div class="payform2" style="display: none;">
-							<div class="formLabel">
-								<label for="">받는 사람</label>
-								<div class="formInput">
-									<input type="text" name="" id=""
-										placeholder="받으시는 분의 성함을 입력하세요.">
-								</div>
-							</div>
-							<div class="formLabel">
-								<label for="">휴대전화</label>
-								<div class="formInput">
-									<input type="text" name="" id="" placeholder="휴대전화 번호를 입력하세요.">
-								</div>
-							</div>
-							<div class="formLabel">
-								<label for="">배송지 주소</label>
-								<div class="formInput1">
-									<input type="text" name="" id="" placeholder="우편번호를 입력하세요.">
-								</div>
-								<button class="zipCode" type="button">
-									<span>우편번호</span> <span></span>
-								</button>
-								<div>
-									<div class="formInput2">
-										<input type="text" name="" id="" placeholder="주소를 입력하세요."><br>
-									</div>
-								</div>
-								<div>
-									<div class="formInput3">
-										<input type="text" name="" id="" placeholder="상세주소를 입력하세요."><br>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ddgropbox1" style="display: none;">
-							<div class="formLabel1">
-								<label for="">배송 요청사항</label>
-								<div class="dropdown ddgrop">
-									<button class="btn btn-default dropdown-toggle ddbtn"
-										type="button" data-toggle="dropdown">
-										배송 요청 사항을 선택하세요. <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu ddmenu">
-										<li class="disabled"><a href="#">배송 요청 사항을 선택하세요.</a></li>
-										<li><a href="#">배송 전 연락 바랍니다.</a></li>
-										<li><a href="#">부재시 휴대전화로 연락주세요.</a></li>
-										<li><a href="#">부재시 경비실에 맡겨주세요.</a></li>
-										<li><a href="#">부재시 문앞에 놓아주세요.</a></li>
-										<li><a href="#">직접입력</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+					
 						<!-- 배송지 선택 -->
                         <div id="container2" style="display:none;">
                             <h3 class="setting_title">배송지 목록</h3>
@@ -165,37 +115,37 @@
                             </div>
                             
                             <div class="delivery_list_area">
-                                <table class="tbl_delivery_list">
-                                    <thead>
-                                        <tr class="tbldeli_tr1">
-                                            <th scope="col" class="cell_delivery">배송지</th>
-                                            <th scope="col">주소</th>
-                                            <th scope="col" class="cell_tel">연락처</th>
-                                            <th scope="col" class="cell_edit">수정/삭제</th>
-                                        </tr>
+                                <div class="tbl_delivery_list">
+                                    <div>
+                                        <div class="tbldeli_tr1">
+                                            <span scope="col" class="cell_delivery">배송지</span>
+                                            <span scope="col" class="cell_addr">주소</span>
+                                            <span scope="col" class="cell_tel">연락처</span>
+                                            <span scope="col" class="cell_edit">수정/삭제</span>
+                                        </div>
                                         <c:forEach items="${list }" var="list">
 	                                        <button class="deliBtn" name="deliBtn">
-		                                        <tr>
-		                                            <td class="cell_delivery">
-		                                                <strong class="nick">${list.oplace }</strong>
-		                                                ${list.oname }
+		                                        <div class="boxline">
+		                                            <div class="cell_delivery1">
+		                                                <span class="nick1">${list.oplace }</span>
+		                                                <span class="receive">${list.oname }</span>
 		                                                <span class="mark_default">기본배송지</span>
-		                                            </td>
-		                                            <td>
+		                                            </div>
+		                                            <div>
 		                                                <span class="zipcode2">${list.opost }</span>
-		                                                ${list.oaddress } ${list.oaddress1 }
-		                                            </td>
-		                                            <td class="cell_tel">${list.ophone }</td>
-		                                            <td class="cell_edit">
+		                                                <span class="oaddr1">${list.oaddress }<br>${list.oaddress1 }</span>
+		    
+		                                            </div>
+		                                            <div class="cell_tel1">${list.ophone }</div>
+		                                            <div class="cell_edit1">
 		                                                <a href="" class="_modify" onclick="deliUpdate(${list.onum}); return false;">수정</a>
 		                                                <a href="deliveryDelete?onum=${list.onum }" class="_delete">삭제</a>
-		                                                <input type="hidden" id="hash" value="2a22fb1852f60002f62751a9f853686fb1bfed89925cf5ecc2d306e4d128ccdf">
-		                                            </td>
-		                                        </tr>
+		                                            </div>
+		                                        </div>
 	                                        </button>
                                         </c:forEach>
-                                    </thead>
-                                </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,14 +162,14 @@
                                 </div>
                                 <div class="crdTb">
                                     <ul class="orderTable">
+                                    	<c:set var="total" value="0"/>
+                                    	<c:set var="discnt" value="0"/>
                                         <c:forEach items="${info }" var="info">
 	                                        <li class="odt-li1">
 	                                            <div class="orderListBox">
 	                                                <div class="orderBox">
 	                                                    <div class="orderImgBox">
 	                                                        <picture>
-	                                                            <source media="(max-width: 1199px)" srcset="">
-	                                                            <source media="(min-width: 1200px)" srcset="">
 	                                                            <img src="/resources/img/3510_originalView_01326139.jpg" alt="" sizes="auto">
 	                                                        </picture>
 	                                                    </div>
@@ -227,11 +177,11 @@
 	                                                <div class="ocb2">
 	                                                    <div class="orderContentBox">
 	                                                        <div class="ocb1">
-	                                                            <h3>${info.pname }</h3>
-	                                                            <div>수량 : ${info.pstock }</div>
+	                                                            <h3><%-- ${info.PNAME } --%></h3>
+	                                                            <div>수량 : <%-- ${info.CARTNUM } --%></div>
 	                                                        </div>
 	                                                        <div class="orderDtPay">
-	                                                            <strong>${info.pprice }
+	                                                            <strong><%-- ${(info.PPRICE*info.CARTNUM) - (info.PPRICE/10*info.CARTNUM) } --%>
 	                                                                <span>원</span>
 	                                                            </strong>
 	                                                        </div>
@@ -239,8 +189,9 @@
 	                                                </div>
 	                                            </div>
 	                                        </li>
+<%-- 					                    <c:set var="total" value="${total + (info.PPRICE*info.CARTNUM) - (info.PPRICE/10*info.CARTNUM) }"/> --%>
+<%-- 					                    <c:set var="discnt" value="${(info.PPRICE/10)*info.CARTNUM }"/> --%>
                                         </c:forEach>
-                                       
                                     </ul>
                                 </div>
                             </div>
@@ -254,16 +205,16 @@
                         <div>
                             <div class="ptData">
                                 <dl class="ptData1">
-                                    <dt>총 삼품 금액</dt>
-                                    <dd>1,600원</dd>
+                                    <dt>총 상품 금액</dt>
+                                    <dd><%-- ${total } --%>원</dd>
                                 </dl>
                                 <dl class="ptData1">
                                     <dt>배송비</dt>
-                                    <dd>+3,000원</dd>
+                                    <dd>무료</dd>
                                 </dl>
                                 <dl class="ptData2">
                                     <dt>총 결제금액</dt>
-                                    <dd>4,600원</dd>
+                                    <dd><%-- ${total } --%>원</dd>
                                 </dl>
                             </div>
                         </div>
@@ -307,14 +258,16 @@
                     <div>
                         <p>위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
                     </div>
-                    <button class="confBtn" onclick="location.href = '../product/order'">
+                    <button class="confBtn" onclick="completion">
                         <span class="confBtn1">결제하기</span>
                         <span class="confBtn2"></span>
                     </button>
                 </div>
+                </form>
+                
+                
             </div>
         </div>
-    </div>
     
 <script>
 // 배송지 선택 클릭시
@@ -328,9 +281,6 @@
 // });
 
 //배송지 선택 버튼 제어
-// $(function() {
-// 	if()
-// })
 $(function() {
 	$(".descbtn").click(function() {
 		$("#container2").show(function() {
@@ -345,9 +295,6 @@ $(function() {
 			$(".grbtn2").removeClass("active");
 			$(this).parent().addClass("active");
 		});
-		$(".payform2")
-		
-		$(".ddgropbox1")
 	});
 });
 $(function() {
@@ -417,7 +364,20 @@ function deliUpdate(onum){
 function callbackFunc(data) {
 	location.href = "payment";
 }
+
+//주소지 api
+function goPopup(){
 	
+	var pop = window.open("${pageContext.request.contextPath }/resources/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	
+}
+	//주소정보의 연계데이터를 돌려받는 콜백함수
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+
+	document.complForm.opost.value = zipNo;
+	document.complForm.oaddress.value = roadAddrPart1;
+	document.complForm.oaddress1.value = addrDetail;
+}
 </script>
     
 <%@ include file="../incloud/footer.jsp" %>	

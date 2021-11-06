@@ -40,14 +40,14 @@
       <div class="header">
         <div class="img-header">
           <img src="${pageContext.request.contextPath }/resources/img/KakaoTalk_20211021_110824073.png"
-			   onclick="location.href='/controller/mainpage'">
+			   onclick="location.href='/mainpage'">
         </div>
         <div class="content-wrap">
           <div class="header-menu">
-            <a href="#" onclick="location.href='/product/productTotal'">
+            <a href="#" onclick="location.href='/product/productDogTotal'">
               <span>강아지</span>
             </a>
-            <a href="#" onclick="location.href='/product/productTotal'">
+            <a href="#" onclick="location.href='/product/productCatTotal'">
               <span>고양이</span>
             </a>
             <a href="#" onclick="location.href='/pet/petList'">

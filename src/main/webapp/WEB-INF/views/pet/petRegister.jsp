@@ -167,6 +167,12 @@
 	                                    <div>
                                             <div class="checkbox">
                                             <label><input type="checkbox" id="checkbox" name="pfirst" value="0">이 아이로 활동하기</label>
+											<label>
+											  <input type="checkbox" id="dogcheck" name="pkind" value="d" onclick="catdogcheck(this)">강아지
+											</label>
+											<label>
+											  <input type="checkbox" id="catcheck" name="pkind" value="c" onclick="catdogcheck(this)">고양이
+											</label>
                                             </div>
 	                                    </div>
 	                                    <div class="inbtn-area">
@@ -225,7 +231,27 @@
 			console.log($("#checkbox").val());
 		}
 	});	
-	console.log($("#checkbox").val());
+	
+	//강아지 고양이 선택 제어
+	function catdogcheck(element) {
+		const checkboxes 
+			= document.getElementsByName("pkind");
+		checkboxes.forEach((cb) => {
+			cb.checked = false;
+		})
+		element.checked = true;
+	}
+	//강아지 고양이 벨류값 구하기
+	$("#dogcheck").click(function() {
+		$(this).val();
+		console.log($(this).val());
+	});
+	$("#catcheck").click(function() {
+		$(this).val();
+		console.log($(this).val());
+	});
+	
+	
 	
 // 	//value값 가져오기
 //  	$('input:checkbox[id="checkbox"]').val();

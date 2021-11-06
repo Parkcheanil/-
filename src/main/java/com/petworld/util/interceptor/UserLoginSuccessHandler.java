@@ -9,8 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.petworld.command.UserVO;
 
-public class UserLoginSuccessHandler implements HandlerInterceptor{
+public class UserLoginSuccessHandler implements HandlerInterceptor {
 
+	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
@@ -25,11 +26,11 @@ public class UserLoginSuccessHandler implements HandlerInterceptor{
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
-			response.sendRedirect(request.getContextPath() + "/");
+			response.sendRedirect(request.getContextPath() + "/mainpage");
 		}
-		
-		
-	}
-
+	} // 로그인 포스트 핸들러 끝
+	
+	
+	
 	
 }

@@ -25,10 +25,9 @@ public class UserServiceImpl implements UserService{
 		
 		// 암호화 작업
 //		Encoder encoder = Base64.getEncoder();
-//		
-//		// 암호화 시키고 싶은 데이터를 byte[]형태로 암호화 데이터를 전달
+		// 암호화 시키고 싶은 데이터를 byte[]형태로 암호화 데이터를 전달
 //		byte [] result = encoder.encode( vo.getPw().getBytes() );
-//		// 문자열로 바꿔서 저장
+		// 문자열로 바꿔서 저장
 //		vo.setPw(new String(result) );
 		
 		return userMapper.signUp(vo);
@@ -42,9 +41,6 @@ public class UserServiceImpl implements UserService{
 //		Encoder encoder = Base64.getEncoder();
 //		byte [] result = encoder.encode( vo.getPw().getBytes() );
 //		vo.setPw(new String(result) );
-		
-		
-		
 		
 		return userMapper.login(vo);
 	}

@@ -1,5 +1,8 @@
 package com.petworld.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.PayVO;
 import com.petworld.service.PayService;
+import com.petworld.service.ProductService;
 
 @Controller
 @RequestMapping("/pay")
@@ -21,9 +25,16 @@ public class payController {
 	@Qualifier("payService")
 	private PayService payService;
 	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
 	//결제 화면
 	@RequestMapping({"/payment", "/deliveryList"})
-	public void paymentInfo(Model model) {
+	public void paymentInfo(Model model, Model cmo) {
+		
+		List<Map<String, Object>> clist = productService.getCartList();
+		cmo.addAttribute("clist", clist);
 		
 		model.addAttribute("info", payService.paymentInfo());
 		model.addAttribute("list", payService.deliveryList());

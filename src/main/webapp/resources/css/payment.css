@@ -187,7 +187,7 @@ a:focus {color: #fff;}
     border-radius: 6px;
     text-align: center;
     padding-top: 7px;
-    margin-left: 391px;
+    margin-left: 395px;
     color: #fff;
     border-color: rgba(255, 66, 92, 1);
 }
@@ -206,31 +206,63 @@ thead>tr th {
     font-size: 1.6rem;
     text-align: center;
 }
+/* 배송지 목록 */
 .tbl_delivery_list {
     width: 100%;
+    position: relative;
+    padding: 0 30px;
 }
-.cell_delivery, .cell_tel {
-    width: 225px;
-    text-align: center;
+.cell_delivery {
+	width: 112px;
+	float: left;
+	margin: 0 30px;
+	text-align: center;
+}
+.cell_addr {
+	width: 280px;
+	float: left;
+	margin: 0 60px;
+	text-align: center;
+}
+.cell_tel {
+	width: 127px;
+	float: left;
+	margin: 0 50px;
+	text-align: center;
 }
 .cell_edit {
-    width: 250px;
-    text-align: center;
-}
-.cell_delivery>strong, .cell_delivery>span {
-    display: block;
-    text-align: center;
-    margin-bottom: 5px;
+ 	width: 90px;
+	float: left;
+	margin: 0 40px;
+	text-align: center;
 }
 .tbldeli_tr1 {
-    border-bottom: 1px solid rgba(60, 60, 67, 0.6);
+    width: 100%;
+    border-bottom: 1px solid;
+    height: 50px;
+    padding-top: 13px;
 }
-.cell_delivery>strong {
-    margin: 5px 0;
+.boxline {
+	width: 100%;
+}
+.cell_delivery1 {
+	width: 129px;
+	position: relative;
+	float: left;
+	margin: 0 21px;
+}
+.nick1 {
+	width: 70px;
+	font-weight: 700;
+	float: left;
+	margin: 4px 30px;
+	text-align: center;
+}
+.receive {
+	display: block;
+	margin: 3px;
 }
 .mark_default {
-    margin-left: 76px;
-    margin-top: 5px;
     width: 70px;
     border: 1px solid rgba(255, 66, 92, 1);
     color: rgba(255, 66, 92, 1);
@@ -238,6 +270,24 @@ thead>tr th {
 .zipcode2 {
     display: block;
     color: #adadad;
+    float: left;
+    margin: 28px 0;
+    width: 100px;
+}
+.oaddr1 {
+	float: left;
+	width: 308px;
+	margin: 17px 0;
+	text-align: left;
+}
+.cell_tel1 {
+	float: left;
+	margin: 28px;
+	width: 155px;
+}
+.cell_edit1 {
+	float: right;
+	margin: 28px 60px 28px 0;
 }
 ._modify, ._delete {
     display: inline-block;
@@ -247,6 +297,18 @@ thead>tr th {
     border-radius: 6px;
     text-align: center;
     color: #fff;
+}
+.deliBtn {
+	width: 100%;
+	background-color: #fff;
+	margin: 10px 0;
+}
+.deliBtn:hover {
+	background-color: #cfcfd0;
+}
+
+.deliBtn:focus {
+	background-color: #ddd;
 }
 /* 주문상품 */
 .gr4 {margin: 30px 0 0 0;}
