@@ -100,8 +100,7 @@
 	                            <th class="cell_title">기본배송지</th>
 	                            <td>
 									<label for="baseAddressYn" class="lb_text">
-										<i class="fas fa-check"></i>
-										<input type="text" id="baseAddressYn" name="odefault" value="0">
+										<input type="checkbox" id="baseAddressYn" name="odefault" value="0" >
 										기본 배송지로 설정
 									</label>
 								</td>

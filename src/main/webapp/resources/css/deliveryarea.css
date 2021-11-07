@@ -213,15 +213,6 @@ a, a:hover, a:focus {text-decoration: none; color: #fff;}
     border: 1px solid #e0e0e0;
     margin: 10px;
 }
-input[type=checkbox] {
-    margin: 10px;
-    background-color: #888;
-}
-.checkbox {
-    margin-right: 5px;
-    border: 1px solid #e0e0e0;
-    margin: 10px;
-}
 .delivery_notice {
     padding: 16px 20px 14px;
     background-color: #fafafa;
@@ -265,41 +256,40 @@ input[type=checkbox] {
     font-size: 1.4rem;
     border-radius: 4px;
 }
-
-
 /* 체크박스 CSS */
-/*input 은 숨겨주기*/
-/* input#baseAddressYn{
-    display:none;
-} */
-/*input 바로 다음의 label*/
-/* input#baseAddressYn + .lb_text {
-    cursor:pointer;
-} */
-  
-/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
-/* input#baseAddressYn + .lb_text::before{
-    content:"";
-    display:inline-block;
-    width:17px;
-    height:17px;
-    line-height:17px;
-    border:1px solid #cbcbcb;
-    vertical-align:middle;
-} */
-/*체크 전과 체크 후 높이 차이 때문에 설정*/
+#baseAddressYn{ 
+	position: absolute; 
+	padding: 8px;
+	border: 1pxl solid;
+	left: 0px;
+} 
+.lb_text{ 
+	display:inline-block; 
+	position:relative; 
+	padding-left:26px; 
+	cursor:pointer; 
+} 
+.lb_text:before{ 
+	content:''; 
+	position:absolute; 
+	left:0; 
+	top:3px; 
+	width:18px; 
+	height:18px; 
+	text-align:center; 
+	background:#fff; 
+	border:1px solid #ccc; 
+	box-sizing:border-box; 
+} 
+/* 보여질 부분의 스타일을 추가하면 된다. */ 
+#baseAddressYn:checked + .lb_text:after{ 
+	content: ''; 
+	position:absolute; 
+	top:3px; 
+	left:0; 
+	width:18px; 
+	height:18px; 
+	background-color:skyblue; 
+}
+	
 
-/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/  
-/* input#baseAddressYn:checked + .lb_text::before{
-    content:"\f00c";
-    font-family:"Font Awesome 5 free"; 
-    font-weight:900;
-    color:#fff;
-    background-color:#000;
-    border-color:#000;
-    font-size:13px;
-    text-align:center;
-} */
-/*폰트어썸 유니코드*/
-/*폰트어썸 아이콘 사용*/
-/*폰트어썸 설정*/
