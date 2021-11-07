@@ -18,13 +18,13 @@ public class ProductVO {
 //			pRATE NUMBER(20), /* 판매량 */
 //			pdDETAIL VARCHAR2(3000) /* 상세정보 */
 	
-	private int pID;
+	private int pid;
 	private String pname;
 	private String pprice;
-	private int pSTOCK;
-	private String pIMAGE;
-	private int pRATE;
-	private String pdDETAIL;
+	private int pstock;
+	private String pimage;
+	private int prate;
+	private String pddetail;
 	
 	/*
 	 * lombok의 함정

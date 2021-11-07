@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -113,7 +114,7 @@ public class PetController {
 
 	//펫 상품 추천, 펫 정보
 	@RequestMapping({"/petList", "/petInfo"})
-	public void petList(Model model, Model md) {
+	public void petList(Model model, Model md, HttpSession session) {
 		
 		model.addAttribute("list", petService.getList());
 		md.addAttribute("produtlist", productService.getList());
@@ -156,6 +157,8 @@ public class PetController {
 		
 		return list;
 	}
+	
+	//이미지 삭제 처리
 	
 	//펫 정보 수정 화면
 	@RequestMapping("/petUpdate")

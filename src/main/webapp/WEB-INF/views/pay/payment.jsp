@@ -116,7 +116,6 @@
 								<p class="desc">쇼핑에 사용하신 배송 지를 최대 15개까지 함께 관리 하실 수 있습니다.</p>
 								<a href="#" class="green_bg" id="deliveryInBtn">배송지 등록</a>
 							</div>
-
 							<div class="delivery_list_area">
 								<div class="tbl_delivery_list">
 									<div>
@@ -144,10 +143,8 @@
 													</div>
 													<div class="cell_tel1">${list.ophone }</div>
 													<div class="cell_edit1">
-														<a href="" class="_modify"
-															onclick="deliUpdate(${list.onum}); return false;">수정</a>
-														<a href="deliveryDelete?onum=${list.onum }"
-															class="_delete">삭제</a>
+														<a href="" class="_modify" onclick="deliUpdate(${list.onum}); return false;">수정</a>
+														<a href="deliveryDelete?onum=${list.onum}" class="_delete">삭제</a>
 													</div>
 												</div>
 											</button>
@@ -326,10 +323,9 @@ $(function() {
 		});
 	});
 });
-//배송지 삭제 비동기 처리
-$(function() {
-	$("")
-});
+
+	//배송지 삭제 비동기 처리
+
 
 	//신규배송지 작성시 배송지 목록에 추가
     $(document).ready(function(){

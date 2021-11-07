@@ -97,7 +97,7 @@
                                            <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1">
                                             	
                                                 <div class="individually" id="slideFirst">
-                                                    <a onclick="location.href='productDetail?pID=${list[i].PID}'">
+                                                    <a onclick="location.href='productDetail?pID=${list[i].pid}'">
                                                         <picture>
                                                             <source media="(max-width: 1199px)" srcset="">
                                                             <source media="(min-width: 1200px)" srcset="">
@@ -108,9 +108,9 @@
                                                                 <span>키덜트</span>
                                                             </div>
                                                             <div class="pdt-cont">
-                                                                <h4>${list[i].PNAME }</h4>
+                                                                <h4>${list[i].pname }</h4>
                                                                 <span>
-                                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].PPRICE}"/>원
+                                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -155,9 +155,9 @@
                                                 <span>키덜트</span>
                                             </div>
                                             <div class="pdt-cont">
-                                                <h4>${list[i].PNAME }</h4>
+                                                <h4>${list[i].pname }</h4>
                                                 <span>
-                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].PPRICE}"/>원
+                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
                                                 </span>
                                             </div>
                                         </div>
