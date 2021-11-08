@@ -37,7 +37,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("productDetail")
-	public void productDetail(@RequestParam("pID") String pID, Model model) {
+	public void productDetail(@RequestParam("pID") int pID, Model model) {
 		ProductVO vo = productService.getContent(pID);
 		model.addAttribute("vo", vo);
 	}

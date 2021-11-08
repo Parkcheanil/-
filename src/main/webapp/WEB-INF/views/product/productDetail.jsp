@@ -15,14 +15,14 @@
                     <div class="wp_info">
                         <div class="info_img">
                             <div class="img">
-                                <img src="${pageContext.request.contextPath }/resources/img/${vo.PIMAGE}" alt="${vo.PNAME }">
+                                <img src="${pageContext.request.contextPath }/resources/img/${vo.pimage}" alt="${vo.pname }">
                             </div>
                         </div>
                         <div class="info_purchase">
                             <div class="name_price">
                                 <div class="item_name">
                                     <!-- 옆에 소셜 공유 및 찜하기 기능 넣기 실패 -->
-                                    <h2>${vo.PNAME }</h2>
+                                    <h2>${vo.pname }</h2>
                                 </div>
                                 <div class="item_price">
                                     <div class="price">
@@ -31,7 +31,7 @@
                                             <h2>판매가</h2>
                                         </div>
                                         <div class="price_item">
-                                            <h2><fmt:formatNumber value="${vo.PPRICE }" pattern="###,###,###"/></h2>
+                                            <h2><fmt:formatNumber value="${vo.pprice }" pattern="###,###,###"/></h2>
                                         </div>
                                     </div>
                                 </div>
@@ -58,13 +58,13 @@
                                     <div>수량</div>
                                     <div class="button_push">
                                         <button class="button_minus" type="button" id="minus"><span> - </span></button>
-                                        <input class="item_amount" id="result" type="number" min="1" max="${vo.PSTOCK }" value="1" readonly="readonly"/>
+                                        <input class="item_amount" id="result" type="number" min="1" max="${vo.pstock }" value="1" readonly="readonly"/>
                                         <button class="button_plus" type="button" id="plus"><span> + </span></button>
                                     </div>
                                 </div>
                                 <div class="count_price">
                                     <div class="total_price">총 상품금액</div>
-                                    <div class="total_price_items"><strong>${vo.PPRICE}</strong>원</div>
+                                    <div class="total_price_items"><strong>${vo.pprice}</strong>원</div>
                                 </div>
                             </div>
                             <div class="purchase_customer">
@@ -149,7 +149,7 @@
                                                 <div class="modal-body">
                                                     <div>
                                                         <p class="modal-body_p1"><strong>설명</strong></p>
-                                                        <p class="modal-body_p2">${vo.pdDETAIL }</p>
+                                                        <p class="modal-body_p2">${vo.pddetail }</p>
                                                         <p style="margin-bottom: 0;"><strong>권장급여방법</strong></p>
                                                         <p style="margin-bottom: 40px;">
 						                                                            몸무게1~5kg : 하루에 30~110g 급여 (종이컵 0.5 ~ 2컵)
@@ -516,7 +516,7 @@
 			$("#plus").click(function(){
 				var num = $("#result").val();
 				var plusNum = Number(num) + 1;
-				if(plusNum >= "<c:out value='${vo.PSTOCK}' />") {
+				if(plusNum >= "<c:out value='${vo.pstock}' />") {
 					$("#result").val(num);
 				}
 				else {

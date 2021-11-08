@@ -18,12 +18,12 @@ public class UserVO {
 	private String nick;
 	private String phone;    	// 핸드폰 번호
 	private String com;	  		// 통신사
-	private String addZipNum;	// 우편번호
+	private String addrZipNum;	// 우편번호
 	private String addrBasic; 	// 기본주소
 	private String addrDetail; 	// 상세주소
 	private String yy;
 	private String mm;
 	private String dd;
-//	private String regdate;	  	// 가입일자
-//	private int grade;		  	// 등급
+	private String regdate;	  	// 가입일자
+	private int grade;		  	// 등급
 }

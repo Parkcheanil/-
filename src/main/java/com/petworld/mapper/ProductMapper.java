@@ -10,7 +10,7 @@ import com.petworld.util.MainProductCriteria;
 
 public interface ProductMapper {
 
-	public ProductVO getContent(String pID);
+	public ProductVO getContent(int pID);
 	public ArrayList<ProductVO> getListCri(MainProductCriteria cri);
 	public ArrayList<ProductVO> getList();
 	public List<Map<String, Object>> getCartList();

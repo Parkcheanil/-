@@ -14,5 +14,6 @@
 		<typeAlias alias="QuestionVO" type="com.petworld.command.QuestionVO"/>
 		<typeAlias alias="ProductVO" type="com.petworld.command.ProductVO"/>
 		<typeAlias type="com.petworld.command.UserVO" alias="UserVO"/>
+		<typeAlias alias="SalesVO" type="com.petworld.command.SalesVO"/>
 	</typeAliases>
 </configuration>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.petworld.mapper.AdminMapper">
+  
+  	<!-- 회원 -->
+  	<select id = "customerList" resultType="UserVO">
+		select * from member
+	</select>
+  	
+  	<!-- 주문 -->
+  	<select id = "orderList" resultType="OrderVO">
+		select * from USER_ORDER
+	</select>
+	
+	<select id ="orderDetail" resultType="OrderVO">
+		select * from USER_ORDER where oid = #{oid}
+	</select>
+	
+	<update id="orderUpdate">
+       update USER_ORDER SET 
+       mid=#{mid}, 
+       delivery_status = #{delivery_status},
+       oname=#{oname}, 
+       ophone=#{ophone}, 
+       opost=#{opost}, 
+       oamount=#{oamount}, 
+       oproductnum=#{oproductnum},
+       opayment=#{opayment},
+       oinvoice = #{oinvoice},
+       pname = #{pname}
+       where oid=#{oid}
+       
+     </update>
+  	<!-- 상품 -->
+	   <select id="productList" resultType="ProductVO">
+		   <![CDATA[
+		   	select *
+		   	from (select rownum as rn, a.*
+		   		from(select * 
+		   			 from PRODUCT
+		   			 where
+		   ]]>
+		   <if test="searchType == 'pcnum'">pcnum like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == 'pid'">pid like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == 'pname'">pname like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == null or searchType == ''">1=1</if>	
+	   	<![CDATA[
+	   		order by pid desc)a
+	   		)where rn >(#{pageNum}-1)*#{amount} and rn <=#{pageNum}*#{amount}
+		 ]]>
+			
+	   </select>
+	   <select id="getTotal" resultType="int">
+	   	select count(*) as total
+	   	from PRODUCT
+	   	where
+	   	<if test="searchType == 'pcnum'">pcnum like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == 'pid'">pid like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == 'pname'">pname like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == null or searchType == ''">1=1</if>
+	   </select>
+	   
+	   <insert id="pinsert">
+	   	insert into PRODUCT(pid, pname, pprice, pstock, pimage1addr, pimage2addr, pcnum, pdetail)
+	   	values(#{pid}, #{pname}, #{pprice}, #{pstock}, #{pimage1addr}, #{pimage2addr}, #{pcnum}, #{pdetail})
+	   </insert>
+	   
+	   <select id="getpContent" resultType="ProductVO">
+	   		select * from PRODUCT where pid = #{pid}
+	   </select>
+	   
+	   <update id="updateProduct">
+	   	update PRODUCT set 
+	     	pname = #{pname},
+	     	pprice = #{pprice},
+	     	pstock = #{pstock},
+	     	pimage = #{pimage},
+	     	pcnum = #{pcnum},
+	     	pdetail = #{pdetail},
+     	where pid = #{pid}
+	   </update>
+	   
+	   <delete id="deleteProduct">
+	   	delete from PRODUCT where pid = #{pid}
+	   </delete>
+	  
+	  <!-- 판매실적 -->
+	  <select id="salesList" resultType="SalesVO">
+	  	select * from SALES
+	  </select>
+	  
+	  <select id="getchart" resultType="SalesVO">
+	  <![CDATA[
+			SELECT 
+				To_CHAR(salesdate, 'yyyy-mm-dd') as salesdate,
+				sum(salescount) as salescount,
+				sum(salesprice) as salesprice
+			FROM SALES
+			GROUP BY salesdate
+			ORDER BY salesdate
+		]]>	
+	  </select>
+  </mapper>

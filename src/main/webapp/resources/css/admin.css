@@ -1,0 +1,223 @@
+@charset "UTF-8";
+*{padding:0; margin: 0;}
+.html, body{
+	position: relative;
+	background-color: rgb(244, 247, 250);
+    width: 1200px;
+}
+.text-end {
+	text-align: right;
+}
+.text-start {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+/* 사이드바 영역 css */
+.sideBar{
+    position: fixed;
+    text-align: center;
+    background-color: rgb(7, 42, 75);
+    width: 150px;
+    height: 1200px;
+}
+img {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.mainMenu {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+.menu_1, .menu_2, .menu_3, .menu_4{
+    overflow: hidden;
+    padding: 5px 5px 5px 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: white;
+    line-height: 300%;
+}
+.mmenu{
+    display: block;
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+.mmenu:hover{background-color: #999;}
+.sideBar ul hr {
+    background-color: white;
+	width: 100px;
+	margin: auto;
+    height: 1px;
+    border: none;
+}
+/*상단 nav Bar*/
+.Bar {
+	border-bottom: 3px solid rgb(7, 42, 75);
+    text-align: right;
+    height: 50px;
+    margin: auto auto;
+    line-height: 300%;
+    
+}
+.Bar a {
+    text-decoration: none;
+    font-size: 13px;
+    color: rgb(7, 42, 75);
+}
+/*=======컨텐츠 영역css=======*/
+.content {
+    width : 1000px;
+    padding: 0px 0px 0px 170px;
+    color: rgb(7, 42, 75);
+}
+
+table.table-order,table.table-item{
+    text-align: center;
+    display: inline-block;
+    background-color: white;
+    width: 400px;
+    height: 250px;
+    border: 1px solid #e4e6f6;
+    padding: 10px;
+    margin: 30px 20px 0px 10px;
+}
+/* 그래프 관련 css */
+.homeGraph {
+    overflow: hidden;
+    width : 1018px;
+    height: 300px;
+    background-color: white;
+    border: 1px solid #e4e6f6;
+    padding: 10px;
+    margin: 20px 0px 0px 10px;
+   } 
+.test{
+    float: left;
+}
+.text{
+    float: right;
+}
+
+/*=========상품관리 -> 상품============*/
+.item_table, .product_detailtable, .product_intable, .product_udtable, .category_intable{
+	margin-top: 20px;
+	margin-left: 160px;
+	background-color: white;
+	padding: 20px;
+}
+.item_table h4, .product_detailtable h4, .product_intable h4, .product_udtable h4{
+	margin: 10px;
+    text-align: center;
+}
+.item_table hr, .product_detailtable hr, .product_intable hr, .product_udtable hr{
+	width: 100px;
+    margin: auto;
+}
+.search-area{
+   border: 5px solid red;
+   float: right;
+   text-align: right;
+}
+.search_area select{
+   vertical-align: middle;
+   width: 120px;
+   display : inline;
+}
+.search_area input{
+   vertical-align: middle;
+   width: 200px;
+   display : inline;
+}
+.search_area button{
+   display : inline;
+   background-color: rgb(7, 42, 75);
+   border-color:rgb(7, 42, 75);
+}
+/*=======버튼 디자인======*/
+.btn_primary{
+	padding: 0.375rem 0.75rem;
+	border: 1px solid #072a4b;
+	color: #072a4b;
+	background-color: transparent;
+	border-radius: 0.25rem;
+}
+/*========모달========*/
+.modal { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.4);
+	}
+.modal.show {
+	display: block; }
+.modal_body { 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	height: 600px;
+	padding: 40px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	transform: translateX(-50%) translateY(-50%);
+	}
+/*==========실적 관리 게시판 디자인==========*/
+.sales_content {
+	width : 900px;
+    height: auto;
+    margin-left: 150px;
+    color: rgb(7, 42, 75);
+    padding: 20px;
+}
+
+/*실적 게시판 제목*/
+.sales_content h4{
+    margin: 10px;
+    text-align: center;
+}
+.sales_content hr{
+    width: 100px;
+    margin: auto;
+}
+/*실적 그래프*/
+.salesGraph{
+	background-color: white;
+	border: 1px solid #e4e6f6;
+	margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+}
+.salesGraph canvas {
+	border: none;
+}
+/*실적 게시판 리스트*/
+.sales_table {
+	
+}
+
+/*=======카테고리 게시판======*/
+.category_table, .category_udtable {
+	margin-top: 20px;
+	margin-left: 160px;
+	background-color: white;
+	padding: 20px;
+	
+}
+.category_table h4 {
+	margin: 10px;
+    text-align: center;
+}
+.category_table hr {
+	width: 100px;
+    margin: auto;
+}

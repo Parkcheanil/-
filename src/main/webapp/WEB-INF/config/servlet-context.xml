@@ -21,6 +21,7 @@
 	
 	<!-- 해당패키지를 읽어서 @Controller 빈으로 생성 -->
 	<context:component-scan base-package="com.petworld.*" />
+	<context:component-scan base-package="com.petworldAdmin.*" />
 
 	<!-- 업로드 패스 설정 -->
 	<beans:bean class="java.lang.String" id="uploadPath">

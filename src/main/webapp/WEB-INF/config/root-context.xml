@@ -40,6 +40,7 @@
 
 	<!-- 마이바티스 스캔 - 해당 패키지를 읽어서 인터페이스에 들어갈 xml을 빈으로 생성 -->
 	<mybatis-spring:scan base-package="com.petworld.mapper"/>
+	<mybatis-spring:scan base-package="com.petworldAdmin.mapper"/>
 	<mybatis-spring:scan base-package="com.simple.mapper"/>
 	
 </beans>

@@ -48,7 +48,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		
 		// 나갈 경로
-		mv.setViewName("/mainpage");
+		mv.setViewName("user/login");
 		
 		if(user == null) { // 아이디, 비번이 틀린 경우
 			mv.addObject("msg", "아이디 비밀번호를 확인하세요");

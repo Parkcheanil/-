@@ -1,5 +1,6 @@
 package com.petworld.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petworld.command.PayVO;
 import com.petworld.service.PayService;
 import com.petworld.service.ProductService;
@@ -31,18 +34,17 @@ public class payController {
 	
 	//결제 화면
 	@RequestMapping({"/payment", "/deliveryList"})
-	public void paymentInfo(Model model, Model cmo) {
+	public void paymentInfo(Model model, Model cmo) throws Exception {
 		
 		List<Map<String, Object>> clist = productService.getCartList();
 		cmo.addAttribute("clist", clist);
 		
 		model.addAttribute("info", payService.paymentInfo());
-		model.addAttribute("list", payService.deliveryList());
-		System.out.println(clist);
 		
+		ArrayList<PayVO> list = payService.deliveryList();
+		model.addAttribute( "list", list );
 	}
 	
-	//배송지 입력 화면
 	@RequestMapping("/delivery")
 	public void delivery() {
 	}
