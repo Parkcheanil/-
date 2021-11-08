@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form action="update_password">
+	<!-- 
 	<h3>당신의 가입한 이메일 {어쩌구 저쩌구}로 임시 비밀번호를 보냈습니다</h3>
 	<h3>로그인해서 비밀번호를 바꿔주세요</h3>
 	
@@ -21,5 +23,25 @@
        		로그인 하기
        </button>
     </div>
+    -->
+    
+    </form>
+    
+    <script>
+	    alert("비밀번호가 변경되었습니다.");
+	    self.close();
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

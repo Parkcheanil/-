@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.petworld.command.NoticeVO;
 import com.petworld.command.QuestionVO;
 import com.petworld.service.QuestionService;
 import com.petworld.util.QuestionCriteria;

@@ -12,14 +12,40 @@
 	<!-- beans 태그는 가로채서 실행시킬 클래스 -->
 	<!-- 네임스페이스에서 콘텍스트, mvc 체크 -> -->
 	
+
 	<bean id="userAuthHandler" class="com.petworld.util.interceptor.UserAuthHandler" />
 	<bean id="userLoginSuccessHandler" class="com.petworld.util.interceptor.UserLoginSuccessHandler" />
-	
+	<bean id="questionAuthHandler" class="com.petworld.util.interceptor.QuestionAuthHandler" />
 	
 	<mvc:interceptors>
-		<!-- 유저권한 인터셉터 -->
+
+		<!-- 유저권한 >>>화면이동<<< 인터셉터 -->
 		<mvc:interceptor>
-			<mvc:mapping path="/user/order"/>
+			<!-- pay 쪽 -->
+			<mvc:mapping path="/pay/delivery"/>
+			<mvc:mapping path="/pay/deliveryUpdate"/>
+			<mvc:mapping path="/pay/payment"/>
+			
+			<!-- 프로필 진입 권한 적용은 됐는데 원래있던 페이지가 아니라 메인으로 돌아가는 문제...  -->
+			<!-- pet 쪽 -->
+			<mvc:mapping path="/pet/petInfo"/>
+			<mvc:mapping path="/pet/petList"/>
+			<mvc:mapping path="/pet/petRegister"/>
+			<mvc:mapping path="/pet/petUpdate"/>
+			
+			<!-- product 쪽 -->
+			<mvc:mapping path="/product/cancle"/>
+			<mvc:mapping path="/product/change"/>
+			<mvc:mapping path="/product/order"/>
+			
+			<!-- question 쪽 -->
+			<mvc:mapping path="/question/question"/>			
+			<mvc:mapping path="/question/questionDetail"/>			
+			<mvc:mapping path="/question/questionModify"/>			
+			<mvc:mapping path="/question/questionRegist"/>	
+			
+			<!-- user 쪽: 페이지 삭제될 수 있음 -->
+			<mvc:mapping path="/user/join_welcome"/>			
 			<ref bean="userAuthHandler" />
 		</mvc:interceptor>
 		
@@ -29,7 +55,19 @@
 			<ref bean="userLoginSuccessHandler" />
 		</mvc:interceptor> 
 		
+		<!-- 문의사항 수정, 삭제 권한 인터셉터 -->
+		<!-- 아직 페이지가 없어서 주석처리... -->
+		<!-- 
+		<mvc:interceptor>
+			<mvc:mapping path="/question/questionModify"/>
+			<mvc:mapping path="/question/questionUpdate"/>	
+			<mvc:mapping path="/question/questionDelete"/>			
+			<ref bean="questionAuthHandler"></ref>
+		</mvc:interceptor>
+		-->
+			<!-- 문의사항 수정화면 -->
+			<!-- 문의사항 수정기능 -->
+			<!-- 문의사항 삭제기능 -->
+		
 	</mvc:interceptors>
-	
-
 </beans>

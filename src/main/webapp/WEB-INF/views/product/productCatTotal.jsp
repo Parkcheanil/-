@@ -13,7 +13,7 @@
                 <div class="wrap">
                     <div class="box">
                         <p>
-                            <a href="../">홈</a> > <a href="#">강아지용</a> > <a href="##">사료</a> > <a>상품이름</a>
+                            <a href="../">홈</a> > <a href="productCatTotal">고양이용</a>
                         </p>
                     </div>
                 </div>

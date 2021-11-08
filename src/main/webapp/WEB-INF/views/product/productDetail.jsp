@@ -7,13 +7,15 @@
 	<%@ include file="../incloud/header.jsp" %>
 <!-- 상품 상세 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/productDetail.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="/resources/jquery/jquery-3.3.1.min.js"></script>
 	<div style="margin-top: 150px;">
             <div class="container2">
                 <div class="wrap2">
                     <div class="wp_info">
                         <div class="info_img">
                             <div class="img">
-                                <img src="${pageContext.request.contextPath }/resources/img/${list.PIMAGE}" alt="${vo.PNAME }">
+                                <img src="${pageContext.request.contextPath }/resources/img/${vo.PIMAGE}" alt="${vo.PNAME }">
                             </div>
                         </div>
                         <div class="info_purchase">
@@ -55,9 +57,9 @@
                                 <div class="count_plus_minus">
                                     <div>수량</div>
                                     <div class="button_push">
-                                        <button class="button_minus" type="button" onclick='count("minus")' value="-"><span> - </span></button>
-                                        <div class="item_amount" id="result">1</div>
-                                        <button class="button_plus" type="button" onclick='count("plus")' value="+"><span> + </span></button>
+                                        <button class="button_minus" type="button" id="minus"><span> - </span></button>
+                                        <input class="item_amount" id="result" type="number" min="1" max="${vo.PSTOCK }" value="1" readonly="readonly"/>
+                                        <button class="button_plus" type="button" id="plus"><span> + </span></button>
                                     </div>
                                 </div>
                                 <div class="count_price">
@@ -67,7 +69,7 @@
                             </div>
                             <div class="purchase_customer">
                                 <div class="cart_div">
-                                    <button class="cart_into" type="button" onclick="location.href='../user/cart'">
+                                    <button class="cart_into" type="button" onclick="location.href='cart'">
                                         <span class="cart_ch">장바구니 담기</span>
                                         <span class="cart_dev"></span>
                                     </button>
@@ -91,19 +93,19 @@
                                 <div class="sticky1_info" style="overflow: hidden;">
                                     <div aria-label="탭" role="tablist" class="sticky1_buttondiv">
                                         <button class="sticky1_button1 button_same" type="button" tabindex="0"
-                                            aria-selected="true">
+                                            aria-selected="true" onclick="fnMove('1')">
                                             <span>상품정보</span>
                                         </button>
                                         <button class="sticky1_button1 button_same" type="button" tabindex="-1"
-                                            aria-selected="false">
+                                            aria-selected="false" onclick="fnMove('2')">
                                             <span>질문/답변</span>
                                         </button>
                                         <button class="sticky1_button1 button_same" type="button" tabindex="-1"
-                                            aria-selected="false">
+                                            aria-selected="false" onclick="fnMove('3')">
                                             <span>구매후기</span>
                                         </button>
                                         <button class="sticky1_button1 button_same" type="button" tabindex="-1"
-                                            aria-selected="false">
+                                            aria-selected="false" onclick="fnMove('4')">
                                             <span>취소/교환/반품안내</span>
                                         </button>
                                     </div>
@@ -113,7 +115,7 @@
                         <div class="sticky2"></div>
                     </div>
                     <div class="">
-                        <div class="item_info">
+                        <div class="item_info" id="div1">
                             <div class="item_info_title">
                                 <div class="item_info_title_dev">
                                     <h3>상품정보</h3>
@@ -147,7 +149,7 @@
                                                 <div class="modal-body">
                                                     <div>
                                                         <p class="modal-body_p1"><strong>설명</strong></p>
-                                                        <p class="modal-body_p2">${vo.PCONT }</p>
+                                                        <p class="modal-body_p2">${vo.pdDETAIL }</p>
                                                         <p style="margin-bottom: 0;"><strong>권장급여방법</strong></p>
                                                         <p style="margin-bottom: 40px;">
 						                                                            몸무게1~5kg : 하루에 30~110g 급여 (종이컵 0.5 ~ 2컵)
@@ -177,10 +179,7 @@
                                         <div class="item_info_ch_div">
                                             <div class="item_info_ch_content">
                                                 <ul class="item_info_ch_ul">
-                                                    <li class="item_info_ch_li">특징1</li>
-                                                    <li class="item_info_ch_li">특징2</li>
-                                                    <li class="item_info_ch_li">특징3</li>
-                                                    <li class="item_info_ch_li">특징4</li>
+                                                    <li class="item_info_ch_li">제품의 특징을 보고 싶으시다면 클릭하세요.</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -264,21 +263,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item_info_image">
-                                <div class="item_info_image1">
-                                    <picture class="item_info_image_picture">
-                                        <source media="(max-width:1199px)" srcset="img/84863_desc_110673.jpg">
-                                        <img class="image_information" src="/resources/img/84863_desc_110673.jpg"
-                                            alt="예제 이미지" sizes="auto">
-                                    </picture>
-                                </div>
-                                <div class="item_info_moreinfo" role="button" aria-disabled="false">
-                                    <span class="moreinfo_span1">상품 상세</span>
-                                    <span class="moreinfo_span2"></span>
-                                </div>
-                            </div>
                         </div>
-                        <div class="ques_ans">
+                        <div class="ques_ans" id="div2">
                             <div class="qna_title">
                                 <div class="qna_title_1">
                                     <h3 class="item_qna">질문/답변</h3>
@@ -359,7 +345,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="purchase_review">
+                        <div class="purchase_review" id="div3">
                             <div class="review_title">
                                 <div class="review_title_1">
                                     <h3 class="review_title_h3">구매후기</h3>
@@ -409,7 +395,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="cancel_return">
+                        <div class="cancel_return" id="div4">
                             <div class="cancel_return_container">
                                 <div class="cancel_return_header">
                                     <div class="cancel_return_title">
@@ -503,6 +489,40 @@
 			            break;
 			    }
 			}
+		</script>
+		
+		<script>
+			//sticky로 구성된 버튼 클릭 시 해당 페이지로 스크롤이 이동됨
+			function fnMove(seq){
+		        var position = $("#div" + seq).position();
+		        $('html, body').animate({scrollTop : position.top}, 200);
+	    	}
+
+		</script>
+		
+		<script>
+			//수량 버튼 클릭 시 수량 개수 감소
+			$("#minus").click(function(){
+				var num = $("#result").val();
+				var minusNum = Number(num) - 1;
+				if(minusNum <= 0) {
+					$("#result").val(num);
+				}
+				else {
+					$("#result").val(minusNum);
+				}
+			});
+			//수량 버튼 클릭 시 수량 개수 증가
+			$("#plus").click(function(){
+				var num = $("#result").val();
+				var plusNum = Number(num) + 1;
+				if(plusNum >= "<c:out value='${vo.PSTOCK}' />") {
+					$("#result").val(num);
+				}
+				else {
+					$("#result").val(plusNum);
+				}
+			});
 		</script>
 		
 		<script>

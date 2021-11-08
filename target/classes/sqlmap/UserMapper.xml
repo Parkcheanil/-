@@ -7,7 +7,8 @@
 
 <!-- 네임스페이스에 구현 인터페이스 경로+이름 -->
 <mapper namespace="com.petworld.mapper.UserMapper">
-
+	
+	<!-- 아이디 중복검사 -->
 	<select id="idCheck" resultType="int">
 		select count(*) as total from MEMBER where id = #{id}
 	</select>
@@ -18,14 +19,32 @@
 	regdate 삭제 , grade 삭제
 	#{regdate, jdbcType=VARCHAR} 삭제
 	 -->
+	 
+	<!-- 회원가입 -->
 	<insert id="signUp">
 		insert into MEMBER(id, pw, name, nick, phone, com, addZipNum, addrBasic, addrDetail, yy, mm, dd) 
 		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{com}, #{addZipNum, jdbcType=VARCHAR}, #{addrBasic, jdbcType=VARCHAR}, #{addrDetail, jdbcType=VARCHAR}, #{yy}, #{mm}, #{dd})
 	</insert>
 	
+	<!-- 로그인 -->
 	<!-- UserVO 키워드에 전체경로를 다 포함하기 위해 마이바티스 xml에 알리어스 설정 꼭 들어가야함 -->
 	<select id="login" resultType="UserVO">
 		select * from MEMBER where id= #{id} and pw = #{pw}
 	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="UserVO">
+		select * from MEMBER where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="findPassword" resultType="UserVO">
+		select * from MEMBER where id=#{id} and name=#{name} and phone=#{phone}
+	</select>
+	
+	<update id="updatePassword">
+		update MEMBER set pw=#{pw} where id=#{id}
+	</update>
+	
+	<!-- 비밀번호 찾기 -->
 	
 </mapper>

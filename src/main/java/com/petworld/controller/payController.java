@@ -38,6 +38,8 @@ public class payController {
 		
 		model.addAttribute("info", payService.paymentInfo());
 		model.addAttribute("list", payService.deliveryList());
+		System.out.println(clist);
+		
 	}
 	
 	//배송지 입력 화면

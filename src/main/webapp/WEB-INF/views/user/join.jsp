@@ -233,7 +233,6 @@
 	  }
 	};
 	
-	/*
 	// 이메일 정규식 검증 함수
 	function verifyEmail (){ 
 		// 이메일 검증 스크립트 작성
@@ -246,7 +245,6 @@
 			$("#emailCk_msg").html("올바른 이메일 형식입니다");
 		}
 	};
-	*/
     </script>
     
     <script>
@@ -287,6 +285,7 @@
     			
     		}else{
     			// 폼 네임 joinForm (form의 액션값은 signup)
+    			alert("회원가입에 성공했습니다. 로그인을 해주세요.")
     			document.joinForm.submit();
     		};    		
    		});

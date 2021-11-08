@@ -7,9 +7,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,7 +48,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		
 		// 나갈 경로
-		mv.setViewName("mainpage");
+		mv.setViewName("/mainpage");
 		
 		if(user == null) { // 아이디, 비번이 틀린 경우
 			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
@@ -76,7 +78,6 @@ public class UserController {
 //	
 	
 	// 로그아웃 페이지: 세션을 싹 무효화 시키고 홈 화면으로 가면 된다
-	// 페이지 만들 필요도 없나? 그런듯 -> 메인페이지에서 로그아웃 버튼 서브밋 값으로 주면 될 것 같음
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -120,7 +121,73 @@ public class UserController {
 		}
 		
 		return entity;
-	 } // 콜백 함수 석세스로 돌아
+	 } // 콜백 함수 석세스로 돌아감
+	
+    // 아이디 찾기 페이지 이동
+	@RequestMapping(value="find_id_form")
+	public String findIdView() {
+		return "user/findId";
+	}
+	
+    // 아이디 찾기 실행
+	@RequestMapping(value="find_id", method=RequestMethod.POST)
+	public String findIdAction(UserVO vo, Model model) {
+		UserVO user = userService.findId(vo);
+		
+		if(user == null) { 
+			model.addAttribute("check", 1);
+		} else { 
+			model.addAttribute("check", 0);
+			model.addAttribute("id", user.getId());
+		}
+		
+		return "user/findId";
+	}
+	
+    // 비밀번호 찾기 페이지로 이동
+	@RequestMapping(value="find_password_form")
+	public String findPasswordView() {
+		return "user/findPassword";
+	}
+	
+    // 비밀번호 찾기 실행
+	@RequestMapping(value="find_password", method=RequestMethod.POST)
+	public String findPasswordAction(UserVO vo, Model model) {
+		UserVO user = userService.findPassword(vo);
+		
+		if(user == null) { 
+			model.addAttribute("check", 1);
+		} else { 
+			model.addAttribute("check", 0);
+			model.addAttribute("updateid", user.getId());
+		}
+		
+		return "user/findPassword";
+	}
+	
+    // 비밀번호 바꾸기 실행
+	@RequestMapping(value="update_password", method=RequestMethod.POST)
+	public String updatePasswordAction(@RequestParam(value="updateid", defaultValue="", required=false) String id,
+										UserVO vo) {
+		vo.setId(id);
+		System.out.println(vo);
+		userService.updatePassword(vo);
+		return "user/findPasswordConfirm";
+	}
+	
+    // 비밀번호 바꾸기할 경우 성공 페이지 이동
+	@RequestMapping(value="check_password_view")
+	public String checkPasswordForModify(HttpSession session, Model model) {
+		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+		
+		if(loginUser == null) {
+			return "member/login";
+		} else {
+			return null;
+			// 이거 뭐냐
+			// return "mypage/checkformodify";
+		}
+	}
 	
 	// 회원가입 기능
 	@RequestMapping(value="/signUp", method = RequestMethod.POST)
@@ -140,6 +207,7 @@ public class UserController {
 	public void join_welcome() {
 	}
 	
+	/*
 	@RequestMapping("/search_ID")
 	public void search_ID() {
 	}
@@ -165,6 +233,7 @@ public class UserController {
 	public String forget_PW() {
 		return "user/search_PW";
 	}
+	 */
 	
 	
 	

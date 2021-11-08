@@ -6,14 +6,13 @@
 	<%@ include file="../incloud/header.jsp" %>
 	<!-- 상품 전체 css -->
        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/petlist.css">
-       <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/productStyle.css">
        <!-- 헤더 네비게이션 -->
         <div style="margin-top: 165px;">
             <div class="container1026">
                 <div class="wrap">
                     <div class="box">
                         <p>
-                            <a href="../">홈</a> > <a href="productDogTotal">강아지용</a>
+                            <a href="../">홈</a> > <a href="#">강아지용</a> > <a href="##">사료</a> > <a>상품이름</a>
                         </p>
                     </div>
                 </div>
@@ -22,72 +21,66 @@
             <div class="maincon">
                 <div class="myinfo">
                     <!-- 상세정보 사이드메뉴 -->
-                    <div class="container-list">
-                   		<div class="wrap2">
-                			<div class="container2">
-               			         <ul class="category">
-                            				<li class="category1">
-                               						<div><span>카테고리</span></div>
-					                                <ul class="product-list">
-					                                    <li class="list_category">
-					                                        <a href="#" onclick="clickHandle()">강아지용</a>
-					                                        <ul class="item-list">
-					                                            <li>
-					                                                <a href="#">사료</a>
-					                                                <ul class="dog_food">
-					                                                    <li><a href="###">건식사료</a></li>
-					                                                    <li><a href="###">습식사료</a></li>
-					                                                </ul>
-					                                            </li>
-					                                            <li><a href="#">간식</a>
-					                                                <ul class="dog_snack">
-					                                                    <li><a href="###">개껌</a></li>
-					                                                    <li><a href="###">건조식품</a></li>
-					                                                </ul>
-					                                            </li>
-					                                            <li><a href="##">산책용품</a>
-					                                                <ul class="dog_walk">
-					                                                    <li><a href="###">하네스</a></li>
-					                                                    <li><a href="###">배변봉투</a></li>
-					                                                </ul>
-					                                            </li> 
-					                                            <li><a href="###">미용&목욕용품</a>
-					                                                <ul class="dog_beauty">
-					                                                    <li><a href="###">샴푸</a></li>
-					                                                    <li><a href="###">브러쉬</a></li>
-					                                                </ul>
-					                                            </li>
-					                                            <li><a href="#####">장난감&훈련용품</a>
-					                                                <ul class="dog_toy">
-					                                                    <li><a href="###">인형</a></li>
-					                                                    <li><a href="###">원반 / 볼</a></li>
-					                                                    <li><a href="###">노즈워크 / 터그</a></li>
-					                                                </ul>
-					                                            </li>
-					                                            <li><a href="#####">그 외 물품</a>
-					                                                <ul class="dog_others">
-					                                                    <li><a href="###">배변패드</a></li>
-					                                                    <li><a href="###">하우스 / 방석</a></li>
-					                                                    <li><a href="###">계단 / 미끄럼방지 패드</a></li>
-					                                                    <li><a href="###">식기류</a></li>
-					                                                </ul>
-					                                            </li>    
-					                                        </ul>
-					                                    </li>
-					                                </ul>
-                                				</li>
-                                			</ul>
-                                		</div>
-                                	</div>
-                                </div>
+                    <div class="cb1-1">
+                        <div class="cb2-2">
+                            <div class="side">
+                                <h3>나의 가족</h3>
+                            </div>
+                            <div class="side-1">
+                                <a href="#" onclick="location.href='order'">
+                                    <span>주문 / 배송</span>
+                                    <i class="fas fa-angle-right i1"></i>
+                                </a>
+                            </div>
+                            <div class="side-1">
+                                <a href="#" onclick="location.href='cancel'">
+                                    <span>주문취소</span>
+                                    <i class="fas fa-angle-right i2"></i>
+                                </a>
+                            </div>
+                            <div class="side-1" onclick="location.href='change'">
+                                <a href="#">
+                                    <span>교환/반품</span>
+                                    <i class="fas fa-angle-right i2"></i>
+                                </a>
+                            </div>
+                            <div class="side-1" >
+                                <a href="#" onclick="location.href='../notice/question'">
+                                    <span>고객센터</span>
+                                    <i class="fas fa-angle-right i2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- 추천 상품 리스트 -->
-                    <div class="petcontent" style="float: right;">
+                    <div class="petcontent">
                         <main class="listMain">
                             <div>
 		                       	<div>
 	                                <div>
 	                                    <h2>상품추천</h2>
 	                                </div>
+<!--                                 <div class="dropdown"> -->
+<!--                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> -->
+<!--                                         대표 펫 나이별 추천상품 -->
+<!--                                     </button> -->
+<!--                                     <ul class="dropdown-menu"> -->
+<!--                                         <li><a href="#">키덜트</a></li> -->
+<!--                                         <li><a href="#">어덜트</a></li> -->
+<!--                                         <li><a href="#">시니어</a></li> -->
+<!--                                     </ul> -->
+<!--                                 </div> -->
+<!--                                 <div class="dropdown"> -->
+<!--                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> -->
+<!--                                         대표 펫 몸무게별 추천상품 -->
+<!--                                     </button> -->
+<!--                                     <ul class="dropdown-menu"> -->
+<!--                                         <li><a href="#">소형</a></li> -->
+<!--                                         <li><a href="#">중형</a></li> -->
+<!--                                         <li><a href="#">대형</a></li> -->
+<!--                                     </ul> -->
+<!--                                 </div> -->
+<!-- 							</div> -->
                                 <div class="recommendGrop">
                                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                         <!-- 인터크립터 추천메뉴 슬라이드 -->
@@ -97,7 +90,7 @@
                                            <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1">
                                             	
                                                 <div class="individually" id="slideFirst">
-                                                    <a onclick="location.href='productDetail?pID=${list[i].pid}'">
+                                                    <a onclick="location.href='productDetail?pID=${list[i].PID}'">
                                                         <picture>
                                                             <source media="(max-width: 1199px)" srcset="">
                                                             <source media="(min-width: 1200px)" srcset="">
@@ -108,9 +101,9 @@
                                                                 <span>키덜트</span>
                                                             </div>
                                                             <div class="pdt-cont">
-                                                                <h4>${list[i].pname }</h4>
+                                                                <h4>${list[i].PNAME }</h4>
                                                                 <span>
-                                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
+                                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].PPRICE}"/>원
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -155,9 +148,9 @@
                                                 <span>키덜트</span>
                                             </div>
                                             <div class="pdt-cont">
-                                                <h4>${list[i].pname }</h4>
+                                                <h4>${list[i].PNAME }</h4>
                                                 <span>
-                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
+                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].PPRICE}"/>원
                                                 </span>
                                             </div>
                                         </div>
@@ -173,18 +166,5 @@
     <!-- 인터크립터 속도 -->
     <script>
         $("#myCarousel").carousel({interval: 3000});
-    </script>
-    <script>
-        //메뉴클릭옵션
-        function clickHandle() {
-            event.preventDefault();
-            
-            let list = document.querySelectorAll(".item-list");
-            for(let a of list) {
-                if(a == event.currentTarget.nextElementSibling) continue;
-                a.classList.remove("on");
-            }
-            event.target.nextElementSibling.classList.toggle("on");
-        }
     </script>
     <%@ include file="../incloud/footer.jsp" %>

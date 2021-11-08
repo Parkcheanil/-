@@ -45,4 +45,23 @@ public class UserServiceImpl implements UserService{
 		return userMapper.login(vo);
 	}
 
+	@Override
+	public UserVO findId(UserVO vo) {
+		
+		return userMapper.findId(vo);
+	}
+
+	@Override
+	public UserVO findPassword(UserVO vo) {
+
+		return userMapper.findPassword(vo);
+	}
+
+	@Override
+	public void updatePassword(UserVO vo) {
+		userMapper.updatePassword(vo);
+	}
+	
+	
+
 }

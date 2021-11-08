@@ -22,16 +22,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/footer.css">
 <!-- 헤더 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
-
-
-
-
-
-
-
-
-
-
 	
 </head>
 
@@ -44,41 +34,52 @@
         </div>
         <div class="content-wrap">
           <div class="header-menu">
-            <a href="#" onclick="location.href='/product/productDogTotal'">
+            <a href="${pageContext.request.contextPath}/product/productDogTotal">
               <span>강아지</span>
             </a>
-            <a href="#" onclick="location.href='/product/productCatTotal'">
+            <a href="${pageContext.request.contextPath}/product/productCatTotal">
               <span>고양이</span>
             </a>
-            <a href="#" onclick="location.href='/pet/petList'">
+            <a href="${pageContext.request.contextPath}/pet/petList">
               <span>프로필</span>
             </a>
-            <a href="#" onclick="location.href='/notice/notice'">
+            <a href="${pageContext.request.contextPath}/notice/notice">
               <span>공지사항</span>
             </a>
+          
           </div>
-          <c:if test="${users == null }">
+          <!-- 로그인 안 했을때 (세션이 없을 때) -->
+          <c:if test="${user == null }">
 	          <div class="users-function">
-	            <a href="#" onclick="location.href='/user/login'">
+	            <a href="${pageContext.request.contextPath}/user/login">
 	              <span>Login</span>
 	            </a>
-	            <a href="#" onclick="location.href='/user/join'">
+	            
+	            <a href="${pageContext.request.contextPath}/user/join">
 	              <span>Join</span>
 	            </a>
-	            <a href="#" onclick="location.href='/product/cart'">
+	            
+	            <a href="${pageContext.request.contextPath}/product/cart">
 	              <span>Cart</span>
 	            </a>
-	          </div>
+	      
           </c:if>
-          <c:if test="${users != null }">
+          
+          <!-- 로그인 했을때 (세션이 있을 때) -->   
+          <c:if test="${user != null }">
 	          <div class="users-function">            
-	            <a href="#" onclick="location.href='/product/order'">
+	            <a href="${pageContext.request.contextPath}/product/order">
 		            <span>Mypage</span>
 	            </a>
-	            <a href="#" onclick="location.href='/product/cart'">
+	            
+	            <a href="${pageContext.request.contextPath}/product/cart">
 	              <span>Cart</span>
-	            </a href="#" onclick="location.href='/product/cart'">
-	            <span>Logout</span>
+	            </a>
+	            
+	            <a href="${pageContext.request.contextPath}/user/logout">
+	            	<span>Logout</span>
+	            </a>
+	            
 	          </div>
           </c:if>
           

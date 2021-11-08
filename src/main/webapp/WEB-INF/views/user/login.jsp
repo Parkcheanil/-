@@ -6,7 +6,7 @@
 <html>
   <head>
 	<meta charset="UTF-8">
-	<title>회원가입</title>
+	<title>로그인</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
   </head>
@@ -50,13 +50,13 @@
           </form>
 		  
 		  <!-- 아이디 분실 링크 -->
-          <div class="search-id" id="" name="">
-            <a href="forget_ID">아이디를 잊어버리셨나요?</a>
+          <div class="search-id" onclick="findid()">
+            <a>아이디를 잊어버리셨나요?</a>
           </div>
           
 		  <!-- 비밀번호 분실 랑크 -->
-          <div class="search-pw" id="" name="">
-            <a href="forget_PW">비밀번호를 잊어버리셨나요?</a>
+          <div class="search-pw" onclick="findpassword()">
+            <a>비밀번호를 잊어버리셨나요?</a>
           </div>
 
 		  <!-- 소셜로그인 버튼 -->
@@ -84,5 +84,20 @@
       </div>	   <!-- 박스 div 끝 -->
     </div>		   <!-- wrap div 끝 -->
   </div>		   <!-- 컨테이너 div 끝 -->
+  
+    <script type="text/javascript">
+  function findid(){
+		var url="find_id_form";
+		
+		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500");
+	}
+  
+  function findpassword(){
+	  var url="find_password_form";
+	  
+	  window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=500, height=500");
+  }
+  </script>
+  
 </body>
 </html>

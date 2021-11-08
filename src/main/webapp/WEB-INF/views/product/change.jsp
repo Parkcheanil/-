@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../incloud/header.jsp" %>
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/petlist.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/border.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/change.css">
     
 <body>
  <div class="main_area">

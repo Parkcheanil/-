@@ -27,4 +27,5 @@ public class OrderVO {
 	private String DELEVERY_STATUS; //배송 상태
 	private String pNAME; //상품 이름
 	private String pIMAGE; //상품 이미지
+
 }

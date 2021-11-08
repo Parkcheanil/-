@@ -121,13 +121,7 @@
                             </div>
                             <div class="side-1">
                                 <a href="#">
-                                    <span>교환하기</span>
-                                    <i class="fas fa-angle-right i2"></i>
-                                </a>
-                            </div>
-                            <div class="side-1">
-                                <a href="#">
-                                    <span>반품하기</span>
+                                    <span>교환 및 반품</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
@@ -146,31 +140,34 @@
                           <div class="main_content">
                             <h2 class="order_title">주문 · 배송</h2>
                             <div class="content_index">
+                
                               <div class="list_root">
-                                <form action = "order_date" method = "get">
+                                <form action = "order" method = "get">
 	                                <div class="calendar">
 	                                  <div class="container_datetitle">
 	                                    <p>조회기간을 선택해 주세요</p>
 	                                  </div>
 	                                  <div class="calendar_input">
-	                                    <input type="text" id="fromDate" name="fromDate" value="${pageVO.fromDate }">
+	                                    <input type="text" id="fromDate" name="fromDate" value="${dateVO.fromDate }">
 	                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>~</strong> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-	                                    <input type="text" id="toDate" name="toDate" value="${pageVO.toDate }">
+	                                    <input type="text" id="toDate" name="toDate" value="${dateVO.toDate }">
 	                                  </div>
 	                                  <div class="search_date">
-	                                    <button type="submit" name = "calSearch" id="calSearch" class="search_button">
+	                                    <button type="submit" class="search_button" id="searchDate">
 	                                      <span class="button_span">조회하기</span>
 	                                    </button>
 	                                  </div>
 	                                </div>
                                 </form>
+                                <c:choose>
+                                <c:when test="${not empty list }">
                                 <c:forEach var="i" begin="0" end="${fn:length(pVO)}" step="1">
                                 <div class="list_index">
                                   <div class="tit_month">
                                     <h4><fmt:formatDate pattern="yyyy년MM월" value="${list[i].ORDATE}"/></h4>
                                   </div>
                                   <!-- 주문목록 화면, 없으면 조회된 상품이 없습니다 화면 출력 -->
-	                                  <div class="goods_section">
+	                                  <div class="goods_section" id="yes_product">
 	                                    <div class="goods_group">
 	                                      <ul class="goods_list">
 	                                        <li class="goods_item_list">
@@ -203,7 +200,7 @@
 	                                          <div class="seller_item">
 	                                              <div class="inner">
 	                                                <span class="seller">홈페이지 이름</span>
-	                                                <span class="tel">1588-12345</span>
+	                                                <span class="tel">1588-12345</span><br>
 	                                                <a href="고객센터로 이동" class="move_qna">문의하기</a>
 	                                              </div>
 	                                          </div>
@@ -212,15 +209,35 @@
 	                                                  <a href="상품 상세 페이지" class="reply_sell">재구매</a>
 	                                              </div>
 	                                          </div>
+	                                          <c:when test="${list.DELEVERY_STATUS == '배송준비중' }">
+	                                          <div class="button_item" style="display: none;">
+	                                              <div class="area_layer">
+	                                                  <a href="cancel" class="reply_sell">주문취소</a>
+	                                              </div>
+	                                          </div>
+	                                          </c:when>
+	                                          <div class="button_item">
+	                                              <div class="area_layer">
+	                                                  <a href="change" class="reply_sell">교환 및 반품</a>
+	                                              </div>
+	                                          </div>
+	                                          
 	                                        </li>
 	                                      </ul>
 	                                    </div>
 	                                  </div>
                                 </div>
                                 </c:forEach>
-                                <div class="list_index" type="hidden" id="none_product">
-                                	<span></span>
+                                </c:when>
+                                <c:when test="${empty list }">
+                                <div class="none_product_section" style="text-align: center;">
+                                	<span style="margin-bottom: 20px;">
+                                		<img src="../../resources/img/order.png" width="60px" height="64px">
+                                	</span><br>
+                                	주문 및 배송조회 가능한 내역이 없습니다.
                                 </div>
+                                </c:when>
+                              </c:choose>
                               </div>
                             </div>
                           </div>
@@ -260,19 +277,22 @@
 	            //input 날짜 태그 id값 변환
 	            $("#fromDate").datepicker();
 	            $("#toDate").datepicker();
+	            //초기값 설정
+	            
+	            //값을 입력하면 그 값 고정
+		        $("#fromDate").datepicker('setDate', '${dateVO.fromDate}');
+		        $("#toDate").datepicker('setDate', '${dateVO.toDate}');
+	        
 	        });
-	        /* function handleChange(data){
-	     	   
-	     	   //el태그를 이용해서 href에 경로에 searchName과 searchType을 담아서 보내주면 됩니다.
-	     	   //mapper에서는 searchName이 공백인 경우의 처리	
-	     	   var fromDate = '${pageVO.fromDate}'
-	     	   var toDate = '${pageVO.toDate}'
-	     	   
-	     	   var searchFD=fromDate.trim()
-	     	   var searchTD=toDate.trim()
-	     	   location.href = "order?fromDate="+searchFD+"&"+"toDate="+searchTD + data.value;
-	        } */
     	});
     </script>
+    <!-- <script>
+    	$("#searchDate").click(function(){
+    		
+    		
+    		
+    		
+    	})
+    </script> -->
 </body>
 </html>

@@ -131,8 +131,8 @@
 													<p class="petname">${list.pname }</p>
 													<c:if test="${list.pfirst == 1 }" var="pfirst" scope="session">
 														<span class="toppetBox"> <span class="toppet">대표</span>
-													</c:if>
 														</span>
+													</c:if>
 													</h4>
 													<div class="petinfo">
 														<span class="petbirth">${list.pyear }년</span> 

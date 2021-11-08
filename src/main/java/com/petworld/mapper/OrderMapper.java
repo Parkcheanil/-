@@ -2,9 +2,11 @@ package com.petworld.mapper;
 
 import java.util.ArrayList;
 import com.petworld.command.OrderVO;
+import com.petworld.util.DateVO;
+
 
 public interface OrderMapper {
 
-	public ArrayList<OrderVO> orderList();
-	public ArrayList<OrderVO> searchList();
+	public ArrayList<OrderVO> orderList(DateVO vo);
+	/* public OrderVO searchDate(OrderVO vo); */
 }

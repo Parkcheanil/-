@@ -17,7 +17,7 @@
                       <tbody class="t-control">
                           <tr>
                               <td class="t-title">작성자</td>
-                              <td><input class="form-control input-sm" name="writer" value="${users.id }" readonly required></td>
+                              <td><input class="form-control input-sm" name="writer" value="${users.id }"  required></td>
                           </tr>
                           <tr>
                               <td class="t-title">제목</td>

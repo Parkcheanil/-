@@ -5,8 +5,7 @@
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 결제 css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/payment.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/payment.css">
 
 <body>
 
@@ -41,12 +40,9 @@
 			<div class="gr3">
 				<div class="expr">배송정보</div>
 				<div class="btn-group grbtn">
-					<button type="button" class="btn btn-primary grbtn1">최근
-						배송지</button>
-					<button type="button" class="btn btn-primary grbtn2">신규
-						배송지</button>
-					<button type="button" class="btn btn-primary descbtn">배송지
-						선택</button>
+					<button type="button" class="btn btn-primary grbtn1">최근 배송지</button>
+					<button type="button" class="btn btn-primary grbtn2">신규 배송지</button>
+					<button type="button" class="btn btn-primary descbtn">배송지 선택</button>
 				</div>
 				<div class="payform">
 					<form action="" method="post" name="complForm" id="complForm">
@@ -120,25 +116,24 @@
 								<div class="tbl_delivery_list">
 									<div>
 										<div class="tbldeli_tr1">
-											<span scope="col" class="cell_delivery">배송지</span> <span
-												scope="col" class="cell_addr">주소</span> <span scope="col"
-												class="cell_tel">연락처</span> <span scope="col"
-												class="cell_edit">수정/삭제</span>
+											<span scope="col" class="cell_delivery">배송지</span> 
+											<span scope="col" class="cell_addr">주소</span> 
+											<span scope="col" class="cell_tel">연락처</span> 
+											<span scope="col" class="cell_edit">수정/삭제</span>
 										</div>
 										<c:forEach items="${list }" var="list">
 											<button class="deliBtn" name="deliBtn">
 												<div class="boxline">
 													<div class="cell_delivery1">
-														<span class="nick1">${list.oplace }</span> <span
-															class="receive">${list.oname }</span>
-														<c:if test="${list.odefault == 1 }" var="default"
-															scope="session">
+														<span class="nick1">${list.oplace }</span> 
+														<span class="receive">${list.oname }</span>
+														<c:if test="${list.odefault == 1 }" var="default" scope="session">
 															<span class="mark_default">기본배송지</span>
 														</c:if>
 													</div>
 													<div>
-														<span class="zipcode2">${list.opost }</span> <span
-															class="oaddr1">${list.oaddress }<br>${list.oaddress1 }</span>
+														<span class="zipcode2">${list.opost }</span> 
+														<span class="oaddr1">${list.oaddress }<br>${list.oaddress1 }</span>
 
 													</div>
 													<div class="cell_tel1">${list.ophone }</div>
@@ -252,23 +247,23 @@
 						<form name="poType" id="poType">
 							<div class="radiogrop1">
 								<div class="radio">
-									<label> <i class="far fa-credit-card"></i> <input
-										type="radio" name="optradio" value="card">신용카드
+									<label> <i class="far fa-credit-card"></i> 
+									<input type="radio" name="optradio" value="card">신용카드
 									</label>
 								</div>
 								<div class="radio">
-									<label> <i class="fas fa-wallet"></i> <input
-										type="radio" name="optradio" value="transfer">실시간이체
+									<label> <i class="fas fa-wallet"></i> 
+									<input type="radio" name="optradio" value="transfer">실시간이체
 									</label>
 								</div>
 								<div class="radio">
-									<label> <i class="fas fa-mobile-alt"></i> <input
-										type="radio" name="optradio" value="phonePay">휴대폰결제
+									<label> <i class="fas fa-mobile-alt"></i> 
+									<input type="radio" name="optradio" value="phonePay">휴대폰결제
 									</label>
 								</div>
 								<div class="radio">
-									<label> <i class="fas fa-money-check-alt"></i> <input
-										type="radio" name="optradio" value="depositBank">무통장입금
+									<label> <i class="fas fa-money-check-alt"></i> 
+									<input type="radio" name="optradio" value="depositBank">무통장입금
 									</label>
 								</div>
 							</div>
@@ -280,8 +275,8 @@
 				<div>
 					<p>위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
 				</div>
-				<button class="confBtn">
-					<span class="confBtn1">결제하기</span> <span class="confBtn2"></span>
+				<button class="confBtn" onclick="location.href='/pay/completion'">
+					<span class="confBtn1" >결제하기</span> <span class="confBtn2"></span>
 				</button>
 			</div>
 		</div>
@@ -411,8 +406,6 @@ function deliUpdate(onum){
 
 //배송지 입력 콜백함수
 function callbackFunc(data) {
-	$("#container2").show();
-	$(".payform1").hide();
 	location.href = "payment";
 }
 

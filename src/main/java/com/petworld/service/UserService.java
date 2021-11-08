@@ -7,5 +7,11 @@ public interface UserService {
 	public int idCheck(UserVO vo);
 	public boolean signUp(UserVO vo);
 	public UserVO login(UserVO vo);
+	
+	
+	public UserVO findId(UserVO vo);
+	public UserVO findPassword(UserVO vo);
+	public void updatePassword(UserVO vo);
+
 }
  

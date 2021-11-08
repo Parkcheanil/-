@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductMapper productMapper;
 
 	@Override
-	public ProductVO getContent(int pID) {
+	public ProductVO getContent(String pID) {
 	
 		return productMapper.getContent(pID);
 	}

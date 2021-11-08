@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.petworld.command.NoticeVO;
 import com.petworld.command.QuestionVO;
@@ -61,5 +60,7 @@ public class MainpageController {
 //	public void questionLink() {
 //		
 //	}
+	
+	
 	
 }
