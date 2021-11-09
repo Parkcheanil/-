@@ -176,6 +176,8 @@
 											<c:set var="total" value="0" />
 											<c:set var="discnt" value="0" />
 											<c:forEach items="${clist }" var="info">
+											<input type="hidden" id="productID" value="${info.PID }">
+											<input type="hidden" id="UserID" value="${info.ID }">
 												<li class="odt-li1">
 													<div class="orderListBox">
 														<div class="orderBox">
@@ -252,23 +254,23 @@
 							<form id="payRadioBox">
 								<div class="radiogrop1">
 									<div class="radio">
-										<label> <i class="far fa-credit-card"></i> 
-										<input type="radio" name="optradio" value="card">신용카드
+										<label for="card"> <i class="far fa-credit-card"></i> 
+										<input type="radio" id="card" name="optradio" value="card">신용카드
 										</label>
 									</div>
 									<div class="radio">
-										<label> <i class="fas fa-wallet"></i> 
-										<input type="radio" name="optradio" value="transfer">실시간이체
+										<label for="transfer"> <i class="fas fa-wallet"></i> 
+										<input type="radio" id="transfer" name="optradio" value="transfer">실시간이체
 										</label>
 									</div>
 									<div class="radio">
-										<label> <i class="fas fa-mobile-alt"></i> 
-										<input type="radio" name="optradio" value="phonePay">휴대폰결제
+										<label for="phonePay"> <i class="fas fa-mobile-alt"></i> 
+										<input type="radio" id="phonePay" name="optradio" value="phonePay">휴대폰결제
 										</label>
 									</div>
 									<div class="radio">
-										<label> <i class="fas fa-money-check-alt"></i> 
-										<input type="radio" name="optradio" value="depositBank">무통장입금
+										<label for="depositBank"> <i class="fas fa-money-check-alt"></i> 
+										<input type="radio" id="depositBank" name="optradio" value="depositBank">무통장입금
 										</label>
 									</div>
 								</div>
@@ -291,6 +293,12 @@
 
 	<script type="text/javascript">
 	
+	//배송지 선택버튼 기본이벤트 제거
+	$(function() {
+		$(".deliBtn").click(function() {
+			event.preventDefault();
+		});
+	});
 	//배송지 목록 존재할 경우 배송지 선택 버튼 active
 	$(function() {
 		if(${list.size()} > 0) {
@@ -299,7 +307,6 @@
 			$(".ddgropbox").hide();
 		}
 	});
-	
 	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
 	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
@@ -338,6 +345,13 @@
 		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
 		    		}
 		    	})
+  			} else {
+  				event.preventDefault();
+  				var deliCheckBox = $("#deliCheckBox").prop("checked", true);
+  				var productID = $("#productID").val();
+  				var payRadio = 
+  				console.log(deliCheckBox.val());
+  				$("#payMentForm").attr("action", "payMentForm").submit();
   			}
 		});
 	});

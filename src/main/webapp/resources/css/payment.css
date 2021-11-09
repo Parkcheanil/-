@@ -243,6 +243,14 @@ thead>tr th {
     padding-top: 13px;
     border-bottom: 1px solid #cfcfd0;
 }
+#deliCheckBox {
+	padding: 8px;
+	border: 1px solid;
+	float: left;
+	cursor: pointer;
+	margin-top: 40px;
+	width: 20px;
+}
 .boxline {
 	width: 100%;
 }
@@ -300,17 +308,18 @@ thead>tr th {
     color: #fff;
 }
 .deliBtn {
-	width: 100%;
+	width: 97%;
 	background-color: #fff;
 	margin: 10px 0;
+	cursor: auto;
 }
-.deliBtn:hover {
-	background-color: #cfcfd0;
-}
+/* .deliBtn:hover { */
+/* 	background-color: #cfcfd0; */
+/* } */
 
-.deliBtn:focus {
-	background-color: #ddd;
-}
+/* .deliBtn:focus { */
+/* 	background-color: #ddd; */
+/* } */
 
 /* 배송지 목록이 없을 경우 */
 .deliEmpt {

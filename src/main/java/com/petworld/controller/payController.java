@@ -108,7 +108,13 @@ public class payController {
 	
 	//결제 정보 입력
 	@RequestMapping("/payMentForm")
-	public String paymentIn(PayMentVO vo) {
+	public String paymentIn(PayMentVO vo, HttpServletRequest req) {
+		
+		System.out.println("결제 메서드 실행");
+		
+		String amount = req.getParameter("total");
+		
+		System.out.println(amount);
 		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -123,6 +129,8 @@ public class payController {
 		String orderId = ymd + "_" + subNum;
 		
 		vo.setPoId(orderId);
+		
+		System.out.println("PayMentVO : " + vo);
 		
 		boolean result = payService.registPM(vo);
 		

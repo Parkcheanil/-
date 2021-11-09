@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class CartVO {
 	private int cno;
 	private String id;
-	private String pid;
+	private int pid;
 	private int cartNum;
 }
