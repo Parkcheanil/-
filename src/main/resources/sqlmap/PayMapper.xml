@@ -31,4 +31,10 @@
 	<delete id="addDelete">
 		delete from Delivery_addr where onum = #{onum}
 	</delete>
+	
+	<!-- 결제 쿼리 -->
+	<insert id="registPM">
+		insert into Payment_Table(poId, cId, oNum, poAmount, poDATE, poType)
+		values(#{poId}, #{cId}, #{oNum}, #{poAmount}, #{poDATE}, #{poType})
+	</insert>
 </mapper>

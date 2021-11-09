@@ -1,8 +1,13 @@
 package com.petworld.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petworld.command.PayMentVO;
 import com.petworld.command.PayVO;
+import com.petworld.command.UserVO;
 import com.petworld.service.PayService;
 import com.petworld.service.ProductService;
 
@@ -34,7 +41,7 @@ public class payController {
 	
 	//결제 화면
 	@RequestMapping({"/payment", "/deliveryList"})
-	public void paymentInfo(Model model, Model cmo) throws Exception {
+	public void paymentInfo(Model model, Model cmo, HttpSession session) throws Exception {
 		
 		List<Map<String, Object>> clist = productService.getCartList();
 		cmo.addAttribute("clist", clist);
@@ -97,5 +104,30 @@ public class payController {
 		}
 		
 		return "redirect:/pay/payment";
+	}
+	
+	//결제 정보 입력
+	@RequestMapping("/payMentForm")
+	public String paymentIn(PayMentVO vo) {
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		for(int i = 1; i <= 6; i++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		
+		String orderId = ymd + "_" + subNum;
+		
+		vo.setPoId(orderId);
+		
+		boolean result = payService.registPM(vo);
+		
+		System.out.println("PM insert : " + result);
+		
+		return "redirect:/pay/completion";
 	}
 }

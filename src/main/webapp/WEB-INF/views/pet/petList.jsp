@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 펫 상품 추천 css -->
@@ -243,7 +244,7 @@
 										</div>
 										<div class="pdt-cont">
 											<h4>${p.pname }</h4>
-											<span>${p.pprice }</span>
+											<span><fmt:formatNumber pattern="###,###,###" value="${p.pprice }" /></span>
 										</div>
 									</div>
 								</a>

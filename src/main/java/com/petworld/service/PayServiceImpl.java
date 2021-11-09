@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petworld.command.PayMentVO;
 import com.petworld.command.PayVO;
 import com.petworld.command.ProductVO;
 import com.petworld.mapper.PayMapper;
@@ -46,5 +47,12 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public PayVO delidetail(int onum) {
 		return paymapper.delidetail(onum);
+	}
+
+
+	@Override
+	public boolean registPM(PayMentVO vo) {
+		
+		return false;
 	}
 }

@@ -311,6 +311,7 @@ thead>tr th {
 .deliBtn:focus {
 	background-color: #ddd;
 }
+
 /* 배송지 목록이 없을 경우 */
 .deliEmpt {
 	width: 100%;
