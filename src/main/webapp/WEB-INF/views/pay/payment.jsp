@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<!-- 배송정보 입력 폼 -->
-			<form action="" id="payMentForm" name="payMentForm">
+			<form action="" id="payMentForm" name="payMentForm" method="post">
 				<div class="gr3">
 					<div class="expr">배송정보</div>
 					<div class="btn-group grbtn">
@@ -49,7 +49,8 @@
 						<button type="button" class="btn btn-primary descbtn">배송지 선택</button>
 					</div>
 					<div class="payform">
-						<form action="" method="post" name="complForm" id="complForm">
+					<form></form>
+						<form id="complForm">
 							<div class="payform1">
 								<div class="formLabel">
 									<label for="">받는 사람</label>
@@ -88,25 +89,25 @@
 									</div>
 								</div>
 							</div>
-<!-- 							<div class="ddgropbox">
-<!-- 								<div class="formLabel1"> -->
-<!-- 									<label for="">배송 요청사항</label> -->
-<!-- 									<div class="dropdown ddgrop"> -->
-<!-- 										<button class="btn btn-default dropdown-toggle ddbtn" -->
-<!-- 											type="button" data-toggle="dropdown"> -->
-<!-- 											배송 요청 사항을 선택하세요. <span class="caret"></span> -->
-<!-- 										</button> -->
-<!-- 										<select class="dropdown-menu ddmenu"> -->
-<!-- 											<option class="disabled"><a href="#">배송 요청 사항을 선택하세요.</a></li> -->
-<!-- 											<option>배송 전 연락 바랍니다.</li> -->
-<!-- 											<option>부재시 휴대전화로 연락주세요.</li> -->
-<!-- 											<option>부재시 경비실에 맡겨주세요.</li> -->
-<!-- 											<option>부재시 문앞에 놓아주세요.</li> -->
-<!-- 											<option>직접입력</li> -->
-<!-- 										</ul> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<div class="ddgropbox">
+								<div class="formLabel1">
+									<label for="">배송 요청사항</label>
+									<div class="dropdown ddgrop">
+										<button class="btn btn-default dropdown-toggle ddbtn"
+											type="button" data-toggle="dropdown">
+											배송 요청 사항을 선택하세요. <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu ddmenu">
+											<li class="disabled"><a href="#">배송 요청 사항을 선택하세요.</a></li>
+											<li><a href="#">배송 전 연락 바랍니다.</a></li>
+											<li><a href="#">부재시 휴대전화로 연락주세요.</a></li>
+											<li><a href="#">부재시 경비실에 맡겨주세요.</a></li>
+											<li><a href="#">부재시 문앞에 놓아주세요.</a></li>
+											<li><a href="#">직접입력</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</form>
 						<!-- 배송지 선택 -->
 						<div id="container2" style="display: none;">
@@ -125,6 +126,7 @@
 											<span scope="col" class="cell_edit">수정/삭제</span>
 										</div>
 										<c:forEach items="${list }" var="list">
+											<input type="checkbox" id="deliCheckBox">
 											<button class="deliBtn" name="deliBtn" value="${list.onum }">
 												<div class="boxline">
 													<div class="cell_delivery1">
@@ -287,94 +289,24 @@
 	</div>
 <%@ include file="../incloud/footer.jsp"%>
 
-<script>
-	//라디오값
-	$("input[name=\"optradio\"]").click(function() {
-		console.log($(this).val());
-	})
-	//배송지 onum값
-	$(".deliBtn").click(function() {
-		event.preventDefault();
-		console.log($(this).val());
-	});
-	
-	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
-	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
-	//결제 버튼 제어
-	
-
-</script>
-
-
-
-<script type="text/javascript">
-
-// 		var IMP = window.IMP;		
-// 		//가맹점 식별코드
-// 		IMP.init('imp98794983');
-// 		IMP.request_pay({
-// 			pg : 'kakaopay',
-// 		    pay_method : 'card', //생략 가능
-// 		    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
-// 		    name : '주문명:결제테스트',
-// 		    amount : 1, //결제 금액
-// 		    buyer_email : 'iamport@siot.do',
-// 		    buyer_name : '홍길동',
-// 		    buyer_tel : '010-1234-5678',
-// 		    buyer_addr : '서울특별시 강남구 삼성동',
-// 		    buyer_postcode : '123-456'
-// 		}, function(rsp) {
-// 		    if ( rsp.success ) {
-// 		    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-// 		    	jQuery.ajax({
-// 		    		url: "/payments/complete", //가맹점 서버
-// 		    		type: 'POST',
-// 		    		dataType: 'json',
-// 		    		data: {
-// 			    		imp_uid : rsp.imp_uid
-// 			    		//기타 필요한 데이터가 있으면 추가 전달
-// 		    		}
-// 		    	}).done(function(data) {
-// 		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-// 		    		if ( everythings_fine ) {
-// 		    			var msg = '결제가 완료되었습니다.';
-// 		    			msg += '\n고유ID : ' + rsp.imp_uid;
-// 		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-// 		    			msg += '\결제 금액 : ' + rsp.paid_amount;
-// 		    			msg += '카드 승인번호 : ' + rsp.apply_num;
-		    			
-// 		    			alert(msg);
-// 		    		} else {
-// 		    			//[3] 아직 제대로 결제가 되지 않았습니다.
-// 		    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-// 		    		}
-// 		    	});
-// 		    } else {
-// 		        var msg = '결제에 실패하였습니다.';
-// 		        msg += '에러내용 : ' + rsp.error_msg;
-		        
-// 		        alert(msg);
-// 		    }
-</script>
-
-
-
-<c:forEach items="${list }" var="arr">
 	<script type="text/javascript">
+	
 	//배송지 목록 존재할 경우 배송지 선택 버튼 active
 	$(function() {
-		if(${arr.onum} != null) {
+		if(${list.size()} > 0) {
 			$("#container2").show();
 			$(".payform1").hide();
 			$(".ddgropbox").hide();
 		}
 	});
 	
+	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
+	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
 	//신규배송지 작성시 배송지 목록에 추가
 	$(document).ready(function(){
   		$(".confBtn").click(function() {
-  			if(${arr.onum} == null) {
+  			if(${list.size()} < 1) {
 	    		var params = {
 	    			 oplace : $("#addressName").val()
 	   				,oname : $("#receiver").val()
@@ -400,22 +332,18 @@
 		    		}),
 		    		success: function(data){
 		    			console.log(data);
-		    			location.href="completion";
+		    			location.href="/pay/payment";
 		    		},
 		    		error:function(error){  
 		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
 		    		}
 		    	})
-  			};
+  			}
 		});
 	});
-
-	
 	</script>
-</c:forEach>
-	
-<script>
 
+<script>
 //배송지 선택 버튼 제어
 $(function() {
 	$(".descbtn").click(function() {
@@ -450,26 +378,6 @@ $(function() {
 	});
 });
 
-	//배송지 삭제 비동기 처리
-// 	$("._delete").click(function() {
-// 		event.preventDefault();
-// 		var onum = "";
-// 		onum = $("#deliCheck").val()
-// 		console.log(onum);
-// 		$.ajax({
-// 			url: 'deliveryDelete?onum='+onum,
-// 			type: 'get',
-// 			success: function(data){
-//     			console.log(data);
-//     		},
-//     		error:function(error){  
-//     			console.log(error); 
-//     		}
-// 		});
-// 	});
-
-
- 
 
 //배송지 입력창
 $(function(){
@@ -531,9 +439,11 @@ function goPopup(){
 	//주소정보의 연계데이터를 돌려받는 콜백함수
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 
-	document.complForm.opost.value = zipNo;
-	document.complForm.oaddress.value = roadAddrPart1;
-	document.complForm.oaddress1.value = addrDetail;
+	document.forms.complForm.opost.value = zipNo;
+	document.forms.complForm.oaddress.value = roadAddrPart1;
+	document.forms.complForm.oaddress1.value = addrDetail;
 }
+	
+	
 </script>
 
