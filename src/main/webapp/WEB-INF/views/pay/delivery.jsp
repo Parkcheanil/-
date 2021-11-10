@@ -168,6 +168,20 @@
 		});
     });
     
+ 	
+	//체크 박스 제어
+	$("#baseAddressYn").click(function() {
+		if($("#baseAddressYn").is(":checked") == false){
+			$('input:checkbox[id="baseAddressYn"]').attr("checked", true);
+			$("#baseAddressYn").attr("value", "0");
+			console.log($("#baseAddressYn").val());
+		} else {
+			$('input:checkbox[id="baseAddressYn"]').attr("checked", false);
+			$("#baseAddressYn").attr("value", "1");
+			console.log($("#baseAddressYn").val());
+		}
+	});	
+ 	
     </script>
     
     

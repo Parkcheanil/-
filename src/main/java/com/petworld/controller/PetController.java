@@ -186,6 +186,7 @@ public class PetController {
 			//기존 파일 경로 지정
 			String filePath = APP_CONSTANT.uploadPath + req.getParameter("fileloca") + req.getParameter("filename");
 			
+			System.out.println(req.getParameter("fileloca"));
 			File deleteFile = new File(filePath);
 			
 			if(deleteFile.exists()) {

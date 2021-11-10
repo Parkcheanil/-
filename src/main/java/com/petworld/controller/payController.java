@@ -112,10 +112,6 @@ public class payController {
 		
 		System.out.println("결제 메서드 실행");
 		
-		String amount = req.getParameter("total");
-		
-		System.out.println(amount);
-		
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
@@ -127,6 +123,7 @@ public class payController {
 		}
 		
 		String orderId = ymd + "_" + subNum;
+//		int paytotal = (Integer)req.getParameter("total");
 		
 		vo.setPoId(orderId);
 		

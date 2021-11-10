@@ -26,8 +26,8 @@
             /*vertical-align: top;*/
         }
         input, textarea, button, select { /*고유하게 적용되어있는 form관련 요소들을 제거해서 여러브라우저에서 동일한디자인을 얻게함*/
-            -webkit-appearance:none;
+            /* -webkit-appearance:none;
             -moz-appearance:none;
-            appearance:none;
+            appearance:none; */
             border:none;
         }

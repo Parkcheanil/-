@@ -16,13 +16,13 @@ public class PayMentVO {
 //		oNUM NUMBER(4), /* 배송지번호 */
 //		poAMOUNT NUMBER(50) NOT NULL, /* 총가격 */
 //		poDATE DATE NOT NULL, /* 주문날짜 */
-//		poTYPE VARCHAR2(30) NOT NULL /* 결제방법 */
+//		payTYPE VARCHAR2(30) NOT NULL /* 결제방법 */
 	
 	private String poId;
 	private int cId;
 	private int oNum;
 	private int poAmount;
 	private Date poDATE;
-	private String poType;
+	private String payType;
 	
 }

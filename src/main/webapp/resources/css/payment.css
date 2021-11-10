@@ -206,7 +206,13 @@ thead>tr th {
     font-size: 1.6rem;
     text-align: center;
 }
-
+.selectpicker {
+	padding: 12px 69px;
+	border: 1px solid #99949454;
+	margin-left: 63px;
+	border-radius: 4px;
+	font-size: 1.6rem;
+}
 /* 배송지 목록 */
 .tbl_delivery_list {
     width: 100%;
@@ -296,9 +302,9 @@ thead>tr th {
 }
 .cell_edit1 {
 	float: right;
-	margin: 28px 60px 28px 0;
+	margin: 28px 0px;
 }
-._modify, ._delete {
+._modify, ._delete, ._choice {
     display: inline-block;
     width: 40px;
     height: 20px;
@@ -311,7 +317,7 @@ thead>tr th {
 	width: 97%;
 	background-color: #fff;
 	margin: 10px 0;
-	cursor: auto;
+/* 	cursor: pointer; */
 }
 /* .deliBtn:hover { */
 /* 	background-color: #cfcfd0; */

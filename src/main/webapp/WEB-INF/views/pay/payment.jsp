@@ -5,7 +5,10 @@
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 결제 css -->
+
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/payment.css">
+
+
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
@@ -39,76 +42,67 @@
 					</span>
 				</div>
 			</div>
+		
+			
 			<!-- 배송정보 입력 폼 -->
-			<form action="" id="payMentForm" name="payMentForm" method="post">
+			<form action="payMentForm" id="payMentForm" name="payMentForm" method="post">
 				<div class="gr3">
 					<div class="expr">배송정보</div>
 					<div class="btn-group grbtn">
-						<button type="button" class="btn btn-primary grbtn1">최근 배송지</button>
 						<button type="button" class="btn btn-primary grbtn2">신규 배송지</button>
 						<button type="button" class="btn btn-primary descbtn">배송지 선택</button>
 					</div>
 					<div class="payform">
-					<form></form>
-						<form id="complForm">
-							<div class="payform1">
-								<div class="formLabel">
-									<label for="">받는 사람</label>
-									<div class="formInput">
-										<input type="hidden" name="oplace" id="addressName" value="집">
-										<input type="text" name="oname" id="receiver"
-											placeholder="받으시는 분의 성함을 입력하세요.">
-									</div>
-								</div>
-								<div class="formLabel">
-									<label for="">휴대전화</label>
-									<div class="formInput">
-										<input type="text" name="ophone" id="telNo1Third"
-											placeholder="휴대전화 번호를 입력하세요.">
-									</div>
-								</div>
-								<div class="formLabel">
-									<label for="">배송지 주소</label>
-									<div class="formInput1">
-										<input type="text" name="opost" id="zipCode"
-											placeholder="우편번호를 입력하세요." disabled>
-									</div>
-									<button class="zipCode" type="button" onclick="goPopup()">
-										<span>우편번호</span> <span></span>
-									</button>
-									<div>
-										<div class="formInput2">
-											<input type="text" name="oaddress" id="baseaadress" disabled><br>
-										</div>
-									</div>
-									<div>
-										<div class="formInput3">
-											<input type="text" name="oaddress1" id="detailAddress"><br>
-										</div>
-										<input type="hidden" name="odefault" id="baseAddressYn" value="0">
-									</div>
+						<div class="payform1">
+							<div class="formLabel">
+								<label for="">받는 사람</label>
+								<div class="formInput">
+									<input type="hidden" name="oplace" id="addressName" value="집">
+									<input type="text" name="oname" id="receiver"
+										placeholder="받으시는 분의 성함을 입력하세요.">
 								</div>
 							</div>
-							<div class="ddgropbox">
-								<div class="formLabel1">
-									<label for="">배송 요청사항</label>
-									<div class="dropdown ddgrop">
-										<button class="btn btn-default dropdown-toggle ddbtn"
-											type="button" data-toggle="dropdown">
-											배송 요청 사항을 선택하세요. <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu ddmenu">
-											<li class="disabled"><a href="#">배송 요청 사항을 선택하세요.</a></li>
-											<li><a href="#">배송 전 연락 바랍니다.</a></li>
-											<li><a href="#">부재시 휴대전화로 연락주세요.</a></li>
-											<li><a href="#">부재시 경비실에 맡겨주세요.</a></li>
-											<li><a href="#">부재시 문앞에 놓아주세요.</a></li>
-											<li><a href="#">직접입력</a></li>
-										</ul>
-									</div>
+							<div class="formLabel">
+								<label for="">휴대전화</label>
+								<div class="formInput">
+									<input type="text" name="ophone" id="telNo1Third"
+										placeholder="휴대전화 번호를 입력하세요.">
 								</div>
 							</div>
-						</form>
+							<div class="formLabel">
+								<label for="">배송지 주소</label>
+								<div class="formInput1">
+									<input type="text" name="opost" id="zipCode"
+										placeholder="우편번호를 입력하세요." disabled>
+								</div>
+								<button class="zipCode" type="button" onclick="goPopup()">
+									<span>우편번호</span> <span></span>
+								</button>
+								<div>
+									<div class="formInput2">
+										<input type="text" name="oaddress" id="baseaadress" disabled><br>
+									</div>
+								</div>
+								<div>
+									<div class="formInput3">
+										<input type="text" name="oaddress1" id="detailAddress"><br>
+									</div>
+									<input type="hidden" name="odefault" id="baseAddressYn" value="0">
+								</div>
+							</div>
+						</div>
+						<div class="ddgropbox">
+							<div class="formLabel1">
+								<label for="deliSelect">배송 요청사항</label>
+								<select class="selectpicker" name="deliSelect">
+									<option class="disabled">배송 요청 사항을 선택하세요.</option>
+									<option value="deli">배송 전 연락 바랍니다.</option>
+									<option value="phone">부재시 휴대전화로 연락주세요.</option>
+									<option value="security">부재시 경비실에 맡겨주세요.</option>
+									<option value="door">부재시 문앞에 놓아주세요.</option>
+								</select>
+							</div>
+						</div>
 						<!-- 배송지 선택 -->
 						<div id="container2" style="display: none;">
 							<h3 class="setting_title">배송지 목록</h3>
@@ -116,6 +110,7 @@
 								<p class="desc">쇼핑에 사용하신 배송 지를 최대 15개까지 함께 관리 하실 수 있습니다.</p>
 								<a href="#" class="green_bg" id="deliveryInBtn">배송지 등록</a>
 							</div>
+									
 							<div class="delivery_list_area">
 								<div class="tbl_delivery_list">
 									<div>
@@ -126,8 +121,7 @@
 											<span scope="col" class="cell_edit">수정/삭제</span>
 										</div>
 										<c:forEach items="${list }" var="list">
-											<input type="checkbox" id="deliCheckBox">
-											<button class="deliBtn" name="deliBtn" value="${list.onum }">
+											<button class="deliBtn" name="deliBtn" value="${list.onum }" style="vertical-align: middle;">
 												<div class="boxline">
 													<div class="cell_delivery1">
 														<span class="nick1">${list.oplace }</span> 
@@ -138,17 +132,20 @@
 													</div>
 													<div>
 														<span class="zipcode2">${list.opost }</span> 
-														<span class="oaddr1">${list.oaddress }<br>${list.oaddress1 }</span>
+														<span class="oaddr1">${list.oaddress }<br>
+														<span class="oaddr2">${list.oaddress1 }</span>
 	
 													</div>
 													<div class="cell_tel1">${list.ophone }</div>
 													<div class="cell_edit1">
+														<a href="" class="_choice" onclick="choiceBtn(${list.onum}); return false;">선택</a>
 														<a href="" class="_modify" onclick="deliUpdate(${list.onum}); return false;">수정</a>
-														<a href="deliveryDelete?onum=${list.onum}" class="_delete">삭제</a>
+														<a href="" class="_delete" onclick="location.href='deliveryDelete?onum=${list.onum}'" >삭제</a>
 													</div>
 												</div>
 											</button>
 										</c:forEach>
+										
 									</div>
 								</div>
 								<c:if test="${empty list}" var="messageBox">
@@ -160,7 +157,6 @@
 						</div>
 					</div>
 					<!-- 주문상품 -->
-					<form id="proBoxForm">
 						<div class="gr4">
 							<div class="orderTitle">
 								<div class="odtitle">주문상품</div>
@@ -176,8 +172,8 @@
 											<c:set var="total" value="0" />
 											<c:set var="discnt" value="0" />
 											<c:forEach items="${clist }" var="info">
-											<input type="hidden" id="productID" value="${info.PID }">
-											<input type="hidden" id="UserID" value="${info.ID }">
+											<input type="hidden" id="productID" name="" value="${info.PID }">
+											<input type="hidden" id="UserID" name="cId" value="${info.ID }">
 												<li class="odt-li1">
 													<div class="orderListBox">
 														<div class="orderBox">
@@ -244,37 +240,34 @@
 								</div>
 							</div>
 						</div>
-					</form>
 					<!-- 결제방법 -->
 					<div class="HowToPay">
 						<div class="htpline">
 							<div class="htptitle">결제방법</div>
 						</div>
 						<div class="radiogrop">
-							<form id="payRadioBox">
 								<div class="radiogrop1">
 									<div class="radio">
 										<label for="card"> <i class="far fa-credit-card"></i> 
-										<input type="radio" id="card" name="optradio" value="card">신용카드
+										<input type="radio" id="card" name="payType" value="card">신용카드
 										</label>
 									</div>
 									<div class="radio">
 										<label for="transfer"> <i class="fas fa-wallet"></i> 
-										<input type="radio" id="transfer" name="optradio" value="transfer">실시간이체
+										<input type="radio" id="transfer" name="payType" value="transfer">실시간이체
 										</label>
 									</div>
 									<div class="radio">
 										<label for="phonePay"> <i class="fas fa-mobile-alt"></i> 
-										<input type="radio" id="phonePay" name="optradio" value="phonePay">휴대폰결제
+										<input type="radio" id="phonePay" name="payType" value="phonePay">휴대폰결제
 										</label>
 									</div>
 									<div class="radio">
 										<label for="depositBank"> <i class="fas fa-money-check-alt"></i> 
-										<input type="radio" id="depositBank" name="optradio" value="depositBank">무통장입금
+										<input type="radio" id="depositBank" name="payType" value="depositBank">무통장입금
 										</label>
 									</div>
 								</div>
-							</form>
 						</div>
 					</div>
 				</div>
@@ -282,7 +275,7 @@
 					<div>
 						<p>위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
 					</div>
-					<button class="confBtn">
+					<button class="confBtn" type="submit">
 						<span class="confBtn1" >결제하기</span> <span class="confBtn2"></span>
 					</button>
 				</div>
@@ -299,7 +292,8 @@
 			event.preventDefault();
 		});
 	});
-	//배송지 목록 존재할 경우 배송지 선택 버튼 active
+	
+	//배송지 목록 존재할 경우 배송지 선택 버튼 show
 	$(function() {
 		if(${list.size()} > 0) {
 			$("#container2").show();
@@ -307,57 +301,146 @@
 			$(".ddgropbox").hide();
 		}
 	});
+
+	//결제 submit
+	// function payment() {
+		
+//	 	if($('input[type="checkbox"][name="deliCheck"]').is(":checked", true)){
+//	 		var deliCheck = $(this).val();	
+//	 	};
+//	 	if($('input[type="radio"][name="optradio"]').is(":checked", true)){
+//	 		var optradio = $(this).val();
+//	 	};
+		
+//	 	var paymentForm = new FormData();
+//	 	paymentForm.append("oNum", deliCheck);
+//	 	paymentForm.append("poId", $("#productID").val());
+//	 	paymentForm.append("cId", $("#UserID").val());
+//	 	paymentForm.append("poAmount", $("#UserID").val());
+//	 	paymentForm.append("payType", optradio);
+		
+//	 	$.ajax({
+//	 		type: 'post',
+//	 		url: 'payMentForm',
+//	 		contentType: 'application/json; charset=UTF-8',
+//	 		data: JSON.stringify(paymentForm),
+//	 		success: function(data) {
+//	 			console.log(data);
+//	 		},
+//	 		error: function(error) {
+//	 			console.log(data);
+//	 		}
+//	 	});
+//	 	$("#payMentForm").attr("action", "payMentForm").submit();
+	// };
+
 	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
 	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
 	//신규배송지 작성시 배송지 목록에 추가
-	$(document).ready(function(){
-  		$(".confBtn").click(function() {
-  			if(${list.size()} < 1) {
-	    		var params = {
-	    			 oplace : $("#addressName").val()
-	   				,oname : $("#receiver").val()
-	   				,ophone : $("#telNo1Third").val()
-	   				,opost : $("#zipCode").val()
-	   				,oaddress : $("#baseaadress").val()
-	   				,oaddress1 : $("#detailAddress").val()
-	   				,odefault : $("#baseAddressYn").val()
-	    		}
-	    		console.log(params);
-		    	$.ajax({
-		    		type: 'post',//데이터 전송 타입,
-		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
-		    		contentType : 'application/json; charset=UTF-8',
-		    		data: JSON.stringify({
-		    			"oplace" : params.oplace,
-		    			"oname" : params.oname,
-		    			"opost" : params.opost,
-		    			"oaddress" : params.oaddress,
-		    			"oaddress1" : params.oaddress1,
-		    			"ophone" : params.ophone,
-		    			"odefault" : params.odefault
-		    		}),
-		    		success: function(data){
-		    			console.log(data);
-		    			location.href="/pay/payment";
-		    		},
-		    		error:function(error){  
-		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
-		    		}
-		    	})
-  			} else {
-  				event.preventDefault();
-  				var deliCheckBox = $("#deliCheckBox").prop("checked", true);
-  				var productID = $("#productID").val();
-  				var payRadio = 
-  				console.log(deliCheckBox.val());
-  				$("#payMentForm").attr("action", "payMentForm").submit();
-  			}
-		});
-	});
+// 	$(document).ready(function(){
+//   		$(".confBtn").click(function() {
+//   			if(${list.size()} < 1) {
+// 	    		var params = {
+// 	    			 oplace : $("#addressName").val()
+// 	   				,oname : $("#receiver").val()
+// 	   				,ophone : $("#telNo1Third").val()
+// 	   				,opost : $("#zipCode").val()
+// 	   				,oaddress : $("#baseaadress").val()
+// 	   				,oaddress1 : $("#detailAddress").val()
+// 	   				,odefault : $("#baseAddressYn").val()
+// 	    		}
+// 	    		console.log(params);
+// 		    	$.ajax({
+// 		    		type: 'post',//데이터 전송 타입,
+// 		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
+// 		    		contentType : 'application/json; charset=UTF-8',
+// 		    		data: JSON.stringify({
+// 		    			"oplace" : params.oplace,
+// 		    			"oname" : params.oname,
+// 		    			"opost" : params.opost,
+// 		    			"oaddress" : params.oaddress,
+// 		    			"oaddress1" : params.oaddress1,
+// 		    			"ophone" : params.ophone,
+// 		    			"odefault" : params.odefault
+// 		    		}),
+// 		    		success: function(data){
+// 		    			console.log(data);
+// 		    			location.href="/pay/payment";
+// 		    		},
+// 		    		error:function(error){  
+// 		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
+// 		    		}
+// 		    	})
+//   		}
+// 		});
+// 	});
+	
 	</script>
 
+<script type="text/javascript">
+//배송지 선택 버튼 클릭시 정보입력 폼으로 정보 전달
+function choiceBtn(onum) {
+	
+	var oplace = $(".nick1").text();
+	var oname = $(".receive").text();
+	var opost = $(".zipcode2").text();
+	var oaddress1 = $(".oaddr1").text();
+	var oaddress2 = $(".oaddr2").text();
+	var ophone = $(".cell_tel1").text();
+	
+	$("#addressName").val(oplace);
+	$("#receiver").val(oname);
+	$("#zipCode").val(opost);
+	$("#baseaadress").val(oaddress1);
+	$("#detailAddress").val(oaddress2);
+	$("#telNo1Third").val(ophone);
+	
+	$("#container2").hide(function() {
+		$(".descbtn").removeClass("active");
+		$(this).parent().addClass("active");
+	});
+	$(".payform1").show(function() {
+		$(".grbtn2").removeClass("active");
+		$(this).parent().addClass("active");	
+	});
+	$(".ddgropbox").show(function() {
+		$(".grbtn2").removeClass("active");
+		$(this).parent().addClass("active");
+	});
+}
+
+//배송지 삭제 비동기 처리
+//	$("._delete").click(function() {
+//		event.preventDefault();
+//		var onum = "";
+//		onum = $("#deliCheck").val()
+//		console.log(onum);
+//		$.ajax({
+//			url: 'deliveryDelete?onum=' + onum,
+//			type: 'get',
+//			success: function(data) {
+//				console.log(data);
+//			},
+//			error: function(error) {
+//				console.log(error);
+//			}
+//		});
+//	});
+</script>
+
 <script>
+//배송지 선택 체크박스 제어
+$(function() {
+	$('input[type="checkbox"][name="oNum"]').click(function() {
+		if($(this).prop('checked')) {
+			$('input[type="checkbox"][name="oNum"]').prop('checked', false);
+			$(this).prop('checked', true);
+		}
+	});
+});
+
+
 //배송지 선택 버튼 제어
 $(function() {
 	$(".descbtn").click(function() {
@@ -391,7 +474,6 @@ $(function() {
 		});
 	});
 });
-
 
 //배송지 입력창
 $(function(){
