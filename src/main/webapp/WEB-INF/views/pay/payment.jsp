@@ -132,13 +132,13 @@
 													</div>
 													<div>
 														<span class="zipcode2">${list.opost }</span> 
-														<span class="oaddr1">${list.oaddress }<br>
+														<span class="oaddr1">${list.oaddress }</span>
 														<span class="oaddr2">${list.oaddress1 }</span>
 	
 													</div>
 													<div class="cell_tel1">${list.ophone }</div>
 													<div class="cell_edit1">
-														<a href="" class="_choice" onclick="choiceBtn(${list.onum}); return false;">선택</a>
+														<a href="${list.onum}" class="_choice">선택</a>
 														<a href="" class="_modify" onclick="deliUpdate(${list.onum}); return false;">수정</a>
 														<a href="" class="_delete" onclick="location.href='deliveryDelete?onum=${list.onum}'" >삭제</a>
 													</div>
@@ -380,14 +380,19 @@
 
 <script type="text/javascript">
 //배송지 선택 버튼 클릭시 정보입력 폼으로 정보 전달
-function choiceBtn(onum) {
+//같은버튼 여러개에 같은이벤트 전부 걸기
+//1.$(this)선택자를 이용 부모태그를 찾아 올라가 find함수로 필요한 값을 얻는다.
+//2.신규배송지의 input태그를 얻어서 html(값)
+$("._choice").click(function() {
+	event.preventDefault();
+	console.log($(this))
 	
-	var oplace = $(".nick1").text();
-	var oname = $(".receive").text();
-	var opost = $(".zipcode2").text();
-	var oaddress1 = $(".oaddr1").text();
-	var oaddress2 = $(".oaddr2").text();
-	var ophone = $(".cell_tel1").text();
+	var oplace = $(this).parents(".deliBtn").find(".nick1").html();
+	var oname = $(this).parents(".deliBtn").find(".receive").html();
+	var opost = $(this).parents(".deliBtn").find(".zipcode2").html();
+	var oaddress1 = $(this).parents(".deliBtn").find(".oaddr1").html();
+	var oaddress2 = $(this).parents(".deliBtn").find(".oaddr2").html();
+	var ophone = $(this).parents(".deliBtn").find(".cell_tel1").html();
 	
 	$("#addressName").val(oplace);
 	$("#receiver").val(oname);
@@ -395,7 +400,7 @@ function choiceBtn(onum) {
 	$("#baseaadress").val(oaddress1);
 	$("#detailAddress").val(oaddress2);
 	$("#telNo1Third").val(ophone);
-	
+
 	$("#container2").hide(function() {
 		$(".descbtn").removeClass("active");
 		$(this).parent().addClass("active");
@@ -408,7 +413,9 @@ function choiceBtn(onum) {
 		$(".grbtn2").removeClass("active");
 		$(this).parent().addClass("active");
 	});
-}
+
+});
+
 
 //배송지 삭제 비동기 처리
 //	$("._delete").click(function() {

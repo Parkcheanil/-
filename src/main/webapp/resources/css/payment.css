@@ -295,6 +295,14 @@ thead>tr th {
 	margin: 17px 0;
 	text-align: left;
 }
+.oaddr2 {
+	position: relative;
+	width: 308px;
+	right: 308px;
+	top: 40px;
+	float: left;
+	text-align: left;
+}
 .cell_tel1 {
 	float: left;
 	margin: 28px;
