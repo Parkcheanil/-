@@ -133,7 +133,8 @@
 															<div class="reply-group">
 																<div class="filebox pull-left">
 				                                                	<input type="file" class="form-control" id=pPhoto name="file">
-				                                                	<input type="hidden" id=pPhoto name="pPhoto" value="${vo.pphoto }">
+				                                                	<input type="hidden" id=pPhoto name="pphoto" value="${vo.pphoto }">
+				                                                	<input type="hidden" id="uploadpath" name="uploadpath" value="${vo.uploadpath }">
 																</div>
 															</div>
 														</div>

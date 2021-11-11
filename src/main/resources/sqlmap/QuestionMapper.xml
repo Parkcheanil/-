@@ -53,4 +53,26 @@
 		delete from questionboard where qno=#{qno}
 	</delete>
 	
+	<select id="getquestRep" resultType="map">
+		select * from
+		questionboard b left outer join question_reply r
+		on b.qno = r.qno
+		where b.qno = #{qno}
+	</select>
+	
+	<insert id="replyRegist">
+		insert into question_reply(qrNo, qno, qrNicname, qrContent, qrPassword)
+		values(question_reply_SEQ.NEXTVAL, #{qno}, #{qrNicname}, #{qrContent}, #{qrPassword})
+	</insert>
+	
+	<update id="replyUpdate">
+		update question_reply set qrContent = #{qrContent}, qrUpdatedate = sysdate where qrNo = #{qrNo}
+	</update>
+	
+	<delete id="replyDelete">
+		delete from question_reply where qrno = #{qrno}
+	</delete>
+	
+	
+	
 </mapper>

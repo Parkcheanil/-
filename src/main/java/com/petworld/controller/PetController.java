@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.PetVO;
+import com.petworld.command.ProductVO;
 import com.petworld.service.PetService;
 import com.petworld.service.ProductService;
 import com.petworld.util.APP_CONSTANT;
@@ -114,11 +116,10 @@ public class PetController {
 
 	//펫 상품 추천, 펫 정보
 	@RequestMapping({"/petList", "/petInfo"})
-	public void petList(Model model, Model md, HttpSession session) {
+	public void petList(Model model, Model md) {
 		
 		model.addAttribute("list", petService.getList());
-		md.addAttribute("produtlist", productService.getList());
-		
+		md.addAttribute("productlist", productService.getList());
 	}
 	
 	//이미지 요청
@@ -174,63 +175,42 @@ public class PetController {
 							PetVO vo, HttpServletRequest req, RedirectAttributes RA) throws Exception {
 		
 		System.out.println("펫 정보 수정 메서드 실행");
-		//새로운 파일이 등록되었는지 확인
-		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			//기존 파일을 삭제
-//			boolean deleteImg = new File(APP_CONSTANT.uploadPath + req.getParameter("fileloca") + req.getParameter("filename")).delete();
-//			
-//			System.out.println("fileloca : " + req.getParameter("fileloca"));
-//			System.out.println("filename : " + req.getParameter("filename"));
-//			System.out.println("기존 파일 삭제 : " + deleteImg);
-
-			//기존 파일 경로 지정
-			String filePath = APP_CONSTANT.uploadPath + req.getParameter("fileloca") + req.getParameter("filename");
-			
-			System.out.println(req.getParameter("fileloca"));
-			File deleteFile = new File(filePath);
-			
-			if(deleteFile.exists()) {
-				deleteFile.delete();
-				System.out.println("파일을 삭제하였습니다.");
-			} else {
-				System.out.println("파일이 존재하지 않습니다.");
-			}
-			
-			
-			//새로 첨부한 파일을 등록
-			String fileRealName = file.getOriginalFilename();
-			String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-			UUID uuids= UUID.randomUUID();
-			String saveFileName = uuids.toString().replace("-", "") + extention;
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-			String fileloca = sdf.format(date);
-			String uploadpath = APP_CONSTANT.uploadPath + fileloca;
-			File folder = new File(uploadpath);
-			if(!folder.exists()) {
-				folder.mkdir(); //자바에서 폴더 바로 생성하기
-			}
-			File dir = new File(uploadpath + "/" + saveFileName);
-			
-			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
-			
-			vo.setPphoto(dir.getPath());
-			vo.setUploadpath(uploadpath);
-			vo.setFileloca(fileloca);
-			vo.setFilename(saveFileName);
-			
-		} else {
-			vo.setPphoto(req.getParameter("pphoto"));
-		}
 		
+		String img = vo.getPphoto();
+		System.out.println(img);
+		
+		
+		//새로 첨부한 파일을 등록
+		String fileRealName = file.getOriginalFilename();
+		String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+		UUID uuids= UUID.randomUUID();
+		String saveFileName = uuids.toString().replace("-", "") + extention;
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		String fileloca = sdf.format(date);
+		String uploadpath = APP_CONSTANT.uploadPath + fileloca;
+		File folder = new File(uploadpath);
+		if(!folder.exists()) {
+			folder.mkdir(); //자바에서 폴더 바로 생성하기
+		}
+		File dir = new File(uploadpath + "/" + saveFileName);
+		
+		file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
+		
+		vo.setPphoto(dir.getPath());
+		vo.setUploadpath(uploadpath);
+		vo.setFileloca(fileloca);
+		vo.setFilename(saveFileName);
+			
+		System.out.println(vo);
 		boolean result = petService.petInfoUpdate(vo);
 		
 		System.out.println("update여부 : " + result);
 		
 		if(result) {
-			RA.addFlashAttribute("msg", "정상적으로 글이 수정 되었습니다.");
+			RA.addFlashAttribute("msg", "정상적으로 펫 정보가 수정 되었습니다.");
 		} else {
-			RA.addFlashAttribute("msg", "글 수정이 실패하였습니다.");
+			RA.addFlashAttribute("msg", "펫 정보 수정이 실패하였습니다.");
 		}
 		
 		return "redirect:/pet/petInfo";
@@ -245,6 +225,5 @@ public class PetController {
 		
 		return "redirect:/pet/petInfo";
 	}
-	
 	
 }

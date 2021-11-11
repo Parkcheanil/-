@@ -1,7 +1,9 @@
+<%@page import="com.petworld.command.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 펫 상품 추천 css -->
@@ -136,32 +138,20 @@
 							<div>
 								<h2>상품추천</h2>
 							</div>
-							<div class="dropdown">
-								<button class="btn btn-primary dropdown-toggle catedrop"
-									type="button" data-toggle="dropdown">대표 펫 나이별 추천상품</button>
-								<ul class="dropdown-menu">
-									<li><a href="#" onclick="location.href=''">키덜트</a></li>
-									<li><a href="#" onclick="location.href=''">어덜트</a></li>
-									<li><a href="#" onclick="location.href=''">시니어</a></li>
-								</ul>
-							</div>
-							<div class="dropdown">
-								<button class="btn btn-primary dropdown-toggle catedrop"
-									type="button" data-toggle="dropdown">대표 펫 몸무게별 추천상품</button>
-								<ul class="dropdown-menu">
-									<li><a href="#" onclick="location.href=''">소형</a></li>
-									<li><a href="#" onclick="location.href=''">중형</a></li>
-									<li><a href="#" onclick="location.href=''">대형</a></li>
-								</ul>
-							</div>
+							<div class="search-wrap" >
+	                        <select class="form-control search-select" name="pAge" style="width:130px">                            
+	                        	<option value="7up" >7세 이상 상품</option>
+	                        	<option value="7down"  >7세 이하 상품</option>
+	                        </select>
+		                    </div>
 							<div class="recommendGrop">
 								<div id="myCarousel" class="carousel slide" data-ride="carousel">
 									<!-- 인터크립터 추천메뉴 슬라이드 -->
 									<div class="carousel-inner">
 										<div class="item active">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="2">
 											<div class="individually" id="slideFirst">
-												<a href="#"
-													onclick="location.href='../product/productDetail'">
+												<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
 													<picture>
 													<img src="/resources/img/3510_originalView_01326139.jpg"
 														alt="" sizes="auto"> </picture>
@@ -170,19 +160,18 @@
 															<span>키덜트</span>
 														</div>
 														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
+															<h4>${productlist[i].pname }</h4>
+															<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
 														</div>
 													</div>
 												</a>
 											</div>
-											
+											</c:forEach>
 										</div>
-
 										<div class="item">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="2">
 											<div class="individually" id="slideFirst">
-												<a href="#"
-													onclick="location.href='../product/productDetail'">
+												<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
 													<picture>
 													<img src="/resources/img/3510_originalView_01326139.jpg"
 														alt="" sizes="auto"> </picture>
@@ -191,13 +180,13 @@
 															<span>키덜트</span>
 														</div>
 														<div class="pdt-cont">
-															<h4>카리에스 덴탈껌 6개입</h4>
-															<span>1,600원</span>
+															<h4>${productlist[i].pname }</h4>
+															<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
 														</div>
 													</div>
 												</a>
 											</div>
-											
+											</c:forEach>
 										</div>
 									</div>
 									<div class="nextSlide">
@@ -231,10 +220,9 @@
 							</div>
 						</div>
 						<div class="recom-product">
-							<c:forEach items="${produtlist }" var="p">
+							<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="1">
 							<div class="recomList">
-								<a href="#"
-									onclick="location.href='../product/productDetail'">
+								<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
 									<picture>
 									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
 										sizes="auto"> </picture>
@@ -243,8 +231,8 @@
 											<span>키덜트</span>
 										</div>
 										<div class="pdt-cont">
-											<h4>${p.pname }</h4>
-											<span><fmt:formatNumber pattern="###,###,###" value="${p.pprice }" /></span>
+											<h4>${productlist[i].pname }</h4>
+											<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
 										</div>
 									</div>
 								</a>
@@ -257,6 +245,7 @@
 		</div>
 	</div>
 	<%@ include file="../incloud/footer.jsp"%>
+
 
 	<c:if test="${!empty msg }">
 		<script type="text/javascript">

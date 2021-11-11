@@ -314,6 +314,7 @@ a:hover {text-decoration: none;}
     width: 18%;
     float: left;
     margin: 10px 6px;
+    height: 300px;
 }
 .individually>a>picture>img {
     border-radius: 20px;
@@ -427,4 +428,5 @@ a:hover {text-decoration: none;}
     width: 33.333%;
     float: left;
     padding: 10px;
+    height: 450px;
 }

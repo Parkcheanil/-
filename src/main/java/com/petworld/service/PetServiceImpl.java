@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petworld.command.PetVO;
+import com.petworld.command.ProductVO;
 import com.petworld.mapper.PetMapper;
 
 
@@ -42,4 +43,5 @@ public class PetServiceImpl implements PetService{
 	public String petDelete(int pnum) {
 		return petmapper.petDelete(pnum);
 	}
+
 }

@@ -15,7 +15,7 @@
                     <div class="wp_info">
                         <div class="info_img">
                             <div class="img">
-                                <img src="${pageContext.request.contextPath }/resources/img/${vo.pimage}" alt="${vo.pname }">
+                                <img src="${pageContext.request.contextPath }/resources/img/${vo.pimage2}" alt="${vo.pname }">
                             </div>
                         </div>
                         <div class="info_purchase">
@@ -39,11 +39,11 @@
                             <div class="shipping">
                                 <div class="inventory">
                                     <!--관리자가 재고 수량 파악해서 넣기-->
-                                    <h3>재고상태</h3>
+                                    <h3>재고상태: ${vo.pstock }</h3>
                                 </div>
                                 <div class="shipping_style">
                                     <!--3만원 이상 구매 시 배송비 무료-->
-                                    <h3>무료 배송</h3>
+                                    <h3>2개 이상 구매 시 무료 배송</h3>
                                 </div>
                             </div>
                             <div class="item_shipping_info">
@@ -53,6 +53,7 @@
                                     <li class="li_info3"><strong>30,000</strong> 원 이상 구매 시 무료배송</li>
                                 </ul>
                             </div>
+                            <form action="purchase" method="post">
                             <div class="item_count">
                                 <div class="count_plus_minus">
                                     <div>수량</div>
@@ -64,23 +65,27 @@
                                 </div>
                                 <div class="count_price">
                                     <div class="total_price">총 상품금액</div>
-                                    <div class="total_price_items"><strong>${vo.pprice}</strong>원</div>
+                                    <div class="total_price_items" id="amount"><strong>${vo.pprice}</strong>원</div>
                                 </div>
                             </div>
                             <div class="purchase_customer">
                                 <div class="cart_div">
-                                    <button class="cart_into" type="button" onclick="location.href='cart'">
+                                    <button class="cart_into" type="button">
                                         <span class="cart_ch">장바구니 담기</span>
                                         <span class="cart_dev"></span>
                                     </button>
                                 </div>
                                 <div class="press_div">
-                                    <button class="press_purchase" type="button" onclick="location.href='../pay/payment'">
+                                    <button class="press_purchase" type="submit">
                                         <span class="press_ch">구매하기</span>
                                         <span class="press_dev"></span>
                                     </button>
                                 </div>
                             </div>
+                            </form>
+                             <form role="form" method="post">
+									<input type="hidden" id="pid" value="${vo.pid}" />
+							</form>
                         </div>
                     </div>
                 </div>
@@ -149,7 +154,7 @@
                                                 <div class="modal-body">
                                                     <div>
                                                         <p class="modal-body_p1"><strong>설명</strong></p>
-                                                        <p class="modal-body_p2">${vo.pddetail }</p>
+                                                        <p class="modal-body_p2">${vo.pdetail }</p>
                                                         <p style="margin-bottom: 0;"><strong>권장급여방법</strong></p>
                                                         <p style="margin-bottom: 40px;">
 						                                                            몸무게1~5kg : 하루에 30~110g 급여 (종이컵 0.5 ~ 2컵)
@@ -511,6 +516,7 @@
 				else {
 					$("#result").val(minusNum);
 				}
+				calc();
 			});
 			//수량 버튼 클릭 시 수량 개수 증가
 			$("#plus").click(function(){
@@ -522,6 +528,47 @@
 				else {
 					$("#result").val(plusNum);
 				}
+				calc();
+			});
+			
+			function calc() {
+			    var tag = $('#amount').children("strong");
+			    var amount = tag.html();
+			    var num = $("#result").val();
+			    var sum = "<c:out value='${vo.pprice}'/>" * num;
+			    var minus = sum / num;
+			    
+			    tag.html(sum);
+			  }
+		</script>
+		
+		<script>
+			//장바구니에 상품 추가
+			$(".cart_into").click(function(){
+				var pid = $("#pid").val();
+				var cartNum = $("#result").val();
+				var data = {
+						pid : pid,
+						cartNum : cartNum
+						};
+				$.ajax({
+					type : "post",
+					url : "cart",
+					data : data,
+					success : function(result){ //로그인 한 사용자 확인
+						if(result == 1) {
+							confirm("카트에 물품을 담는 데 성공하였습니다.");
+							$("#result").val("1");
+						}
+						else {
+							confirm("로그인 후 이용 가능합니다.");
+							$("#result").val("1");
+						}
+					},
+					error : function() {
+						alert("카트 담기 실패");
+					}
+				});
 			});
 		</script>
 		

@@ -126,6 +126,7 @@
 										<div class="familyBox">
 											<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
 												<img id="fileImg" class="preview" src="display/${list.fileloca }/${list.filename}">
+												<input type="hidden" id="uploadpath" name="uploadpath" value="${list.uploadpath }">
 												<div class="pet-addbtn">
 													<h4>
 													<p class="petname">${list.pname }</p>

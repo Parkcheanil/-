@@ -382,13 +382,14 @@
 	 	IMP.request_pay({
 	 	    pg : 'html5_inicis',
 	 	    pay_method : 'card',
-	 	    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
+	 	    merchant_uid: '4331', // 상점에서 관리하는 주문 번호
 	 	    name : '주문명:결제테스트',
 	 	    amount : 100,
+	 	    buyer_email : $("#UserID").val(),
 	 	    buyer_name : '홍길동',
-	 	    buyer_tel : '010-1234-5678',
-	 	    buyer_addr : '서울특별시 강남구 삼성동',
-	 	    buyer_postcode : '123-456'
+	 	    buyer_tel : $("#telNo1Third").val(),
+	 	    buyer_addr : $("#baseaadress").val() + $("#detailAddress").val(),
+	 	    buyer_postcode : $("#zipCode").val()
 	 	}, function(rsp) {
 	 	    if ( rsp.success ) {
 	 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -397,7 +398,7 @@
 	 	    		type: 'POST',
 	 	    		dataType: 'json',
 	 	    		data: {
-	 		    		imp_uid : rsp.imp_uid
+	 		    		imp_uid : rsp.imp_uid,
 	 		    		//기타 필요한 데이터가 있으면 추가 전달
 	 	    		}
 	 	    	}).done(function(data) {

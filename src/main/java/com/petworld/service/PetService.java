@@ -3,6 +3,7 @@ package com.petworld.service;
 import java.util.ArrayList;
 
 import com.petworld.command.PetVO;
+import com.petworld.command.ProductVO;
 
 public interface PetService {
 
@@ -11,6 +12,5 @@ public interface PetService {
 	public PetVO petInfo(int pnum);
 	public boolean petInfoUpdate(PetVO vo);
 	public String petDelete(int pnum);
-	
 	
 }

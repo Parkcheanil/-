@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petworld.command.CartVO;
+import com.petworld.command.PayMentVO;
 import com.petworld.command.ProductVO;
 import com.petworld.mapper.ProductMapper;
 import com.petworld.util.MainProductCriteria;
@@ -29,7 +30,6 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productMapper.getList();
 	}
-
 
 	@Override
 	public ArrayList<ProductVO> getListCri(MainProductCriteria cri) {
@@ -56,8 +56,26 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.cartPlus(cno);		
 	}
 
+	/*
+	 * @Override public int insertCart(CartVO cart) { return
+	 * productMapper.insertCart(cart); }
+	 */
 
+	@Override
+	public void insertPurchase(PayMentVO vo) {
 	
-	
-	
+	}
+
+	@Override
+	public ArrayList<PayMentVO> getPaymentList() {
+		// TODO Auto-generated method stub
+		return productMapper.getPaymentList();
+	}
+
+	@Override
+	public int updateCart(CartVO cart) {
+		// TODO Auto-generated method stub
+		return productMapper.updateCart(cart);
+	}
+
 }

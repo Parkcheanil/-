@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -51,11 +52,11 @@ public class payController {
 		ArrayList<PayVO> list = payService.deliveryList();
 		model.addAttribute( "list", list );
 		
-		//상품 바로구매 데이터 수집
-		
-		
 	}
+	//상품 바로구매 데이터 수집
+
 	
+	//배송지 등록화면
 	@RequestMapping("/delivery")
 	public void delivery() {
 	}
@@ -112,7 +113,8 @@ public class payController {
 	
 	//결제 정보 입력
 	@RequestMapping("/paymentForm")
-	public String paymentIn(PayMentVO vo, HttpServletRequest req) {
+	@ResponseBody
+	public String paymentIn(@RequestBody PayMentVO vo, HttpServletRequest req) {
 		
 		System.out.println("결제 메서드 실행");
 		

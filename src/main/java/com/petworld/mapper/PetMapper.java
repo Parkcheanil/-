@@ -3,6 +3,7 @@ package com.petworld.mapper;
 import java.util.ArrayList;
 
 import com.petworld.command.PetVO;
+import com.petworld.command.ProductVO;
 
 
 public interface PetMapper {
@@ -12,6 +13,4 @@ public interface PetMapper {
 	public PetVO petInfo(int pnum);
 	public boolean petInfoUpdate(PetVO vo);
 	public String petDelete(int pnum);
-	
-	
 }

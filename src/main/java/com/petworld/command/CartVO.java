@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartVO {
-	private int cno;
-	private String id;
-	private int pid;
-	private int cartNum;
+	private int cno; //카트 번호
+	private String id; //유저 id
+	private int pid; //상품 id
+	private int cartNum; //상품 수량
 }

@@ -12,7 +12,6 @@
 		<typeAlias alias="OrderVO" type="com.petworld.command.OrderVO"/>
 		<typeAlias alias="NoticeVO" type="com.petworld.command.NoticeVO"/>
 		<typeAlias alias="QuestionVO" type="com.petworld.command.QuestionVO"/>
-		<typeAlias alias="ProductVO" type="com.petworld.command.ProductVO"/>
 		<typeAlias type="com.petworld.command.UserVO" alias="UserVO"/>
 		<typeAlias alias="SalesVO" type="com.petworld.command.SalesVO"/>
 		<typeAlias alias="PayMentVO" type="com.petworld.command.PayMentVO"/>

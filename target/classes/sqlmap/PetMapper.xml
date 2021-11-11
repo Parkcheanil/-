@@ -20,7 +20,7 @@
 		select * from pet where pnum = #{pnum}
 	</select>
 	
-	<!-- 펫 정보 이미지 삭제 -->
+	<!-- 펫 정보 수정 -->
 	<update id="petInfoUpdate">
 		update pet set  pName = #{pname}, pPhoto = #{pphoto}, pYear = #{pyear}, pMonth = #{pmonth}, pWeight = #{pweight}, pFirst = #{pfirst}, 
 				uploadpath = #{uploadpath}, fileloca = #{fileloca}, filename = #{filename}, pkind = #{pkind}
