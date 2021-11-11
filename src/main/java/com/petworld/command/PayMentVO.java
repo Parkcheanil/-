@@ -19,7 +19,7 @@ public class PayMentVO {
 //		payTYPE VARCHAR2(30) NOT NULL /* 결제방법 */
 	
 	private String poId;
-	private int cId;
+	private int cno;
 	private int oNum;
 	private int poAmount;
 	private Date poDATE;

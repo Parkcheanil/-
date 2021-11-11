@@ -50,6 +50,10 @@ public class payController {
 		
 		ArrayList<PayVO> list = payService.deliveryList();
 		model.addAttribute( "list", list );
+		
+		//상품 바로구매 데이터 수집
+		
+		
 	}
 	
 	@RequestMapping("/delivery")
@@ -107,7 +111,7 @@ public class payController {
 	}
 	
 	//결제 정보 입력
-	@RequestMapping("/payMentForm")
+	@RequestMapping("/paymentForm")
 	public String paymentIn(PayMentVO vo, HttpServletRequest req) {
 		
 		System.out.println("결제 메서드 실행");
@@ -123,16 +127,28 @@ public class payController {
 		}
 		
 		String orderId = ymd + "_" + subNum;
-//		int paytotal = (Integer)req.getParameter("total");
-		
 		vo.setPoId(orderId);
 		
+		int pprice = Integer.parseInt(req.getParameter("pprice"));
+		int cartnum = Integer.parseInt(req.getParameter("cartnum"));
+		vo.setPoAmount(pprice * cartnum);
+		
+		int onum = Integer.valueOf((String)req.getParameter("onum"));
+		int cno = Integer.parseInt(req.getParameter("cno"));
+		vo.setONum(onum);
+		vo.setCno(cno);
+
 		System.out.println("PayMentVO : " + vo);
 		
 		boolean result = payService.registPM(vo);
 		
 		System.out.println("PM insert : " + result);
 		
-		return "redirect:/pay/completion";
+		return null;
+	}
+	
+	//결제 완료 화면
+	@RequestMapping("/completion")
+	public void finish() {
 	}
 }

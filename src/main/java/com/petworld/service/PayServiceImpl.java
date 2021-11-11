@@ -53,6 +53,6 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public boolean registPM(PayMentVO vo) {
 		
-		return false;
+		return paymapper.registPM(vo);
 	}
 }

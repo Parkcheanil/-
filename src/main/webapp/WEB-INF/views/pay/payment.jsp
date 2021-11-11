@@ -42,14 +42,12 @@
 					</span>
 				</div>
 			</div>
-		
-			
 			<!-- 배송정보 입력 폼 -->
-			<form action="payMentForm" id="payMentForm" name="payMentForm" method="post">
+			<form action="" id="payMentForm" name="payMentForm">
 				<div class="gr3">
 					<div class="expr">배송정보</div>
 					<div class="btn-group grbtn">
-						<button type="button" class="btn btn-primary grbtn2">신규 배송지</button>
+						<button type="button" class="btn btn-primary grbtn2">배송지 주소</button>
 						<button type="button" class="btn btn-primary descbtn">배송지 선택</button>
 					</div>
 					<div class="payform">
@@ -57,6 +55,7 @@
 							<div class="formLabel">
 								<label for="">받는 사람</label>
 								<div class="formInput">
+									<input type="hidden" name="onum" id="onumHidden" value="">
 									<input type="hidden" name="oplace" id="addressName" value="집">
 									<input type="text" name="oname" id="receiver"
 										placeholder="받으시는 분의 성함을 입력하세요.">
@@ -110,7 +109,6 @@
 								<p class="desc">쇼핑에 사용하신 배송 지를 최대 15개까지 함께 관리 하실 수 있습니다.</p>
 								<a href="#" class="green_bg" id="deliveryInBtn">배송지 등록</a>
 							</div>
-									
 							<div class="delivery_list_area">
 								<div class="tbl_delivery_list">
 									<div>
@@ -134,7 +132,6 @@
 														<span class="zipcode2">${list.opost }</span> 
 														<span class="oaddr1">${list.oaddress }</span>
 														<span class="oaddr2">${list.oaddress1 }</span>
-	
 													</div>
 													<div class="cell_tel1">${list.ophone }</div>
 													<div class="cell_edit1">
@@ -145,7 +142,6 @@
 												</div>
 											</button>
 										</c:forEach>
-										
 									</div>
 								</div>
 								<c:if test="${empty list}" var="messageBox">
@@ -157,6 +153,7 @@
 						</div>
 					</div>
 					<!-- 주문상품 -->
+					<c:if test="${!empty clist }" var="cartList">
 						<div class="gr4">
 							<div class="orderTitle">
 								<div class="odtitle">주문상품</div>
@@ -172,8 +169,98 @@
 											<c:set var="total" value="0" />
 											<c:set var="discnt" value="0" />
 											<c:forEach items="${clist }" var="info">
-											<input type="hidden" id="productID" name="" value="${info.PID }">
-											<input type="hidden" id="UserID" name="cId" value="${info.ID }">
+												<input type="hidden" id="productID" name="poId" value="${info.PID }">
+												<input type="hidden" id="UserID" name="cId" value="${info.ID }">
+												<input type="hidden" name="pprice" value="${info.PPRICE }">
+												<input type="hidden" name="cartnum" value="${info.CARTNUM }">
+												<input type="hidden" id="cno" name="cno" value="${info.CNO }">												<li class="odt-li1">
+													<div class="orderListBox">
+														<div class="orderBox">
+															<div class="orderImgBox">
+																<picture> <img
+																	src="/resources/img/3510_originalView_01326139.jpg"
+																	alt="" sizes="auto"> </picture>
+															</div>
+														</div>
+														<div class="ocb2">
+															<div class="orderContentBox">
+																<div class="ocb1">
+																	<h3>
+																		${info.PNAME }
+																	</h3>
+																	<div>
+																		수량 :
+																		${info.CARTNUM }
+																	</div>
+																</div>
+																<div class="orderDtPay">
+																	<strong> 
+																		<fmt:formatNumber pattern="###,###,###" value="${(info.PPRICE*info.CARTNUM) - (info.PPRICE/10*info.CARTNUM) }" />
+																		<span>원</span>
+																	</strong>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+												<c:set var="total" value="${total + (info.PPRICE*info.CARTNUM) - (info.PPRICE/10*info.CARTNUM) }"/>
+												<c:set var="discnt" value="${(info.PPRICE/10)*info.CARTNUM }"/>
+											</c:forEach>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 최종 결제 금액 -->
+						<div class="payToTable">
+							<div class="pttitle">
+								<div class="pttitle1">최종 결제금액</div>
+							</div>
+							<div>
+								<div class="ptData">
+									<dl class="ptData1">
+										<dt>총 상품 금액</dt>
+										<dd>
+											<fmt:formatNumber pattern="###,###,###" value="${total }" /> 
+											원
+										</dd>
+									</dl>
+									<dl class="ptData1">
+										<dt>배송비</dt>
+										<dd>무료</dd>
+									</dl>
+									<dl class="ptData2">
+										<dt>총 결제금액</dt>
+										<dd>
+											<fmt:formatNumber pattern="###,###,###" value="${total }" />
+											원
+										</dd>
+									</dl>
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${empty clist }" var="prodPayList">
+						<div class="gr4">
+							<div class="orderTitle">
+								<div class="odtitle">주문상품</div>
+							</div>
+							<div>
+								<div class="gr5">
+									<div class="gr6">
+										<strong>펫 월드발송 상품</strong>
+										<div class="gr7">발송일 : 오늘</div>
+									</div>
+									<div class="crdTb">
+										<ul class="orderTable">
+											<c:set var="total" value="0" />
+											<c:set var="discnt" value="0" />
+											<c:forEach items="${clist }" var="info">
+												<input type="hidden" id="productID" name="poId" value="${info.PID }">
+												<input type="hidden" id="UserID" name="cId" value="${info.ID }">
+												<input type="hidden" name="pprice" value="${info.PPRICE }">
+												<input type="hidden" name="cartnum" value="${info.CARTNUM }">
+												<input type="hidden" id="cno" name="cno" value="${info.CNO }">	
 												<li class="odt-li1">
 													<div class="orderListBox">
 														<div class="orderBox">
@@ -240,34 +327,35 @@
 								</div>
 							</div>
 						</div>
+					</c:if>
 					<!-- 결제방법 -->
 					<div class="HowToPay">
 						<div class="htpline">
 							<div class="htptitle">결제방법</div>
 						</div>
 						<div class="radiogrop">
-								<div class="radiogrop1">
-									<div class="radio">
-										<label for="card"> <i class="far fa-credit-card"></i> 
-										<input type="radio" id="card" name="payType" value="card">신용카드
-										</label>
-									</div>
-									<div class="radio">
-										<label for="transfer"> <i class="fas fa-wallet"></i> 
-										<input type="radio" id="transfer" name="payType" value="transfer">실시간이체
-										</label>
-									</div>
-									<div class="radio">
-										<label for="phonePay"> <i class="fas fa-mobile-alt"></i> 
-										<input type="radio" id="phonePay" name="payType" value="phonePay">휴대폰결제
-										</label>
-									</div>
-									<div class="radio">
-										<label for="depositBank"> <i class="fas fa-money-check-alt"></i> 
-										<input type="radio" id="depositBank" name="payType" value="depositBank">무통장입금
-										</label>
-									</div>
+							<div class="radiogrop1">
+								<div class="radio">
+									<label for="card"> <i class="far fa-credit-card"></i> 
+									<input type="radio" id="card" name="payType" value="card">신용카드
+									</label>
 								</div>
+								<div class="radio">
+									<label for="transfer"> <i class="fas fa-wallet"></i> 
+									<input type="radio" id="transfer" name="payType" value="transfer">실시간이체
+									</label>
+								</div>
+								<div class="radio">
+									<label for="phonePay"> <i class="fas fa-mobile-alt"></i> 
+									<input type="radio" id="phonePay" name="payType" value="phonePay">휴대폰결제
+									</label>
+								</div>
+								<div class="radio">
+									<label for="depositBank"> <i class="fas fa-money-check-alt"></i> 
+									<input type="radio" id="depositBank" name="payType" value="depositBank">무통장입금
+									</label>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -275,7 +363,7 @@
 					<div>
 						<p>위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
 					</div>
-					<button class="confBtn" type="submit">
+					<button class="confBtn" onclick="iamport()">
 						<span class="confBtn1" >결제하기</span> <span class="confBtn2"></span>
 					</button>
 				</div>
@@ -285,7 +373,58 @@
 <%@ include file="../incloud/footer.jsp"%>
 
 	<script type="text/javascript">
+	//아임포트 api
+	function iamport() {
+		event.preventDefault();
+		
+		var IMP = window.IMP;
+	 	IMP.init("imp98794983");
+	 	IMP.request_pay({
+	 	    pg : 'html5_inicis',
+	 	    pay_method : 'card',
+	 	    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
+	 	    name : '주문명:결제테스트',
+	 	    amount : 100,
+	 	    buyer_name : '홍길동',
+	 	    buyer_tel : '010-1234-5678',
+	 	    buyer_addr : '서울특별시 강남구 삼성동',
+	 	    buyer_postcode : '123-456'
+	 	}, function(rsp) {
+	 	    if ( rsp.success ) {
+	 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	 	    	jQuery.ajax({
+	 	    		url: "/paymentForm", //cross-domain error가 발생하지 않도록 주의해주세요
+	 	    		type: 'POST',
+	 	    		dataType: 'json',
+	 	    		data: {
+	 		    		imp_uid : rsp.imp_uid
+	 		    		//기타 필요한 데이터가 있으면 추가 전달
+	 	    		}
+	 	    	}).done(function(data) {
+	 	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+	 	    		if ( everythings_fine ) {
+	 	    			var msg = '결제가 완료되었습니다.';
+	 	    			location.href="/product/order"
+	 	    			msg += '\n고유ID : ' + rsp.imp_uid;
+	 	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	 	    			msg += '\결제 금액 : ' + rsp.paid_amount;
+	 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
+	 	    			
+	 	    			alert(msg);
+	 	    		} else {
+	 	    			//[3] 아직 제대로 결제가 되지 않았습니다.
+	 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+	 	    		}
+	 	    	});
+	 	    } else {
+	 	        var msg = '결제에 실패하였습니다.';
+	 	        msg += '에러내용 : ' + rsp.error_msg;
+	 	        
+	 	        alert(msg);
+	 	    }
+	 	});
 	
+	};
 	//배송지 선택버튼 기본이벤트 제거
 	$(function() {
 		$(".deliBtn").click(function() {
@@ -302,82 +441,91 @@
 		}
 	});
 
-	//결제 submit
-	// function payment() {
-		
-//	 	if($('input[type="checkbox"][name="deliCheck"]').is(":checked", true)){
-//	 		var deliCheck = $(this).val();	
-//	 	};
-//	 	if($('input[type="radio"][name="optradio"]').is(":checked", true)){
-//	 		var optradio = $(this).val();
-//	 	};
-		
-//	 	var paymentForm = new FormData();
-//	 	paymentForm.append("oNum", deliCheck);
-//	 	paymentForm.append("poId", $("#productID").val());
-//	 	paymentForm.append("cId", $("#UserID").val());
-//	 	paymentForm.append("poAmount", $("#UserID").val());
-//	 	paymentForm.append("payType", optradio);
-		
-//	 	$.ajax({
-//	 		type: 'post',
-//	 		url: 'payMentForm',
-//	 		contentType: 'application/json; charset=UTF-8',
-//	 		data: JSON.stringify(paymentForm),
-//	 		success: function(data) {
-//	 			console.log(data);
-//	 		},
-//	 		error: function(error) {
-//	 			console.log(data);
-//	 		}
-//	 	});
-//	 	$("#payMentForm").attr("action", "payMentForm").submit();
-	// };
-
 	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
 	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
 	//신규배송지 작성시 배송지 목록에 추가
-// 	$(document).ready(function(){
-//   		$(".confBtn").click(function() {
-//   			if(${list.size()} < 1) {
-// 	    		var params = {
-// 	    			 oplace : $("#addressName").val()
-// 	   				,oname : $("#receiver").val()
-// 	   				,ophone : $("#telNo1Third").val()
-// 	   				,opost : $("#zipCode").val()
-// 	   				,oaddress : $("#baseaadress").val()
-// 	   				,oaddress1 : $("#detailAddress").val()
-// 	   				,odefault : $("#baseAddressYn").val()
-// 	    		}
-// 	    		console.log(params);
-// 		    	$.ajax({
-// 		    		type: 'post',//데이터 전송 타입,
-// 		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
-// 		    		contentType : 'application/json; charset=UTF-8',
-// 		    		data: JSON.stringify({
-// 		    			"oplace" : params.oplace,
-// 		    			"oname" : params.oname,
-// 		    			"opost" : params.opost,
-// 		    			"oaddress" : params.oaddress,
-// 		    			"oaddress1" : params.oaddress1,
-// 		    			"ophone" : params.ophone,
-// 		    			"odefault" : params.odefault
-// 		    		}),
-// 		    		success: function(data){
-// 		    			console.log(data);
-// 		    			location.href="/pay/payment";
-// 		    		},
-// 		    		error:function(error){  
-// 		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
-// 		    		}
-// 		    	})
+	$(document).ready(function(){
+  		$(".confBtn").click(function() {
+  			if(${list.size()} < 1) {
+	    		var params = {
+	    			 oplace : $("#addressName").val()
+	   				,oname : $("#receiver").val()
+	   				,ophone : $("#telNo1Third").val()
+	   				,opost : $("#zipCode").val()
+	   				,oaddress : $("#baseaadress").val()
+	   				,oaddress1 : $("#detailAddress").val()
+	   				,odefault : $("#baseAddressYn").val()
+	    		}
+	    		console.log(params);
+		    	$.ajax({
+		    		type: 'post',//데이터 전송 타입,
+		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
+		    		contentType : 'application/json; charset=UTF-8',
+		    		data: JSON.stringify({
+		    			"oplace" : params.oplace,
+		    			"oname" : params.oname,
+		    			"opost" : params.opost,
+		    			"oaddress" : params.oaddress,
+		    			"oaddress1" : params.oaddress1,
+		    			"ophone" : params.ophone,
+		    			"odefault" : params.odefault
+		    		}),
+		    		success: function(data){
+		    			console.log(data);
+		    			location.href="/pay/payment";
+		    		},
+		    		error:function(error){  
+		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
+		    		}
+		    	})
+  			} 
+//   			else {
+//   				$("form").submit(function() {
+// 					var form = {
+// 						cno : $("#cno").val(),
+// 						oNum : $(".deliBtn").val(),
+// 						poAmount : ${total},
+// 						poDATE : new Date(),
+// 						payType : $('input[name="payType"]:checked').val()
+// 					}
+// 					console.log(oNum);
+// 					var today = new Date(); 
+// 					var year = today.getFullYear();
+// 					var month = ('0' + (today.getMonth() + 1)).slice(-2);
+// 					var day = ('0' + today.getDate()).slice(-2);
+// 					var dateString = year + '-' + month  + '-' + day;
+// 					var hours = ('0' + today.getHours()).slice(-2); 
+// 					var minutes = ('0' + today.getMinutes()).slice(-2);
+// 					var seconds = ('0' + today.getSeconds()).slice(-2); 
+// 					var timeString = hours + ':' + minutes  + ':' + seconds;
+// 					$.ajax({
+// 						type: 'post',
+// 						url: 'paymentForm',
+// 						contentType : 'application/json; charset=UTF-8',
+// 						data: JSON.stringify({
+// 							"cno" : form.cno,
+// 							"oNum" : form.oNum,
+// 							"poAmount" : form.poAmount,
+// 							"poDATE" : form.poDATE,
+// 							"payType" : form.payType
+// 						}),
+						
+// 						success: function(data) {
+// 							console.log(data);
+// 							iamport();
+// 							location.href="completion";
+// 						},
+// 						error: function(error) {
+// 							console.log(error);
+// 						}
+// 					});
+// 				});
 //   		}
-// 		});
-// 	});
-	
+		});
+	});
 	</script>
-
+	
 <script type="text/javascript">
 //배송지 선택 버튼 클릭시 정보입력 폼으로 정보 전달
 //같은버튼 여러개에 같은이벤트 전부 걸기
@@ -385,8 +533,9 @@
 //2.신규배송지의 input태그를 얻어서 html(값)
 $("._choice").click(function() {
 	event.preventDefault();
-	console.log($(this))
+	console.log($(this));
 	
+	var onum = $(this).parents(".deliBtn").val();
 	var oplace = $(this).parents(".deliBtn").find(".nick1").html();
 	var oname = $(this).parents(".deliBtn").find(".receive").html();
 	var opost = $(this).parents(".deliBtn").find(".zipcode2").html();
@@ -394,6 +543,7 @@ $("._choice").click(function() {
 	var oaddress2 = $(this).parents(".deliBtn").find(".oaddr2").html();
 	var ophone = $(this).parents(".deliBtn").find(".cell_tel1").html();
 	
+	$("#onumHidden").val(onum);
 	$("#addressName").val(oplace);
 	$("#receiver").val(oname);
 	$("#zipCode").val(opost);
@@ -499,29 +649,6 @@ function deliUpdate(onum){
         window.open("<c:url value='deliveryUpdate?onum="+onum+"'/>", "배송지등록", "width=700, height=820, top=100, left=400");
 }
        
-//         $(".number").each(function(index, item) {
-// 			onum = {"onum":$(item).val()};
-// 		});
-//         $(".oplace").each(function(index, item) {
-//         	oplace = {"oplace":$(item).val()};
-// 		});
-//         $(".cell_delivery").each(function(index, item) {
-//         	oname = {"oname":$(item).val()};
-// 		});
-//         $(".zipcode2").each(function(index, item) {
-//         	opost = {"opost":$(item).val()};
-// 		});
-//         $(".cell_tel").each(function(index, item) {
-//         	ophone = {"ophone":$(item).val()};
-// 		});
-//         $(".cell_tel").each(function(index, item) {
-//         	ophone = {"ophone":$(item).val()};
-// 		});
-//         $(".mark_default").each(function(index, item) {
-//         	odefault = {"odefault":$(item).val()};
-// 		});
-   
-
 //자식창에서 호출하면 키를 리턴
 // key=null;
 // function aaa() {
