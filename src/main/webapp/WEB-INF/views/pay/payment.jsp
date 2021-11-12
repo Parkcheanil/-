@@ -382,7 +382,7 @@
 	 	IMP.request_pay({
 	 	    pg : 'html5_inicis',
 	 	    pay_method : 'card',
-	 	    merchant_uid: '4331', // 상점에서 관리하는 주문 번호
+	 	    merchant_uid: '6271', // 상점에서 관리하는 주문 번호
 	 	    name : '주문명:결제테스트',
 	 	    amount : 100,
 	 	    buyer_email : $("#UserID").val(),
@@ -391,48 +391,37 @@
 	 	    buyer_addr : $("#baseaadress").val() + $("#detailAddress").val(),
 	 	    buyer_postcode : $("#zipCode").val()
 	 	}, function(rsp) {
-	 	    if ( rsp.success ) {
-	 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-	 	    	jQuery.ajax({
-	 	    		url: "/paymentForm", //cross-domain error가 발생하지 않도록 주의해주세요
-	 	    		type: 'POST',
-	 	    		dataType: 'json',
-	 	    		data: {
-	 		    		imp_uid : rsp.imp_uid,
-	 		    		//기타 필요한 데이터가 있으면 추가 전달
-	 	    		}
-	 	    	}).done(function(data) {
-	 	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-	 	    		if ( everythings_fine ) {
-	 	    			var msg = '결제가 완료되었습니다.';
-	 	    			location.href="/product/order"
-	 	    			msg += '\n고유ID : ' + rsp.imp_uid;
-	 	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	 	    			msg += '\결제 금액 : ' + rsp.paid_amount;
-	 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
-	 	    			
-	 	    			alert(msg);
-	 	    		} else {
-	 	    			//[3] 아직 제대로 결제가 되지 않았습니다.
-	 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-	 	    		}
-	 	    	});
-	 	    } else {
-	 	        var msg = '결제에 실패하였습니다.';
-	 	        msg += '에러내용 : ' + rsp.error_msg;
-	 	        
-	 	        alert(msg);
-	 	    }
-	 	});
-	
-	};
-	//배송지 선택버튼 기본이벤트 제거
-	$(function() {
-		$(".deliBtn").click(function() {
-			event.preventDefault();
+	 		var msg = "결제가 완료되었습니다.";
+	 		var result = {
+ 				"poId" : rsp.merchant_uid,
+	    		"cno" :  $("#cno").val(),
+	    		"oNum" : $("#onumHidden").val(),
+	    		"poAmount" : rsp.paid_amount,
+	    		"payType" : rsp.pay_method
+	 		}
+	 		console.log("결제성공 " + msg);
+	 		$.ajax({
+				url : 'paymentForm', 
+		        type :'POST',
+		        data : JSON.stringify(result),
+		        contentType:'application/json;charset=utf-8',
+		        dataType: 'json', //서버에서 보내줄 데이터 타입
+		        success: function(result){
+		        			        	
+		          if(result == true){
+					 console.log("추가성공");
+					 location.href = '/product/order';
+		          }else{
+		             console.log("Insert Fail!!!");
+		          }
+		        },
+		        error:function(){
+		          console.log("Insert ajax 통신 실패!!!");
+		        }
+			}) //ajax
 		});
-	});
-	
+	}//pay
+
 	//배송지 목록 존재할 경우 배송지 선택 버튼 show
 	$(function() {
 		if(${list.size()} > 0) {

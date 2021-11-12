@@ -114,39 +114,15 @@ public class payController {
 	//결제 정보 입력
 	@RequestMapping("/paymentForm")
 	@ResponseBody
-	public String paymentIn(@RequestBody PayMentVO vo, HttpServletRequest req) {
+	public boolean paymentIn(@RequestBody PayMentVO vo) {
 		
 		System.out.println("결제 메서드 실행");
-		
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		String subNum = "";
-		
-		for(int i = 1; i <= 6; i++) {
-			subNum += (int)(Math.random() * 10);
-		}
-		
-		String orderId = ymd + "_" + subNum;
-		vo.setPoId(orderId);
-		
-		int pprice = Integer.parseInt(req.getParameter("pprice"));
-		int cartnum = Integer.parseInt(req.getParameter("cartnum"));
-		vo.setPoAmount(pprice * cartnum);
-		
-		int onum = Integer.valueOf((String)req.getParameter("onum"));
-		int cno = Integer.parseInt(req.getParameter("cno"));
-		vo.setONum(onum);
-		vo.setCno(cno);
-
-		System.out.println("PayMentVO : " + vo);
 		
 		boolean result = payService.registPM(vo);
 		
 		System.out.println("PM insert : " + result);
 		
-		return null;
+		return result;
 	}
 	
 	//결제 완료 화면
