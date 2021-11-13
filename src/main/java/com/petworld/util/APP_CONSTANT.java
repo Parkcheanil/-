@@ -1,9 +1,14 @@
 package com.petworld.util;
 
-public class APP_CONSTANT {
+import java.io.File;
+import java.util.UUID;
 
-	//로컬
-	public static final String uploadPath = "C:/dev/upload/";
-	//운영
+import org.springframework.util.FileCopyUtils;
+
+public class APP_CONSTANT {
+	///Users/seungheelee/Desktop/FileUpload/
+	public static final String uploadPath = "/Users/seungheelee/Desktop/dev/petworldAdmin/src/main/webapp/resources/img/";
+		
 	
+
 }

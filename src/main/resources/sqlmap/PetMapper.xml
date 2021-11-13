@@ -32,4 +32,6 @@
 		delete from pet where pnum = #{pnum}
 	</delete>
 
+	
+
 </mapper>

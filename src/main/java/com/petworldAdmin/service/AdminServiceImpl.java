@@ -1,4 +1,4 @@
-package com.petworld.service;
+package com.petworldAdmin.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petworld.command.CategoryVO;
 import com.petworld.command.OrderVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.SalesVO;
 import com.petworld.command.UserVO;
-import com.petworld.mapper.AdminMapper;
-import com.petworld.util.Criteria;
+import com.petworldAdmin.mapper.AdminMapper;
+import com.petworldAdmin.util.Criteria;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -19,11 +20,39 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 	
+	//메인
 	@Override
-	public ArrayList<UserVO> customerList() {
-		return adminMapper.customerList();
+	public ArrayList<UserVO> maintable1() {
+		return adminMapper.maintable1();
 	}
 
+	@Override
+	public ArrayList<OrderVO> maintable2() {
+		return adminMapper.maintable2();
+	}
+	
+	@Override
+	public List<OrderVO> mainchart() {
+		return adminMapper.mainchart();
+	}
+	
+	//회원
+	@Override
+	public ArrayList<UserVO> customerList(Criteria cri) {
+		return adminMapper.customerList(cri);
+	}
+
+	@Override
+	public UserVO userDetail(String id) {
+		return adminMapper.userDetail(id);
+	}
+
+	@Override
+	public boolean updateUser(UserVO vo) {
+		return adminMapper.updateUser(vo);
+	}
+	
+	//주문
 	@Override
 	public ArrayList<OrderVO> orderList() {
 		return adminMapper.orderList();
@@ -39,7 +68,7 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.orderUpdate(vo);
 	}
 
-
+	//상품
 	@Override
 	public ArrayList<ProductVO> productList(Criteria cri) {
 		return adminMapper.productList(cri);
@@ -71,16 +100,27 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
+	//카테고리
 	@Override
-	public ArrayList<SalesVO> salesList() {
-		return adminMapper.salesList();
+	public ArrayList<CategoryVO> categoryList() {
+		return adminMapper.categoryList();
+	}
+	
+	//실적
+	@Override
+	public ArrayList<SalesVO> salesList(Criteria cri) {
+		return adminMapper.salesList(cri);
 	}
 
+	@Override
+	public int getsalesTotal(Criteria cri) {
+		return adminMapper.getsalesTotal(cri);
+	}
+	
 	@Override
 	public List<SalesVO> getchart() {
 		return adminMapper.getchart();
 	}
 
-	
 
 }

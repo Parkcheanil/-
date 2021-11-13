@@ -2,60 +2,90 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.petworld.mapper.ProductMapper">
-  	<select id="getList" resultType="ProductVO">
-  	  select * from PRODUCT 
+
+<mapper namespace="com.petworld.mapper.ProductMapper">
+	<select id="getDogList" resultType="ProductVO">
+		select * from product
+
+		where cCode like '10' || '%'
+
+	</select>
+	<select id="getCatList" resultType="ProductVO">
+		select * from product
+
+		where cCode like '20' || '%'
+
+	</select>
+	
+     	<!-- 카테고리별 상품 리스트 추가 -->
+     	<!-- 카테고리별 상품 리스트: 1차 분류 -->
+  	<!-- <select id="getList" resultType="ProductVO">
+   		select 
+   			p.pid, p.pname, p.cCode, p.pprice, p.pstock, p.pdetail, p.pimage1addr, p.pimage2addr, c.cName, c.cRef
+				from product p
+				    inner join category c
+				        on p.cCode = c.cCode
+				        where p.cCode = #{cCode} or c.cRef = #{cRef} 
    	</select>
-   	<select id="getContent" resultType="ProductVO">
-   		select * from PRODUCT where pID = #{pID} 
-   	</select>
-   	
-   	<select id="getListCri" resultType="ProductVO">
-  	  select * from PRODUCT
-   	</select>
-   	<!-- 장바구니 추가 -->
-   	<select id="getCartList" resultType="map" >
-   		select * from cart c, product p, member m
-			where m.id = c.id and p.pid = c.pid
-   	</select>
-   	<!-- <insert id="insertCart">
-   		insert into cart(cno, id, pid, cartNum)
-   		values(cart_seq.nextval, #{id}, #{pid}, #{cartNum})
-   	</insert> -->
-   	<update id="updateCart">
-   		merge into cart c 
+   	카테고리별 상품 리트스: 2차 분류
+   	<select id="getList2" resultType="ProductVO">
+   		select 
+   			p.pid, p.pname, p.cCode, p.pprice, p.pstock, p.pdetail, p.pimage1addr, p.pimage2addr, c.cName, c.cRef
+				from product p
+				    inner join category c
+				        on p.cCode = c.cCode
+				        where p.cCode = #{cCode}
+   	</select> -->
+
+
+
+	<select id="getContent" resultType="ProductVO">
+		select * from PRODUCT where pID = #{pID}
+	</select>
+
+	<select id="getListCri" resultType="ProductVO">
+		select * from PRODUCT
+	</select>
+	<!-- 장바구니 추가 -->
+	<select id="getCartList" resultType="map">
+		select * from cart c, product p, member m
+		where m.id = c.id and p.pid = c.pid
+	</select>
+	<!-- <insert id="insertCart"> insert into cart(cno, id, pid, cartNum) values(cart_seq.nextval, 
+		#{id}, #{pid}, #{cartNum}) </insert> -->
+	<update id="updateCart">
+		merge into cart c
 		using dual
 		on (c.id = #{id} and c.pid = #{pid})
 		when matched then
-		update set c.cartNum = c.cartNum + ${cartNum}
+		update set
+		c.cartNum = c.cartNum + ${cartNum}
 		when not matched then
-		insert  values (cart_seq.nextval, #{id}, #{pid}, #{cartNum} )
-   	</update>
-   	<!-- 구매하기로 변경 -->
-   	<select id="getPaymentList" resultType="PaymentVO">
-   		select * from PAYMENT pt, CART c, DELEVERY_ADDR o, product p
-   		where pt.cno = c.cno and pt.onum = o.onum and p.pid = pt.pid
-   	</select>
-   	<insert id="insertPurchase">
-   		insert into payment( poid, poamount, podate, potype, cno, onum)
-   		values( #{poid}, #{poamount}, #{podate}, #{potype}, #{cno}, #{onum})
-   	</insert>
-   	<!--  <update id="">
-   		insert into cart values(cart_seq.nextval, 'id_test', 1235, 1)
-   	</update> -->
-   	
-   	
-   	<delete id="cartDelete">
+		insert values
+		(cart_seq.nextval, #{id}, #{pid}, #{cartNum} )
+	</update>
+	<!-- 구매하기로 변경 -->
+	<select id="getPaymentList" resultType="PaymentVO">
+		select * from PAYMENT pt, CART c, DELEVERY_ADDR o, product p
+		where pt.cno = c.cno and pt.onum = o.onum and p.pid = pt.pid
+	</select>
+	<insert id="insertPurchase">
+		insert into payment( poid, poamount, podate, potype, cno, onum)
+		values( #{poid}, #{poamount}, #{podate}, #{potype}, #{cno}, #{onum})
+	</insert>
+	<!-- <update id=""> insert into cart values(cart_seq.nextval, 'id_test', 
+		1235, 1) </update> -->
+
+	<delete id="cartDelete">
 		delete from cart where cno = #{cno}
 	</delete>
-   	
-   	<update id="cartMinus" parameterType="int">
-   		update cart set cartNum = cartNum - 1 where cno = #{cno}
-   	</update>
-   	
-   	<update id="cartPlus" parameterType="int">
-   		update cart set cartNum = cartNum + 1 where cno = #{cno}
-   	</update>
-   	
-  </mapper>
+
+	<update id="cartMinus" parameterType="int">
+		update cart set cartNum = cartNum - 1 where cno = #{cno}
+	</update>
+
+	<update id="cartPlus" parameterType="int">
+		update cart set cartNum = cartNum + 1 where cno = #{cno}
+	</update>
+
+</mapper>

@@ -85,23 +85,23 @@
                                         <div class="carousel-inner">
                                             <div class="item active">
                                           <!-- 반복 - 추천 상품 -->
-                                           <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1">
+                                           <c:forEach var="i" begin="0" end="${fn:length(list2) - 1}" step="1">
                                             	
                                                 <div class="individually" id="slideFirst">
-                                                    <a onclick="location.href='productDetail?pID=${list[i].pid}'">
+                                                    <a onclick="location.href='productDetail?pID=${list2[i].pid}'">
                                                         <picture>
                                                             <source media="(max-width: 1199px)" srcset="">
                                                             <source media="(min-width: 1200px)" srcset="">
-                                                            <img src="/resources/img/3510_originalView_01326139.jpg" alt="" sizes="auto">
+                                                            <img src="/resources/img/${list2[i].pimageaddr }" alt="" sizes="auto">
                                                         </picture>
                                                         <div>
                                                             <div class="kidult">
                                                                 <span>키덜트</span>
                                                             </div>
                                                             <div class="pdt-cont">
-                                                                <h4>${list[i].pname }</h4>
+                                                                <h4>${list2[i].pname }</h4>
                                                                 <span>
-                                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
+                                                                	<fmt:formatNumber pattern="###,###,###" value="${list2[i].pprice}"/>원
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -133,22 +133,22 @@
                                 </div>
                             </div>
                             <div class="recom-product">
-                            <c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1">
+                            <c:forEach var="i" begin="0" end="${fn:length(list2) - 1}" step="1">
                                 <div class="recomList">
                                     <a href="">
                                         <picture>
                                             <source media="(max-width: 1199px)" srcset="">
                                             <source media="(min-width: 1200px)" srcset="">
-                                            <img src="/resources/img/3510_originalView_01326139.jpg" alt="" sizes="auto">
+                                            <img src="/resources/img/${list2[i].pimageaddr }" alt="" sizes="auto">
                                         </picture>
                                         <div>
                                             <div class="kidult">
                                                 <span>키덜트</span>
                                             </div>
                                             <div class="pdt-cont">
-                                                <h4>${list[i].pname }</h4>
+                                                <h4>${list2[i].pname }</h4>
                                                 <span>
-                                                	<fmt:formatNumber pattern="###,###,###" value="${list[i].pprice}"/>원
+                                                	<fmt:formatNumber pattern="###,###,###" value="${list2[i].pprice}"/>원
                                                 </span>
                                             </div>
                                         </div>

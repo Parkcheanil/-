@@ -16,17 +16,16 @@ public class ProductVO {
 	private int pprice;
 	private int pstock;
 	private int prate;
-	private int pcnum;
+	private String cCode;
 	private String pcount;
 	//상품상세정보
 	private String pdetail;
-	private String pAge;
 	
 	//이미지 저장용
 	//11.05_승희 추가
-	private MultipartFile pimage1;
+	private MultipartFile pimage;
 	private MultipartFile pimage2;
-	private String Pimage1addr;
+	private String Pimageaddr;
 	private String Pimage2addr;
 	
 	/*

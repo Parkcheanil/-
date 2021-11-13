@@ -26,9 +26,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ArrayList<ProductVO> getList() {
+	public ArrayList<ProductVO> getDogList(){
 		
-		return productMapper.getList();
+		return productMapper.getDogList();
+	}
+	
+	@Override
+	public ArrayList<ProductVO> getCatList() {
+		return productMapper.getCatList();
 	}
 
 	@Override
@@ -61,21 +66,13 @@ public class ProductServiceImpl implements ProductService {
 	 * productMapper.insertCart(cart); }
 	 */
 
-	@Override
-	public void insertPurchase(PayMentVO vo) {
-	
-	}
 
-	@Override
-	public ArrayList<PayMentVO> getPaymentList() {
-		// TODO Auto-generated method stub
-		return productMapper.getPaymentList();
-	}
 
 	@Override
 	public int updateCart(CartVO cart) {
 		// TODO Auto-generated method stub
 		return productMapper.updateCart(cart);
 	}
+
 
 }

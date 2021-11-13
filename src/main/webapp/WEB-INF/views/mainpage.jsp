@@ -16,24 +16,22 @@
 			<c:when test="${i != 5 }">
 			    <div class="store_box">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].PID}'" src="${clist[fn:length(clist) - i].PIMAGE}" >
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}" >
 			      </div>
 			      <div class="item_info">
-			        <div class="info1"> ${clist[fn:length(clist) - i].PNAME }</div>
-			        <div class="info2">중.대형견용입니다</div>
-			        <div class="info3">${clist[fn:length(clist) - i].PPRICE }원</div>
+			        <div class="info1"> ${clist[fn:length(clist) - i].pname }</div>
+			        <div class="info3">${clist[fn:length(clist) - i].pprice }원</div>
 			      </div>
 			    </div>
 			</c:when>
 			<c:when test="${i == 5 }">
 				<div class="store_box store_last">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].PID}'" src="${clist[fn:length(clist) - i].PIMAGE}">
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}">
 			      </div>
 			      <div class="item_info">
-			        <div class="info1">${clist[fn:length(clist) - i].PNAME }</div>
-			        <div class="info2">Salmon & Whole Grains</div>
-			        <div class="info3">${clist[fn:length(clist) - i].PPRICE }원</div>
+			        <div class="info1">${clist[fn:length(clist) - i].pname }</div>
+			        <div class="info3">${clist[fn:length(clist) - i].pprice }원</div>
 			      </div>
 			    </div>
 			</c:when>	    
@@ -51,31 +49,28 @@
 			<c:when test="${i != 5 }">
 			    <div class="store_box">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].PID}'" src="${clist[fn:length(clist) - i].PIMAGE}" >
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}" >
 			      </div>
 			      <div class="item_info">
-			        <div class="info1"> ${clist[fn:length(clist) - i].PNAME }</div>
-			        <div class="info2">중.대형견용입니다</div>
-			        <div class="info3">${clist[fn:length(clist) - i].PPRICE }원</div>
+			        <div class="info1"> ${clist[fn:length(clist) - i].pname }</div>
+			        <div class="info3">${clist[fn:length(clist) - i].pprice }원</div>
 			      </div>
 			    </div>
 			</c:when>
 			<c:when test="${i == 5 }">
 				<div class="store_box store_last">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].PID}'" src="${clist[fn:length(clist) - i].PIMAGE}">
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}">
 			      </div>
 			      <div class="item_info">
-			        <div class="info1">${clist[fn:length(clist) - i].PNAME }</div>
-			        <div class="info2">Salmon & Whole Grains</div>
-			        <div class="info3">${clist[fn:length(clist) - i].PPRICE }원</div>
+			        <div class="info1">${clist[fn:length(clist) - i].pname }</div>
+			        <div class="info3">${clist[fn:length(clist) - i].pprice }원</div>
 			      </div>
 			    </div>
 			</c:when>	    
 	    </c:choose>
   	</c:forEach>
   </div>
-  
   <hr class="outer_hr">
 
   <div class="background_area">

@@ -101,7 +101,7 @@
                                                         <picture>
                                                             <source media="(max-width: 1199px)" srcset="">
                                                             <source media="(min-width: 1200px)" srcset="">
-                                                            <img src="/resources/img/3510_originalView_01326139.jpg" alt="" sizes="auto">
+                                                            <img src="/resources/img/${list[i].pimageaddr }" alt="" sizes="auto">
                                                         </picture>
                                                         <div>
                                                             <div class="kidult">
@@ -148,7 +148,7 @@
                                         <picture>
                                             <source media="(max-width: 1199px)" srcset="">
                                             <source media="(min-width: 1200px)" srcset="">
-                                            <img src="/resources/img/3510_originalView_01326139.jpg" alt="" sizes="auto">
+                                            <img src="/resources/img/${list[i].pimageaddr }" alt="" sizes="auto">
                                         </picture>
                                         <div>
                                             <div class="kidult">

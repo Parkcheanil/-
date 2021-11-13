@@ -16,7 +16,7 @@
         <br><br>
         <ul class="mainMenu">
           <div class="menu_1">
-            <li><a href="${pageContext.request.contextPath }/admin/customer_management" class="mmenu"><i class="far fa-user"></i>&nbsp;고객 관리</a></li>
+            <li><a href="${pageContext.request.contextPath }/admin/customer/customer_management" class="mmenu"><i class="far fa-user"></i>&nbsp;고객 관리</a></li>
           </div>
             <hr>
           <div class="menu_2">
@@ -36,7 +36,7 @@
  </div>
  <div class="Bar">
 	 <a  href="#">&nbsp;<i class="fas fa-sign-out-alt"></i>로그아웃</a>
-	 &nbsp;<a href="#"><i class="fas fa-users-cog fa-lg"></i></a>
+	 &nbsp;<a href="${pageContext.request.contextPath }/mainpage"><i class="fas fa-home"></i></a>&nbsp;
  </div>
 </body>
 </html>

@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label>작성자</label>
-                                <input class="form-control" name='qwriter' value="${vo.qwriter }" required>
+                                <input class="form-control" name='qwriter' value="${vo.qwriter }" readonly required>
                             </div>    
                             <div class="form-group">
                                 <label>제목</label>

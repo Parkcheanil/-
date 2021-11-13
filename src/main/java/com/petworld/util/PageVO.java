@@ -2,8 +2,9 @@ package com.petworld.util;
 
 import lombok.Data;
 
-@Data
+@Data //게터, 세터, toString
 public class PageVO {
+	
 	//화면에 그려질 페이지네이션을 계산하는 클래스
 	private int startPage; //시작번호
 	private int endPage; //끝번호
@@ -54,5 +55,4 @@ public class PageVO {
 		//6. 다음버튼 활성화YN(4번 예시에서 비교하여 계산)
 		this.next = realEnd > this.endPage;
 	}
-	
 }

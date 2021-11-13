@@ -3,12 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.petworld.mapper.AdminMapper">
+  <mapper namespace="com.petworldAdmin.mapper.AdminMapper">
   
+  	<!-- 메인페이지 -->
+  	<select id="maintable1" resultType="UserVO">
+  		select * from MEMBER
+  		order by regdate desc
+  	</select>
+  	<select id="maintable2" resultType="OrderVO">
+  		select * from USER_ORDER
+  		order by oid desc
+  	</select>
+  	<select id="mainchart" resultType="OrderVO">
+  		select ordate, sum(oamount) as oamount
+  		from USER_ORDER
+  		GROUP BY ordate
+		ORDER BY ordate
+  	</select>
+  	
   	<!-- 회원 -->
   	<select id = "customerList" resultType="UserVO">
-		select * from member
-	</select>
+  	 <![CDATA[
+		   	select *
+		   	from (select rownum as rn, a.*
+		   		from(select * 
+		   			 from MEMBER
+		   			 where
+		   ]]>
+		   <if test="searchType == 'id'">id like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == 'name'">name like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == 'phone'">phone like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == null or searchType == ''">1=1</if>	
+	   	<![CDATA[
+	   		order by id desc)a	
+	   		)where rn >(#{pageNum}-1)*#{amount} and rn <=#{pageNum}*#{amount}
+		 ]]>
+		</select>
+		
+		<select id ="userDetail" resultType="UserVO">
+			select * from MEMBER where id =#{id}
+		</select>
+		
+		<update id="updateUser">
+			update MEMBER SET
+			name =#{name},
+			phone = #{phone},
+			addzipnum = #{addzipnum},
+			addrdetail = #{addrdetail},
+			yy = #{yy}
+			where id =#{id}
+		</update>
+		
   	
   	<!-- 주문 -->
   	<select id = "orderList" resultType="OrderVO">
@@ -43,7 +88,7 @@
 		   			 from PRODUCT
 		   			 where
 		   ]]>
-		   <if test="searchType == 'pcnum'">pcnum like '%'||#{searchName}||'%'</if>
+		   <!-- <if test="searchType == 'pcnum'">pcnum like '%'||#{searchName}||'%'</if>  -->
 		   	<if test="searchType == 'pid'">pid like '%'||#{searchName}||'%'</if>
 		   	<if test="searchType == 'pname'">pname like '%'||#{searchName}||'%'</if>
 		   	<if test="searchType == null or searchType == ''">1=1</if>	
@@ -64,8 +109,8 @@
 	   </select>
 	   
 	   <insert id="pinsert">
-	   	insert into PRODUCT(pid, pname, pprice, pstock, pimage1addr, pimage2addr, pcnum, pdetail)
-	   	values(#{pid}, #{pname}, #{pprice}, #{pstock}, #{pimage1addr}, #{pimage2addr}, #{pcnum}, #{pdetail})
+	   	insert into PRODUCT(pid, pname, petage, pprice, pstock, pimageaddr, pdetail)
+	   	values(#{pid}, #{pname}, #{petage}, #{pprice}, #{pstock}, #{pimageaddr}, #{pdetail})
 	   </insert>
 	   
 	   <select id="getpContent" resultType="ProductVO">
@@ -86,11 +131,40 @@
 	   <delete id="deleteProduct">
 	   	delete from PRODUCT where pid = #{pid}
 	   </delete>
+	   
+	  <!-- 카테고리 -->
+	  <select id="categoryList" resultType="CategoryVO">
+	  	select * from CATEGORY
+	  </select>
 	  
 	  <!-- 판매실적 -->
 	  <select id="salesList" resultType="SalesVO">
-	  	select * from SALES
+	  	<![CDATA[
+		   	select *
+		   	from (select rownum as rn, a.*
+		   		from(select * 
+		   			 from SALES
+		   			 where
+		   ]]>
+		  	<!-- <if test="searchType ==</if> -->
+		   	<if test="searchType == 'salespid'">salespid like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == 'salespname'">salespname like '%'||#{searchName}||'%'</if>
+		   	<if test="searchType == null or searchType == ''">1=1</if>	
+	   	<![CDATA[
+	   		order by salesdate desc)a	
+	   		)where rn >(#{pageNum}-1)*#{amount} and rn <=#{pageNum}*#{amount}
+		 ]]>
 	  </select>
+	 
+	   <select id="getsalesTotal" resultType="int">
+	   	select count(*) as total
+	   	from SALES
+	   	where
+	   	<if test="searchType == 'salesdate'">salesdate like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == 'salespid'">salespid like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == 'salespname'">salespid like '%'||#{searchName}||'%'</if>
+	   	<if test="searchType == null or searchType == ''">1=1</if>
+	   </select>
 	  
 	  <select id="getchart" resultType="SalesVO">
 	  <![CDATA[

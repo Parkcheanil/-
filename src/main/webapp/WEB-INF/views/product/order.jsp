@@ -18,7 +18,7 @@
                 <div class="myroot">
                     <div class="myroot_nav">
                         <p>
-                            <a href="../mainpage">홈</a> > <a href="order">마이 페이지</a> > <a href="##">주문 · 배송</a>
+                            <a href="../mainpage">홈</a> > <a href="order">마이 페이지</a> > <a href="order">주문 · 배송</a>
                         </p>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                                 <c:forEach var="i" begin="0" end="${fn:length(pVO)}" step="1">
                                 <div class="list_index">
                                   <div class="tit_month">
-                                    <h4><fmt:formatDate pattern="yyyy년MM월" value="${list[i].ORDATE}"/></h4>
+                                    <h4><fmt:formatDate pattern="yyyy년MM월" value="${list[i].ordate}"/></h4>
                                   </div>
                                   <!-- 주문목록 화면, 없으면 조회된 상품이 없습니다 화면 출력 -->
 	                                  <div class="goods_section" id="yes_product">
@@ -160,23 +160,23 @@
 	                                        <li class="goods_item_list">
 	                                          <div class="goods_item">
 	                                            <a href="project_ProductDetail.html" class="goods_tumb">
-	                                              <img src="../../resources/img/${list[i].PIMAGE }" alt="더독 닥터소프트 치킨 시니어 3kg" width="90" height="90">
+	                                              <img src="../../resources/img/${list[i].pimage }" alt="더독 닥터소프트 치킨 시니어 3kg" width="90" height="90">
 	                                            </a>
 	                                            <div class="goods_info">
 	                                              <a href="project_ProductDetail" class="goods">
-	                                                <p class="name" >${list[i].PNAME } ${list[i].OProductNUM }개</p>
+	                                                <p class="name" >${list[i].pname } ${list[i].oproductnum }개</p>
 	                                                <ul class="pay_date">
 	                                                  <li class="item_price">
 	                                                    <span class="blind">상품금액</span>
-	                                                    <fmt:formatNumber pattern="###,###,###" value="${list[i].OAMOUNT}"/>원
+	                                                    <fmt:formatNumber pattern="###,###,###" value="${list[i].oamount}"/>원
 	                                                  </li>
 	                                                  <li class="date">
 	                                                    <span class="blind">구매날짜</span>
-	                                                    <fmt:formatDate pattern="yyyy년MM월dd일 " value="${list[i].ORDATE}"/>
+	                                                    <fmt:formatDate pattern="yyyy년MM월dd일 " value="${list[i].ordate}"/>
 	                                                  </li>
 	                                                </ul>
 	                                              </a>
-	                                              <span class="goods_shipping">${list[i].DELEVERY_STATUS }</span>
+	                                              <span class="goods_shipping">${list[i].delivery_status }</span>
 	                                              <p class="guide">
 	                                                &nbsp;구매가 완료되었습니다. 이용해주셔서 감사합니다.
 	                                                <br>
@@ -196,13 +196,13 @@
 	                                                  <a href="상품 상세 페이지" class="reply_sell">재구매</a>
 	                                              </div>
 	                                          </div>
-	                                          <c:when test="${list.DELEVERY_STATUS == '배송준비중' }">
+	                                          <c:if test="${list[i].delivery_status == '배송준비중' }">
 	                                          <div class="button_item" style="display: none;">
 	                                              <div class="area_layer">
 	                                                  <a href="cancel" class="reply_sell">주문취소</a>
 	                                              </div>
 	                                          </div>
-	                                          </c:when>
+	                                          </c:if>
 	                                          <div class="button_item">
 	                                              <div class="area_layer">
 	                                                  <a href="change" class="reply_sell">교환 및 반품</a>
@@ -234,10 +234,6 @@
             </div>
         </div>
     </div>
-    <!-- 인터크립터 속도 -->
-    <script>
-        $("#myCarousel").carousel({interval: 3000});
-    </script>
 <%@ include file="../incloud/footer.jsp" %>
     <!-- 스크립트 구간 -->
     <script>

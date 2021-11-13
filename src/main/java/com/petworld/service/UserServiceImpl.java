@@ -1,6 +1,8 @@
 package com.petworld.service;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.petworld.command.UserVO;
@@ -47,21 +49,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserVO findId(UserVO vo) {
-		
 		return userMapper.findId(vo);
 	}
 
 	@Override
-	public UserVO findPassword(UserVO vo) {
-
-		return userMapper.findPassword(vo);
-	}
-
-	@Override
-	public void updatePassword(UserVO vo) {
-		userMapper.updatePassword(vo);
+	public UserVO findPw(UserVO vo) {
+		return userMapper.findPw(vo);
 	}
 	
-	
-
 }

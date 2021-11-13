@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../incloud/header.jsp"%>
@@ -84,7 +84,7 @@
 						<div id="replyList">
 							<div class='reply-wrap'>
 								<div class='reply-image'>
-									<img src='../resources/img/profile.png'>
+									<img src='${pageContext.request.contextPath }/resources/img/profile.png'>
 								</div>
 								<div class='reply-content'>
 									<div class='reply-group'>
@@ -136,6 +136,7 @@
 								<button type="submit" class="right btn btn-info"
 										id="modalModBtn">수정하기</button>
 								<button type="submit" class="right btn btn-info modalDelBtn" id="modalDelBtn">삭제하기</button>
+								<%-- 상기 삭제하기 버튼은 관리자만이 볼 수 있는 버튼 --%>
 							</div>
 						</div>
 						<!-- 수정폼끝 -->

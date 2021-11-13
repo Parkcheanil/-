@@ -1,4 +1,6 @@
 package com.petworld.mapper;
+import javax.servlet.http.HttpServletResponse;
+
 import com.petworld.command.UserVO;
 
 public interface UserMapper {
@@ -7,8 +9,8 @@ public interface UserMapper {
 	public int idCheck(UserVO vo);
 	public boolean signUp(UserVO vo);
 	public UserVO login(UserVO vo);
-	
 	public UserVO findId(UserVO vo);
-	public UserVO findPassword(UserVO vo);
-	public void updatePassword(UserVO vo);
+	
+	// 비번변경 메서드 추가될 예정
+	public UserVO findPw(UserVO vo);
 }

@@ -48,7 +48,7 @@
 			            	<c:forEach var="cart" items="${clist }">
 			            		<c:set var="cart_pay" value="${cart.PPRICE }"/>
 				                <div class="goods_info">
-				                    <img src="img/catEat01.jpg">
+				                    <img src="${cart.PIMAGE }">
 				                    <div class="info_text">
 				                        <div class="info_name">${cart.PNAME }</div>
 				                        <div class="info_stock">

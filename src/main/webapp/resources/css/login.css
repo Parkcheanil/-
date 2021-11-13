@@ -54,7 +54,7 @@
         margin-bottom: 10px;
   }
  
-  .submit-btn {
+  .submit-btn { /* 로그인 버튼 */
     font-size: 14px;
     border: none;
     padding: 10px;
@@ -96,16 +96,9 @@
   .button-group{
     padding-top: 10px;
   }
+	
+	
 
-  .submit-btn-kko, .submit-btn-ggl, .submit-btn-fcb{
-    display: inline-block;
-  }
-
-  .kko-btn, .ggl-btn, .naver-btn{
-    border: none;
-    cursor: pointer;
-
-  }
 
 
 

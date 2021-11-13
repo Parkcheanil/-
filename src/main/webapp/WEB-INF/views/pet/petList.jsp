@@ -149,39 +149,39 @@
 									<!-- 인터크립터 추천메뉴 슬라이드 -->
 									<div class="carousel-inner">
 										<div class="item active">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="2">
-											<div class="individually" id="slideFirst">
-												<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
-													<picture>
-													<img src="/resources/img/3510_originalView_01326139.jpg"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
+											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="2">
+												<div class="individually" id="slideFirst">
+													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
+														<picture>
+														<img src="/resources/img/${list[i].pimage1addr }"
+															alt="" sizes="auto"> </picture>
+														<div>
+															<div class="kidult">
+																<span>키덜트</span>
+															</div>
+															<div class="pdt-cont">
+																<h4>${productlist1[i].pname }</h4>
+																<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
+															</div>
 														</div>
-														<div class="pdt-cont">
-															<h4>${productlist[i].pname }</h4>
-															<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
-														</div>
-													</div>
-												</a>
-											</div>
+													</a>
+												</div>
 											</c:forEach>
 										</div>
 										<div class="item">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="2">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="2">
 											<div class="individually" id="slideFirst">
-												<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
+												<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
 													<picture>
-													<img src="/resources/img/3510_originalView_01326139.jpg"
+													<img src="/resources/img/${list[i].pimage1addr }"
 														alt="" sizes="auto"> </picture>
 													<div>
 														<div class="kidult">
 															<span>키덜트</span>
 														</div>
 														<div class="pdt-cont">
-															<h4>${productlist[i].pname }</h4>
-															<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
+															<h4>${productlist1[i].pname }</h4>
+															<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
 														</div>
 													</div>
 												</a>
@@ -220,19 +220,19 @@
 							</div>
 						</div>
 						<div class="recom-product">
-							<c:forEach var="i" begin="0" end="${fn:length(productlist) - 1}" step="1">
+							<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="1">
 							<div class="recomList">
-								<a onclick="location.href='/product/productDetail?pID=${productlist[i].pid}'">
+								<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
 									<picture>
-									<img src="/resources/img/3510_originalView_01326139.jpg" alt=""
+									<img src="/resources/img/${list[i].pimage1addr }" alt=""
 										sizes="auto"> </picture>
 									<div>
 										<div class="kidult">
 											<span>키덜트</span>
 										</div>
 										<div class="pdt-cont">
-											<h4>${productlist[i].pname }</h4>
-											<span><fmt:formatNumber pattern="###,###,###" value="${productlist[i].pprice }" />원</span>
+											<h4>${productlist1[i].pname }</h4>
+											<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
 										</div>
 									</div>
 								</a>

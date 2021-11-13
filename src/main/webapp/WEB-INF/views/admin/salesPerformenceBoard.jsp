@@ -17,15 +17,37 @@
 	<%@ include file="include/adminHeader.jsp" %>
 	<div class="sales_content">
 		<hr><h4>실적 관리</h4><hr>
-			<br>
 		<!--그래프-->
 		<div id="chartView" style="width: 800px; height: 300px; margin-inline-start: 10px;"></div>
-	
        <!--게시판-->
     <div class="sales_table">
+     <form action="salesPerformenceBoard">
+      <div class="search_area">
+           <div class="listOrder">
+	          <select class="form-control search-select" style="width:75px;" onchange="handleChange(this)">                            
+		       <option value="10" ${pageVO.amount eq 10 ? 'selected' : '' } >10</option>
+		       <option value="30"${pageVO.amount eq 30 ? 'selected' : '' } >30</option>
+		     </select>&nbsp;개씩 보기
+		    </div>
+		    <div class="searchProduct">
+            <select class="form-control search-select" name="searchType">
+              <option value="salesdate" ${pageVO.cri.searchType eq 'salesdate' ? 'selected' : '' }>판매날짜</option>
+              <option value="salespid" ${pageVO.cri.searchType eq 'salespid' ? 'selected' : '' }>상품코드</option>
+              <option value="salespname" ${pageVO.cri.searchType eq 'salespname' ? 'selected' : '' }>상품명</option>
+             </select>
+             <input type="text" class="form-control search-input" name="searchName" value="${pageVO.cri.searchName }">
+            <!--  <div>
+		      	<input type="date" id="fromDate" name="fromDate" value="${dateVO.fromDate }">~
+		      	<input type="date" id="toDate" name="toDate" value="${dateVO.toDate }">
+		      </div>  -->
+             <button type="submit" class="btn btn-info search-btn" >검색</button>
+             <input type="hidden" name="pageNum" value="1">
+             <input type="hidden" name="amount" value="${pageVO.cri.amount }">
+             </div>
+            </div>
+          </form>
+          <br><br>
 	<table id="category" class="table table-striped table-bordered" style="width:100%">
-       
-       [날짜 범위 지정해서 검색하는 기능_진행예정]
         <thead>
             <tr>
               <th>판매날짜</th>
@@ -49,15 +71,57 @@
         </tbody>
     </table>
     </div>
+    <form action="salesPerformenceBoard" name="pageForm">
+           <div class="text-center">
+             <ul class="pagination justify-content-center">
+             <c:if test="${pageVO.prev }">
+                 <li class="page-item"><a href="#" class="pageLink" data-pagenum="${pageVO.startPage-1}">&laquo;</a></li>
+               </c:if>
+                           
+            <c:forEach var="num" begin="${pageVO.startPage }" end="${pageVO.endPage}" >
+                 <li  class="page-item ${num eq pageVO.pageNum ? 'active' : '' }">
+                   <a href="#" class="pageLink" data-pagenum="${num }">${num }</a></li>
+               </c:forEach>
+
+               <c:if test="${pageVO.next }">
+                <li class="page-item"><a class="pageLink" href="#" data-pagenum="${pageVO.endPage+1}">&raquo;</a></li>
+               </c:if>
+               </ul>
+               <input type = "hidden" name = "pageNum" value = "${pageVO.cri.pageNum }">
+	           <input type = "hidden" name = "amount" value = "${pageVO.cri.amount }">
+	           <input type = "hidden" name = "searchType" value = "${pageVO.cri.searchType }">
+	           <input type = "hidden" name = "searchName" value = "${pageVO.cri.searchName }">
+             </div>
+             </form>
     </div>
     
 </body>
 <script>
+
+function handleChange(data){
+		var searchN = '${pageVO.cri.searchName}'
+		var searchT = '${pageVO.cri.searchType}'
+		location.href = "salesPerformenceBoard?searchName=" + searchN +"&" + "searchType=" + searchT + "&pageNum=1&amount="+ data.value;
+	}
+
+var pagination = document.querySelector(".pagination");
+
+pagination.onclick = function(){
+	event.preventDefault(); 
+	if(event.target.tagName != 'A') return; 
+	
+	var pageNum = event.target.dataset.pagenum;
+	document.pageForm.pageNum.value = pageNum
+	
+	document.pageForm.submit();
+
+}
+
 $(document).ready(function() {
 
 	$.ajax ({
 		url : "api/salesPerformenceBoard",
-		type: "POST",
+		type: "POST",	//Post방식
 		contentType : "application/json; charset=UTF-8",
 		dataType : "json",
 		success : function (datas, status, xhr) { //응답 성공시

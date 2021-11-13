@@ -31,7 +31,8 @@ public class OrderController {
 	@RequestMapping("order")
 	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, PetVO petVO) {
 		
-		ArrayList<OrderVO> list = orderService.orderList(vo);
+		/* ArrayList<OrderVO> list = orderService.orderList(vo); */
+		ArrayList<OrderVO> list = orderService.searchList(vo);
 		model.addAttribute("list", list); 	  
 		model.addAttribute("dateVO", vo);
 		System.out.println(list);

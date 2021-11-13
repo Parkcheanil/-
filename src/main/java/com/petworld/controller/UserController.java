@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,18 +20,13 @@ import com.petworld.service.UserService;
 @Controller
 @RequestMapping("/user")  
 public class UserController {
-
+	
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;
-
-//  메인 페이지 뷰 컨트롤러 (임시로 적어뒀어요 리퀘스트 매핑 변경 가능)
-//	@RequestMapping("/mainpage")
-//	public void mainpage() {
-//	}	
 	
 	// 로그인 뷰 컨트롤러
-	@RequestMapping("/login")
+	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public void login() {
 	}
 	
@@ -40,55 +34,32 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	// 세션 매개변수로 
 	public ModelAndView login(UserVO vo) {
-		UserVO user = userService.login(vo);
-		
-		// 콘솔 테스트용
-		 System.out.println(user);
+
+		UserVO user = userService.login(vo); 	  // 이 부분 다시보기
+		System.out.println("유저 컨트롤러:" + user);  // 콘솔 테스트용
 
 		ModelAndView mv = new ModelAndView();
-		
-		// 나갈 경로
-		mv.setViewName("user/login");
+		mv.setViewName("user/login");  // 나갈 경로
 		
 		if(user == null) { // 아이디, 비번이 틀린 경우
 			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
-		}else {			   // 로그인 성공
-			mv.addObject("user", user); // mv에 user 객체를 저장하고 핸들러에서 처리
-		 	
+		}else { // 로그인 성공
+			mv.addObject("user", user); 
+			// mv에 user 객체를 "user"라는 이름으로 저장하고, mv 객체를 석세스핸들러에 반환해서 처리
 		}
-		
 		return mv;
 	}
-	
-	
-//	// 마이페이지(오더) 뷰 컨트롤러(임시로 적어뒀어요 리퀘스트 매핑 변경 가능)
-//	@RequestMapping("/order")
-//	public String order(/*HttpSession session*/ ) { 
-//		// 반드시!!! 세션값이 있는 지 판별해줘야함. 회원만 쓸 수 있는 페이지!
-//		
-////		if (session.getAttribute("user") == null) {
-////			 // 세션이 null이라면 로그인 화면으로 튕겨낸다
-////			return "redirect:/user/login";
-////		} // ==> 이 코드를 이제 인터셉터에서 처리하게 해줄것. 싹 걷어낼 수 있다
-////		System.out.println("마이페이지 컨트롤러 실행");
-//		
-//		
-//		return "product/order";
-//	}
-//	
 	
 	// 로그아웃 페이지: 세션을 싹 무효화 시키고 홈 화면으로 가면 된다
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		
 		return "redirect:/mainpage";
 	}
 	
 	// 가입 화면
 	@RequestMapping("/join")
 	public void join() {
-		
 	}
 	
 	// 아이디 중복 요청 : 비동기로 제이슨 형태를 띄고 넘어온다!!
@@ -105,7 +76,6 @@ public class UserController {
 		// 넘어오는 것 확인했으니, 서비스 매퍼 시작
 		// 성공 실패에 대한 결과를 result가 받는다
 		int result = userService.idCheck(vo);
-		
 		ResponseEntity<Integer> entity = null;
 		
 		try {
@@ -115,78 +85,51 @@ public class UserController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-type", "application/json");
 			entity = new ResponseEntity<Integer>(result, header, HttpStatus.OK);
-
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return entity;
 	 } // 콜백 함수 석세스로 돌아감
 	
-    // 아이디 찾기 페이지 이동
+    // 아이디 찾기 페이지 이동 (아이디찾기 버튼 -> findid() 함수 실행 -> var url="find_id_form";이 넘어온다 )
 	@RequestMapping(value="find_id_form")
 	public String findIdView() {
-		return "user/findId";
+		return "user/findId"; // 아이디 페이지로 이동!
 	}
 	
     // 아이디 찾기 실행
 	@RequestMapping(value="find_id", method=RequestMethod.POST)
 	public String findIdAction(UserVO vo, Model model) {
 		UserVO user = userService.findId(vo);
-		
+
 		if(user == null) { 
 			model.addAttribute("check", 1);
 		} else { 
 			model.addAttribute("check", 0);
 			model.addAttribute("id", user.getId());
 		}
-		
 		return "user/findId";
 	}
 	
     // 비밀번호 찾기 페이지로 이동
-	@RequestMapping(value="find_password_form")
+	@RequestMapping(value="find_password_form", method=RequestMethod.GET)
 	public String findPasswordView() {
 		return "user/findPassword";
 	}
 	
-    // 비밀번호 찾기 실행
-	@RequestMapping(value="find_password", method=RequestMethod.POST)
-	public String findPasswordAction(UserVO vo, Model model) {
-		UserVO user = userService.findPassword(vo);
-		
+	// 비번 변경: 해당 이메일로 임시 비밀번호가 전달 되었습니다 출력 후 로그인으로 이동 추가할 것
+    // 비번 찾기 실행
+	@RequestMapping(value="find_pw", method=RequestMethod.POST)
+	public String findPwAction(UserVO vo, Model model) {
+		UserVO user = userService.findPw(vo);
+
 		if(user == null) { 
 			model.addAttribute("check", 1);
 		} else { 
 			model.addAttribute("check", 0);
-			model.addAttribute("updateid", user.getId());
+			model.addAttribute("id", user.getId());
 		}
-		
 		return "user/findPassword";
-	}
-	
-    // 비밀번호 바꾸기 실행
-	@RequestMapping(value="update_password", method=RequestMethod.POST)
-	public String updatePasswordAction(@RequestParam(value="updateid", defaultValue="", required=false) String id,
-										UserVO vo) {
-		vo.setId(id);
-		System.out.println(vo);
-		userService.updatePassword(vo);
-		return "user/findPasswordConfirm";
-	}
-	
-    // 비밀번호 바꾸기할 경우 성공 페이지 이동
-	@RequestMapping(value="check_password_view")
-	public String checkPasswordForModify(HttpSession session, Model model) {
-		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-		
-		if(loginUser == null) {
-			return "member/login";
-		} else {
-			return null;
-			// 이거 뭐냐
-			// return "mypage/checkformodify";
-		}
 	}
 	
 	// 회원가입 기능
@@ -201,40 +144,4 @@ public class UserController {
 			return "redirect:/user/join";
 		}
 	}
-	
-	// 환영 페이지
-	@RequestMapping("/join_welcome")
-	public void join_welcome() {
-	}
-	
-	/*
-	@RequestMapping("/search_ID")
-	public void search_ID() {
-	}
-	
-	@RequestMapping("/search_PW")
-	public void search_PW() {
-	}
-	
-	@RequestMapping("/searchID_result")
-	public void searchID_result() {
-	}
-	
-	@RequestMapping("/searchPW_result")
-	public void searchPW_result() {
-	}
-	
-	@RequestMapping("/forget_ID")
-	public String forget_ID() {
-		return "user/search_ID";
-	}
-	
-	@RequestMapping("/forget_PW")
-	public String forget_PW() {
-		return "user/search_PW";
-	}
-	 */
-	
-	
-	
 }

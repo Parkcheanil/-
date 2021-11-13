@@ -1,18 +1,26 @@
-package com.petworld.service;
+package com.petworldAdmin.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.petworld.command.CategoryVO;
 import com.petworld.command.OrderVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.SalesVO;
 import com.petworld.command.UserVO;
-import com.petworld.util.Criteria;
+import com.petworldAdmin.util.Criteria;
 
 public interface AdminService {
+	
+			//메인
+			public ArrayList<UserVO> maintable1();
+			public ArrayList<OrderVO> maintable2();
+			public List<OrderVO> mainchart();
 
-			//고객
-			public ArrayList<UserVO> customerList();
+			//회원
+			public ArrayList<UserVO> customerList(Criteria cri);
+			public UserVO userDetail(String id);
+			public boolean updateUser(UserVO vo);
 			
 			//주문
 			public ArrayList<OrderVO> orderList();
@@ -27,7 +35,11 @@ public interface AdminService {
 			public boolean updateProduct(ProductVO vo);
 			public boolean deleteProduct(int pid);
 			
+			//카테고리
+			public ArrayList<CategoryVO> categoryList();
+			
 			//판매실적
-			public ArrayList<SalesVO> salesList();
+			public ArrayList<SalesVO> salesList(Criteria cri);
+			public int getsalesTotal (Criteria cri);
 			public List<SalesVO> getchart();
 }

@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petworld.command.NoticeVO;
+import com.petworld.command.ProductVO;
 import com.petworld.command.QuestionVO;
 import com.petworld.service.NoticeService;
 import com.petworld.service.ProductService;
 import com.petworld.service.QuestionService;
+import com.petworld.util.MainProductCriteria;
 import com.petworld.util.NoticeCriteria;
 import com.petworld.util.NoticePageVO;
 import com.petworld.util.QuestionCriteria;
@@ -36,9 +38,10 @@ public class MainpageController {
 	
 	
 	@RequestMapping("/mainpage")
-	public void noticeLink(Model nmo, Model qmo,
+	public void noticeLink(Model nmo, Model qmo, Model cmo,
 						   NoticeCriteria ncri,
-						   QuestionCriteria qcri) {
+						   QuestionCriteria qcri,
+						   MainProductCriteria mpcri) {
 		ArrayList<NoticeVO> nlist = noticeService.getList(ncri);
 		nmo.addAttribute("nlist", nlist);
 		
@@ -52,6 +55,10 @@ public class MainpageController {
 		int qtotal = questionService.getTotal(qcri);
 		QuestionPageVO qpageVO = new QuestionPageVO(qcri, qtotal);
 		qmo.addAttribute("qpageVO", qpageVO);
+		
+		ArrayList<ProductVO> clist = productService.getListCri(mpcri);
+		cmo.addAttribute("clist", clist);
+		System.out.println(clist.toString());
 		
 	}
 	

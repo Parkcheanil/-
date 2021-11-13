@@ -1,4 +1,4 @@
-package com.petworldAdmin.Controller;
+package com.petworldAdmin.controller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,38 +16,75 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petworld.command.CategoryVO;
 import com.petworld.command.OrderVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.SalesVO;
 import com.petworld.command.UserVO;
-import com.petworld.service.AdminService;
-import com.petworld.util.APP_CONSTANT;
-import com.petworld.util.Criteria;
-import com.petworld.util.PageVO;
+import com.petworldAdmin.service.AdminService;
+import com.petworldAdmin.util.APP_CONSTANT;
+import com.petworldAdmin.util.Criteria;
+import com.petworldAdmin.util.PageVO;
 
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	
-	//관리자메인
-	@RequestMapping("/adminhome")
-	public void adminhome() {
-		
-	}
-	
 	@Autowired
 	@Qualifier("adminService")
 	private AdminService adminService;
 	
+	//관리자메인
+	@RequestMapping("/adminhome")
+	public void adminhome(Model model) {
+		//조회조건 때문에 service 등에 추가해서 리스트 사용
+		System.out.println("메인페이지조회");
+		ArrayList<UserVO> recUser = adminService.maintable1();
+		model.addAttribute("recUser", recUser);
+		ArrayList<OrderVO> recOrder = adminService.maintable2();
+		model.addAttribute("recOrder", recOrder);
+		
+	}
+	//메인차트
+	@PostMapping("api/adminhome")
+	public Map<String, Object> mainchart() {
+		HashMap<String, Object> recOrder = new HashMap<String, Object>();
+		recOrder.put("currentItems", adminService.mainchart());
+		return recOrder;
+	}
+
+	@RequestMapping("/customer/customer_management")
+	public void customer_management(Model model, Criteria cri) {
+		System.out.println("고객관리 조회");
+		ArrayList<UserVO> list = adminService.customerList(cri);
+		model.addAttribute("list", list);
+		System.out.println(list.toString());
+	}
 	
-	@RequestMapping("/customer_management")
-	public void customer_management(Model model) {
-	System.out.println("고객관리 조회");
+	//수정 페이지
+	@RequestMapping("/customer/customer_management_detail")
+	public void customer_management_detail(@RequestParam("id")String id, 
+			Model model) {
+		UserVO vo = adminService.userDetail(id);
+		model.addAttribute("vo",vo);
+	}
 	
-	ArrayList<UserVO> list = adminService.customerList();
-	model.addAttribute("list", list);
-	System.out.println(list.toString());
+	//회원정보 수정
+	@RequestMapping("updateUser")
+	public String updateUser(UserVO vo, RedirectAttributes RA) {
+		
+		boolean result = adminService.updateUser(vo);
+		
+		System.out.println(result);
+		
+		if(result) {
+			RA.addFlashAttribute("msg", "수정되었습니다.");
+			return "redirect:/admin/customer/customer_management?id=";
+		}else {
+			RA.addFlashAttribute("msg", "수정에 실패하였습니다.");
+			return "redirect:/admin/customer/customer_management_detail?id=" + vo.getId();
+			}
 	}
 	
 	//주문
@@ -89,7 +126,6 @@ public class AdminController {
 	@RequestMapping("/productManagement/productManagementBoard")
 	public void productManagement(Model model, Criteria cri) {
 			System.out.println("상품조회");
-			System.out.println(cri.toString());
 			ArrayList<ProductVO> list = adminService.productList(cri);
 			model.addAttribute("list", list);
 			
@@ -97,7 +133,6 @@ public class AdminController {
 			int total = adminService.getTotal(cri);
 			PageVO pageVO = new PageVO(cri, total);
 			model.addAttribute("pageVO", pageVO);
-			System.out.println(pageVO.toString());
 
 	}
 	@RequestMapping("/productManagement/productRegist")
@@ -108,33 +143,26 @@ public class AdminController {
 	@RequestMapping("/productManagement/pinsertForm")
 	public String pinsertForm(ProductVO vo) {
 		try {
+
 				System.out.println(vo.toString());
-				String fileRealName1 = vo.getPimage1().getOriginalFilename();
-				String fileRealName2 = vo.getPimage2().getOriginalFilename();
-				Long size1 = vo.getPimage1().getSize();
-				Long size2 = vo.getPimage2().getSize();
+				String fileRealName = vo.getPimage().getOriginalFilename();
+				Long size = vo.getPimage().getSize();
 				
-				String extention1 = fileRealName1.substring(fileRealName1.lastIndexOf("."), fileRealName1.length());
-				String extention2 = fileRealName2.substring(fileRealName2.lastIndexOf("."), fileRealName2.length());
+				String extention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 				
-				UUID uuids1 = UUID.randomUUID();
-				UUID uuids2 = UUID.randomUUID();
+				UUID uuids = UUID.randomUUID();
 				
-				String saveFileName1 = uuids1.toString().replaceAll("-", "") + extention1;
-				String saveFileName2 = uuids2.toString().replaceAll("-", "") + extention2;
+				String saveFileName = uuids.toString().replaceAll("-", "") + extention;
 				
-				File dir1 = new File(APP_CONSTANT.uploadPath + saveFileName1); 
-				File dir2 = new File(APP_CONSTANT.uploadPath + saveFileName2); 
+				File dir = new File(APP_CONSTANT.uploadPath + saveFileName); 
 				
-				vo.getPimage1().transferTo(dir1);
-				vo.getPimage2().transferTo(dir2);
+				vo.getPimage().transferTo(dir);
 				
-				System.out.println(fileRealName1 + "/"+ size1 + "/"+ saveFileName1);
-				System.out.println(fileRealName2 + "/"+ size2 + "/"+ saveFileName2);
+				System.out.println(fileRealName + "/"+ size + "/"+ saveFileName);
 				
-				vo.setPimage1addr(dir1.getPath());
-				vo.setPimage2addr(dir2.getPath());
+				vo.setPimageaddr(dir.getName());
 				adminService.pinsert(vo);
+
 				
 		}catch (Exception e) {
 			System.out.println("업로드중에러");
@@ -165,7 +193,7 @@ public class AdminController {
 		}
 	}
 	
-	//?긽?뭹 ?궘?젣 湲곕뒫
+	//상품삭제
 	@RequestMapping("/productManagement/deleteProduct")
 	public String deleteProduct(@RequestParam("pid") int pid, RedirectAttributes RA) {
 		boolean result = adminService.deleteProduct(pid);
@@ -176,18 +204,32 @@ public class AdminController {
 		}else {
 			RA.addAttribute("msg_d", "삭제실패");
 		}
-		return "redirect:/productManagement/productManagementBoard";
+		return "redirect:/admin/productManagement/productManagementBoard";
 		
 	}
-	
-	
+	//카테고리
+	@RequestMapping("/productManagement/categoryManagementBoard")
+	public void categoryBoard(Model model) {
+		System.out.println("카테고리조회");
+		ArrayList<CategoryVO> list = adminService.categoryList();
+		model.addAttribute("list", list);
+	}
 	
 	//판매실적 페이징 & 표 조회
 	@RequestMapping("/salesPerformenceBoard")
-	public void salesPerformenceBoard(Model model) {
+	public void salesPerformenceBoard(Model model, Criteria cri) {
 		System.out.println("실적조회");
-		ArrayList<SalesVO> list = adminService.salesList();
+		ArrayList<SalesVO> list = adminService.salesList(cri);
 		model.addAttribute("list", list);
+		
+		
+		//페이지이션
+		int total = adminService.getsalesTotal(cri);
+		PageVO pageVO = new PageVO(cri, total);
+		System.out.println(total);
+		System.out.println(pageVO);
+		model.addAttribute("pageVO", pageVO);
+		
 	}
 	
 	//판매실적 차트

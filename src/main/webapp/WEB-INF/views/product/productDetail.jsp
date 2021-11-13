@@ -15,7 +15,7 @@
                     <div class="wp_info">
                         <div class="info_img">
                             <div class="img">
-                                <img src="${pageContext.request.contextPath }/resources/img/${vo.pimage2}" alt="${vo.pname }">
+                                <img src="/resources/img/${vo.pimage2addr }" alt="${vo.pname }">
                             </div>
                         </div>
                         <div class="info_purchase">
@@ -53,13 +53,16 @@
                                     <li class="li_info3"><strong>30,000</strong> 원 이상 구매 시 무료배송</li>
                                 </ul>
                             </div>
-                            <form action="purchase" method="post">
+                            <form action="/pay/payment" method="post">
+                            <input type = "hidden" name="price" value="${vo.pprice }">
+                            <input type="hidden" name="pname" value="${vo.pname }">
+                            <input type="hidden" id="pid" value="${vo.pid}" />
                             <div class="item_count">
                                 <div class="count_plus_minus">
                                     <div>수량</div>
                                     <div class="button_push">
                                         <button class="button_minus" type="button" id="minus"><span> - </span></button>
-                                        <input class="item_amount" id="result" type="number" min="1" max="${vo.pstock }" value="1" readonly="readonly"/>
+                                        <input class="item_amount" name="result" id="result" type="number" min="1" max="${vo.pstock }" value="1" readonly="readonly"/>
                                         <button class="button_plus" type="button" id="plus"><span> + </span></button>
                                     </div>
                                 </div>
@@ -83,9 +86,6 @@
                                 </div>
                             </div>
                             </form>
-                             <form role="form" method="post">
-									<input type="hidden" id="pid" value="${vo.pid}" />
-							</form>
                         </div>
                     </div>
                 </div>

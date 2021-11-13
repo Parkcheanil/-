@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -116,10 +118,11 @@ public class PetController {
 
 	//펫 상품 추천, 펫 정보
 	@RequestMapping({"/petList", "/petInfo"})
-	public void petList(Model model, Model md) {
+	public void petList(Model model) {
 		
 		model.addAttribute("list", petService.getList());
-		md.addAttribute("productlist", productService.getList());
+		model.addAttribute("productlist1", productService.getCatList());
+		model.addAttribute("productlist2", productService.getDogList());
 	}
 	
 	//이미지 요청

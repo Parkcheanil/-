@@ -5,18 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 <%@ include file="../include/adminHeader.jsp" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css">
-	<div class="product_udtable">
+</head>
+<body>
+<div class="product_udtable">
 		<hr><h4>상품정보</h4><hr>
 		<form action = "updateProduct" method = "post">
+		
             <label>상품ID</label>
             <input class="form-control" name='pid' value = "${vo.pid }" readonly>
- 
-            <label>카테고리번호</label>
-            <input class="form-control" name='pcnum' value = "${vo.pcnum }">
 
             <label>상품명</label>
             <input class="form-control" name='pname' value = "${vo.pname }">
@@ -32,15 +30,13 @@
             <textarea class="form-control" rows="10" name='pdetail'>${vo.pdetail}</textarea>
 			
 			<label>상품썸네일</label>
-            <input class="form-control" name='pimage1addr' value = "${vo.pimage1addr}">
-            <label>상품상세이미지</label>
-            <input class="form-control" name='pimage2addr' value = "${vo.pimage2addr}">
-			
+            <input class="form-control" name='pimageaddr' value = "${vo.pimageaddr}">
 			<br>
-            <button type="button" onclick="location.href='productManagementBoard'">목록</button>    
-            <button type="submit">변경</button>
-            <button type="button" onclick="location.href='deleteProduct?pid=${vo.pid }'">삭제</button>
-                   
+			<div class="text-end">
+            <button type="button" class="btn_primary" onclick="location.href='productManagementBoard'">목록</button>    
+            <button type="submit" class="btn_primary" >변경</button>
+            <button type="button" class="btn_delete" onclick="location.href='deleteProduct?pid=${vo.pid }'">삭제</button>
+            </div>
          </form>
 	</div>
 

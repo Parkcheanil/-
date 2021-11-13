@@ -3,7 +3,6 @@
 .html, body{
 	position: relative;
 	background-color: rgb(244, 247, 250);
-    width: 1200px;
 }
 .text-end {
 	text-align: right;
@@ -57,6 +56,7 @@ img {
 }
 /*상단 nav Bar*/
 .Bar {
+	background-color: rgb(244, 247, 250);
 	border-bottom: 3px solid rgb(7, 42, 75);
     text-align: right;
     height: 50px;
@@ -71,20 +71,50 @@ img {
 }
 /*=======컨텐츠 영역css=======*/
 .content {
-    width : 1000px;
+    width : 1300px;
     padding: 0px 0px 0px 170px;
     color: rgb(7, 42, 75);
 }
-
-table.table-order,table.table-item{
+.table-item{
+	text-align: center;
+    display: inline-block;
+    background-color: white;
+    width: 500px;
+    height: 250px;
+    border: 1px solid #e4e6f6;
+    padding: 10px 10px 10px 30px;
+    margin: 30px 20px 0px 10px;
+    border-collapse: collapse;
+}
+.table-order{
     text-align: center;
     display: inline-block;
     background-color: white;
-    width: 400px;
+    width: 500px;
     height: 250px;
     border: 1px solid #e4e6f6;
     padding: 10px;
     margin: 30px 20px 0px 10px;
+    border-collapse: collapse;
+}
+table th, td{
+	border-bottom: 1px solid #e4e6f6;
+	padding: 10px;
+}
+.plus{
+	text-decoration: none;
+	pading: 10px 0px;
+	text-align: right;
+}
+.fas{
+	color: rgb(7, 42, 75);
+}
+.homeGraph a{
+	text-align: right;
+}
+.title{
+	padding: 0px;
+	text-align: left;
 }
 /* 그래프 관련 css */
 .homeGraph {
@@ -102,28 +132,54 @@ table.table-order,table.table-item{
 .text{
     float: right;
 }
-
-/*=========상품관리 -> 상품============*/
-.item_table, .product_detailtable, .product_intable, .product_udtable, .category_intable{
-	margin-top: 20px;
-	margin-left: 160px;
+/*===================*/
+.conntent_area{
 	background-color: white;
 	padding: 20px;
+	margin : 20px 20px 20px 160px;
+	height: auto;
 }
-.item_table h4, .product_detailtable h4, .product_intable h4, .product_udtable h4{
+.conntent_area h4 {
 	margin: 10px;
     text-align: center;
 }
-.item_table hr, .product_detailtable hr, .product_intable hr, .product_udtable hr{
+..conntent_area hr {
 	width: 100px;
     margin: auto;
 }
-.search-area{
-   border: 5px solid red;
-   float: right;
-   text-align: right;
+.searchCustomer, .searchOrder{
+	float: right;
 }
+.searchCustomer input, .searchOrder input{
+	height: 34px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+/*=========상품관리 -> 상품============*/
+.item_table, .product_detailtable, .product_udtable, .product_intable, .category_intable{
+	background-color: white;
+	padding: 20px;
+	margin : 20px 20px 20px 160px;
+	height: auto;
+	font-size : 14px;
+}
+.item_table h4, .product_detailtable h4, .product_intable h4, .product_udtable h4, .category_intable h4{
+	margin: 10px;
+    text-align: center;
+}
+.item_table hr, .product_detailtable hr, .product_intable hr, .product_udtable hr, .category_intable hr{
+	width: 100px;
+    margin: auto;
+}
+.product_intable table{
+	width: 100%;
+}
+.productRe {
+	margin : 0px auto;
+}
+
 .search_area select{
+   height: 34px;
    vertical-align: middle;
    width: 120px;
    display : inline;
@@ -132,52 +188,68 @@ table.table-order,table.table-item{
    vertical-align: middle;
    width: 200px;
    display : inline;
+   height: 34px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
 }
 .search_area button{
+	height: 34px;
    display : inline;
    background-color: rgb(7, 42, 75);
    border-color:rgb(7, 42, 75);
+}
+.listOrder{
+	float: left;
+}
+.searchProduct{
+	float: right;
 }
 /*=======버튼 디자인======*/
 .btn_primary{
 	padding: 0.375rem 0.75rem;
 	border: 1px solid #072a4b;
+	color: white;
+	background-color: rgb(7, 42, 75);
+	border-radius: 4px;
+}
+.btn_delete{
+	padding: 0.375rem 0.75rem;
+	border: 1px solid #072a4b;
 	color: #072a4b;
 	background-color: transparent;
-	border-radius: 0.25rem;
+	border-radius: 4px;
 }
-/*========모달========*/
-.modal { 
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: none;
-	background-color: rgba(0, 0, 0, 0.4);
-	}
-.modal.show {
-	display: block; }
-.modal_body { 
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 400px;
-	height: 600px;
-	padding: 40px;
-	text-align: center;
-	background-color: rgb(255, 255, 255);
-	border-radius: 10px;
-	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-	transform: translateX(-50%) translateY(-50%);
-	}
+.page-item.active .pageLink {
+    z-index: 3;
+    color: #fff;
+    background-color: rgb(7, 42, 75);
+    border-color: rgb(7, 42, 75);
+}
+.page-item:last-child .pageLink {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+.page-item:first-child .pageLink {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.pageLink {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: rgb(7, 42, 75);
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
 /*==========실적 관리 게시판 디자인==========*/
 .sales_content {
-	width : 900px;
     height: auto;
-    margin-left: 150px;
-    color: rgb(7, 42, 75);
     padding: 20px;
+	background-color: white;
+	margin : 20px 20px 20px 160px;
 }
 
 /*실적 게시판 제목*/
@@ -202,22 +274,22 @@ table.table-order,table.table-item{
 }
 /*실적 게시판 리스트*/
 .sales_table {
-	
+	font-size: 14px;
 }
-
 /*=======카테고리 게시판======*/
-.category_table, .category_udtable {
-	margin-top: 20px;
-	margin-left: 160px;
+.category_table {
+	margin : 10px;
 	background-color: white;
 	padding: 20px;
-	
 }
-.category_table h4 {
+.category_table h4{
 	margin: 10px;
     text-align: center;
 }
-.category_table hr {
+.category_table hr{
 	width: 100px;
     margin: auto;
+}
+.categoryList {
+	margin : 10px auto;
 }

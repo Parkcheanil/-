@@ -13,13 +13,17 @@ public interface ProductService {
 
 	public ProductVO getContent(int pID);
 	public ArrayList<ProductVO> getListCri(MainProductCriteria cri);
-	public ArrayList<ProductVO> getList();
+	public ArrayList<ProductVO> getDogList();
+	public ArrayList<ProductVO> getCatList();
+	/*
+	 * public ArrayList<ProductVO> getList(int cCode, int cRef); public
+	 * ArrayList<ProductVO> getList2(int cCode);
+	 */
+	
 	public List<Map<String, Object>> getCartList();
-	public ArrayList<PayMentVO> getPaymentList();
 
 	/* public int insertCart(CartVO cart); */
 	public int updateCart(CartVO cart);
-	public void insertPurchase(PayMentVO vo);
 	public void cartDelete(int cno);
 	public boolean cartMinus(int cno);
 	public boolean cartPlus(int cno);

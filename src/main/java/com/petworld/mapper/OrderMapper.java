@@ -7,6 +7,7 @@ import com.petworld.util.DateVO;
 
 public interface OrderMapper {
 
-	public ArrayList<OrderVO> orderList(DateVO vo);
+	/* public ArrayList<OrderVO> orderList(DateVO vo); */
+	public ArrayList<OrderVO> searchList(DateVO vo);
 	/* public OrderVO searchDate(OrderVO vo); */
 }
