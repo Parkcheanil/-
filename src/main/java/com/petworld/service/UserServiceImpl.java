@@ -1,10 +1,7 @@
 package com.petworld.service;
-import java.io.PrintWriter;
-import java.util.Base64;
-import java.util.Base64.Encoder;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.petworld.command.UserVO;
 import com.petworld.mapper.UserMapper;
 

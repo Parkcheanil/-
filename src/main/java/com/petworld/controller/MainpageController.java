@@ -58,7 +58,6 @@ public class MainpageController {
 		
 		ArrayList<ProductVO> clist = productService.getListCri(mpcri);
 		cmo.addAttribute("clist", clist);
-		System.out.println(clist.toString());
 		
 	}
 	

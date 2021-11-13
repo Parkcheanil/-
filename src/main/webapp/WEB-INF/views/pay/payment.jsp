@@ -410,6 +410,7 @@
 		        			        	
 		          if(result == true){
 					 console.log("추가성공");
+					 alert("결제가 완료 되었습니다.");
 					 location.href = '/product/order';
 		          }else{
 		             console.log("Insert Fail!!!");

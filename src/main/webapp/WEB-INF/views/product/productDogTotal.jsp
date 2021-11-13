@@ -170,10 +170,6 @@
                 </div>
             </div>
         </div>
-    <!-- 인터크립터 속도 -->
-    <script>
-        $("#myCarousel").carousel({interval: 3000});
-    </script>
     <script>
         //메뉴클릭옵션
         function clickHandle() {

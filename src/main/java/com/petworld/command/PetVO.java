@@ -6,8 +6,6 @@
 
 package com.petworld.command;
 
-import java.util.ArrayList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,5 +39,4 @@ public class PetVO {
 	private String filename;
 	private String pkind;
 	private int pid;
-	private String pimage1addr;
 }

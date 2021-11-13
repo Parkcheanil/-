@@ -430,3 +430,26 @@ a:hover {text-decoration: none;}
     padding: 10px;
     height: 450px;
 }
+/* 추천상품 option 버튼 */
+.form-control {
+	display: inline-block;
+}
+/* Top 버튼 */
+a#move_top_btn {
+	position: fixed;
+	right: 6%;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.29);
+}
+a#move_top_btn>i {
+    font-size: 2.8rem;
+    margin: 10px 0 0 12px;
+    color: black;
+}

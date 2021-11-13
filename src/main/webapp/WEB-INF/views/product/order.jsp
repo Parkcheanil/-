@@ -201,8 +201,6 @@
 	                                                  <a href="상품 상세 페이지" class="reply_sell">재구매</a>
 	                                              </div>
 	                                          </div>
-	                                    
-	                                          
 	                                          <c:if test="${list[i].delivery_status == '배송준비중' }">
 	                                          <div class="button_item" style="display: none;">
 	                                              <div class="area_layer">
@@ -242,10 +240,6 @@
             </div>
         </div>
     </div>
-    <!-- 인터크립터 속도 -->
-    <script>
-        $("#myCarousel").carousel({interval: 3000});
-    </script>
 <%@ include file="../incloud/footer.jsp" %>
     <!-- 스크립트 구간 -->
     <script>
@@ -281,13 +275,5 @@
 	        });
     	});
     </script>
-    <!-- <script>
-    	$("#searchDate").click(function(){
-    		
-    		
-    		
-    		
-    	})
-    </script> -->
 </body>
 </html>

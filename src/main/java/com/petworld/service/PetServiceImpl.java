@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petworld.command.PetVO;
-import com.petworld.command.ProductVO;
 import com.petworld.mapper.PetMapper;
 
 

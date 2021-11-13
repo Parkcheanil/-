@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petworld.command.OrderVO;
-import com.petworld.command.PetVO;
 import com.petworld.service.OrderService;
 import com.petworld.service.PetService;
 import com.petworld.util.DateVO;
@@ -30,16 +29,11 @@ public class OrderController {
 
 	@RequestMapping("order")
 	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo) {
-		System.out.println(vo.toString());
+
 		ArrayList<OrderVO> list = orderService.searchList(vo);
 		model.addAttribute("list", list); 	  
 		model.addAttribute("dateVO", vo);
 		model.addAttribute("petVO", petService.getList());
-		System.out.println(list);
-		
-		String fromDate = httpServletRequest.getParameter("fromDate"); 
-		String toDate = httpServletRequest.getParameter("toDate");
-	
 	}
 	
 	/*
@@ -54,8 +48,8 @@ public class OrderController {
 	 * System.out.println(fromDate); System.out.println(toDate); }
 	 */
 	
-	@RequestMapping("/dateSearch")
-	public void dateSearch(OrderVO vo) {
-		System.out.println(vo.toString());
-	}
+//	@RequestMapping("/dateSearch")
+//	public void dateSearch(OrderVO vo) {
+//		System.out.println(vo.toString());
+//	}
 }

@@ -3,7 +3,6 @@ package com.petworld.mapper;
 import java.util.ArrayList;
 
 import com.petworld.command.PetVO;
-import com.petworld.command.ProductVO;
 
 
 public interface PetMapper {

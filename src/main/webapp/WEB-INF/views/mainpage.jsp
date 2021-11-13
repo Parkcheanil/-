@@ -16,7 +16,7 @@
 			<c:when test="${i != 5 }">
 			    <div class="store_box">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}" >
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="/resources/img/${clist[fn:length(clist) - i].pimageaddr}" >
 			      </div>
 			      <div class="item_info">
 			        <div class="info1"> ${clist[fn:length(clist) - i].pname }</div>
@@ -27,7 +27,7 @@
 			<c:when test="${i == 5 }">
 				<div class="store_box store_last">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}">
+			        <img onclick="javascript:location.href='product/productDetail?pID=${clist[fn:length(clist) - i].pid}'" src="/resources/img/${clist[fn:length(clist) - i].pimageaddr}">
 			      </div>
 			      <div class="item_info">
 			        <div class="info1">${clist[fn:length(clist) - i].pname }</div>
@@ -49,7 +49,7 @@
 			<c:when test="${i != 5 }">
 			    <div class="store_box">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pid=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}" >
+			        <img onclick="javascript:location.href='product/productDetail?pid=${clist[fn:length(clist) - i].pid}'" src="/resources/img/${clist[fn:length(clist) - i].pimageaddr}" >
 			      </div>
 			      <div class="item_info">
 			        <div class="info1"> ${clist[fn:length(clist) - i].pname }</div>
@@ -60,7 +60,7 @@
 			<c:when test="${i == 5 }">
 				<div class="store_box store_last">
 			      <div class="store_img">
-			        <img onclick="javascript:location.href='product/productDetail?pid=${clist[fn:length(clist) - i].pid}'" src="${clist[fn:length(clist) - i].pimageaddr}">
+			        <img onclick="javascript:location.href='product/productDetail?pid=${clist[fn:length(clist) - i].pid}'" src="/resources/img/${clist[fn:length(clist) - i].pimageaddr}">
 			      </div>
 			      <div class="item_info">
 			        <div class="info1">${clist[fn:length(clist) - i].pname }</div>

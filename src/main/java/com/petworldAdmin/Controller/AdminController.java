@@ -147,7 +147,6 @@ public class AdminController {
 				System.out.println(vo.toString());
 				String fileRealName = vo.getPimage().getOriginalFilename();
 				Long size = vo.getPimage().getSize();
-				
 				String extention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 				
 				UUID uuids = UUID.randomUUID();
@@ -156,13 +155,18 @@ public class AdminController {
 				
 				File dir = new File(APP_CONSTANT.uploadPath + saveFileName); 
 				
+				System.out.println(fileRealName);
+				System.out.println(saveFileName);
+				System.out.println(dir);
+				
 				vo.getPimage().transferTo(dir);
 				
 				System.out.println(fileRealName + "/"+ size + "/"+ saveFileName);
 				
 				vo.setPimageaddr(dir.getName());
+				
 				adminService.pinsert(vo);
-
+				
 				
 		}catch (Exception e) {
 			System.out.println("업로드중에러");

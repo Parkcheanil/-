@@ -16,7 +16,7 @@ public class ProductVO {
 	private String petage;
 	private int pprice;
 	private int pstock;
-	private String Pimageaddr;
+	private String pimageaddr;
 	private String pdetail;
 	
 	private int prate;
@@ -26,8 +26,8 @@ public class ProductVO {
 	
 	//이미지 저장용
 	//11.05_승희 추가
-	private MultipartFile pimage; //삭제 11/13
-	private MultipartFile pimage2;
+	private MultipartFile pimage; //삭제 11.13
+	private MultipartFile pimage2; 
 	private String pimage2addr;
 	
 	/*

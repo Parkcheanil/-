@@ -140,6 +140,12 @@
 							</div>
 							<div class="search-wrap" >
 	                        <select class="form-control search-select" name="pAge" style="width:130px">                            
+	                        	<option value="d" >강아지 용</option>
+	                        	<option value="7up" >7세 이상 상품</option>
+	                        	<option value="7down"  >7세 이하 상품</option>
+	                        </select>
+	                        <select class="form-control search-select" name="pAge" style="width:130px">                            
+	                        	<option value="c" >고양이 용</option>
 	                        	<option value="7up" >7세 이상 상품</option>
 	                        	<option value="7down"  >7세 이하 상품</option>
 	                        </select>
@@ -153,7 +159,7 @@
 												<div class="individually" id="slideFirst">
 													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
 														<picture>
-														<img src="/resources/img/${list[i].pimage1addr }"
+														<img src="/resources/img/${productlist1[i].pimageaddr }"
 															alt="" sizes="auto"> </picture>
 														<div>
 															<div class="kidult">
@@ -167,25 +173,61 @@
 													</a>
 												</div>
 											</c:forEach>
+											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="2">
+												<div class="individually" id="slideFirst">
+													<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
+														<picture>
+														<img src="/resources/img/${productlist2[i].pimageaddr }"
+															alt="" sizes="auto"> </picture>
+														<div>
+															<div class="kidult">
+																<span>키덜트</span>
+															</div>
+															<div class="pdt-cont">
+																<h4>${productlist2[i].pname }</h4>
+																<span><fmt:formatNumber pattern="###,###,###" value="${productlist2[i].pprice }" />원</span>
+															</div>
+														</div>
+													</a>
+												</div>
+											</c:forEach>
 										</div>
 										<div class="item">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="2">
+												<div class="individually" id="slideFirst">
+													<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
+														<picture>
+														<img src="/resources/img/${productlist2[i].pimageaddr }"
+															alt="" sizes="auto"> </picture>
+														<div>
+															<div class="kidult">
+																<span>키덜트</span>
+															</div>
+															<div class="pdt-cont">
+																<h4>${productlist2[i].pname }</h4>
+																<span><fmt:formatNumber pattern="###,###,###" value="${productlist2[i].pprice }" />원</span>
+															</div>
+														</div>
+													</a>
+												</div>
+											</c:forEach>
 											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="2">
-											<div class="individually" id="slideFirst">
-												<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
-													<picture>
-													<img src="/resources/img/${list[i].pimage1addr }"
-														alt="" sizes="auto"> </picture>
-													<div>
-														<div class="kidult">
-															<span>키덜트</span>
+												<div class="individually" id="slideFirst">
+													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
+														<picture>
+														<img src="/resources/img/${productlist1[i].pimageaddr }"
+															alt="" sizes="auto"> </picture>
+														<div>
+															<div class="kidult">
+																<span>키덜트</span>
+															</div>
+															<div class="pdt-cont">
+																<h4>${productlist1[i].pname }</h4>
+																<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
+															</div>
 														</div>
-														<div class="pdt-cont">
-															<h4>${productlist1[i].pname }</h4>
-															<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
-														</div>
-													</div>
-												</a>
-											</div>
+													</a>
+												</div>
 											</c:forEach>
 										</div>
 									</div>
@@ -219,24 +261,44 @@
 								<label for="">정렬</label>
 							</div>
 						</div>
+						<a id="move_top_btn" href="#">
+						<i class="fas fa-chevron-up"></i></a>
 						<div class="recom-product">
 							<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="1">
-							<div class="recomList">
-								<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
-									<picture>
-									<img src="/resources/img/${list[i].pimage1addr }" alt=""
-										sizes="auto"> </picture>
-									<div>
-										<div class="kidult">
-											<span>키덜트</span>
+								<div class="recomList">
+									<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
+										<picture>
+										<img src="/resources/img/${productlist1[i].pimageaddr }" alt=""
+											sizes="auto"> </picture>
+										<div>
+											<div class="kidult">
+												<span>키덜트</span>
+											</div>
+											<div class="pdt-cont">
+												<h4>${productlist1[i].pname }</h4>
+												<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
+											</div>
 										</div>
-										<div class="pdt-cont">
-											<h4>${productlist1[i].pname }</h4>
-											<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
+									</a>
+								</div>
+							</c:forEach>
+							<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="1">
+								<div class="recomList">
+									<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
+										<picture>
+										<img src="/resources/img/${productlist2[i].pimageaddr }" alt=""
+											sizes="auto"> </picture>
+										<div>
+											<div class="kidult">
+												<span>키덜트</span>
+											</div>
+											<div class="pdt-cont">
+												<h4>${productlist2[i].pname }</h4>
+												<span><fmt:formatNumber pattern="###,###,###" value="${productlist2[i].pprice }" />원</span>
+											</div>
 										</div>
-									</div>
-								</a>
-							</div>
+									</a>
+								</div>
 							</c:forEach>
 						</div>
 					</main>
@@ -273,4 +335,21 @@
 			$(".pet-addlist:gt(1)").css({"display" : "none"});
 		});
 	</script>
-	
+	<script>
+	    $(function() {
+	        $(window).scroll(function() {
+	            if ($(this).scrollTop() > 400) {
+	                $('#move_top_btn').fadeIn();
+	            } else {
+	                $('#move_top_btn').fadeOut();
+	            }
+	        });
+	        
+	        $("#move_top_btn").click(function() {
+	            $('html, body').animate({
+	                scrollTop : 0
+	            }, 400);
+	            return false;
+	        });
+	    });
+	</script>

@@ -37,7 +37,7 @@
                     <!-- ID -->
                         <label for="id">아이디 (이메일)</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="id" id="id" placeholder="이메일 형식으로 입력하세요" onchange="verifyEmail()">
+                            <input type="text" class="form-control" name="id" id="id" placeholder="이메일 형식으로 입력하세요"> <!-- onchange="verifyEmail()" -->
                             <span id="emailCk_msg"></span>
                             
                             <div class="input-group-addon">
@@ -110,7 +110,7 @@
                     
                     <!-- 기본주소 -->
                     <div class="form-group">
-                            <input type="text" class="form-control" id="addrBasic" name="addrBasic" placeholder="기본주소">
+                            <input type="text" class="form-control" id="addBasic" name="addBasic" placeholder="기본주소">
                     </div>
 
                     <!-- 상세주소 -->
@@ -125,12 +125,13 @@
                     <!-- 나눠서 디비에도 나눠서 받기 : 디비에 추가해서 다시 테이블 만들고 vo에도 추가, sql에도 추가 -->
                     <div class="form-group" id="birth" >
                         <label for="yy">생년월일</label>
+                        
                         <div id="input-group">
                             <input type="number" class="form-control" id="yy" name="yy" 
                             	   placeholder="년(4자)" min="1921" max="2021" oninput="handleOnInput(this,4)">
                             <span id="msgYY"></span>
                             
-                            <select id="mm" name="mm" class="sel"> <!-- 이거 sel없애도 되는지 확인  -->
+                            <select id="mm" name="mm" class="sel"> 
                                 <option>월</option>
                                 <option value="01">1</option>
                                 <option value="02">2</option>
@@ -147,9 +148,8 @@
                             </select>
                             <span id="msgMM"></span>
 
-							<!-- class=int 없앨 준비 -->
                             <input type="number" id="dd" name="dd" class="int" placeholder="일" oninput="handleOnInput(this,2)">
-                            <span id="msgDD"></span>			<!-- 생년월일을 입력해주세요 -->
+                            <span id="msgDD"></span>
                         </div>
                     </div>
 
@@ -176,7 +176,7 @@
     	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno, emdNo){
 			// console.log(roadAddrPart1, addrDetail, zipNo);
 			document.joinForm.addZipNum.value = zipNo;			// addrZipNum->addZipNum로 바꿈
-			document.joinForm.addrBasic.value = roadAddrPart1; 
+			document.joinForm.addBasic.value = roadAddrPart1; 
 			document.joinForm.addrDetail.value = addrDetail;
 		}
     </script>
@@ -184,13 +184,28 @@
 	<!-- 아이디 중복 검사 -->
     <script>
 	    $("#userIDcheck").click(function(){
-			
-			// 값이 공백이면 안 되니까 value를 얻어온다 
+	    	// var emailVal = $("#id").val(); 
+	    	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
 			var id = $("#id").val();
-			if(id.length < 4){
+			
+			if (id.match(regExp) == null) { 
+				$("#emailCk_msg").html("잘못된 이메일 형식입니다");
+				return;
+			}else if (id.match(regExp) != null) {
+				$("#emailCk_msg").html("올바른 이메일 형식입니다");
+		//	}else if(id.length < 4){
+			
+			} else if (id.length < 4){
 				alert("아이디는 네 글자 이상입니다");
 				return;
 			}
+	    	
+			// 값이 공백이면 안 되니까 value를 얻어온다 
+			//var id = $("#id").val();
+		//	if(id.length < 4){
+			//	alert("아이디는 네 글자 이상입니다");
+			//	return;
+		//	}
 	
 			$.ajax({
 				type: "post", 	// 보내는 형식
@@ -205,7 +220,6 @@
 				// 하지만 컴퓨터는 json 형태를 컴퓨터가 아는 문자열로 바꿔 보내야 한다
 				// => JSON.stringify라는 걸 사용한다 ({ "": })
 				
-				
 				data : JSON.stringify({"id": id}),		
 				success: function(data){
 					
@@ -217,7 +231,6 @@
 						alert("중복된 아이디입니다");
 					} 
 				},  // success 종료
-					
 				error: function(){
 					alert("서버측 에러가 발생했습니다");
 				}
@@ -232,29 +245,20 @@
 	    el.value = el.value.substr(0, maxlength);
 	  }
 	};
+	</script>
 	
-	// 이메일 정규식 검증 함수
-	function verifyEmail (){ 
-		// 이메일 검증 스크립트 작성
-		var emailVal = $("#id").val(); 
-		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; 
-		// 검증에 사용할 정규식 변수 regExp에 저장
-		if (emailVal.match(regExp) == null) { 
-			$("#emailCk_msg").html("잘못된 이메일 형식입니다");
-		}else{
-			$("#emailCk_msg").html("올바른 이메일 형식입니다");
-		}
-	};
-    </script>
     
     <script>
     	// 회원가입 유효성 검증
     	$("#joinBtn").click(function() {
-    		/*필수값 유효성 검사*/
-    		if( !$("#id").attr("readonly")){
+    		
+    		var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    		var phone = $("#phone").val();
+    		
+    		if(!$("#id").attr("readonly")){
     			alert("아이디 중복 체크는 필수입니다");
     			return;
-    			
+    		
     		}else if($("#pw").val()==''){
     			$("#msgPw").html("비밀번호는 필수입니다");
     			return;
@@ -271,6 +275,9 @@
     			$("#msgPhone1").html("통신사 선택은 필수입니다");
     			return;
     			
+    		}else if(phone.match(regPhone) == null){
+    			$("#msgPhone2").html("휴대폰 번호가 올바른 형식이 아닙니다");
+    			return;
     		}else if($("#phone").val().length==''){
     			$("#msgPhone2").html("전화번호 입력은 필수입니다");
     			return;

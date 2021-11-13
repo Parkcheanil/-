@@ -1,6 +1,4 @@
 package com.petworld.service;
-import javax.servlet.http.HttpServletResponse;
-
 import com.petworld.command.UserVO;
 
 public interface UserService {

@@ -1,13 +1,10 @@
 package com.petworld.util.interceptor;
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.petworld.command.NoticeVO;
 import com.petworld.command.UserVO;
 
 // 게시글 수정, 삭제에 대한 핸들러

@@ -556,7 +556,6 @@
 					url : "cart",
 					data : data,
 					success : function(result){ //로그인 한 사용자 확인
-						console.log(result);
 						if(result == 1) {
 							confirm("카트에 물품을 담는 데 성공하였습니다.");
 							$("#result").val("1");
@@ -573,8 +572,4 @@
 			});
 		</script>
 		
-		<script>
-			//별점 구현 스크립트
-			
-		</script>
        <%@ include file="../incloud/footer.jsp" %>
