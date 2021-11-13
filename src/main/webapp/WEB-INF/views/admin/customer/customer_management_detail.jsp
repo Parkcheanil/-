@@ -36,7 +36,7 @@
         <label>연락처</label>
         <input class="form-control" name='phone' value ="${vo.phone}">
         <label>기본 주소</label>
-        <input class="form-control" name='addzipnum' value ="${vo.addrZipNum}">
+        <input class="form-control" name='addzipnum' value ="${vo.addZipNum}">
         <label>상세 주소</label>
         <input class="form-control" name='addrdetail' value ="${vo.addrDetail}">
          <label>생년월일</label>

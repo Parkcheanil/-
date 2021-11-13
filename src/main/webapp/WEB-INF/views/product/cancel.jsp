@@ -75,7 +75,7 @@
 						<div class="cb2-1">
 							<div class="cb3-3">
 								<ul class="pet-list-grup">
-									<c:forEach items="${list }" var="vo">
+							       <c:forEach items="${petVO }" var="vo">
 										<li class="pet-addlist">
 											<div class="pet-addbtn">
 												<h4>
@@ -112,25 +112,25 @@
                                 <h3>나의 쇼핑</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="order">
                                     <span>주문 · 배송</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="cancel">
                                     <span>주문취소</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="change">
                                     <span>교환· 반품</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="/question/question">
                                     <span>고객센터</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>

@@ -70,7 +70,7 @@
           <!-- 로그인 했을때 (세션이 있을 때) -->   
           <c:if test="${user != null }">
 	          <div class="users-function">            
-	            <a href="${pageContext.request.contextPath}/product/order">
+	            <a href="${pageContext.request.contextPath}/product/order?">
 		            <span>Mypage</span>
 	            </a>
 	            

@@ -15,7 +15,6 @@
 
 	<bean id="userAuthHandler" class="com.petworld.util.interceptor.UserAuthHandler" />
 	<bean id="userLoginSuccessHandler" class="com.petworld.util.interceptor.UserLoginSuccessHandler" />
-	<bean id="questionAuthHandler" class="com.petworld.util.interceptor.QuestionAuthHandler" />
 	
 	<mvc:interceptors>
 

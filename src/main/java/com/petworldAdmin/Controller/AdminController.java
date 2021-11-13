@@ -105,7 +105,7 @@ public class AdminController {
 	      model.addAttribute("vo", vo);
 		}
 		
-	@RequestMapping("order/updateUser")
+	@RequestMapping("/order/updateUserOrder")
 	   public String updateUser(OrderVO vo, RedirectAttributes RA) {
 	      
 	      boolean result = adminService.orderUpdate(vo);
@@ -186,7 +186,7 @@ public class AdminController {
 		
 		if(result) {
 			RA.addAttribute("msg", "수정완료");
-			return "redirect:/productManagement/productManagementBoard";
+			return "redirect:/admin/productManagement/productManagementBoard";
 		}else {
 			RA.addAttribute("msg", "수정실패");
 			return "admin/productModify";

@@ -28,37 +28,38 @@
                 <div class="myinfo">
                     <div class="cb1">
                         <!-- 헤더 마이페이지 -->
-                       	<div class="cb2">
-							<a href="#" class="myinfo2" onclick="location.href='petUpdate'">
-								<div class="cb3">
-									<div class="myinfo3">
-										<div class="myimg-box">
-											<img class="myimg" src="/resources/img/noimg.png"
-												alt="마이페이지사진" sizes="auto"> <span class="myimp-sp">편집</span>
-										</div>
-									</div>
-								</div>
-								<div class="cb3-1">
-									<div class="cb4">
-										<span class="myinfo-name"><strong>박천일님</strong> <i
-											class="fas fa-cog"></i> </span>
-										<div class="cb5">
-											<div class="cb6">
-												<img class="naver" src="/resources/img/naver.jpg" alt="네이버사진">
-											</div>
-											<div class="cb6-1">
-												<span>asdfasdf@naver.com</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<!-- 헤더 펫 프로필 -->
-						<div class="cb2-1">
-							<div class="cb3-3">
-								<ul class="pet-list-grup">
-									<c:forEach items="${petVO }" var="vo">
+                        <div class="cb2">
+                            <a href="#" class="myinfo2">
+                                <div class="cb3">
+                                    <div class="myinfo3">
+                                        <div class="myimg-box">
+                                            <img class="myimg" src="/resources/img/noimg.png" alt="마이페이지사진" sizes="auto">
+                                            <span class="myimp-sp">편집</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cb3-1">
+                                    <div class="cb4">
+                                        <span class="myinfo-name"><strong>박천일님</strong>
+                                            <i class="fas fa-cog"></i>
+                                        </span>
+                                        <div class="cb5">
+                                            <div class="cb6">
+                                                <img class="naver" src="/resources/img/naver.jpg" alt="네이버사진">
+                                            </div>
+                                            <div class="cb6-1">
+                                                <span>asdfasdf@naver.com</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 헤더 펫 프로필 -->
+                        <div class="cb2-1">
+                            <div class="cb3-3">
+                                <ul class="pet-list-grup">
+	                              <c:forEach items="${petVO }" var="vo">
 										<li class="pet-addlist">
 											<div class="pet-addbtn">
 												<h4>
@@ -76,18 +77,18 @@
 											</div>
 										</li>
 									</c:forEach>
-									<li class="pet-addlist-in">
-										<button class="pet-addbtn-in"
-											onclick="location.href='petRegister'">
-											<div>
-												<i class="fas fa-plus-square addIcon"></i> 강아지 등록하기
-											</div>
-										</button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+                                    <li class="pet-addlist-in">
+                                        <button class="pet-addbtn-in">
+                                            <div>
+                                                <i class="fas fa-plus-square addIcon"></i>
+                                               	 강아지 등록하기
+                                            </div>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <!-- 상세정보 사이드메뉴 -->
                     <div class="cb1-1">
                         <div class="cb2-2">
@@ -95,25 +96,25 @@
                                 <h3>나의 쇼핑</h3>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="order">
                                     <span>주문 · 배송</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="cancel">
                                     <span>주문취소</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="change">
                                     <span>교환 및 반품</span>
                                     <i class="fas fa-angle-right i2"></i>
                                 </a>
                             </div>
                             <div class="side-1">
-                                <a href="#">
+                                <a href="/question/question">
                                     <span>고객센터</span>
                                     <i class="fas fa-angle-right i1"></i>
                                 </a>
@@ -174,6 +175,10 @@
 	                                                    <span class="blind">구매날짜</span>
 	                                                    <fmt:formatDate pattern="yyyy년MM월dd일 " value="${list[i].ordate}"/>
 	                                                  </li>
+	                                                  <li class="date">
+	                                                    <span class="blind">운송장번호</span>
+	                                                    ${list[i].oinvoice}
+	                                                  </li>
 	                                                </ul>
 	                                              </a>
 	                                              <span class="goods_shipping">${list[i].delivery_status }</span>
@@ -196,6 +201,8 @@
 	                                                  <a href="상품 상세 페이지" class="reply_sell">재구매</a>
 	                                              </div>
 	                                          </div>
+	                                    
+	                                          
 	                                          <c:if test="${list[i].delivery_status == '배송준비중' }">
 	                                          <div class="button_item" style="display: none;">
 	                                              <div class="area_layer">
@@ -203,6 +210,7 @@
 	                                              </div>
 	                                          </div>
 	                                          </c:if>
+	                                          
 	                                          <div class="button_item">
 	                                              <div class="area_layer">
 	                                                  <a href="change" class="reply_sell">교환 및 반품</a>
@@ -234,6 +242,10 @@
             </div>
         </div>
     </div>
+    <!-- 인터크립터 속도 -->
+    <script>
+        $("#myCarousel").carousel({interval: 3000});
+    </script>
 <%@ include file="../incloud/footer.jsp" %>
     <!-- 스크립트 구간 -->
     <script>

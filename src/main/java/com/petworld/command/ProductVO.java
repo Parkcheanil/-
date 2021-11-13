@@ -13,20 +13,22 @@ public class ProductVO {
 	
 	private int pid;
 	private String pname;
+	private String petage;
 	private int pprice;
 	private int pstock;
+	private String Pimageaddr;
+	private String pdetail;
+	
 	private int prate;
 	private String cCode;
 	private String pcount;
 	//상품상세정보
-	private String pdetail;
 	
 	//이미지 저장용
 	//11.05_승희 추가
-	private MultipartFile pimage;
+	private MultipartFile pimage; //삭제 11/13
 	private MultipartFile pimage2;
-	private String Pimageaddr;
-	private String Pimage2addr;
+	private String pimage2addr;
 	
 	/*
 	 * lombok의 함정

@@ -76,6 +76,7 @@
        opayment=#{opayment},
        oinvoice = #{oinvoice},
        pname = #{pname}
+       
        where oid=#{oid}
        
      </update>
@@ -109,7 +110,7 @@
 	   </select>
 	   
 	   <insert id="pinsert">
-	   	insert into PRODUCT(pid, pname, petage, pprice, pstock, pimageaddr, pdetail)
+	   	insert into PRODUCT(pid, pname, petage, pprice, pstock, pimageaddr, pdetail )
 	   	values(#{pid}, #{pname}, #{petage}, #{pprice}, #{pstock}, #{pimageaddr}, #{pdetail})
 	   </insert>
 	   
@@ -122,9 +123,8 @@
 	     	pname = #{pname},
 	     	pprice = #{pprice},
 	     	pstock = #{pstock},
-	     	pimage = #{pimage},
-	     	pcnum = #{pcnum},
-	     	pdetail = #{pdetail},
+	     	pimageaddr = #{pimageaddr},
+	     	pdetail = #{pdetail}
      	where pid = #{pid}
 	   </update>
 	   

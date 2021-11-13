@@ -382,7 +382,7 @@
 	 	IMP.request_pay({
 	 	    pg : 'html5_inicis',
 	 	    pay_method : 'card',
-	 	    merchant_uid: '0932', // 상점에서 관리하는 주문 번호
+	 	    merchant_uid: $("#productID").val(), // 상점에서 관리하는 주문 번호
 	 	    name : '주문명:결제테스트',
 	 	    amount : 100,
 	 	    buyer_email : $("#UserID").val(),

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.petworld.command.CartVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.UserVO;
+import com.petworld.service.PetService;
 import com.petworld.service.ProductService;
 
 @Controller
@@ -26,6 +27,10 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productService")
 	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("petService")
+	private PetService petService;
 	
 	@RequestMapping("productDogTotal")
 	public void productDogTotal(Model model) {
@@ -42,7 +47,7 @@ public class ProductController {
 	/*
 	 * @RequestMapping(value = "productTotal", method=RequestMethod.GET) public void
 	 * productTotal(@RequestParam("c") int cCode, @RequestParam("l") int level,
-	 * Model model) { //카테고리 추가
+	 * Model model) { //移댄뀒怨좊━ 異붽�
 	 * 
 	 * ArrayList<ProductVO> list = null; list = productService.getList2(cCode);
 	 * model.addAttribute("list", list); }
@@ -56,7 +61,7 @@ public class ProductController {
 	}
 	
 //	@RequestMapping(value = "purchase", method=RequestMethod.POST)
-//	public String purchase(HttpSession session, PayMentVO vo) { //submit은 서버에게 데이터를 전송함 --> 서버에서 데이터를 받아야함
+//	public String purchase(HttpSession session, PayMentVO vo) { //submit�� �꽌踰꾩뿉寃� �뜲�씠�꽣瑜� �쟾�넚�븿 --> �꽌踰꾩뿉�꽌 �뜲�씠�꽣瑜� 諛쏆븘�빞�븿
 //		
 //		UserVO user = (UserVO)session.getAttribute("user");
 //		String id = user.getId();
@@ -78,21 +83,18 @@ public class ProductController {
 			cart.setId(user.getId());
 			/* result = productService.insertCart(cart); */
 			result = productService.updateCart(cart);
-			
 		}
-		System.out.println(result);
 		
 		return result;
-		
 	}
 	
-//	@RequestMapping("/cancel")
-//	public void cancel() {
-//		
-//	}
-//	
-//	@RequestMapping("/change")
-//	public void change() {
-//		
-//	}
+	@RequestMapping("/cancel")
+	public void cancel(Model model) {
+		model.addAttribute("petVO", petService.getList());
+	}
+	
+	@RequestMapping("/change")
+	public void change() {
+		
+	}
 }

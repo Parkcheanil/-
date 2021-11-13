@@ -14,15 +14,17 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 
-	/*
-	 * @Override public ArrayList<OrderVO> orderList(DateVO vo) { // TODO
-	 * Auto-generated method stub return orderMapper.orderList(vo); }
-	 */
-	
 	@Override
 	public ArrayList<OrderVO> searchList(DateVO vo) {
+		
 		return orderMapper.searchList(vo);
 	}
+
+//	@Override
+//	public ArrayList<OrderVO> orderList(DateVO vo) {
+//		// TODO Auto-generated method stub
+//		return orderMapper.orderList(vo);
+//	}
 	
 	
 

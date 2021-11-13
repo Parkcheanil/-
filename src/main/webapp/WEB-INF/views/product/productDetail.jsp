@@ -15,7 +15,7 @@
                     <div class="wp_info">
                         <div class="info_img">
                             <div class="img">
-                                <img src="/resources/img/${vo.pimage2addr }" alt="${vo.pname }">
+                                <img src="/resources/img/${vo.pimageaddr }" alt="${vo.pname }">
                             </div>
                         </div>
                         <div class="info_purchase">
@@ -556,6 +556,7 @@
 					url : "cart",
 					data : data,
 					success : function(result){ //로그인 한 사용자 확인
+						console.log(result);
 						if(result == 1) {
 							confirm("카트에 물품을 담는 데 성공하였습니다.");
 							$("#result").val("1");

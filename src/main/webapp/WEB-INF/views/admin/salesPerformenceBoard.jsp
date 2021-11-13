@@ -31,7 +31,6 @@
 		    </div>
 		    <div class="searchProduct">
             <select class="form-control search-select" name="searchType">
-              <option value="salesdate" ${pageVO.cri.searchType eq 'salesdate' ? 'selected' : '' }>판매날짜</option>
               <option value="salespid" ${pageVO.cri.searchType eq 'salespid' ? 'selected' : '' }>상품코드</option>
               <option value="salespname" ${pageVO.cri.searchType eq 'salespname' ? 'selected' : '' }>상품명</option>
              </select>

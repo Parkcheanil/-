@@ -29,15 +29,13 @@ public class OrderController {
 	private PetService petService;
 
 	@RequestMapping("order")
-	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, PetVO petVO) {
-		
-		/* ArrayList<OrderVO> list = orderService.orderList(vo); */
+	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo) {
+		System.out.println(vo.toString());
 		ArrayList<OrderVO> list = orderService.searchList(vo);
 		model.addAttribute("list", list); 	  
 		model.addAttribute("dateVO", vo);
-		System.out.println(list);
-		
 		model.addAttribute("petVO", petService.getList());
+		System.out.println(list);
 		
 		String fromDate = httpServletRequest.getParameter("fromDate"); 
 		String toDate = httpServletRequest.getParameter("toDate");

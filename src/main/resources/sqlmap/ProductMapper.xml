@@ -65,7 +65,7 @@
 		(cart_seq.nextval, #{id}, #{pid}, #{cartNum} )
 	</update>
 	<!-- 구매하기로 변경 -->
-	<select id="getPaymentList" resultType="PaymentVO">
+	<select id="getPaymentList" resultType="PayMentVO">
 		select * from PAYMENT pt, CART c, DELEVERY_ADDR o, product p
 		where pt.cno = c.cno and pt.onum = o.onum and p.pid = pt.pid
 	</select>

@@ -84,8 +84,8 @@
 			               <td>${vo.name}</td>
 			               <td>${vo.nick}</td>
 			               <td>${vo.phone }</td>
-			               <td>${vo.addrZipNum }</td>
-			               <td>${vo.addrBasic} ${vo.addrDetail }</td>
+			               <td>${vo.addZipNum }</td>
+			               <td>${vo.addBasic} ${vo.addrDetail }</td>
 			               <td>${vo.yy }/${vo.mm }/${vo.dd }</td>
 			               <td>${vo.regdate }</td>
 				      	</tr>
