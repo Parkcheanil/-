@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petworld.command.OrderVO;
+import com.petworld.command.PetVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.OrderService;
 import com.petworld.service.PetService;
@@ -30,12 +31,13 @@ public class OrderController {
 	private PetService petService;
 
 	@RequestMapping("order")
-	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, HttpSession session) {
+	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, HttpSession session, PetVO petVO) {
 
 		ArrayList<OrderVO> list = orderService.searchList(vo);
 		
 		UserVO user = (UserVO) session.getAttribute("user");
 		
+		model.addAttribute("petVO", petService.getList());
 		model.addAttribute("user", user);
 		model.addAttribute("list", list); 	  
 		model.addAttribute("dateVO", vo);

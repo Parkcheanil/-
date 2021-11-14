@@ -59,21 +59,21 @@
                         <div class="cb2-1">
                             <div class="cb3-3">
                                 <ul class="pet-list-grup">
-	                              <c:forEach var="i" begin="1" end="${list.size()}" step="1">
-								<c:if test="${list[i].userid eq user.id }">
+	                              <c:forEach var="i" begin="1" end="${petVO.size()}" step="1">
+									<c:if test="${petVO[i].userid eq user.id }">
 									<li class="pet-addlist">
 										<div class="pet-addbtn">
 											<h4>
-												<div class="petname">${list[i].pname }</div>
-												<c:if test="${list[i].pfirst == 1 }" var="pfirst" scope="session">
+												<div class="petname">${petVO[i].pname }</div>
+												<c:if test="${petVO[i].pfirst == 1 }" var="pfirst" scope="session">
 												<span class="toppetBox"> <span class="toppet">대표</span>
 												</span>
 												</c:if>
 											</h4>
 											<div class="petinfo">
-												<span class="petbirth">${list[i].pyear }년</span> <span
-													class="petbirth">${list[i].pmonth }월</span> <span
-													class="petweight">${list[i].pweight }kg</span>
+												<span class="petbirth">${petVO[i].pyear }년</span> <span
+													class="petbirth">${petVO[i].pmonth }월</span> <span
+													class="petweight">${petVO[i].pweight }kg</span>
 											</div>
 										</div>
 									</li>
