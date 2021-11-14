@@ -3,6 +3,8 @@ package com.petworld.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.petworld.command.UserVO;
 import com.petworld.service.ProductService;
 
 @Controller
@@ -22,9 +25,12 @@ public class CartController {
 	
 	
 	@RequestMapping("/cart")
-	public void cart(Model cmo) {
+	public void cart(Model cmo, HttpSession session) {
 		List<Map<String, Object>> clist = productService.getCartList();
-				
+		
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		cmo.addAttribute("user", user);
 		cmo.addAttribute("clist", clist);
 		System.out.println(clist);
 	}

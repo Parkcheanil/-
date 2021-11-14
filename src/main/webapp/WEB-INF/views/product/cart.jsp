@@ -35,7 +35,6 @@
 		        </div>
 		    </div>
 		</c:when>
-	
 		<c:when test="${not empty clist}">
 		    <div class="main_area">
 		        <div class="main_inner">

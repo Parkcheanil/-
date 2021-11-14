@@ -10,8 +10,8 @@
 	</select>
 	
 	<insert id="regist">
-		insert into Delivery_addr(onum, oPLACE, oNAME, oPHONE, opost, oADDRESS, oADDRESS1, oDEFAULT)
-		values(Delivery_addr_seq.nextval, #{oplace}, #{oname}, #{ophone}, #{opost}, #{oaddress}, #{oaddress1}, #{odefault})
+		insert into Delivery_addr(onum, oPLACE, oNAME, oPHONE, opost, oADDRESS, oADDRESS1, oDEFAULT, userid)
+		values(Delivery_addr_seq.nextval, #{oplace}, #{oname}, #{ophone}, #{opost}, #{oaddress}, #{oaddress1}, #{odefault}, #{userid})
 	</insert>
 
 	<select id="paymentInfo" resultType="ProductVO">

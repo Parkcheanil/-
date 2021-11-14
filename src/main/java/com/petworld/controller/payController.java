@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.PayMentVO;
 import com.petworld.command.PayVO;
+import com.petworld.command.UserVO;
 import com.petworld.service.PayService;
 import com.petworld.service.ProductService;
 
@@ -40,6 +41,9 @@ public class payController {
 		List<Map<String, Object>> clist = productService.getCartList();
 		cmo.addAttribute("clist", clist);
 		
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		model.addAttribute("user", user);
 		model.addAttribute("info", payService.paymentInfo());
 		
 		ArrayList<PayVO> list = payService.deliveryList();

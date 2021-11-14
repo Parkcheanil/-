@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 결제 css -->
@@ -118,29 +119,31 @@
 											<span scope="col" class="cell_tel">연락처</span> 
 											<span scope="col" class="cell_edit">수정/삭제</span>
 										</div>
-										<c:forEach items="${list }" var="list">
-											<button class="deliBtn" name="deliBtn" value="${list.onum }" style="vertical-align: middle;">
+										<c:forEach var="i" begin="1" end="${list.size()}" step="1">
+										<c:if test="${list[i].userid eq user.id }">
+											<button class="deliBtn" name="deliBtn" value="${list[i].onum }" style="vertical-align: middle;">
 												<div class="boxline">
 													<div class="cell_delivery1">
-														<span class="nick1">${list.oplace }</span> 
-														<span class="receive">${list.oname }</span>
-														<c:if test="${list.odefault == 1 }" var="default" scope="session">
+														<span class="nick1">${list[i].oplace }</span> 
+														<span class="receive">${list[i].oname }</span>
+														<c:if test="${list[i].odefault == 1 }" var="default" scope="session">
 															<span class="mark_default">기본배송지</span>
 														</c:if>
 													</div>
 													<div>
-														<span class="zipcode2">${list.opost }</span> 
-														<span class="oaddr1">${list.oaddress }</span>
-														<span class="oaddr2">${list.oaddress1 }</span>
+														<span class="zipcode2">${list[i].opost }</span> 
+														<span class="oaddr1">${list[i].oaddress }</span>
+														<span class="oaddr2">${list[i].oaddress1 }</span>
 													</div>
-													<div class="cell_tel1">${list.ophone }</div>
+													<div class="cell_tel1">${list[i].ophone }</div>
 													<div class="cell_edit1">
-														<a href="${list.onum}" class="_choice">선택</a>
-														<a href="" class="_modify" onclick="deliUpdate(${list.onum}); return false;">수정</a>
-														<a href="" class="_delete" onclick="location.href='deliveryDelete?onum=${list.onum}'" >삭제</a>
+														<a href="${list[i].onum}" class="_choice">선택</a>
+														<a href="" class="_modify" onclick="deliUpdate(${list[i].onum}); return false;">수정</a>
+														<a href="" class="_delete" onclick="location.href='deliveryDelete?onum=${list[i].onum}'" >삭제</a>
 													</div>
 												</div>
 											</button>
+										</c:if>
 										</c:forEach>
 									</div>
 								</div>

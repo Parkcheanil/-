@@ -23,6 +23,7 @@
 			<!-- pay 쪽 -->
 			<mvc:mapping path="/pay/delivery"/>
 			<mvc:mapping path="/pay/deliveryUpdate"/>
+			<mvc:mapping path="/pay/deliveryDelete"/>
 			<mvc:mapping path="/pay/payment"/>
 			
 			<!-- 프로필 진입 권한 적용은 됐는데 원래있던 페이지가 아니라 메인으로 돌아가는 문제...  -->

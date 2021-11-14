@@ -82,6 +82,7 @@ public class ProductController {
 			cart.setId(user.getId());
 			/* result = productService.insertCart(cart); */
 			result = productService.updateCart(cart);
+			System.out.println("cart : " + cart);
 		}
 		
 		return result;

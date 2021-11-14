@@ -17,5 +17,7 @@ public class PayVO {
 	private String oaddress;
 	private String oaddress1;
 	private String odefault;
+	//11.15추가
+	private String userid;
 	
 }

@@ -556,6 +556,7 @@
 					url : "cart",
 					data : data,
 					success : function(result){ //로그인 한 사용자 확인
+						console.log(document);
 						if(result == 1) {
 							confirm("카트에 물품을 담는 데 성공하였습니다.");
 							$("#result").val("1");

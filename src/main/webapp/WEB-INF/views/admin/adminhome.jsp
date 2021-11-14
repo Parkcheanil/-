@@ -15,7 +15,7 @@
         <br>
         <h4 class="font-weight-bold text-dark">Hi, welcome back!</h4>
             <table class="table-item">
-           	  <caption class="plus"><a href="customer_management"><i class="fas fa-plus"></i></a></caption>
+           	  <caption class="plus"><a href="customer/customer_management"><i class="fas fa-plus"></i></a></caption>
               <caption class="title">- 최근가입회원</caption>
                 <thead>
                     <tr>
