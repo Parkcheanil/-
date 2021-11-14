@@ -1,19 +1,33 @@
 package com.petworldAdmin.controller;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.xml.ws.soap.AddressingFeature.Responses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.CategoryVO;
@@ -105,7 +119,7 @@ public class AdminController {
 	      model.addAttribute("vo", vo);
 		}
 		
-	@RequestMapping("/order/updateUserOrder")
+	@RequestMapping("order/updateUser")
 	   public String updateUser(OrderVO vo, RedirectAttributes RA) {
 	      
 	      boolean result = adminService.orderUpdate(vo);
@@ -123,56 +137,108 @@ public class AdminController {
 	
 	}
 	//상품
-	@RequestMapping("/productManagement/productManagementBoard")
-	public void productManagement(Model model, Criteria cri) {
+	//@ResponseBody
+	@RequestMapping(value="/productManagement/productManagementBoard")
+	public ArrayList<ProductVO> productManagement(Model model, Criteria cri) {
 			System.out.println("상품조회");
 			ArrayList<ProductVO> list = adminService.productList(cri);
 			model.addAttribute("list", list);
-			
 			//페이지이션
 			int total = adminService.getTotal(cri);
 			PageVO pageVO = new PageVO(cri, total);
 			model.addAttribute("pageVO", pageVO);
+			return list;
 
 	}
+	
 	@RequestMapping("/productManagement/productRegist")
 	public void productRegist() {
 	
 	}
 	//상품 insert
 	@RequestMapping("/productManagement/pinsertForm")
-	public String pinsertForm(ProductVO vo) {
+	public String pinsertForm(ProductVO vo, @RequestParam("file")MultipartFile file) {
 		try {
+			System.out.println(file);
+			
+			String fileRealName = file.getOriginalFilename(); //파일명
+			Long size = file.getSize(); //파일크기 
+			
+			//확장자 명을 가져온다.
+			String extention= fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			
+			//랜덤16진수
+			UUID uuids= UUID.randomUUID();
+			String saveFileName = uuids.toString().replace("-", "") + extention; 
+			
+			//월별 폴더생성
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+			String fileloca = sdf.format(date);
 
-				System.out.println(vo.toString());
-				String fileRealName = vo.getPimage().getOriginalFilename();
-				Long size = vo.getPimage().getSize();
-				String extention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-				
-				UUID uuids = UUID.randomUUID();
-				
-				String saveFileName = uuids.toString().replaceAll("-", "") + extention;
-				
-				File dir = new File(APP_CONSTANT.uploadPath + saveFileName); 
-				
-				System.out.println(fileRealName);
-				System.out.println(saveFileName);
-				System.out.println(dir);
-				
-				vo.getPimage().transferTo(dir);
-				
-				System.out.println(fileRealName + "/"+ size + "/"+ saveFileName);
-				
-				vo.setPimageaddr(dir.getName());
-				
-				adminService.pinsert(vo);
-				
+			String uploadpath = APP_CONSTANT.uploadPath + fileloca;
+			
+			File folder = new File(uploadpath);
+			if(!folder.exists()) {
+				folder.mkdir(); //자바에서 폴더 바로 생성하기
+			}
+			
+			File dir = new File(uploadpath + "/" + saveFileName);
+			
+			file.transferTo(dir); //파일 아웃풋 작업을 한번에 처리(로컬환경에 저장)
+			
+			//파일 경로 vo.pphoto에 저장
+			vo.setPimageaddr(dir.getPath());
+			vo.setUploadpath(uploadpath);
+			vo.setFileloca(fileloca);
+			vo.setFilename(saveFileName);
+			
+			Path path = Paths.get(uploadpath);
+			System.out.println(path.toAbsolutePath());
+			
+			boolean result = adminService.pinsert(vo);
+			
+			
+			System.out.println("register 여부 : " + result);
+			
+			if(result == true) {
+				return "redirect:/admin/productManagement/productManagementBoard";
+			}
+			else {
+				return "redirect:/admin/productManagement/productRegist";
+			}
 				
 		}catch (Exception e) {
 			System.out.println("업로드중에러");
 			e.printStackTrace();
 		}
 		return "redirect:/admin/productManagement/productManagementBoard";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/display/{folder}/{file:.+}")
+	public ResponseEntity<byte[]> display(@PathVariable("folder") String folder,
+						  @PathVariable("file") String file) {
+		
+		ResponseEntity<byte[]> result = null;
+		
+		try {
+			//파일의 마임타입(
+			File path = new File(APP_CONSTANT.uploadPath + folder + "/" + file);
+			
+			//Files.probeContentType(path.toPath()); //파일 마임타입(헤더에 저장)
+			//FileCopyUtils.copyToByteArray(path); //파일 데이터(응답바디에 저장)
+			
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-type", Files.probeContentType(path.toPath()));
+			//(데이터,헤더,상태정보)
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(path),
+												header, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	//상품수정
@@ -193,7 +259,7 @@ public class AdminController {
 			return "redirect:/admin/productManagement/productManagementBoard";
 		}else {
 			RA.addAttribute("msg", "수정실패");
-			return "admin/productModify";
+			return "/admin/productManagement/productModify";
 		}
 	}
 	

@@ -11,9 +11,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	
-
-	
-	
 <div class="content">
         <br>
         <h4 class="font-weight-bold text-dark">Hi, welcome back!</h4>
@@ -30,7 +27,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <c:forEach var="recUser" items="${recUser }" begin="0" end="7" step="1">
+                 <c:forEach var="recUser" items="${recUser }" begin="0" end="3" step="1">
                     <tr>
                         <td>${recUser.id}</td>
                         <td>${recUser.name}</td>
@@ -55,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <c:forEach var="recOrder" items="${recOrder }" begin="0" end="7" step="1">
+                 <c:forEach var="recOrder" items="${recOrder }" begin="0" end="3" step="1">
                     <tr>
                         <td>${recOrder.oid}</td>
                         <td>${recOrder.mid }</td>
@@ -69,15 +66,12 @@
 	
             <!--차트-->
             <div class="homeGraph">
-            <a href="salesPerformenceBoard"><i class="fas fa-plus"></i></a>
-               <div id="chartView" style="width: 800px; height: 300px; margin-inline-start: 10px;">
-               	<div class ="text">
-                   <p>확인용 (할 것 확인)</p> 
-               </div>
+            <a href="salesPerformenceBoard"><i class="fas fa-plus"></i></a><br>
+               <!-- <div id="chartView" style="width: 800px; height: 300px; margin-inline-start: 10px;"> -->
+               <img src = "/resources/img/graph.png" style="width: 750px; height: 250px; float:center;"/>
                </div>
            </div>
 
-    </div>
 
     <script>
     $(document).ready(function() {
