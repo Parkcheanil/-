@@ -51,14 +51,14 @@
 							</div>
 							<div class="cb3-1">
 								<div class="cb4">
-									<span class="myinfo-name"><strong>박천일님</strong> <i
+									<span class="myinfo-name"><strong>${user.name }</strong> <i
 										class="fas fa-cog"></i> </span>
 									<div class="cb5">
 										<div class="cb6">
 											<img class="naver" src="/resources/img/naver.jpg" alt="네이버사진">
 										</div>
 										<div class="cb6-1">
-											<span>asdfasdf@naver.com</span>
+											<span>${user.id }</span>
 										</div>
 									</div>
 								</div>
@@ -69,23 +69,25 @@
 					<div class="cb2-1">
 						<div class="cb3-3">
 							<ul class="pet-list-grup">
-								<c:forEach items="${list }" var="vo">
+								<c:forEach var="i" begin="1" end="${list.size()}" step="1">
+								<c:if test="${list[i].userid eq user.id }">
 									<li class="pet-addlist">
 										<div class="pet-addbtn">
 											<h4>
-												<div class="petname">${vo.pname }</div>
-												<c:if test="${vo.pfirst == 1 }" var="pfirst" scope="session">
+												<div class="petname">${list[i].pname }</div>
+												<c:if test="${list[i].pfirst == 1 }" var="pfirst" scope="session">
 												<span class="toppetBox"> <span class="toppet">대표</span>
 												</span>
 												</c:if>
 											</h4>
 											<div class="petinfo">
-												<span class="petbirth">${vo.pyear }년</span> <span
-													class="petbirth">${vo.pmonth }월</span> <span
-													class="petweight">${vo.pweight }kg</span>
+												<span class="petbirth">${list[i].pyear }년</span> <span
+													class="petbirth">${list[i].pmonth }월</span> <span
+													class="petweight">${list[i].pweight }kg</span>
 											</div>
 										</div>
 									</li>
+								</c:if>
 								</c:forEach>
 								<li class="pet-addlist-in">
 									<button class="pet-addbtn-in"

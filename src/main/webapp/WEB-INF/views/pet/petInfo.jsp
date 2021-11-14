@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <%@ include file="../incloud/header.jsp"%>
 <!-- 펫 상품 추천 css -->
@@ -122,28 +124,25 @@
 								<h2>나의 가족</h2>
 							</div>
 								<div class="family-list">
-									<c:forEach items="${list }" var="list">
-										<div class="familyBox">
-											<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list.pnum}'">
-												<img id="fileImg" class="preview" src="display/${list.fileloca }/${list.filename}">
-												<input type="hidden" id="uploadpath" name="uploadpath" value="${list.uploadpath }">
-												<div class="pet-addbtn">
-													<h4>
-													<p class="petname">${list.pname }</p>
-													<c:if test="${list.pfirst == 1 }" var="pfirst" scope="session">
-														<span class="toppetBox"> <span class="toppet">대표</span>
-														</span>
+									<c:forEach var="i" begin="1" end="${list.size()}" step="1">
+									<c:if test="${list[i].userid eq user.id }">
+										<li class="pet-addlist">
+											<div class="pet-addbtn">
+												<h4>
+													<div class="petname">${list[i].pname }</div>
+													<c:if test="${list[i].pfirst == 1 }" var="pfirst" scope="session">
+													<span class="toppetBox"> <span class="toppet">대표</span>
+													</span>
 													</c:if>
-													</h4>
-													<div class="petinfo">
-														<span class="petbirth">${list.pyear }년</span> 
-														<span class="petbirth">${list.pmonth }월</span> 
-														<span class="petweight">${list.pweight }kg</span>
-													</div>
-													<input type="hidden" id="pfirst" name="pfirst" value="${list.pfirst }">
+												</h4>
+												<div class="petinfo">
+													<span class="petbirth">${list[i].pyear }년</span> <span
+														class="petbirth">${list[i].pmonth }월</span> <span
+														class="petweight">${list[i].pweight }kg</span>
 												</div>
-											</a>
-										</div> 
+											</div>
+										</li>
+									</c:if>
 									</c:forEach>
 								</div>
 							</div>

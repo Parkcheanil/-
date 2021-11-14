@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.PetVO;
+import com.petworld.command.UserVO;
 import com.petworld.service.PetService;
 import com.petworld.service.ProductService;
 import com.petworld.util.APP_CONSTANT;
@@ -113,8 +115,11 @@ public class PetController {
 
 	//펫 상품 추천, 펫 정보
 	@RequestMapping({"/petList", "/petInfo"})
-	public void petList(Model model) {
+	public void petList(Model model, HttpSession session) {
 		
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		model.addAttribute("user", user);
 		model.addAttribute("list", petService.getList());
 		model.addAttribute("productlist1", productService.getCatList());
 		model.addAttribute("productlist2", productService.getDogList());
