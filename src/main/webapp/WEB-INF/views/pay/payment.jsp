@@ -382,7 +382,7 @@
 	 	IMP.request_pay({
 	 	    pg : 'html5_inicis',
 	 	    pay_method : 'card',
-	 	    merchant_uid: $("#productID").val(), // 상점에서 관리하는 주문 번호
+	 	    merchant_uid: '16272', // 상점에서 관리하는 주문 번호
 	 	    name : '주문명:결제테스트',
 	 	    amount : 100,
 	 	    buyer_email : $("#UserID").val(),
@@ -397,8 +397,10 @@
 	    		"cno" :  $("#cno").val(),
 	    		"oNum" : $("#onumHidden").val(),
 	    		"poAmount" : rsp.paid_amount,
-	    		"payType" : rsp.pay_method
+	    		"payType" : $('input[type="radio"][name="payType"]').val()
 	 		}
+	 		console.log(result);
+	 		console.log(rsp);
 	 		console.log("결제성공 " + msg);
 	 		$.ajax({
 				url : 'paymentForm', 
@@ -471,48 +473,6 @@
 		    		}
 		    	})
   			} 
-//   			else {
-//   				$("form").submit(function() {
-// 					var form = {
-// 						cno : $("#cno").val(),
-// 						oNum : $(".deliBtn").val(),
-// 						poAmount : ${total},
-// 						poDATE : new Date(),
-// 						payType : $('input[name="payType"]:checked').val()
-// 					}
-// 					console.log(oNum);
-// 					var today = new Date(); 
-// 					var year = today.getFullYear();
-// 					var month = ('0' + (today.getMonth() + 1)).slice(-2);
-// 					var day = ('0' + today.getDate()).slice(-2);
-// 					var dateString = year + '-' + month  + '-' + day;
-// 					var hours = ('0' + today.getHours()).slice(-2); 
-// 					var minutes = ('0' + today.getMinutes()).slice(-2);
-// 					var seconds = ('0' + today.getSeconds()).slice(-2); 
-// 					var timeString = hours + ':' + minutes  + ':' + seconds;
-// 					$.ajax({
-// 						type: 'post',
-// 						url: 'paymentForm',
-// 						contentType : 'application/json; charset=UTF-8',
-// 						data: JSON.stringify({
-// 							"cno" : form.cno,
-// 							"oNum" : form.oNum,
-// 							"poAmount" : form.poAmount,
-// 							"poDATE" : form.poDATE,
-// 							"payType" : form.payType
-// 						}),
-						
-// 						success: function(data) {
-// 							console.log(data);
-// 							iamport();
-// 							location.href="completion";
-// 						},
-// 						error: function(error) {
-// 							console.log(error);
-// 						}
-// 					});
-// 				});
-//   		}
 		});
 	});
 	</script>

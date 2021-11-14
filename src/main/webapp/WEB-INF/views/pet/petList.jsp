@@ -157,7 +157,7 @@
 									<!-- 인터크립터 추천메뉴 슬라이드 -->
 									<div class="carousel-inner">
 										<div class="item active">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="2">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="1">
 												<div class="individually" id="slideFirst">
 													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
 														<picture>
@@ -170,24 +170,6 @@
 															<div class="pdt-cont">
 																<h4>${productlist1[i].pname }</h4>
 																<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
-															</div>
-														</div>
-													</a>
-												</div>
-											</c:forEach>
-											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="2">
-												<div class="individually" id="slideFirst">
-													<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
-														<picture>
-														<img src="/resources/img/${productlist2[i].pimageaddr }"
-															alt="" sizes="auto"> </picture>
-														<div>
-															<div class="kidult">
-																<span>키덜트</span>
-															</div>
-															<div class="pdt-cont">
-																<h4>${productlist2[i].pname }</h4>
-																<span><fmt:formatNumber pattern="###,###,###" value="${productlist2[i].pprice }" />원</span>
 															</div>
 														</div>
 													</a>
@@ -195,7 +177,7 @@
 											</c:forEach>
 										</div>
 										<div class="item">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="2">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="1">
 												<div class="individually" id="slideFirst">
 													<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
 														<picture>
@@ -208,24 +190,6 @@
 															<div class="pdt-cont">
 																<h4>${productlist2[i].pname }</h4>
 																<span><fmt:formatNumber pattern="###,###,###" value="${productlist2[i].pprice }" />원</span>
-															</div>
-														</div>
-													</a>
-												</div>
-											</c:forEach>
-											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="2">
-												<div class="individually" id="slideFirst">
-													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
-														<picture>
-														<img src="/resources/img/${productlist1[i].pimageaddr }"
-															alt="" sizes="auto"> </picture>
-														<div>
-															<div class="kidult">
-																<span>키덜트</span>
-															</div>
-															<div class="pdt-cont">
-																<h4>${productlist1[i].pname }</h4>
-																<span><fmt:formatNumber pattern="###,###,###" value="${productlist1[i].pprice }" />원</span>
 															</div>
 														</div>
 													</a>

@@ -110,6 +110,12 @@ public class payController {
 	public boolean paymentIn(@RequestBody PayMentVO vo) {
 		
 		System.out.println("결제 메서드 실행");
+		int amount = vo.getPoAmount();
+		String type = vo.getPayType();
+		
+		System.out.println(amount);
+		System.out.println(type);
+		System.out.println(payService.registPM(vo));
 		
 		boolean result = payService.registPM(vo);
 		

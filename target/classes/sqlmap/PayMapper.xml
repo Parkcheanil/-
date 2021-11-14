@@ -35,6 +35,6 @@
 	<!-- 결제 쿼리 -->
 	<insert id="registPM">
 		insert into Payment(poId, cno, oNum, poAmount, poDATE, payType)
-		values(Payment_seq.nextval, #{cno}, #{oNum}, #{poAmount}, sysdate, #{payType})
+		values(#{poId}, #{cno}, #{oNum}, #{poAmount}, sysdate, #{payType})
 	</insert>
 </mapper>
