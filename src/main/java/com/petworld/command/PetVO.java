@@ -39,4 +39,6 @@ public class PetVO {
 	private String filename;
 	private String pkind;
 	private int pid;
+	//11.14 추가
+	private String userid;
 }
