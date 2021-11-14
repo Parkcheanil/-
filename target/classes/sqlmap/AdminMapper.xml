@@ -110,8 +110,8 @@
 	   </select>
 	   
 	   <insert id="pinsert">
-	   	insert into PRODUCT(pid, pname, petage, pprice, pstock, pimageaddr, pdetail )
-	   	values(#{pid}, #{pname}, #{petage}, #{pprice}, #{pstock}, #{pimageaddr}, #{pdetail})
+	   	insert into PRODUCT(pid, pname, petage, pprice, pstock, pimageaddr, pdetail, uploadpath, fileloca, filename )
+	   	values(#{pid}, #{pname}, #{petage}, #{pprice}, #{pstock}, #{pimageaddr}, #{pdetail}, #{uploadpath}, #{fileloca}, #{filename})
 	   </insert>
 	   
 	   <select id="getpContent" resultType="ProductVO">

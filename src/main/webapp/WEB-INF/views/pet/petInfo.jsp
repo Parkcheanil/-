@@ -126,23 +126,27 @@
 								<div class="family-list">
 									<c:forEach var="i" begin="1" end="${list.size()}" step="1">
 									<c:if test="${list[i].userid eq user.id }">
-										<li class="pet-addlist">
-											<div class="pet-addbtn">
-												<h4>
-													<div class="petname">${list[i].pname }</div>
+										<div class="familyBox">
+											<a class="familyInfo" href="#" onclick="location.href='petUpdate?pnum=${list[i].pnum}'">
+												<img id="fileImg" class="preview" src="display/${list[i].fileloca }/${list[i].filename}">
+												<div class="pet-addbtn">
+													<h4>
+													<p class="petname">${list[i].pname }</p>
 													<c:if test="${list[i].pfirst == 1 }" var="pfirst" scope="session">
-													<span class="toppetBox"> <span class="toppet">대표</span>
-													</span>
+														<span class="toppetBox"> <span class="toppet">대표</span>
+														</span>
 													</c:if>
-												</h4>
-												<div class="petinfo">
-													<span class="petbirth">${list[i].pyear }년</span> <span
-														class="petbirth">${list[i].pmonth }월</span> <span
-														class="petweight">${list[i].pweight }kg</span>
+													</h4>
+													<div class="petinfo">
+														<span class="petbirth">${list[i].pyear }년</span> 
+														<span class="petbirth">${list[i].pmonth }월</span> 
+														<span class="petweight">${list[i].pweight }kg</span>
+													</div>
+													<input type="hidden" id="pfirst" name="pfirst" value="${list[i].pfirst }">
 												</div>
-											</div>
-										</li>
-									</c:if>
+											</a>
+										</div> 
+										</c:if>
 									</c:forEach>
 								</div>
 							</div>

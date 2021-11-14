@@ -193,8 +193,11 @@ public class AdminController {
 			vo.setFileloca(fileloca);
 			vo.setFilename(saveFileName);
 			
-			Path path = Paths.get(uploadpath);
-			System.out.println(path.toAbsolutePath());
+			System.out.println(uploadpath);
+			System.out.println(fileloca);
+			System.out.println(saveFileName);
+			
+			System.out.println(vo);
 			
 			boolean result = adminService.pinsert(vo);
 			
