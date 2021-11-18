@@ -7,8 +7,8 @@
 	
 	<!-- 펫 등록 -->
 	<insert id="petRegistForm">
-		insert into pet(pNum, pName, pPhoto, pYear, pMonth, pWeight, pFirst, uploadpath, fileloca, filename, pkind)
-		values(pet_seq.nextval, #{pname}, #{pphoto}, #{pyear}, #{pmonth}, #{pweight}, #{pfirst}, #{uploadpath}, #{fileloca}, #{filename}, #{pkind})
+		insert into pet(pNum, pName, pPhoto, pYear, pMonth, pWeight, pFirst, uploadpath, fileloca, filename, pkind, pid, userid)
+		values(pet_seq.nextval, #{pname}, #{pphoto}, #{pyear}, #{pmonth}, #{pweight}, #{pfirst}, #{uploadpath}, #{fileloca}, #{filename}, #{pkind}, #{pid}, #{userid})
 	</insert>
 	
 	<!-- 펫 목록 -->
@@ -31,7 +31,5 @@
 	<delete id="petDelete">
 		delete from pet where pnum = #{pnum}
 	</delete>
-
-	
 
 </mapper>

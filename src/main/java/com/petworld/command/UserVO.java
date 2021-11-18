@@ -1,4 +1,6 @@
 package com.petworld.command;
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +21,12 @@ public class UserVO {
 	private String phone;    	// 핸드폰 번호
 	private String com;	  		// 통신사
 	private String addZipNum;	// 우편번호
-	private String addBasic; 	// 기본주소
+	private String addrBasic; 	// 기본주소
 	private String addrDetail; 	// 상세주소
 	private String yy;
 	private String mm;
 	private String dd;
-	private String regdate;	  	// 가입일자
+	private Date regdate;	  	// 가입일자
 	private int grade;		  	// 등급
 	
 }

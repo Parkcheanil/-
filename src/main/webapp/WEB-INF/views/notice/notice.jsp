@@ -40,9 +40,9 @@
     <form action="notice" name="pageForm">
         <div class="event_table_paging">
           <div class="button_area">
-            <!--<c:if test="${users != null }">
-            </c:if>-->
-              <button type="button" class="writer_button button" onclick="location.href='noticeRegist'">글쓰기</button>
+			<c:if test="${user.id eq 'admin@admin.com'}">
+               <button type="button" class="writer_button button" onclick="location.href='noticeRegist'">글쓰기</button>
+            </c:if>            
           </div>
           <!-- freeList에 전달될 값을 hidden으로 처리 -->
           <input type="hidden" name="npageNum" value="${pageVO.cri.npageNum }">

@@ -70,7 +70,7 @@
 						<div class="cb3-3">
 							<ul class="pet-list-grup">
 								<c:forEach var="i" begin="1" end="${list.size()}" step="1">
-								<c:if test="${list[i].userid eq user.id }">
+								<c:if test="${list[i].userid eq userid }">
 									<li class="pet-addlist">
 										<div class="pet-addbtn">
 											<h4>

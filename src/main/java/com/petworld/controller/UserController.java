@@ -1,4 +1,6 @@
 package com.petworld.controller;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -144,4 +149,62 @@ public class UserController {
 			return "redirect:/user/join";
 		}
 	}
+	
+	// 카카오 로그인
+	@CrossOrigin
+	@GetMapping(value = "/loginpage_kakao_callback") 
+	public String loginpage_kakao_callback(HttpServletRequest request, HttpServletResponse response, 
+										   HttpSession session, Model model) throws Exception {
+//		
+//		
+//		System.out.println(request.getParameter("code"));
+//		System.out.println(request.getParameter("state"));
+//		System.out.println(request.getParameter("error"));
+//		System.out.println(request.getParameter("error_description"));
+		
+//		
+//		UrlPathHelper urlPathHelper = new UrlPathHelper(); 
+//		String originalURL = urlPathHelper.getOriginatingRequestUri(request); 
+//		
+//		Map<String, String[]> paramMap = request.getParameterMap(); 
+//		
+//
+//		
+//		Iterator<String> keyData = paramMap.keySet().iterator(); 
+//		
+//		
+//		CommonData dto = new CommonData();
+//		
+//		while (keyData.hasNext()) { 
+//			String key = ((String) keyData.next()); 
+//			String[] value = paramMap.get(key);
+//			System.out.println(value);
+//			//dto.put(key, value[0].toString()); 
+//		}
+		
+//		String url = "https://kauth.kakao.com/oauth/token"; 
+//		
+//		RestTemplate restTemplate = new RestTemplate(); 
+//		HttpHeaders headers = new HttpHeaders(); 
+//		
+//		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED); 
+//		
+//		LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>(); 
+//		
+//		map.add("client_id", "REST 앱키를 입력하세요."); 
+//		
+//		String redirect_url = "http://localhost:8080/user/loginpage_kakao_callback"; 
+//		map.add("redirect_uri", redirect_url); 
+//		map.add("grant_type", "authorization_code"); 
+//		map.add("code", dto.get("code")); 
+//		
+//		HttpEntity<LinkedMultiValueMap<String, String>> request2 = new HttpEntity<LinkedMultiValueMap<String, String>>( map, headers); 
+//		CommonData response2 = restTemplate.postForObject(url, request2, CommonData.class); 
+//		map.clear(); 
+//		
+//		model.addAttribute("access_token", response2.get("access_token")); 
+//		*/
+		return "/user/loginpage_kakao_callback";
+//		 
+		}
 }

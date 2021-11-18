@@ -31,6 +31,7 @@ import com.petworld.command.PetVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.PetService;
 import com.petworld.service.ProductService;
+import com.petworld.service.UserService;
 import com.petworld.util.APP_CONSTANT;
 
 @Controller
@@ -45,6 +46,7 @@ public class PetController {
 	@Qualifier("productService")
 	private ProductService productService;
 	
+	
 	//펫 입력 폼 화면
 	@RequestMapping("/petRegister")
 	public void registerFrom(Model model) {
@@ -54,10 +56,14 @@ public class PetController {
 	//펫 정보 입력 처리
 	@RequestMapping("/petRegistForm")
 	public String register(@RequestParam("file") MultipartFile file, 
-							PetVO vo, RedirectAttributes RA) {
+							PetVO vo, RedirectAttributes RA, HttpSession session) {
 		
 		try {
 			System.out.println(file);
+			
+			UserVO user = (UserVO) session.getAttribute("user");
+			String userid = user.getId();
+			vo.setUserid(userid);
 			
 			String fileRealName = file.getOriginalFilename(); //파일명
 			Long size = file.getSize(); //파일크기 
@@ -115,10 +121,12 @@ public class PetController {
 
 	//펫 상품 추천, 펫 정보
 	@RequestMapping({"/petList", "/petInfo"})
-	public void petList(Model model, HttpSession session) {
+	public void petList(Model model, HttpSession session, UserVO vo) {
 		
 		UserVO user = (UserVO) session.getAttribute("user");
+		String userid = user.getId();
 		
+		model.addAttribute("userid", userid);
 		model.addAttribute("user", user);
 		model.addAttribute("list", petService.getList());
 		model.addAttribute("productlist1", productService.getCatList());

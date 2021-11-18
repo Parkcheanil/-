@@ -31,13 +31,12 @@ public class OrderController {
 	private PetService petService;
 
 	@RequestMapping("order")
-	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, HttpSession session, PetVO petVO) {
+	public void order(Model model, HttpServletRequest httpServletRequest, DateVO vo, HttpSession session) {
 
 		ArrayList<OrderVO> list = orderService.searchList(vo);
 		
-		UserVO user = (UserVO) session.getAttribute("user");
+		UserVO user = (UserVO)session.getAttribute("user");
 		
-		model.addAttribute("petVO", petService.getList());
 		model.addAttribute("user", user);
 		model.addAttribute("list", list); 	  
 		model.addAttribute("dateVO", vo);
@@ -60,4 +59,6 @@ public class OrderController {
 //	public void dateSearch(OrderVO vo) {
 //		System.out.println(vo.toString());
 //	}
+	
+	
 }

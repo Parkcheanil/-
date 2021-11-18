@@ -110,7 +110,7 @@
                     
                     <!-- 기본주소 -->
                     <div class="form-group">
-                            <input type="text" class="form-control" id="addBasic" name="addBasic" placeholder="기본주소">
+                            <input type="text" class="form-control" id="addrBasic" name="addrBasic" placeholder="기본주소">
                     </div>
 
                     <!-- 상세주소 -->
@@ -176,7 +176,7 @@
     	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno, emdNo){
 			// console.log(roadAddrPart1, addrDetail, zipNo);
 			document.joinForm.addZipNum.value = zipNo;			// addrZipNum->addZipNum로 바꿈
-			document.joinForm.addBasic.value = roadAddrPart1; 
+			document.joinForm.addrBasic.value = roadAddrPart1; 
 			document.joinForm.addrDetail.value = addrDetail;
 		}
     </script>

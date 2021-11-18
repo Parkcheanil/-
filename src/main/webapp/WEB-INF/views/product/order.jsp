@@ -152,6 +152,7 @@
                                 <c:choose>
                                 <c:when test="${not empty list }">
                                 <c:forEach var="i" begin="0" end="${fn:length(pVO)}" step="1">
+                                <c:if test="${list[i].mid eq user.id }">
                                 <div class="list_index">
                                   <div class="tit_month">
                                     <h4><fmt:formatDate pattern="yyyy년MM월" value="${list[i].ordate}"/></h4>
@@ -222,6 +223,7 @@
 	                                    </div>
 	                                  </div>
                                 </div>
+								</c:if>
                                 </c:forEach>
                                 </c:when>
                                 <c:when test="${empty list }">
@@ -241,7 +243,6 @@
                 </div>
             </div>
         </div>
-    </div>
 <%@ include file="../incloud/footer.jsp" %>
     <!-- 스크립트 구간 -->
     <script>
@@ -277,5 +278,10 @@
 	        });
     	});
     </script>
-</body>
-</html>
+    
+	<!-- 펫 프로필 출력 갯수 제한 -->
+	<script type="text/javascript">
+		$(function() {
+			$(".pet-addlist:gt(1)").css({"display" : "none"});
+		});
+	</script>

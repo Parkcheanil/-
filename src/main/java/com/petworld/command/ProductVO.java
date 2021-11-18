@@ -16,7 +16,7 @@ public class ProductVO {
 	private int pprice;
 	private int pstock;
 	private int prate;
-	//private String cCode;
+	private String cCode;
 	private String pcount;
 	//상품상세정보
 	private String pdetail;
@@ -34,9 +34,6 @@ public class ProductVO {
 	private String uploadpath;
 	private String fileloca;
 	private String filename;
-	/*
-	 * lombok의 함정
-	 * getter, setter메소드를 저장할 때 앞의 문자가 소문자여도 getPID처럼 대문자로 적어주는 경우가 있다.
-	 * 따라서 이를 먼저 알아보고 c:forEach를 사용해 주어야 한다.
-	 */
+	
+	
 }

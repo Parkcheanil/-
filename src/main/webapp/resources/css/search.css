@@ -1,0 +1,123 @@
+/* 레이아웃 틀 */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background: #f5f6f7;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+.wrap {
+    position: relative;
+    width: 300px;
+    height: 40px;
+}
+
+.box{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 400px;
+}
+
+.SearchForm{
+	margin-top: 100px;
+}
+
+
+.titlebox{
+	font-size:20px;
+	font-weight: 700;
+	padding-bottom: 10px;
+	
+}
+
+label {
+    margin: 19px 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-group{
+	display: block;
+    width: 100%;
+    height: 100%;
+    border: solid 1px #dadada;
+    padding: 10px 40px 10px 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+}
+
+select {
+    width: 70%;
+    height: 29px;
+    font-size: 15px;
+    background: #fff url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50% no-repeat;
+    background-size: 20px 8px;
+    display: inline-block;
+    text-align: start;
+    border: none;
+    cursor: default;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    -webkit-appearance: none;
+}
+
+.form-control{
+	display: block;
+    position: relative;
+    width: 70%;
+    height: 26px;
+    border: none;
+    background: #fff;
+    font-size: 15px;
+}
+
+input{
+	padding-top:10px;
+}
+
+<!-- 검색버튼 -->
+.btn_area {
+    margin: 30px 0 91px;
+}
+
+#SearchBtn {
+    width: 100%;
+    padding: 21px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: red;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+#CloseBtn{
+	width: 100%;
+    padding: 21px 0 17px;
+    border: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: red;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+/*
+닫기 버튼에 크기, 색상 , 위치 변경
+성공했을 때만 로그인 버튼 띄우기
+성공 못했을 때 회원가입 버튼 띄우기
+
+*/

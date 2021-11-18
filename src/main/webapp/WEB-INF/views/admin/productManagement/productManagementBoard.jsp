@@ -60,7 +60,7 @@
 	                <td>${vo.pprice}</td>
 	                <td>${vo.pstock}</td>
 	                <td>${vo.pdetail }</td>
-	                <td><img src="${pageContext.request.contextPath }/resources/img/${vo.pimageaddr}"></td>
+	            	<td><img src="../display/${vo.fileloca }/${vo.filename}"></td>
                 </tr>
 			</c:forEach>
         </tbody>

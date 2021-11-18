@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petworld.command.CartVO;
+import com.petworld.command.PayMentVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.PetService;
@@ -46,7 +47,7 @@ public class ProductController {
 	/*
 	 * @RequestMapping(value = "productTotal", method=RequestMethod.GET) public void
 	 * productTotal(@RequestParam("c") int cCode, @RequestParam("l") int level,
-	 * Model model) { //移댄뀒怨좊━ 異붽�
+	 * Model model) { 
 	 * 
 	 * ArrayList<ProductVO> list = null; list = productService.getList2(cCode);
 	 * model.addAttribute("list", list); }
@@ -58,17 +59,6 @@ public class ProductController {
 		ProductVO vo = productService.getContent(pID);
 		model.addAttribute("vo", vo);
 	}
-	
-//	@RequestMapping(value = "purchase", method=RequestMethod.POST)
-//	public String purchase(HttpSession session, PayMentVO vo) { //submit�� �꽌踰꾩뿉寃� �뜲�씠�꽣瑜� �쟾�넚�븿 --> �꽌踰꾩뿉�꽌 �뜲�씠�꽣瑜� 諛쏆븘�빞�븿
-//		
-//		UserVO user = (UserVO)session.getAttribute("user");
-//		String id = user.getId();
-//		
-//		productService.insertPurchase(vo);
-//		
-//		return "/pay/payment";
-//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "cart", method=RequestMethod.POST)
@@ -84,12 +74,17 @@ public class ProductController {
 			result = productService.updateCart(cart);
 			System.out.println("cart : " + cart);
 		}
+		System.out.println(result);
 		
 		return result;
 	}
 	
 	@RequestMapping("/cancel")
-	public void cancel(Model model) {
+	public void cancel(Model model, HttpSession session) {
+		
+		UserVO user = (UserVO)session.getAttribute("user");
+		
+		model.addAttribute("user", user);
 		model.addAttribute("petVO", petService.getList());
 	}
 	

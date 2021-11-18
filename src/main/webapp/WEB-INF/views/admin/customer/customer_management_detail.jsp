@@ -23,8 +23,8 @@
 	
 <body>
 <!-- header include -->
- <%@ include file="../include/adminHeader.jsp" %> 
-	<div class="category_intable">
+ <%@ include file="../include/adminHeader.jsp" %>
+	<div class="category_intable" style ="padding-left : 170px;  margin-top : 100px; height: 75%; width: 75%;">
 		<hr><h4>회원 정보 관리</h4><hr>
 		<form action = "updateUser" method = "post">
 		<!-- 수정할 내용들  -->
@@ -35,17 +35,19 @@
         <input class="form-control" name='name' value ="${vo.name}">
         <label>연락처</label>
         <input class="form-control" name='phone' value ="${vo.phone}">
+        <label>우편번호</label>
+        <input class="form-control" name='addZipNum' value ="${vo.addZipNum}">
         <label>기본 주소</label>
-        <input class="form-control" name='addzipnum' value ="${vo.addZipNum}">
+        <input class="form-control" name='addrBasic' value ="${vo.addrBasic}" >
         <label>상세 주소</label>
-        <input class="form-control" name='addrdetail' value ="${vo.addrDetail}">
-         <label>생년월일</label>
-        <input class="form-control" name='yy' value ="${vo.yy}">
+        <input class="form-control" name='addrDetail' value ="${vo.addrDetail}">
+         
+        
+        
+			
             <br>
-			<div class="text-end">
-            <button type="button" class="btn_primary" onclick="location.href='customer_management'">목록</button>    
-            <button type="submit" class="btn_primary">변경</button>
-            </div>
+            <button type="button" onclick="location.href='customer_management'">목록</button>    
+            <button type="submit">변경</button>
          </form>
 	</div>
 </body>

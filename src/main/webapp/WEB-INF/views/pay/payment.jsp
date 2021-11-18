@@ -181,7 +181,7 @@
 														<div class="orderBox">
 															<div class="orderImgBox">
 																<picture> <img
-																	src="/resources/img/3510_originalView_01326139.jpg"
+																	src="/resources/img/${info.PIMAGEADDR }"
 																	alt="" sizes="auto"> </picture>
 															</div>
 														</div>
@@ -269,7 +269,7 @@
 														<div class="orderBox">
 															<div class="orderImgBox">
 																<picture> <img
-																	src="/resources/img/3510_originalView_01326139.jpg"
+																	src="/resources/img/${info.PIMAGEADDR }"
 																	alt="" sizes="auto"> </picture>
 															</div>
 														</div>
@@ -379,14 +379,13 @@
 	//아임포트 api
 	function iamport() {
 		event.preventDefault();
-		
 		var IMP = window.IMP;
 	 	IMP.init("imp98794983");
 	 	IMP.request_pay({
 	 	    pg : 'html5_inicis',
 	 	    pay_method : 'card',
-	 	    merchant_uid: '16272', // 상점에서 관리하는 주문 번호
-	 	    name : '주문명:결제테스트',
+	 	    merchant_uid: new Date().getTime() + $("#productID") , // 상점에서 관리하는 주문 번호
+	 	    name : $(".ocb1").html(),
 	 	    amount : 100,
 	 	    buyer_email : $("#UserID").val(),
 	 	    buyer_name : '홍길동',
@@ -412,7 +411,7 @@
 		        contentType:'application/json;charset=utf-8',
 		        dataType: 'json', //서버에서 보내줄 데이터 타입
 		        success: function(result){
-		        			        	
+		        	console.log(result);    	
 		          if(result == true){
 					 console.log("추가성공");
 					 alert("결제가 완료 되었습니다.");
@@ -441,43 +440,44 @@
 	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
 	//신규배송지 작성시 배송지 목록에 추가
-	$(document).ready(function(){
-  		$(".confBtn").click(function() {
-  			if(${list.size()} < 1) {
-	    		var params = {
-	    			 oplace : $("#addressName").val()
-	   				,oname : $("#receiver").val()
-	   				,ophone : $("#telNo1Third").val()
-	   				,opost : $("#zipCode").val()
-	   				,oaddress : $("#baseaadress").val()
-	   				,oaddress1 : $("#detailAddress").val()
-	   				,odefault : $("#baseAddressYn").val()
-	    		}
-	    		console.log(params);
-		    	$.ajax({
-		    		type: 'post',//데이터 전송 타입,
-		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
-		    		contentType : 'application/json; charset=UTF-8',
-		    		data: JSON.stringify({
-		    			"oplace" : params.oplace,
-		    			"oname" : params.oname,
-		    			"opost" : params.opost,
-		    			"oaddress" : params.oaddress,
-		    			"oaddress1" : params.oaddress1,
-		    			"ophone" : params.ophone,
-		    			"odefault" : params.odefault
-		    		}),
-		    		success: function(data){
-		    			console.log(data);
-		    			location.href="/pay/payment";
-		    		},
-		    		error:function(error){  
-		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
-		    		}
-		    	})
-  			} 
-		});
-	});
+// 	$(document).ready(function(){
+//   		$(".confBtn").click(function() {
+//   			event.preventDefault();
+//   			if(${list.size()} < 1) {
+// 	    		var params = {
+// 	    			 oplace : $("#addressName").val()
+// 	   				,oname : $("#receiver").val()
+// 	   				,ophone : $("#telNo1Third").val()
+// 	   				,opost : $("#zipCode").val()
+// 	   				,oaddress : $("#baseaadress").val()
+// 	   				,oaddress1 : $("#detailAddress").val()
+// 	   				,odefault : $("#baseAddressYn").val()
+// 	    		}
+// 	    		console.log(params);
+// 		    	$.ajax({
+// 		    		type: 'post',//데이터 전송 타입,
+// 		    		url : 'deliveryIn',//데이터를 주고받을 파일 주소 입력,
+// 		    		contentType : 'application/json; charset=UTF-8',
+// 		    		data: JSON.stringify({
+// 		    			"oplace" : params.oplace,
+// 		    			"oname" : params.oname,
+// 		    			"opost" : params.opost,
+// 		    			"oaddress" : params.oaddress,
+// 		    			"oaddress1" : params.oaddress1,
+// 		    			"ophone" : params.ophone,
+// 		    			"odefault" : params.odefault
+// 		    		}),
+// 		    		success: function(data){
+// 		    			console.log(data);
+// 		    			location.href="/pay/payment";
+// 		    		},
+// 		    		error:function(error){  
+// 		    			console.log(error);  //에러가 났을 경우 실행시킬 코드
+// 		    		}
+// 		    	})
+//   			} 
+// 		});
+// 	});
 	</script>
 	
 <script type="text/javascript">

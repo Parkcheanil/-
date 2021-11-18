@@ -22,8 +22,8 @@
 	 
 	<!-- 회원가입 -->
 	<insert id="signUp">
-		insert into MEMBER(id, pw, name, nick, phone, com, addZipNum, addBasic, addrDetail, yy, mm, dd) 
-		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{com}, #{addZipNum, jdbcType=VARCHAR}, #{addBasic, jdbcType=VARCHAR}, #{addrDetail, jdbcType=VARCHAR}, #{yy}, #{mm}, #{dd})
+		insert into MEMBER(id, pw, name, nick, phone, com, addZipNum, addrBasic, addrDetail, yy, mm, dd) 
+		values (#{id}, #{pw}, #{name}, #{nick}, #{phone}, #{com}, #{addZipNum, jdbcType=VARCHAR}, #{addrBasic, jdbcType=VARCHAR}, #{addrDetail, jdbcType=VARCHAR}, #{yy}, #{mm}, #{dd})
 	</insert>
 	
 	<!-- 로그인 -->

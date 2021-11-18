@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petworld.command.PayMentVO;
 import com.petworld.command.PayVO;
+import com.petworld.command.ProductVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.PayService;
 import com.petworld.service.ProductService;
@@ -36,10 +37,10 @@ public class payController {
 	
 	//결제 화면
 	@RequestMapping({"/payment", "/deliveryList"})
-	public void paymentInfo(Model model, Model cmo, HttpSession session) throws Exception {
+	public void paymentInfo(Model model, HttpSession session, ProductVO vo) throws Exception {
 		
 		List<Map<String, Object>> clist = productService.getCartList();
-		cmo.addAttribute("clist", clist);
+		model.addAttribute("clist", clist);
 		
 		UserVO user = (UserVO) session.getAttribute("user");
 		
@@ -50,8 +51,6 @@ public class payController {
 		model.addAttribute( "list", list );
 		
 	}
-	//상품 바로구매 데이터 수집
-
 	
 	//배송지 등록화면
 	@RequestMapping("/delivery")
@@ -114,12 +113,6 @@ public class payController {
 	public boolean paymentIn(@RequestBody PayMentVO vo) {
 		
 		System.out.println("결제 메서드 실행");
-		int amount = vo.getPoAmount();
-		String type = vo.getPayType();
-		
-		System.out.println(amount);
-		System.out.println(type);
-		System.out.println(payService.registPM(vo));
 		
 		boolean result = payService.registPM(vo);
 		

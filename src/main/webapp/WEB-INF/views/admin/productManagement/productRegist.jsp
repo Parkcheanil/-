@@ -60,7 +60,7 @@
 	   				</table>
 	   				 <br>
 	   				 <div class="text-end">
-				   	<button type="submit" class="btn_primary">확인</button>
+				   	<button type="submit" class="pinsertBtn btn_primary">확인</button>
 				   	<button type="button" class="btn_primary" onclick="location.href='productManagementBoard'">목록</button>  
 				   	</div>
 	   		</form>
@@ -90,7 +90,7 @@ function numCheck(selector) {
   });*/
  </script>
 <script>
-$("#pinsertBtn").click(function() {
+$(".pinsertBtn").click(function() {
    /* var imgs = $("#pimage").val();
     
     //확장자체크

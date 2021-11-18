@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ include file="../incloud/header.jsp" %>
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/petlist.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cancel.css">
@@ -57,14 +60,14 @@
 								</div>
 								<div class="cb3-1">
 									<div class="cb4">
-										<span class="myinfo-name"><strong>박천일님</strong> <i
+										<span class="myinfo-name"><strong>${user.name }</strong> <i
 											class="fas fa-cog"></i> </span>
 										<div class="cb5">
 											<div class="cb6">
 												<img class="naver" src="/resources/img/naver.jpg" alt="네이버사진">
 											</div>
 											<div class="cb6-1">
-												<span>asdfasdf@naver.com</span>
+												<span>${user.id }</span>
 											</div>
 										</div>
 									</div>
@@ -75,24 +78,26 @@
 						<div class="cb2-1">
 							<div class="cb3-3">
 								<ul class="pet-list-grup">
-							       <c:forEach items="${petVO }" var="vo">
-										<li class="pet-addlist">
-											<div class="pet-addbtn">
-												<h4>
-													<div class="petname">${vo.pname }</div>
-													<c:if test="${vo.pfirst == 1 }" var="pfirst" scope="session">
-													<span class="toppetBox"> <span class="toppet">대표</span>
-													</span>
-													</c:if>
-												</h4>
-												<div class="petinfo">
-													<span class="petbirth">${vo.pyear }년</span> <span
-														class="petbirth">${vo.pmonth }월</span> <span
-														class="petweight">${vo.pweight }kg</span>
-												</div>
+							      <c:forEach var="i" begin="1" end="${list.size()}" step="1">
+								<c:if test="${list[i].userid eq user.id }">
+									<li class="pet-addlist">
+										<div class="pet-addbtn">
+											<h4>
+												<div class="petname">${list[i].pname }</div>
+												<c:if test="${list[i].pfirst == 1 }" var="pfirst" scope="session">
+												<span class="toppetBox"> <span class="toppet">대표</span>
+												</span>
+												</c:if>
+											</h4>
+											<div class="petinfo">
+												<span class="petbirth">${list[i].pyear }년</span> <span
+													class="petbirth">${list[i].pmonth }월</span> <span
+													class="petweight">${list[i].pweight }kg</span>
 											</div>
-										</li>
-									</c:forEach>
+										</div>
+									</li>
+								</c:if>
+								</c:forEach>
 									<li class="pet-addlist-in">
 										<button class="pet-addbtn-in"
 											onclick="location.href='petRegister'">
@@ -106,7 +111,7 @@
 						</div>
 					</div>
                     <!-- 상세정보 사이드메뉴 -->
-                    <div class="cb1-1">
+                    <div class="cb1-1" style = "height: 1200px;">
                         <div class="cb2-2">
                             <div class="side">
                                 <h3>나의 쇼핑</h3>
@@ -136,8 +141,10 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="main_area">
+                          </div>
+                            <c:choose>
+                    <c:when test="${empty list }">
+                    <div class="main_area" style="float: left;">
                         <h2 class="main_h2">주문취소</h2>
                         <div class="main_area_none">
                           <div class="main_inner_none">
@@ -149,29 +156,30 @@
                             </div>
                           </div>
                         </div>
-                        <div class="inner_goods">
+                        </div>
+                        </c:when>
+                        </c:choose>
+                        <c:forEach var="i" begin="0" end="${fn:length(list)}" step="1">
+						<c:if test="${list[i].delivery_status == '배송준비중' }">
+                        <div class="inner_goods" style="float: left; padding:15px 0 0 15px">
                           <div class="goods_div">
                             <div>
                               <h2 class="goods_h2">물품 목록</h2>
                             </div>
-                  
                             <div class="goods_info">
-                              <img src="/resources/img/catEat01.jpg">
+                              <img src="/resources/img/${list[i].pimage	 }">
                               <div class="info_text">
-                                <div class="info_name">커클랜드 시그니쳐 고양이 사료</div>
-                                <div class="info_number">개수</div>
-                              </div>
-                              <div class="info_count">
-                                <div class="count_button">-</div>
-                                <input type="text" class="count_text" />
-                                <div class="count_button">+</div>
+                                <div class="info_name">${list[i].pname }</div>
+                                <div class="info_number">${list[i].oproductnum  }</div>
                               </div>
                               <div class="info_etc">
                                 <button type="button" class="btn"><span>주문취소</span></button>
                               </div>
                             </div>
-                          </div>
+                            </div>
+                        </div>
+                      </c:if>
+					</c:forEach>
                         </div>
                       </div>
-
     <%@ include file="../incloud/footer.jsp" %>

@@ -85,7 +85,7 @@ public class AdminController {
 	}
 	
 	//회원정보 수정
-	@RequestMapping("updateUser")
+	@RequestMapping("/customer/updateUser")
 	public String updateUser(UserVO vo, RedirectAttributes RA) {
 		
 		boolean result = adminService.updateUser(vo);
@@ -119,7 +119,7 @@ public class AdminController {
 	      model.addAttribute("vo", vo);
 		}
 		
-	@RequestMapping("order/updateUser")
+	@RequestMapping("order/updateUserOrder")
 	   public String updateUser(OrderVO vo, RedirectAttributes RA) {
 	      
 	      boolean result = adminService.orderUpdate(vo);

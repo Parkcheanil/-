@@ -53,7 +53,7 @@
                                     <li class="li_info3"><strong>30,000</strong> 원 이상 구매 시 무료배송</li>
                                 </ul>
                             </div>
-                            <form action="/pay/payment" method="post">
+                            <form action="../pay/payment" method="post">
                             <input type = "hidden" name="price" value="${vo.pprice }">
                             <input type="hidden" name="pname" value="${vo.pname }">
                             <input type="hidden" id="pid" value="${vo.pid}" />
@@ -556,13 +556,12 @@
 					url : "cart",
 					data : data,
 					success : function(result){ //로그인 한 사용자 확인
-						console.log(document);
 						if(result == 1) {
-							confirm("카트에 물품을 담는 데 성공하였습니다.");
+							confirm("로그인 후 이용 가능합니다.");
 							$("#result").val("1");
 						}
 						else {
-							confirm("로그인 후 이용 가능합니다.");
+							confirm("카트에 물품을 담는 데 성공하였습니다.");
 							$("#result").val("1");
 						}
 					},

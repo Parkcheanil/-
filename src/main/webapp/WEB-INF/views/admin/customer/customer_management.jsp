@@ -1,7 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
+
 <head>
+<title>회원관리</title>
+	<!--  data_table style -->
+<style>
+   div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: left !important;
+	}
+   </style>    
     <meta charset="UTF-8">
     <title>페이지 이름</title>
     <!-- 수정버튼  -->
@@ -32,64 +43,59 @@
 	 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 	
-	<style>
-   div.dataTables_paginate {
-    margin: 0;
-    white-space: nowrap;
-    text-align: left !important;
-   }
-   </style>
+
+	
+
 </head>
 
 <body>
- 	<!--  hearder include -->
+	
+ 	<!--  header include -->
 	<%@ include file="../include/adminHeader.jsp" %>
-		<div class ="conntent_area" >
-				<hr style="width: 100px;margin: auto;">
-				<h4 style="font-size:24px;">회원</h4>
-				<hr style="width: 100px;margin: auto;">
+		<div class ="conntent_area" style="margin-top: 20px; margin-left: 160px;background-color: white; padding: 20px;" >
+				<h2 style="text-align: center;">&nbsp;회원 조회</h2>
 				<br>
-				<form action="customer_management">
-			        <div class="search_area">
-			          <div class="searchCustomer">
+				<br>
+				<br>
+			       <div class="search_area">
+			        <form action = "customer_management">
+			        <center>
 			            <select class="form-control search-select" name="searchType">
 			              <option value="id" ${cri.searchType eq 'id' ? 'selected' : ''}  >아이디</option>
 			              <option value="name"${cri.searchType eq 'name' ? 'selected' : ''}  >이름</option>
 			              <option value="phone"${cri.searchType eq 'phone' ? 'selected' : ''} >휴대폰번호</option>
+			        </center>
 			             </select>
 			             <input type="text" class="customer_text" name="searchName" value="${cri.searchName }">
 			             <button type="submit" class="btn btn-info search-btn" >검색</button>
-			             <input type="hidden" name="pageNum" value="1">
-			             <input type="hidden" name="amount" value="10">
-			       		</div>
+			           </form>
 					</div>
-					</form>
-				<table id="example" class="table table-striped table-bordered">
+				<table id="example" class="table table-striped table-bordered" style="width:100%">
+				<fmt:formatDate var="newFormattedDateString" value="${regdate}" pattern="yyyy-MM-dd"/>
 			       <thead>
 			            <tr>
-			               	<th>아이디</th>
+			               	<th >아이디</th>
 			                <th>이름</th>
-			                <th>닉네임</th>
 			                <th>휴대폰번호</th>
 			                <th>우편번호</th>
 			                <th>주소</th>
 			                <th>생년월일</th>
-			                <th>가입일자</th>
+			               
 			            </tr>
 			        </thead>
 			       	<tbody>
 			       		<c:forEach var="vo" items="${list}">
+			       		
 				       	<tr>
 				       	  <td><a href='customer_management_detail?id=${vo.id}'>${vo.id}</a></td>
 			               <td>${vo.name}</td>
-			               <td>${vo.nick}</td>
 			               <td>${vo.phone }</td>
 			               <td>${vo.addZipNum }</td>
-			               <td>${vo.addBasic} ${vo.addrDetail }</td>
+			               <td>${vo.addrBasic} ${vo.addrDetail }</td>
 			               <td>${vo.yy }/${vo.mm }/${vo.dd }</td>
-			               <td>${vo.regdate }</td>
 				      	</tr>
 				      	</c:forEach>
+				      	
 			       	</tbody>
 			    </table>  
 		</div>  
@@ -104,6 +110,7 @@
 	        "searching": false
 	    } );
 	} );
+	
 	// Korean
 	    var lang_kor = {
 	        "decimal" : "",
@@ -113,7 +120,7 @@
 	        "infoFiltered" : "(전체 _MAX_ 명 중 검색결과)",
 	        "infoPostFix" : "",
 	        "thousands" : ",",
-	        "lengthMenu" : "_MENU_ 개씩 보기",
+	        "lengthMenu" : "_MENU_ ",
 	        "loadingRecords" : "로딩중...",
 	        "processing" : "처리중...",
 	        "search" : "검색 : ",
@@ -130,13 +137,8 @@
 	        }
 	    };
 	
-	//datepicker
-	$(function () {
-            $('#datetimepicker1').datetimepicker();
-          });
-
-	    
-</script>
-  
+		
+   </script>  
+   
 </body>
 </html>        

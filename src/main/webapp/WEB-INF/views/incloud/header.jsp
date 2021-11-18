@@ -23,8 +23,6 @@
 <!-- 헤더 css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css">
 	
-
-	
 </head>
 
   <header id="container">
@@ -42,9 +40,12 @@
             <a href="${pageContext.request.contextPath}/product/productCatTotal">
               <span>고양이</span>
             </a>
-            <a href="${pageContext.request.contextPath}/pet/petList">
-              <span>프로필</span>
-            </a>
+            
+            <c:if test="${user != null }">
+	            <a href="${pageContext.request.contextPath}/pet/petList">
+	              <span>프로필</span>
+	            </a>
+            </c:if>
             <a href="${pageContext.request.contextPath}/notice/notice">
               <span>공지사항</span>
             </a>
@@ -64,13 +65,13 @@
 	            <a href="${pageContext.request.contextPath}/product/cart">
 	              <span>Cart</span>
 	            </a>
-	      
+
           </c:if>
           
           <!-- 로그인 했을때 (세션이 있을 때) -->   
           <c:if test="${user != null }">
 	          <div class="users-function">            
-	            <a href="${pageContext.request.contextPath}/product/order?">
+	            <a href="${pageContext.request.contextPath}/product/order">
 		            <span>Mypage</span>
 	            </a>
 	            
@@ -82,6 +83,11 @@
 	            	<span>Logout</span>
 	            </a>
 	            
+	            <c:if test="${user.id eq 'admin@admin.com'}">
+		            <a href="${pageContext.request.contextPath}/admin/adminhome">
+		            	<span>Admin</span>
+		            </a>
+	            </c:if>
 	          </div>
           </c:if>
           

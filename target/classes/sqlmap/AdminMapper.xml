@@ -4,15 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.petworldAdmin.mapper.AdminMapper">
-  
   	<!-- 메인페이지 -->
   	<select id="maintable1" resultType="UserVO">
-  		select * from MEMBER
-  		order by regdate desc
+  	
+			select *
+			 <![CDATA[
+			from MEMBER
+			where regdate >= '2021-11-14' AND regdate <='2021-11-15'
+			]]>
   	</select>
   	<select id="maintable2" resultType="OrderVO">
-  		select * from USER_ORDER
-  		order by oid desc
+  		select *
+  		<![CDATA[
+  		from 
+  		USER_ORDER
+		where ORDATE >= '2021-11-14' AND ORDATE <='2021-11-15'
+  		]]> 
   	</select>
   	<select id="mainchart" resultType="OrderVO">
   		select ordate, sum(oamount) as oamount
@@ -21,12 +28,12 @@
 		ORDER BY ordate
   	</select>
   	
-  	<!-- 회원 -->
+    	<!-- 회원 -->
   	<select id = "customerList" resultType="UserVO">
-  	 <![CDATA[
+  	 <![CDATA[	
 		   	select *
-		   	from (select rownum as rn, a.*
-		   		from(select * 
+		   	from (
+		   		(select * 
 		   			 from MEMBER
 		   			 where
 		   ]]>
@@ -35,24 +42,32 @@
 		   	<if test="searchType == 'phone'">phone like '%'||#{searchName}||'%'</if>
 		   	<if test="searchType == null or searchType == ''">1=1</if>	
 	   	<![CDATA[
-	   		order by id desc)a	
-	   		)where rn >(#{pageNum}-1)*#{amount} and rn <=#{pageNum}*#{amount}
+	   		order by id desc)a
+	   		)
 		 ]]>
-		</select>
-		
-		<select id ="userDetail" resultType="UserVO">
-			select * from MEMBER where id =#{id}
-		</select>
-		
-		<update id="updateUser">
-			update MEMBER SET
-			name =#{name},
-			phone = #{phone},
-			addzipnum = #{addzipnum},
-			addrdetail = #{addrdetail},
-			yy = #{yy}
-			where id =#{id}
-		</update>
+	</select>
+	
+	
+	<select id ="userDetail" resultType="UserVO">
+		select * from MEMBER where id =#{id}
+	</select>
+	<update id="updateUser">
+	update MEMBER SET
+	name= #{name},
+	phone= #{phone},
+	addZipNum= #{addZipNum},
+	addrBasic= #{addrBasic},
+	addrDetail= #{addrDetail}
+	where id = #{id}	
+	</update>
+  	<!-- 날짜검색 -->
+  	<select id="searchList" resultType="OrderVO">
+        SELECT * FROM USER_ORDER
+      <![CDATA[WHERE ORDATE >= #{fromDate}, 'YYYY-MM-DD AND
+           ORDATE <=#{toDate}, 'YYYY-MM-DD'
+           ]]>
+           ORDER BY ORDATE DESC
+     </select>
 		
   	
   	<!-- 주문 -->

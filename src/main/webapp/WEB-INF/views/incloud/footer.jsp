@@ -11,7 +11,7 @@
             <li><a href="javascript:;">개인정보취급방침</a></li>
           </ul>
           <br>
-          <h2>애완동물대통령</h2>
+          <h2>펫월드</h2>
           <p class="addr">서울특별시 영등포구 신길로61길 청운빌딩 5층 <span class="gubun">/</span>
             <span class="br_line">대표전화 <span class="space0">02-1234-5678</span> <span class="gubun">/</span>
               <span class="br_line">E-mail : <span class="space0"> kjc0235@petpresident.com</span></span>

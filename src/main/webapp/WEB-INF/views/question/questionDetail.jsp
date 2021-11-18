@@ -57,7 +57,6 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<div class="col-xs-12 col-md-9 write-wrap">
 					<form class="reply-wrap" action="questionReplyRegist" method="post">
 						<div class="reply-image">
-							<img src="../resources/img/profile.png">
 						</div>
 						<!--form-control은 부트스트랩의 클래스입니다-->
 						<div class="reply-content">
