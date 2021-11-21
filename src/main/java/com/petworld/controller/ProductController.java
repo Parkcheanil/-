@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +63,7 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "cart", method=RequestMethod.POST)
-	public int cart(CartVO cart, HttpSession session) {
+	public int cart(@RequestBody CartVO cart, HttpSession session) {
 		/* CartVO vo = new CartVO(); */
 		int result = 0;
 		
@@ -73,8 +74,8 @@ public class ProductController {
 			/* result = productService.insertCart(cart); */
 			result = productService.updateCart(cart);
 			System.out.println("cart : " + cart);
+			System.out.println(result);
 		}
-		System.out.println(result);
 		
 		return result;
 	}

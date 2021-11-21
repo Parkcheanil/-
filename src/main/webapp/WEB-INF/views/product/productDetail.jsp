@@ -548,24 +548,27 @@
 				var pid = $("#pid").val();
 				var cartNum = $("#result").val();
 				var data = {
-						pid : pid,
-						cartNum : cartNum
+						"pid" : pid,
+						"cartNum" : cartNum
 						};
 				$.ajax({
 					type : "post",
 					url : "cart",
-					data : data,
+					data : JSON.stringify(data),
+					contentType: 'application/json; charset=UTF-8',
+					dataType: 'json',
 					success : function(result){ //로그인 한 사용자 확인
-						if(result == 1) {
-							confirm("로그인 후 이용 가능합니다.");
-							$("#result").val("1");
-						}
-						else {
+						if($.trim(result) == 1) {
+							console.log(result);
 							confirm("카트에 물품을 담는 데 성공하였습니다.");
+							$("#result").val("1");
+						} else {
+							confirm("로그인 후 이용 가능합니다.");
 							$("#result").val("1");
 						}
 					},
 					error : function() {
+						console.log(result);
 						alert("카트 담기 실패");
 					}
 				});

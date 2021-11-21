@@ -377,56 +377,110 @@
 
 	<script type="text/javascript">
 	//아임포트 api
+// 	function iamport() {
+// 		event.preventDefault();
+// 		var IMP = window.IMP;
+// 	 	IMP.init("imp98794983");
+// 	 	IMP.request_pay({
+// 	 	    pg : 'html5_inicis',
+// 	 	    pay_method : 'card',
+// 	 	    merchant_uid: new Date().getTime(), // 상점에서 관리하는 주문 번호
+// 	 	    name : $(".ocb1").html(),
+// 	 	    amount : 100,
+// 	 	    buyer_email : $("#UserID").val(),
+// 	 	    buyer_name : '홍길동',
+// 	 	    buyer_tel : $("#telNo1Third").val(),
+// 	 	    buyer_addr : $("#baseaadress").val() + $("#detailAddress").val(),
+// 	 	    buyer_postcode : $("#zipCode").val()
+// 	 	}, function(rsp) {
+// 	 		var msg = "결제가 완료되었습니다.";
+// 	 		var result = {
+//  				"poId" : rsp.merchant_uid,
+// 	    		"cno" :  $("#cno").val(),
+// 	    		"oNum" : $("#onumHidden").val(),
+// 	    		"poAmount" : rsp.paid_amount,
+// 	    		"payType" : $('input[type="radio"][name="payType"]').val()
+// 	 		}
+// 	 		console.log(result);
+// 	 		console.log(rsp);
+// 	 		console.log("결제성공 " + msg);
+// 	 		$.ajax({
+// 				url : 'paymentForm', 
+// 		        type :'POST',
+// 		        data : JSON.stringify(result),
+// 		        contentType:'application/json;charset=utf-8',
+// 		        dataType: 'json', //서버에서 보내줄 데이터 타입
+// 		        success: function(result){
+// 		        	console.log(result);    	
+// 		          if(result == true){
+// 					 console.log("추가성공");
+// 					 alert("결제가 완료 되었습니다.");
+// 					 location.href = '/product/order';
+// 		          }else{
+// 		             console.log("Insert Fail!!!");
+// 		          }
+// 		        },
+// 		        error:function(){
+// 		          console.log("Insert ajax 통신 실패!!!");
+// 		        }
+// 			}) //ajax
+// 		});
+// 	}//pay
+
 	function iamport() {
 		event.preventDefault();
-		var IMP = window.IMP;
-	 	IMP.init("imp98794983");
-	 	IMP.request_pay({
-	 	    pg : 'html5_inicis',
-	 	    pay_method : 'card',
-	 	    merchant_uid: new Date().getTime() + $("#productID") , // 상점에서 관리하는 주문 번호
-	 	    name : $(".ocb1").html(),
-	 	    amount : 100,
-	 	    buyer_email : $("#UserID").val(),
-	 	    buyer_name : '홍길동',
-	 	    buyer_tel : $("#telNo1Third").val(),
-	 	    buyer_addr : $("#baseaadress").val() + $("#detailAddress").val(),
-	 	    buyer_postcode : $("#zipCode").val()
-	 	}, function(rsp) {
-	 		var msg = "결제가 완료되었습니다.";
-	 		var result = {
- 				"poId" : rsp.merchant_uid,
-	    		"cno" :  $("#cno").val(),
-	    		"oNum" : $("#onumHidden").val(),
-	    		"poAmount" : rsp.paid_amount,
-	    		"payType" : $('input[type="radio"][name="payType"]').val()
-	 		}
-	 		console.log(result);
-	 		console.log(rsp);
-	 		console.log("결제성공 " + msg);
-	 		$.ajax({
-				url : 'paymentForm', 
-		        type :'POST',
-		        data : JSON.stringify(result),
-		        contentType:'application/json;charset=utf-8',
-		        dataType: 'json', //서버에서 보내줄 데이터 타입
-		        success: function(result){
-		        	console.log(result);    	
-		          if(result == true){
-					 console.log("추가성공");
-					 alert("결제가 완료 되었습니다.");
-					 location.href = '/product/order';
-		          }else{
-		             console.log("Insert Fail!!!");
-		          }
-		        },
-		        error:function(){
-		          console.log("Insert ajax 통신 실패!!!");
-		        }
-			}) //ajax
+		IMP.init("imp98794983");
+		IMP.request_pay({
+		    pg : 'html5_inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : new Date().getTime(),
+		    name : $(".ocb1").html(),
+		    amount : 100, //판매 가격
+		    buyer_email : $("#UserID").val(),
+		    buyer_name : '홍길동',
+		    buyer_tel : $("#telNo1Third").val(),
+		    buyer_addr : $("#baseaadress").val() + $("#detailAddress").val(),
+		    buyer_postcode : $("#zipCode").val()
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		    	var msg = "결제가 완료되었습니다.";
+		 		var result = {
+	 				"poId" : rsp.merchant_uid,
+		    		"cno" :  $("#cno").val(),
+		    		"oNum" : $("#onumHidden").val(),
+		    		"poAmount" : rsp.paid_amount,
+		    		"payType" : $('input[type="radio"][name="payType"]').val()
+		 		}
+		 		console.log(result);
+		 		console.log(rsp);
+		 		console.log("결제성공 " + msg);
+		 		$.ajax({
+					url : 'paymentForm', 
+			        type :'POST',
+			        data : JSON.stringify(result),
+			        contentType:'application/json;charset=utf-8',
+			        dataType: 'json', //서버에서 보내줄 데이터 타입
+			        success: function(result){
+			        	console.log(result);    	
+			          if(result == true){
+						 console.log("추가성공");
+						 alert("결제가 완료 되었습니다.");
+						 location.href = '/product/order';
+			          }else{
+			             console.log("Insert Fail!!!");
+			          }
+			        },
+			        error:function(){
+			          console.log("Insert ajax 통신 실패!!!");
+			        }
+				});
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
 		});
-	}//pay
-
+	}
 	//배송지 목록 존재할 경우 배송지 선택 버튼 show
 	$(function() {
 		if(${list.size()} > 0) {
@@ -435,7 +489,6 @@
 			$(".ddgropbox").hide();
 		}
 	});
-
 	//결제 버튼 클릭시 배송지 목록이 존재 하지 않을경우 배송지 입력폼에 작성한 내용으로 배송지번호를 paymentVO에 배송지 번호를 등록해주고
 	//배송지 목록이 존재할경우에는 목록중 클릭이벤트가 발생한 목록의 벨류값을 받아 전달해 배송지번호를 결제폼에 실어서 보내주도록 한다.
 	//결제 버튼 제어
