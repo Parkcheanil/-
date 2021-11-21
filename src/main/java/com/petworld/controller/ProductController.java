@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petworld.command.CartVO;
-import com.petworld.command.PayMentVO;
 import com.petworld.command.ProductVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.PetService;

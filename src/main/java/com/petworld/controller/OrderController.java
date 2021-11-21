@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petworld.command.OrderVO;
-import com.petworld.command.PetVO;
 import com.petworld.command.UserVO;
 import com.petworld.service.OrderService;
 import com.petworld.service.PetService;
