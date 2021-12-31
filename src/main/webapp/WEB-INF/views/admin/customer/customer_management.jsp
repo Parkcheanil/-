@@ -64,8 +64,8 @@
 			              <option value="id" ${cri.searchType eq 'id' ? 'selected' : ''}  >아이디</option>
 			              <option value="name"${cri.searchType eq 'name' ? 'selected' : ''}  >이름</option>
 			              <option value="phone"${cri.searchType eq 'phone' ? 'selected' : ''} >휴대폰번호</option>
-			        </center>
 			             </select>
+			        </center>
 			             <input type="text" class="customer_text" name="searchName" value="${cri.searchName }">
 			             <button type="submit" class="btn btn-info search-btn" >검색</button>
 			           </form>

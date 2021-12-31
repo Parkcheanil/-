@@ -157,7 +157,7 @@
 									<!-- 인터크립터 추천메뉴 슬라이드 -->
 									<div class="carousel-inner">
 										<div class="item active">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="1">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist1) - 1}" step="5">
 												<div class="individually" id="slideFirst">
 													<a onclick="location.href='/product/productDetail?pID=${productlist1[i].pid}'">
 														<picture>
@@ -177,7 +177,7 @@
 											</c:forEach>
 										</div>
 										<div class="item">
-											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="1">
+											<c:forEach var="i" begin="0" end="${fn:length(productlist2) - 1}" step="5">
 												<div class="individually" id="slideFirst">
 													<a onclick="location.href='/product/productDetail?pID=${productlist2[i].pid}'">
 														<picture>
