@@ -61,6 +61,7 @@ public class PetController {
 			System.out.println(file);
 			
 			UserVO user = (UserVO) session.getAttribute("user");
+			System.out.println(user);
 			String userid = user.getId();
 			vo.setUserid(userid);
 			
@@ -177,18 +178,23 @@ public class PetController {
 		
 		PetVO vo = petService.petInfo(pnum);
 		model.addAttribute("vo", vo);
+		System.out.println("펫 정보 수정 화면");
 	}
 	
 	//펫 정보 수정 처리
 	@RequestMapping("/petUpdateForm")
 	public String petUpdate(@RequestParam("file") MultipartFile file,
-							PetVO vo, HttpServletRequest req, RedirectAttributes RA) throws Exception {
+							PetVO vo, RedirectAttributes RA, HttpSession session) throws Exception {
 		
 		System.out.println("펫 정보 수정 메서드 실행");
 		
 		String img = vo.getPphoto();
 		System.out.println(img);
 		
+		UserVO user = (UserVO) session.getAttribute("user");
+		System.out.println(user);
+		String userid = user.getId();
+		vo.setUserid(userid);
 		
 		//새로 첨부한 파일을 등록
 		String fileRealName = file.getOriginalFilename();
